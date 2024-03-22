@@ -12,6 +12,8 @@ const getAllPortfolios = async (req, res) => {
 };
 //2-add new portfolio
 const addPortfolio = async (req, res) => {
+
+
   let newPortfolio = req.body;
   //check validation..
   if (portfoliosValidator(newPortfolio)) {
