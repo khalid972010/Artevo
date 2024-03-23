@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Angular Project and node js ",
+  "main": "D:/ITI/JsProjects/Angular_Project/Backend/Server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khalid972010/Art_Lance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khalid972010/Art_Lance/issues"
+  },
+  "homepage": "https://github.com/khalid972010/Art_Lance#readme",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.1",
+    "mongoose": "^8.2.3",
+    "nodemailer": "^6.9.13",
+    "uuid": "^9.0.1"
+  }
+}
