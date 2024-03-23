@@ -4,7 +4,8 @@ const UserValidator = require("../Utils/UserValidation");
 const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
-
+const jwt = require("jsonwebtoken");
+//#region Profile
 // Get all Users
 const GetAllUsers = async (req, res) => {
   console.log("im in controller");
@@ -37,8 +38,10 @@ const UpdateProfile = async (req, res) => {
     throw new Error("Failed to get user: " + error.message);
   }
 };
+//#endregion
+
 //#region Verification E-mail
-async function sendVerificationEmail(email, verificationToken) {
+async function sendEmail(email, t) {
   // Create a Nodemailer transporter
   let transporter = nodemailer.createTransport({
     service: "Gmail",
@@ -53,7 +56,7 @@ async function sendVerificationEmail(email, verificationToken) {
     from: "hire.hustle1@gmail.com", // Sender address
     to: email, // Recipient address
     subject: "Email Verification", // Subject line
-    text: `Click the following link to verify your email: http://localhost:7005/api/users/verify/${verificationToken}`, // Plain text body
+    text: t, // Plain text body
   });
 
   console.log("Verification email sent:", info.messageId);
@@ -66,8 +69,9 @@ const sendVerification = async (req, res) => {
 
   toBeVerifiedUser.verificationToken = verificationToken;
   toBeVerifiedUser.save();
+  let text = `Click the following link to verify your email: http://localhost:7005/api/users/verify/${verificationToken}`;
   try {
-    await sendVerificationEmail(email, verificationToken);
+    await sendEmail(email, text);
     res.json({ message: "Verification email sent successfully" });
   } catch (error) {
     console.error("Error sending verification email:", error);
@@ -88,24 +92,6 @@ const verifyUser = async (req, res) => {
 //#endregion
 
 //#region Reset Password
-async function sendPasswordResetEmail(email, resetToken) {
-  // Create a Nodemailer transporter
-  let transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-      user: "hire.hustle1@gmail.com",
-      pass: "ipozfcndqykqpslz",
-    },
-  });
-
-  // Send Reset password
-  let info = await transporter.sendMail({
-    from: "hire.hustle1@gmail.com", // Sender address
-    to: email, // Recipient address
-    subject: "Reset Password", // Subject line
-    text: `Click the following link to reset your password: http://localhost:7005/api/users/reset-password/${resetToken}`,
-  });
-}
 
 const sendResetToken = async (req, res) => {
   let { email } = req.body;
@@ -114,8 +100,9 @@ const sendResetToken = async (req, res) => {
 
   TobeReset.resetToken = resetToken;
   TobeReset.save();
+  let text = `Click the following link to reset your password: http://localhost:7005/api/users/reset-password-form/${resetToken}`;
   try {
-    await sendVerificationEmail(email, resetToken);
+    await sendEmail(email, text);
     res.json({ message: "reset password sent successfully" });
   } catch (error) {
     console.error("Error sending reset password:", error);
@@ -152,7 +139,28 @@ const resetPasswordSubmit = async (req, res) => {
   ToBeReset.save();
   res.send("Password reset successfully");
 };
+//#endregion
 
+//#region Login
+async function loginUser(req, res) {
+  const { email, password } = req.body;
+  let foundEmail = await UserModel.findOne({ email });
+
+  if (!foundEmail) return res.json("invalid email or password");
+
+  let isCorrectPass = bcrypt.compare(password, foundEmail.password);
+
+  if (!isCorrectPass) return res.json("invalid email or password");
+  if (!foundEmail.isVerified) return res.json("Please activate your account");
+  const accessToken = jwt.sign(
+    { id: foundEmail.id, type: foundEmail.use },
+    "artlance",
+    { expiresIn: "7d" }
+  );
+  res.header("x-auth-token", accessToken);
+  return res.json("Login Successfully");
+}
+//#endregion
 module.exports = {
   GetAllUsers,
   GetProfile,
@@ -162,4 +170,5 @@ module.exports = {
   resetPasswordSubmit,
   getResetPasswordForm,
   sendResetToken,
+  loginUser,
 };
