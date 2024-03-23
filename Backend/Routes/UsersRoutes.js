@@ -15,4 +15,5 @@ router.post(
 );
 router.get("/reset-password-form/:token", UserController.getResetPasswordForm);
 router.get("/verify/:token", UserController.verifyUser);
+router.post("/login", UserController.loginUser);
 module.exports = router;
