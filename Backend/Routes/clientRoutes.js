@@ -13,4 +13,8 @@ router.get("/:id", clientController.getClient);
 //#region Create Client
 router.post("/", clientController.createClient);
 //#endregion
+
+//#region Search for Freelancer
+router.get("/search/freelancer", clientController.searchFreelancers);
+//#endregion
 module.exports = router;

@@ -6,13 +6,13 @@ const app = express();
 const PORT = process.env.PORT || 7005;
 
 // Middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Routes
 app.use("/api/users", UserRoute);
 
-<<<<<<< Updated upstream
-=======
+
 //#region Client Routes
 app.use("/api/clients", clientRoutes);
 //#endregion
@@ -21,7 +21,7 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/portfolio", portfolioRoutes);
 //#endregion
 
->>>>>>> Stashed changes
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

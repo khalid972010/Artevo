@@ -1,6 +1,6 @@
 // Import the User model
 const UserModel = require("../Models/UserModel").UserModel;
-const UserValidator = require("../Utils/UserValidation");
+const UserValidator = require("../Validators/UserValidation");
 const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");

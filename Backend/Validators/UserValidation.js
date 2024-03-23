@@ -26,4 +26,13 @@ UsersSchema = {
   additionalProperties: false,
 };
 
+
+    firstname: { type: "string", pattern: "^[a-zA-Z]*$" },
+    lastname: { type: "string", pattern: "^[a-zA-Z]*$" },
+    age: { type: "integer" },
+  },
+  required: ["firstname", "lastname", "age"],
+  additionalProperties: false,
+};
+
 module.exports = ajv.compile(UsersSchema);
