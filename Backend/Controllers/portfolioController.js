@@ -10,10 +10,9 @@ const getAllPortfolios = async (req, res) => {
 
   res.status(200).json({ data: allportfolios });
 };
+//test
 //2-add new portfolio
 const addPortfolio = async (req, res) => {
-
-
   let newPortfolio = req.body;
   //check validation..
   if (portfoliosValidator(newPortfolio)) {
