@@ -1,6 +1,7 @@
 const Ajv = require("ajv");
 const ajv = new Ajv();
-UsersSchema = {
+
+const UsersSchema = {
   type: "object",
   properties: {
     username: {
@@ -26,7 +27,9 @@ UsersSchema = {
   additionalProperties: false,
 };
 
-
+const ProfileSchema = {
+  type: "object",
+  properties: {
     firstname: { type: "string", pattern: "^[a-zA-Z]*$" },
     lastname: { type: "string", pattern: "^[a-zA-Z]*$" },
     age: { type: "integer" },
@@ -35,4 +38,7 @@ UsersSchema = {
   additionalProperties: false,
 };
 
-module.exports = ajv.compile(UsersSchema);
+module.exports = {
+  UsersSchema: ajv.compile(UsersSchema),
+  ProfileSchema: ajv.compile(ProfileSchema)
+};

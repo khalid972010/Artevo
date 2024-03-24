@@ -31,6 +31,10 @@ const ClientSchema = {
       type: "array",
       items: { type: "string" },
     },
+    following: {
+      type: "array",
+      items: { type: "string" }
+    }
   },
   required: ["fullName", "userName", "password", "userType", "email"],
   additionalProperties: false,
