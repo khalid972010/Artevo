@@ -53,6 +53,7 @@ router.post(
 router.post(
   "/orders/:id/request",
   clientMiddleware.verifyTokenAndGetUserData,
+  clientMiddleware.checkForFreelancerID,
   clientController.requestOrder
 );
 //#endregion

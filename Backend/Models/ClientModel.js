@@ -12,9 +12,14 @@ const clientSchema = new mongoose.Schema(
     profilePicture: String,
     joinDate: String,
     following: [String],
+    verificationToken: String,
+    isVerified: Boolean,
+    resetToken: String,
   },
   { versionKey: false }
 );
 const Clients = mongoose.model("Clients", clientSchema);
 
 module.exports = Clients;
+
+// history

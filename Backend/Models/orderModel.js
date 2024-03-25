@@ -14,6 +14,8 @@ const orderSchema = new mongoose.Schema(
       enum: ["Pending", "inProgress", "Refused", "Completed"],
       required: true,
     },
+    // isPaid
+    // requiredProduct
   },
   { versionKey: false }
 );

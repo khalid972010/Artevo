@@ -1,7 +1,9 @@
 const Clients = require("../Models/ClientModel");
 const Orders = require("../Models/orderModel");
 const Freelancers = require("../Models/FreelancerModel"); ///////////////////// UPDATE
-const ClientValidator = require("../Validators/ClientValidator");
+const ClientValidator = require("../Validators/clientValidator");
+const UserController = require("../Controllers/UserController");
+
 const { isValidObjectId } = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -17,7 +19,7 @@ let getClient = async (request, response) => {
 
   return response.status(200).json({ data: client });
 };
-
+//login
 let createClient = async (request, response) => {
   let client = request.body;
 
@@ -29,20 +31,9 @@ let createClient = async (request, response) => {
   }
   if (ClientValidator(client)) {
     client.password = await bcrypt.hash(client.password, 10);
+    client.isVerified = false;
     let newClient = await Clients.create(client);
-
-    const token = jwt.sign(
-      { id: newClient._id.toString(), type: newClient.userType },
-      "artlance",
-      {
-        expiresIn: "7d",
-      }
-    );
-    response.header("x-auth-token", token);
-
-    return response
-      .status(201)
-      .json({ message: "Client added", data: { client } });
+    await UserController.sendVerification(request, response);
   } else {
     response.json({
       message:
@@ -199,3 +190,5 @@ module.exports = {
   requestOrder,
   completeOrder,
 };
+
+// isVerified, review

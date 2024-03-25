@@ -29,7 +29,7 @@ const checkForFreelancerID = async (request, response, next) => {
 
 const verifyTokenAndGetUserData = async (request, response, next) => {
   try {
-    const token = request.headers.token;
+    const token = request.headers["x-auth-token"];
     const decoded = jwt.verify(token, "artlance");
     const client = await Clients.findById(decoded.id);
     if (!client) {
@@ -38,7 +38,6 @@ const verifyTokenAndGetUserData = async (request, response, next) => {
     request.body.client = client;
     next();
   } catch (error) {
-    // Refresh?
     throw new Error("Failed to verify token: " + error.message);
   }
 };
