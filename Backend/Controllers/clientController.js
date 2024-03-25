@@ -136,3 +136,5 @@ module.exports = {
   requestOrder,
   completeOrder,
 };
+
+// To-do: Test All new functions, Complete search Freelancers, implement searchForClientID middleware
