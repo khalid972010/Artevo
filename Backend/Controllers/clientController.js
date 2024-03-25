@@ -1,7 +1,12 @@
 const Clients = require("../Models/ClientModel");
+const Orders = require("../Models/orderModel");
+const Users = require("../Models/UserModel");
+
+// const Freelancers = require("../Models/freelancerModel"); ///////////////////// UPDATE
 const ClientValidator = require("../Validators/ClientValidator");
 const { isValidObjectId } = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 let getAllClients = async (request, response) => {
   let allClients = await Clients.find({});
@@ -32,7 +37,16 @@ let createClient = async (request, response) => {
   if (ClientValidator(client)) {
     client.password = await bcrypt.hash(client.password, 10);
 
-    await Clients.create(client);
+    let newClient = await Clients.create(client);
+    const token = jwt.sign(
+      { id: newClient._id.toString(), type: newClient.userType },
+      "artlance",
+      {
+        expiresIn: "7d",
+      }
+    );
+    response.header("x-auth-token", token);
+
     return response
       .status(201)
       .json({ message: "Client added", data: { client } });
@@ -48,7 +62,6 @@ let createClient = async (request, response) => {
 
 let searchFreelancers = async (request, response) => {
   const query = request.query.query;
-  console.log(query);
 
   if (!isNaN(query) || query.length == 0)
     return response.status(203).json({ message: "Invalid query!" });
@@ -63,9 +76,63 @@ let searchFreelancers = async (request, response) => {
   // return res.status(200).json(results);
 };
 
+let requestOrder = async (request, response) => {
+  const client = request.body.client;
+  const orderDescription = request.body.description;
+  const freelancerID = request.body.id;
+
+  try {
+    await Orders.create({
+      from: client._id,
+      to: freelancerID,
+      description: orderDescription,
+    });
+    return response
+      .status(200)
+      .json({ message: "Order Created Successfully!" });
+  } catch (error) {
+    return response.status(500).json({ message: error });
+  }
+};
+
+let completeOrder = async (request, response) => {
+  const clientID = request.body.client._id.toString();
+  const freelancerID = request.body.id;
+
+  if (!isValidObjectId(clientID) || !(await Clients.findById(clientID))) {
+    return response.status(400).json({ message: "Invalid Client ID!" });
+  }
+
+  // let order =
+};
+
+let followFreelancer = async (request, response) => {
+  // Test!!!!!!!!!!!!!!
+  const client = request.body.client;
+  const freelancerID = request.body.id;
+  await Clients.findByIdAndUpdate(client._id, {
+    $addToSet: { favList: freelancerID },
+  });
+  return response.status(200).json({ message: "Freelancer followed!" });
+};
+
+let unfollowFreelancer = async (request, response) => {
+  // Test!!!!!!!!!!!!!!
+  const client = request.body.client;
+  const freelancerID = request.body.id;
+  await Clients.findByIdAndUpdate(client._id, {
+    $pull: { favList: freelancerID },
+  });
+  return response.status(200).json({ message: "Freelancer unfollowed!" });
+};
+
 module.exports = {
   getAllClients,
   getClient,
   createClient,
   searchFreelancers,
+  followFreelancer,
+  unfollowFreelancer,
+  requestOrder,
+  completeOrder,
 };

@@ -18,12 +18,3 @@ const clientSchema = new mongoose.Schema(
 const Clients = mongoose.model("Clients", clientSchema);
 
 module.exports = Clients;
-
-/* 	FullName
-	UserName
-	Pw
-	UserType
-	PP
-	JoinDate
-	FavList
-	VisitList(Optional) */

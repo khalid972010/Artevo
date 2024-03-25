@@ -7,9 +7,10 @@ const orderSchema = new mongoose.Schema(
     date: { type: Date, default: Date.now },
     from: { type: mongoose.Schema.Types.ObjectId, required: true },
     to: { type: mongoose.Schema.Types.ObjectId, required: true },
+    description: { type: String, required: true },
     state: {
       type: String,
-      enum: [Pending, inProgress, Refused, Completed],
+      enum: ["Pending", "inProgress", "Refused", "Completed"],
       required: true,
     },
   },
