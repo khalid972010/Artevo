@@ -12,7 +12,6 @@ app.use(express.json());
 // Routes
 app.use("/api/users", UserRoute);
 
-
 //#region Client Routes
 app.use("/api/clients", clientRoutes);
 //#endregion
@@ -20,7 +19,6 @@ app.use("/api/clients", clientRoutes);
 //#region Portfolio Routes
 app.use("/api/portfolio", portfolioRoutes);
 //#endregion
-
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

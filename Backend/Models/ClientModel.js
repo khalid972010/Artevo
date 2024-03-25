@@ -11,7 +11,7 @@ const clientSchema = new mongoose.Schema(
     userType: String,
     profilePicture: String,
     joinDate: String,
-    favList: [String],
+    following: [String],
   },
   { versionKey: false }
 );
