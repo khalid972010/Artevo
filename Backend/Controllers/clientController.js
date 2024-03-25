@@ -13,15 +13,7 @@ let getAllClients = async (request, response) => {
 
 let getClient = async (request, response) => {
   let ID = request.params.id;
-
-  if (!isValidObjectId(ID)) {
-    return response.status(400).json({ message: "Invalid Client ID!" });
-  }
-
   let client = await Clients.findById(ID);
-  if (client == undefined) {
-    return response.status(404).json({ message: "Client not found!" });
-  }
 
   return response.status(200).json({ data: client });
 };
@@ -83,6 +75,14 @@ let requestOrder = async (request, response) => {
   const freelancerID = request.params.id;
 
   try {
+    let order = await Orders.findOne({
+      from: clientID,
+      to: freelancerID,
+      description: orderDescription,
+    });
+    if (order) {
+      return response.status(400).json({ message: "Duplicate order!" });
+    }
     await Orders.create({
       from: clientID,
       to: freelancerID,
@@ -104,12 +104,6 @@ let getMyOrders = async (request, response) => {
     let myOrders = await Orders.find({
       from: clientID,
     });
-
-    if (myOrders.length == 0) {
-      return response
-        .status(404)
-        .json({ message: "Couldn't find any orders!" });
-    }
 
     return response.status(200).json(myOrders);
   } catch (error) {
