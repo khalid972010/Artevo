@@ -8,6 +8,7 @@ const orderSchema = new mongoose.Schema(
     from: { type: mongoose.Schema.Types.ObjectId, required: true },
     to: { type: mongoose.Schema.Types.ObjectId, required: true },
     description: { type: String, required: true },
+    price: { type: Number, required: true },
     state: {
       type: String,
       enum: ["Pending", "inProgress", "Refused", "Completed"],
