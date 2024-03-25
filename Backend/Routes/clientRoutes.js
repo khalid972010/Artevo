@@ -7,6 +7,14 @@ const clientMiddleware = require("../Middlewares/clientMiddleware");
 router.get("/", clientController.getAllClients);
 //#endregion
 
+//#region Get Orders
+router.get(
+  "/orders",
+  clientMiddleware.verifyTokenAndGetUserData,
+  clientController.getMyOrders
+);
+//#endregion
+
 //#region Get Client by id
 router.get("/:id", clientController.getClient);
 //#endregion
@@ -14,18 +22,14 @@ router.get("/:id", clientController.getClient);
 //#region Create Client
 router.post("/", clientController.createClient);
 //#endregion
+
 //#region Search for Freelancer
-router.get(
-  "/search/freelancer/:id",
-  clientMiddleware.verifyTokenAndGetUserData,
-  clientMiddleware.checkForFreelancerID,
-  clientController.searchFreelancers
-);
+router.get("/search/freelancer", clientController.searchFreelancers);
 //#endregion
 
 //#region Follow Freelancer
-router.get(
-  "/freelancer/:id/follow",
+router.post(
+  "/follow/:id",
   clientMiddleware.verifyTokenAndGetUserData,
   clientMiddleware.checkForFreelancerID,
   clientController.followFreelancer
@@ -33,16 +37,17 @@ router.get(
 //#endregion
 
 //#region unfollow Freelancer
-router.get(
-  "/freelancer/:id/unfollow",
+router.post(
+  "/unfollow/:id",
   clientMiddleware.verifyTokenAndGetUserData,
   clientMiddleware.checkForFreelancerID,
   clientController.unfollowFreelancer
 );
 //#endregion
+
 //#region Create Order
 router.post(
-  "/order/:id/request",
+  "/orders/:id/request",
   clientMiddleware.verifyTokenAndGetUserData,
   clientController.requestOrder
 );
@@ -50,7 +55,7 @@ router.post(
 
 //#region Complete Order
 router.post(
-  "/order/:id/complete",
+  "/orders/:id/complete",
   clientMiddleware.verifyTokenAndGetUserData,
   clientMiddleware.checkForFreelancerID,
   clientController.completeOrder

@@ -27,7 +27,7 @@ const ClientSchema = {
       type: "string",
       format: "date",
     },
-    favList: {
+    following: {
       type: "array",
       items: { type: "string" },
     },
@@ -37,12 +37,3 @@ const ClientSchema = {
 };
 
 module.exports = ajv.compile(ClientSchema);
-
-/* 
-  fullName: String,
-  userName: String,
-  password: String,
-  userType: String,
-  profilePicture: String,
-  joinDate: Date,
-  favList: [Number], */

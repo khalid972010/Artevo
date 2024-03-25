@@ -1,8 +1,6 @@
 const Clients = require("../Models/ClientModel");
 const Orders = require("../Models/orderModel");
-const Users = require("../Models/UserModel");
-
-// const Freelancers = require("../Models/freelancerModel"); ///////////////////// UPDATE
+const Freelancers = require("../Models/FreelancerModel"); ///////////////////// UPDATE
 const ClientValidator = require("../Validators/ClientValidator");
 const { isValidObjectId } = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -15,13 +13,16 @@ let getAllClients = async (request, response) => {
 
 let getClient = async (request, response) => {
   let ID = request.params.id;
+
   if (!isValidObjectId(ID)) {
     return response.status(400).json({ message: "Invalid Client ID!" });
   }
+
   let client = await Clients.findById(ID);
   if (client == undefined) {
     return response.status(404).json({ message: "Client not found!" });
   }
+
   return response.status(200).json({ data: client });
 };
 
@@ -36,8 +37,8 @@ let createClient = async (request, response) => {
   }
   if (ClientValidator(client)) {
     client.password = await bcrypt.hash(client.password, 10);
-
     let newClient = await Clients.create(client);
+
     const token = jwt.sign(
       { id: newClient._id.toString(), type: newClient.userType },
       "artlance",
@@ -63,67 +64,134 @@ let createClient = async (request, response) => {
 let searchFreelancers = async (request, response) => {
   const query = request.query.query;
 
-  if (!isNaN(query) || query.length == 0)
-    return response.status(203).json({ message: "Invalid query!" });
+  if (!isNaN(query) || !query || query.length == 0)
+    return response.status(400).json({ message: "Invalid query!" });
 
-  // const regex = new RegExp(".*" + query + ".*", "i");
+  const regex = new RegExp(".*" + query + ".*", "i");
 
-  // const results = await Freelancers.find({
-  //   // Update!!!!!!!!!!!!!!!!!!!
-  //   $or: [{ username: { $regex: regex } }, { fullName: { $regex: regex } }],
-  // }).distinct("_id");
+  const results = await Freelancers.find({
+    $or: [{ userName: { $regex: regex } }, { fullName: { $regex: regex } }],
+  });
 
-  // return res.status(200).json(results);
+  return response.status(200).json(results);
 };
 
 let requestOrder = async (request, response) => {
-  const client = request.body.client;
+  const clientID = request.body.client._id;
   const orderDescription = request.body.description;
-  const freelancerID = request.body.id;
+  const orderPrice = request.body.price;
+  const freelancerID = request.params.id;
 
   try {
     await Orders.create({
-      from: client._id,
+      from: clientID,
       to: freelancerID,
       description: orderDescription,
+      price: orderPrice,
+      state: "Pending",
     });
     return response
-      .status(200)
+      .status(201)
       .json({ message: "Order Created Successfully!" });
   } catch (error) {
-    return response.status(500).json({ message: error });
+    return response.status(500).json({ error });
+  }
+};
+
+let getMyOrders = async (request, response) => {
+  const clientID = request.body.client._id;
+  try {
+    let myOrders = await Orders.find({
+      from: clientID,
+    });
+
+    if (myOrders.length == 0) {
+      return response
+        .status(404)
+        .json({ message: "Couldn't find any orders!" });
+    }
+
+    return response.status(200).json(myOrders);
+  } catch (error) {
+    return response.status(500).json({ error });
   }
 };
 
 let completeOrder = async (request, response) => {
+  /// !!!!!!!!! Just a placeholder, should be in admin controller !!!!!!!!!
   const clientID = request.body.client._id.toString();
-  const freelancerID = request.body.id;
+  const freelancerID = request.params.id;
 
-  if (!isValidObjectId(clientID) || !(await Clients.findById(clientID))) {
-    return response.status(400).json({ message: "Invalid Client ID!" });
+  let order = await Orders.findOne({
+    from: clientID,
+    to: freelancerID,
+  });
+
+  if (!order) {
+    return response.status(401).json({
+      message: "You haven't requested anything from this freelancer!",
+    });
   }
 
-  // let order =
+  if (order.state == "Completed") {
+    return response.status(401).json({
+      message: "Order has been already marked as completed before!",
+    });
+  }
+
+  try {
+    await Orders.findByIdAndUpdate(order._id, {
+      state: "Completed",
+    });
+    return response.status(200).json({
+      message: "Request marked as completed succesfully!",
+    });
+  } catch (err) {
+    return response.status(500).json({
+      err,
+    });
+  }
 };
 
 let followFreelancer = async (request, response) => {
-  // Test!!!!!!!!!!!!!!
   const client = request.body.client;
-  const freelancerID = request.body.id;
-  await Clients.findByIdAndUpdate(client._id, {
-    $addToSet: { favList: freelancerID },
-  });
-  return response.status(200).json({ message: "Freelancer followed!" });
+  const freelancerID = request.params.id;
+
+  if (client.following.includes(freelancerID)) {
+    return response
+      .status(400)
+      .json({ message: "You already follow this freelancer!" });
+  }
+
+  try {
+    client.following.push(freelancerID);
+    await Clients.findByIdAndUpdate(client._id, {
+      following: client.following,
+    });
+
+    return response.status(200).json({ message: "Freelancer followed!" });
+  } catch (error) {
+    return response.status(500).json({ error });
+  }
 };
 
 let unfollowFreelancer = async (request, response) => {
-  // Test!!!!!!!!!!!!!!
   const client = request.body.client;
-  const freelancerID = request.body.id;
-  await Clients.findByIdAndUpdate(client._id, {
-    $pull: { favList: freelancerID },
-  });
-  return response.status(200).json({ message: "Freelancer unfollowed!" });
+  const freelancerID = request.params.id;
+
+  if (!client.following.includes(freelancerID)) {
+    return response
+      .status(400)
+      .json({ message: "You don't follow this freelancer!" });
+  }
+  try {
+    await Clients.findByIdAndUpdate(client._id, {
+      $pull: { following: freelancerID },
+    });
+    return response.status(200).json({ message: "Freelancer unfollowed!" });
+  } catch (error) {
+    return response.status(500).json({ error });
+  }
 };
 
 module.exports = {
@@ -133,8 +201,7 @@ module.exports = {
   searchFreelancers,
   followFreelancer,
   unfollowFreelancer,
+  getMyOrders,
   requestOrder,
   completeOrder,
 };
-
-// To-do: Test All new functions, Complete search Freelancers, implement searchForClientID middleware
