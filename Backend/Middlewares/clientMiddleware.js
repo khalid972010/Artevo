@@ -3,6 +3,18 @@ const Freelancers = require("../Models/FreelancerModel");
 const jwt = require("jsonwebtoken");
 const { isValidObjectId } = require("mongoose");
 
+const checkForClientID = async (request, response, next) => {
+  let ID = request.params.id;
+
+  if (!isValidObjectId(ID)) {
+    return response.status(400).json({ message: "Invalid Client ID!" });
+  }
+
+  let client = await Clients.findById(ID);
+  if (client == undefined) {
+    return response.status(404).json({ message: "Client not found!" });
+  }
+};
 const checkForFreelancerID = async (request, response, next) => {
   const freelancerID = request.params.id;
 
@@ -31,4 +43,8 @@ const verifyTokenAndGetUserData = async (request, response, next) => {
   }
 };
 
-module.exports = { verifyTokenAndGetUserData, checkForFreelancerID };
+module.exports = {
+  checkForClientID,
+  verifyTokenAndGetUserData,
+  checkForFreelancerID,
+};
