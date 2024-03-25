@@ -16,7 +16,11 @@ router.get(
 //#endregion
 
 //#region Get Client by id
-router.get("/:id", clientController.getClient);
+router.get(
+  "/:id",
+  clientMiddleware.checkForClientID,
+  clientController.getClient
+);
 //#endregion
 
 //#region Create Client
