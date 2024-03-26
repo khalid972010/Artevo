@@ -67,4 +67,31 @@ router.post(
 );
 //#endregion
 
+//#region Add Review
+router.post(
+  "/reviews/:id/post",
+  clientMiddleware.verifyTokenAndGetUserData,
+  clientMiddleware.checkForFreelancerID,
+  clientController.postReview
+);
+//#endregion
+
+//#region Edit Review
+router.patch(
+  "/reviews/:id/edit",
+  clientMiddleware.verifyTokenAndGetUserData,
+  clientMiddleware.checkForFreelancerID,
+  clientController.editReview
+);
+//#endregion
+
+//#region Add Review
+router.delete(
+  "/reviews/:id/remove",
+  clientMiddleware.verifyTokenAndGetUserData,
+  clientMiddleware.checkForFreelancerID,
+  clientController.removeReview
+);
+//#endregion
+
 module.exports = router;

@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const UserController = require("../Controllers/UserController");
+const Reviews = require("../Models/reviewModel");
 
 //CRUD Operations
 
 router.get("/", UserController.GetAllUsers);
+
 router.get("/:id", UserController.GetProfile);
 router.patch("/:id", UserController.UpdateProfile);
 router.post("/send-verification-email", UserController.sendVerification);

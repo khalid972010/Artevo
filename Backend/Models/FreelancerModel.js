@@ -19,6 +19,7 @@ const FreelancerSchema = new mongoose.Schema(
     followers: [String], // Number-> for user id
     following: [String], //Number-> for user id
     links: [{ title: String, url: String }], // for social media accounts
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "reviews" }],
     joinDate: Date,
     services: [
       {
@@ -31,7 +32,7 @@ const FreelancerSchema = new mongoose.Schema(
     ],
     verificationToken: String, // Updateeeeeeee
     isVerified: Boolean, // Updateeeeeeee
-    resetToken: String, // Updateeeeeeee
+    resetToken: String,
   },
   { versionKey: false }
 );

@@ -41,7 +41,12 @@ const freelancerSchema = {
         required: ["title", "url"],
       },
     },
-    joinDate: { type: "string", format: "date-time" }, // Changed format to "date-time"
+    reviews: {
+      type: "array",
+      items: { type: "string" },
+    },
+    joinDate: { type: "string", format: "date-time" },
+    // Changed format to "date-time"
     verificationToken: { type: "string" },
     isVerified: { type: "boolean", default: false },
     resetToken: { type: "string" },

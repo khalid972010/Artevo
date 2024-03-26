@@ -12,6 +12,7 @@ const clientSchema = new mongoose.Schema(
     profilePicture: String,
     joinDate: String,
     following: [String],
+    previousFreelancers: [String],
     verificationToken: String,
     isVerified: Boolean,
     resetToken: String,

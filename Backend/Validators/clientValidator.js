@@ -31,6 +31,10 @@ const ClientSchema = {
       type: "array",
       items: { type: "string" },
     },
+    previousFreelancers: {
+      type: "array",
+      items: { type: "string" },
+    },
     verificationToken: { type: "string" },
     isVerified: { type: "boolean", default: false },
     resetToken: { type: "string" },

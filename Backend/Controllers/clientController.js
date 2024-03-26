@@ -3,6 +3,7 @@ const Orders = require("../Models/orderModel");
 const Freelancers = require("../Models/FreelancerModel"); ///////////////////// UPDATE
 const ClientValidator = require("../Validators/clientValidator");
 const UserController = require("../Controllers/UserController");
+const Reviews = require("../Models/reviewModel");
 
 const { isValidObjectId } = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -104,6 +105,7 @@ let getMyOrders = async (request, response) => {
 
 let completeOrder = async (request, response) => {
   /// !!!!!!!!! Just a placeholder, should be in admin controller !!!!!!!!!
+  const client = request.body.client;
   const clientID = request.body.client._id.toString();
   const freelancerID = request.params.id;
 
@@ -128,6 +130,13 @@ let completeOrder = async (request, response) => {
     await Orders.findByIdAndUpdate(order._id, {
       state: "Completed",
     });
+    if (!client.previousFreelancers.includes(freelancerID)) {
+      client.previousFreelancers.push(freelancerID);
+      await Clients.findByIdAndUpdate(client._id, {
+        previousFreelancers: client.previousFreelancers,
+      });
+    }
+
     return response.status(200).json({
       message: "Request marked as completed succesfully!",
     });
@@ -179,6 +188,93 @@ let unfollowFreelancer = async (request, response) => {
   }
 };
 
+const postReview = async (request, response) => {
+  let client = request.body.client;
+  let freelancerID = request.params.id;
+  let freelancer = await Freelancers.findById(freelancerID);
+  const description = request.body.description;
+  const rate = request.body.rate;
+  if (!rate || !description) {
+    return response
+      .status(404)
+      .json({ message: "Review must include description and rate!" });
+  }
+  if (!client.previousFreelancers.includes(freelancerID)) {
+    return response.status(401).json({ message: "Unauthorized review!" });
+  }
+
+  const duplicateReview = await Reviews.findOne({
+    to: freelancerID,
+    from: client._id,
+  });
+  if (duplicateReview) {
+    return response
+      .status(403)
+      .json({ message: "You've already reviewed this freelancer!" });
+  }
+  const newReview = await Reviews.create({
+    to: freelancerID,
+    from: client._id,
+    description: description,
+    rate: rate,
+  });
+  freelancer.reviews.push(newReview);
+  await Freelancers.findByIdAndUpdate(freelancerID, {
+    reviews: freelancer.reviews,
+  });
+  response.status(200).json({ message: "Review added!" });
+};
+
+const editReview = async (request, response) => {
+  let client = request.body.client;
+  let freelancerID = request.params.id;
+  const description = request.body.description;
+  const rate = request.body.rate;
+  if (!rate || !description) {
+    return response
+      .status(404)
+      .json({ message: "Review must include description and rate!" });
+  }
+  if (
+    !Reviews.findOne({
+      to: freelancerID,
+      from: client._id,
+    })
+  ) {
+    return response.status(401).json({ message: "Unauthorized edit!" });
+  }
+
+  await Reviews.findOneAndUpdate(
+    { to: freelancerID, from: client._id },
+    {
+      $set: {
+        description: description,
+        rate: rate,
+      },
+    }
+  );
+  response.status(200).json({ message: "Review edited!" });
+};
+
+const removeReview = async (request, response) => {
+  let client = request.body.client;
+  let freelancerID = request.params.id;
+  let freelancer = await Freelancers.findById(freelancerID);
+  if (!client.previousFreelancers.includes(freelancerID)) {
+    return response.status(401).json({ message: "Unauthorized remove!" });
+  }
+  const review = await Reviews.findOneAndDelete({
+    to: freelancerID,
+    from: client._id,
+  });
+  if (review) {
+    const index = freelancer.reviews.indexOf(review._id);
+    freelancer.reviews.splice(index, 1);
+    freelancer.save();
+    return response.status(200).json({ message: "Review removed!" });
+  }
+};
+
 module.exports = {
   getAllClients,
   getClient,
@@ -189,6 +285,7 @@ module.exports = {
   getMyOrders,
   requestOrder,
   completeOrder,
+  postReview,
+  editReview,
+  removeReview,
 };
-
-// isVerified, review
