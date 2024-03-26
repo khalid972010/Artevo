@@ -18,6 +18,7 @@ const freelancerSchema = {
       type: "object",
       properties: {
         clientID: { type: "number" }, // Corrected "Number" to "number"
+
         status: { type: "string", enum: ["Accepted", "Pending", "Rejected"] },
       },
       required: ["clientID", "status"],
@@ -29,6 +30,7 @@ const freelancerSchema = {
     following: {
       type: "array",
       items: { type: "number" },
+
     },
     links: {
       type: "array",
@@ -36,6 +38,7 @@ const freelancerSchema = {
         type: "object",
         properties: {
           title: { type: "string" },
+
           url: { type: "string" },
         },
         required: ["title", "url"],
@@ -52,6 +55,7 @@ const freelancerSchema = {
     resetToken: { type: "string" },
   },
   required: ["fullName", "userName", "email", "password", "services"],
+
 };
 
 const validateFreelancer = ajv.compile(freelancerSchema);

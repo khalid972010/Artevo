@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
+
 const Users = require("./UserModel");
+
 mongoose.connect(
   "mongodb+srv://khalid972010:khalid123@clusteriti.w66tmq7.mongodb.net/ArtLance"
 );
@@ -10,6 +12,7 @@ const FreelancerSchema = new mongoose.Schema(
     email: String,
     password: String,
     profilePicture: String,
+
     coverPicture: String,
     headLine: String,
     location: String,
@@ -32,7 +35,8 @@ const FreelancerSchema = new mongoose.Schema(
     ],
     verificationToken: String, // Updateeeeeeee
     isVerified: Boolean, // Updateeeeeeee
-    resetToken: String,
+    resetToken: String
+
   },
   { versionKey: false }
 );

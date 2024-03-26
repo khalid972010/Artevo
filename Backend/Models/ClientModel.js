@@ -11,11 +11,14 @@ const clientSchema = new mongoose.Schema(
     userType: String,
     profilePicture: String,
     joinDate: String,
+
+    favList: [String]و
+
     following: [String],
     previousFreelancers: [String],
     verificationToken: String,
     isVerified: Boolean,
-    resetToken: String,
+    resetToken: String
   },
   { versionKey: false }
 );

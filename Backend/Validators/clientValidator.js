@@ -31,6 +31,7 @@ const ClientSchema = {
       type: "array",
       items: { type: "string" },
     },
+
     previousFreelancers: {
       type: "array",
       items: { type: "string" },
@@ -38,6 +39,7 @@ const ClientSchema = {
     verificationToken: { type: "string" },
     isVerified: { type: "boolean", default: false },
     resetToken: { type: "string" },
+
   },
   required: ["fullName", "userName", "password", "userType", "email"],
   additionalProperties: false,
