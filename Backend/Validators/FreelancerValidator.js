@@ -18,17 +18,19 @@ const freelancerSchema = {
       type: "object",
       properties: {
         clientID: { type: "number" }, // Corrected "Number" to "number"
-        status: { type: "string", enum: ["Accepted", "Pending", "Rejected"] }
+
+        status: { type: "string", enum: ["Accepted", "Pending", "Rejected"] },
       },
-      required: ["clientID", "status"]
+      required: ["clientID", "status"],
     },
     followers: {
       type: "array",
-      items: { type: "number" }
+      items: { type: "number" },
     },
     following: {
       type: "array",
-      items: { type: "number" }
+      items: { type: "number" },
+
     },
     links: {
       type: "array",
@@ -36,14 +38,24 @@ const freelancerSchema = {
         type: "object",
         properties: {
           title: { type: "string" },
-          url: { type: "string" }
+
+          url: { type: "string" },
         },
-        required: ["title", "url"]
-      }
+        required: ["title", "url"],
+      },
     },
-    joinDate: { type: "string", format: "date-time" } // Changed format to "date-time"
+    reviews: {
+      type: "array",
+      items: { type: "string" },
+    },
+    joinDate: { type: "string", format: "date-time" },
+    // Changed format to "date-time"
+    verificationToken: { type: "string" },
+    isVerified: { type: "boolean", default: false },
+    resetToken: { type: "string" },
   },
-  required: ["fullName", "userName", "email", "password", "services"]
+  required: ["fullName", "userName", "email", "password", "services"],
+
 };
 
 const validateFreelancer = ajv.compile(freelancerSchema);

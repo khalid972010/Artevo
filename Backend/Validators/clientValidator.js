@@ -27,26 +27,22 @@ const ClientSchema = {
       type: "string",
       format: "date",
     },
-    favList: {
+    following: {
       type: "array",
       items: { type: "string" },
     },
-    following: {
+
+    previousFreelancers: {
       type: "array",
-      items: { type: "string" }
-    }
+      items: { type: "string" },
+    },
+    verificationToken: { type: "string" },
+    isVerified: { type: "boolean", default: false },
+    resetToken: { type: "string" },
+
   },
   required: ["fullName", "userName", "password", "userType", "email"],
   additionalProperties: false,
 };
 
 module.exports = ajv.compile(ClientSchema);
-
-/* 
-  fullName: String,
-  userName: String,
-  password: String,
-  userType: String,
-  profilePicture: String,
-  joinDate: Date,
-  favList: [Number], */

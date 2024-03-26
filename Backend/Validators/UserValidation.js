@@ -27,6 +27,7 @@ const UsersSchema = {
   additionalProperties: false,
 };
 
+
 const ProfileSchema = {
   type: "object",
   properties: {
@@ -37,7 +38,6 @@ const ProfileSchema = {
   required: ["firstname", "lastname", "age"],
   additionalProperties: false,
 };
-
 module.exports = {
   UsersSchema: ajv.compile(UsersSchema),
   ProfileSchema: ajv.compile(ProfileSchema)

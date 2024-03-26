@@ -11,8 +11,14 @@ const clientSchema = new mongoose.Schema(
     userType: String,
     profilePicture: String,
     joinDate: String,
-    favList: [String],
-    following:[String]
+
+    favList: [String]و
+
+    following: [String],
+    previousFreelancers: [String],
+    verificationToken: String,
+    isVerified: Boolean,
+    resetToken: String
   },
   { versionKey: false }
 );
@@ -20,11 +26,4 @@ const Clients = mongoose.model("Clients", clientSchema);
 
 module.exports = Clients;
 
-/* 	FullName
-	UserName
-	Pw
-	UserType
-	PP
-	JoinDate
-	FavList
-	VisitList(Optional) */
+// history

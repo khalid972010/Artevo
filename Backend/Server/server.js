@@ -15,7 +15,6 @@ app.use(express.json());
 // Routes
 app.use("/api/users", UserRoute);
 
-
 //#region Client Routes
 app.use("/api/clients", clientRoutes);
 //#endregion
@@ -24,6 +23,7 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/portfolio", portfolioRoutes);
 //#endregion
 
+
 //#region Freelancer Routes
 app.use("/api/Freelancer", FreelancerRoutes);
 //#endregion
@@ -31,6 +31,7 @@ app.use("/api/Freelancer", FreelancerRoutes);
 //#region Freelancer Routes
 app.use("/api/Home", HomeRoutes);
 //#endregion
+
 
 
 app.listen(PORT, () => {

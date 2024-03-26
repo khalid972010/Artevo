@@ -22,6 +22,6 @@ const portfolioSchema = {
     },
   },
   required: ["date", "owner", "url", "type"],
-  additionalProperties: false,
+  additionalProperties: true,
 };
 module.exports = ajv.compile(portfolioSchema);
