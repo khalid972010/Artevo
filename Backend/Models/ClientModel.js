@@ -12,7 +12,7 @@ const clientSchema = new mongoose.Schema(
     profilePicture: String,
     joinDate: String,
 
-    favList: [String]و
+    favList: [String],
 
     following: [String],
     previousFreelancers: [String],

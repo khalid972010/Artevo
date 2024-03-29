@@ -9,8 +9,12 @@ let portfolioSchema = new mongoose.Schema(
   {
     date: String,
     owner: String,
-    url: String,
+    photos: [String],
+    description:String,
+    likesCount: Number,
+    likes:[String],
     type: String,
+    
   },
   { versionKey: false }
 );

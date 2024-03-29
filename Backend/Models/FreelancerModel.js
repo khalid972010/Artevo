@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Users = require("./UserModel");
+//const Users = require("./UserModel");
 
 mongoose.connect(
   "mongodb+srv://khalid972010:khalid123@clusteriti.w66tmq7.mongodb.net/ArtLance"

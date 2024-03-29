@@ -1,5 +1,5 @@
 // Import the User model
-const UserModel = require("../Models/UserModel").UserModel;
+//const UserModel = require("../Models/UserModel").UserModel;
 const Clients = require("../Models/ClientModel");
 const Freelancers = require("../Models/FreelancerModel");
 const ClientValidator = require("../Validators/clientValidator");

@@ -4,8 +4,17 @@ const portfolioRoutes = require("../Routes/portfolioRouts");
 const clientRoutes = require("../Routes/clientRoutes");
 const FreelancerRoutes = require("../Routes/FreelancerRoutes");
 const HomeRoutes = require("../Routes/HomeRoutes");
+const cors = require('cors');
+
 
 const app = express();
+const corsOptions = {
+  origin: 'http://localhost:4200', // Allow requests from this origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allow specified HTTP methods
+  allowedHeaders: 'Content-Type,Authorization', // Allow specified headers
+};
+
+app.use(cors(corsOptions));
 const PORT = process.env.PORT || 7010;
 
 // Middleware

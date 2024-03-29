@@ -1,0 +1,19 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    <div class="row">
+      <div class="col">
+        <strong>{{ portfolio.owner }}</strong>
+      </div>
+      <div class="col text-end">
+        {{ portfolio.date }}
+      </div>
+    </div>
+  </div>
+  <img [src]="portfolio.photos[0]" class="card-img-top">
+  <div class="card-body">
+    <p class="card-text">{{ portfolio.description }}</p>
+    <button (click)="likePost(portfolio._id, '660091b08b6161e112617698')">{{LikeText}}</button>
+
+    <span class="like-count">{{ portfolio.likesCount }}</span>
+  </div>
+</div>

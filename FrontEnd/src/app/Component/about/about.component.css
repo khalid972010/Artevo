@@ -1,0 +1,50 @@
+.about{
+  font-size: 50px;
+  font-weight: bolder;
+  background-color: #e6dfd0;
+  padding-left: 30px;
+  padding-top: 30px;
+  font-family:Georgia;
+
+  }
+  .listt{
+  font-size: 10px;
+  font-weight: bolder;
+  background-color: #e6dfd0;
+  padding-left: 30px;
+  padding-top: 30px;
+  font-family:Georgia;
+
+  }
+
+  .collage{
+  background-color: #e6dfd0;
+
+  }
+  img{
+      border-radius: 20px
+  }
+  #carousel {
+      display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+
+  .custom-bg-gradient-2 {
+      background: linear-gradient(45deg, #c5bdb7,#e6dfd0);
+      border-radius: 15px;
+      border: 1px solid #A9907E;
+      padding: 10px;
+      margin-right: 40px;
+      color: #4a4440;
+      font-size: 20px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: bolder;
+      text-align: center;
+      backdrop-filter: blur(50px);
+      box-shadow: 20px;
+  }
+  .custom-bg-gradient-2:hover {
+      transform: scale(1.1); /* Scale effect on hover */
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7); /* Increased shadow on hover */
+  }

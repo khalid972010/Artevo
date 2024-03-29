@@ -52,6 +52,43 @@ const removePortfolio = async (req, res) => {
     res.json({ message: "No Matched Portfolios " });
   }
 };
+
+const Like = async (req, res) => {
+  const portfolioId = req.body.portfolioId;
+  const userId = req.body.userId; 
+  try {
+    let portfolio = await portfolioModel.findById(portfolioId);
+    if (!portfolio) {
+      return res.status(404).json({ message: "Portfolio not found" });
+    }
+    // Check if the user has already liked the post
+    console.log(userId);
+    if (portfolio.likes.includes(userId)) {
+
+      portfolio.likesCount -= 1;
+    portfolio.likes = portfolio.likes.filter(id => id !== userId);
+    await portfolio.save();
+    res.json({ isLike:false , message: "Like removed successfully", data: portfolio });
+    }  
+    else
+    {
+      portfolio.likesCount += 1;
+      portfolio.likes.push(userId);
+      await portfolio.save();
+      res.json({isLike:true, message: "Like added successfully", data: portfolio });
+    }
+   
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+
+
+
+
 //SALLAH -- MAHMOUD
 //SALLAH -- MAHMOUD
 
@@ -85,4 +122,6 @@ module.exports = {
   getAllPortfolios,
   addPortfolio,
   removePortfolio,
+  Like
+  
 };

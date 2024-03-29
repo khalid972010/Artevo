@@ -1,0 +1,56 @@
+/* Post container */
+.post {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff; /* White background */
+}
+
+/* Owner name */
+.owner {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Date */
+.date {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Photos */
+.photos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.photos img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Like button */
+.like-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: red; /* Color of the heart icon */
+  margin-bottom: 10px;
+}
+
+/* Description */
+.description {
+  margin-bottom: 10px;
+}
+
+.description p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
