@@ -12,6 +12,10 @@
   font-weight: 300;
 }
 
+.form-control:focus {
+  border-color: black;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.05); /* Adjust the shadow to your preference */
+}
 .btn-login {
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
@@ -24,14 +28,43 @@
 
 button {
   background-color: #7f6256;
+  color: white;
+
   border: none;
 }
 
 button:hover {
-  color: #694535;
+  background-color: #503428;
+  color: white;
 }
 
 a {
   text-decoration: none;
   color: black;
+}
+
+.fade-in {
+  animation: fadeInAnimation ease 2s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  transform: scale(1.01);
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

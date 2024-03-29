@@ -29,7 +29,6 @@ const ClientSchema = {
     },
     favTopics: {
       type: "string",
-      enum: ["UI/UX", "Graphic Design", "Digital Art", "Game Design"],
     },
     following: {
       type: "array",

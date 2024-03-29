@@ -16,7 +16,6 @@ const freelancerSchema = {
     about: { type: "string" },
     favTopics: {
       type: "string",
-      enum: ["UI/UX", "Graphic Design", "Digital Art", "Game Design"],
     },
     bookingOrder: {
       type: "object",
