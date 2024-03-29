@@ -14,6 +14,10 @@ const freelancerSchema = {
     headLine: { type: "string" },
     location: { type: "string" },
     about: { type: "string" },
+    favTopics: {
+      type: "string",
+      enum: ["UI/UX", "Graphic Design", "Digital Art", "Game Design"],
+    },
     bookingOrder: {
       type: "object",
       properties: {
@@ -30,7 +34,6 @@ const freelancerSchema = {
     following: {
       type: "array",
       items: { type: "number" },
-
     },
     links: {
       type: "array",
@@ -55,7 +58,6 @@ const freelancerSchema = {
     resetToken: { type: "string" },
   },
   required: ["fullName", "userName", "email", "password", "services"],
-
 };
 
 const validateFreelancer = ajv.compile(freelancerSchema);

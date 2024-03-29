@@ -27,6 +27,10 @@ const ClientSchema = {
       type: "string",
       format: "date",
     },
+    favTopics: {
+      type: "string",
+      enum: ["UI/UX", "Graphic Design", "Digital Art", "Game Design"],
+    },
     following: {
       type: "array",
       items: { type: "string" },
@@ -39,10 +43,9 @@ const ClientSchema = {
     verificationToken: { type: "string" },
     isVerified: { type: "boolean", default: false },
     resetToken: { type: "string" },
-
   },
   required: ["fullName", "userName", "password", "userType", "email"],
-  additionalProperties: false,
+  additionalProperties: true,
 };
 
 module.exports = ajv.compile(ClientSchema);

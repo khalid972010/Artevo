@@ -12,6 +12,7 @@ const FreelancerSchema = new mongoose.Schema(
     email: String,
     password: String,
     profilePicture: String,
+    favTopics: String,
 
     coverPicture: String,
     headLine: String,
@@ -35,8 +36,7 @@ const FreelancerSchema = new mongoose.Schema(
     ],
     verificationToken: String, // Updateeeeeeee
     isVerified: Boolean, // Updateeeeeeee
-    resetToken: String
-
+    resetToken: String,
   },
   { versionKey: false }
 );

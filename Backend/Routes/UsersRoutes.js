@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const UserController = require("../Controllers/UserController");
+const userMiddleware = require("../Middlewares/userMiddleware");
 const Reviews = require("../Models/reviewModel");
 
 //CRUD Operations
@@ -8,7 +9,12 @@ const Reviews = require("../Models/reviewModel");
 router.get("/", UserController.GetAllUsers);
 
 router.get("/:id", UserController.GetProfile);
-router.patch("/:id", UserController.UpdateProfile);
+
+router.patch(
+  "/",
+  userMiddleware.verifyTokenAndGetUserData,
+  UserController.UpdateProfile
+);
 router.post("/send-verification-email", UserController.sendVerification);
 router.post("/send-reset-password", UserController.sendResetToken);
 router.post(

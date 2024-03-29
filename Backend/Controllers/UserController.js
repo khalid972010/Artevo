@@ -9,6 +9,7 @@ const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { request } = require("express");
 //#region Profile
 // Get all Users
 const GetAllUsers = async (req, res) => {
@@ -38,17 +39,21 @@ const GetProfile = async (req, res) => {
 // Update Profile
 const UpdateProfile = async (req, res) => {
   try {
-    let client = await Clients.findById(req.params.id);
-    let freelancer = await Freelancers.findById(req.params.id);
-    let user = client || freelancer;
-    if (!user) {
-      return res.status(404).json({ message: "Couldn't find user!" });
-    }
+    let user = req.body.user;
+    let type = req.body.type;
+    let newUser = Object.assign(user, req.body);
+    console.log(newUser);
 
-    if (client && ClientValidator(req.body)) {
-      await Clients.findByIdAndUpdate(req.params.id, req.body);
+    if (type == "Client" && ClientValidator(newUser)) {
+      console.log(user);
+
+      const result = await Clients.updateOne(
+        { _id: user._id },
+        { $set: req.body }
+      );
+
       return res.status(200).json({ message: "Updated Successfully!" });
-    } else if (!ClientValidator(client)) {
+    } else if (!ClientValidator(newUser)) {
       return res.json({
         message:
           ClientValidator.errors[0].instancePath.substring(1) +
@@ -57,10 +62,10 @@ const UpdateProfile = async (req, res) => {
       });
     }
 
-    if (freelancer && freelancerValidator(req.body)) {
-      await Freelancers.findByIdAndUpdate(req.params.id, req.body);
+    if (type == "Freelancer" && freelancerValidator(newUser)) {
+      await Freelancers.findByIdAndUpdate(user._id, { $set: req.body });
       return res.status(200).json({ message: "Updated Successfully!" });
-    } else if (!freelancerValidator(freelancer)) {
+    } else if (!freelancerValidator(newUser)) {
       return res.json({
         message:
           freelancerValidator.errors[0].instancePath.substring(1) +
