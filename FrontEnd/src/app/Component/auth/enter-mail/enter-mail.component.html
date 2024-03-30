@@ -7,9 +7,10 @@
       </p>
     </div>
     <br />
-    <form class="form-inline" method="post">
+    <form class="form-inline" method="post" (submit)="submit($event)">
       <div class="form-group justify-content-center d-flex">
         <input
+          #mail
           class="form-control w-25"
           type="email"
           name="email"

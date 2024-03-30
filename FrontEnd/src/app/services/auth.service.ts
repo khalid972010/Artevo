@@ -26,4 +26,16 @@ export class AuthService {
         })
       );
   }
+
+  findByMail(email: string): Observable<any> {
+    const url = this.DB_URL + 'users/login/' + email;
+    return this.http.get(url, { observe: 'response' }).pipe(
+      map((response) => {
+        const statusCode = response.status;
+        const responseBody = response.body;
+
+        return { statusCode, responseBody };
+      })
+    );
+  }
 }

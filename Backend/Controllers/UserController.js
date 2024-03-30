@@ -225,6 +225,17 @@ async function loginUser(req, res) {
   res.header("x-auth-token", accessToken);
   return res.status(200).json("Login Successfully");
 }
+
+let findUserByMail = async (request, response) => {
+  mail = request.params.email;
+  let freelancer = await Freelancers.findOne({ email: mail });
+  let client = await Clients.findOne({ email: mail });
+  let user = freelancer || client;
+  if (!user) {
+    return response.status(404).json("Mail not found!");
+  }
+  return response.status(200).json({ User: user });
+};
 //#endregion
 module.exports = {
   GetAllUsers,
@@ -236,4 +247,5 @@ module.exports = {
   getResetPasswordForm,
   sendResetToken,
   loginUser,
+  findUserByMail,
 };

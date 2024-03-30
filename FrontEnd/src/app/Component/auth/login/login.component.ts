@@ -55,7 +55,6 @@ export class LoginComponent {
             this.router.navigate(['/'], { replaceUrl: true });
           },
           error: (err) => {
-            console.log(err.error);
             this.valid = false;
             this.defaultError = err.error;
           },
