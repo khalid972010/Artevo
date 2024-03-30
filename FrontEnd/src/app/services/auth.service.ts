@@ -16,8 +16,12 @@ export class AuthService {
       .post(url, { email, password }, { observe: 'response' })
       .pipe(
         map((response) => {
+          const statusCode = response.status;
+          const responseBody = response.body;
+
+          // this.authInterceptor.intercept();
           this.token = response.headers.get('x-auth-token');
-          return response.body;
+          return { statusCode, responseBody };
         })
       );
   }

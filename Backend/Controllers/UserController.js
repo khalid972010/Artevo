@@ -207,20 +207,21 @@ async function loginUser(req, res) {
   let foundFreelancerEmail = await Freelancers.findOne({ email });
 
   if (!foundClientEmail && !foundFreelancerEmail)
-    return res.json("invalid email or password");
+    return res.status(400).json("invalid email or password");
 
   foundEmail = foundFreelancerEmail || foundClientEmail;
   let isCorrectPass = bcrypt.compare(password, foundEmail.password);
 
-  if (!isCorrectPass) return res.json("invalid email or password");
-  if (!foundEmail.isVerified) return res.json("Please activate your account");
+  if (!isCorrectPass) return res.status(400).json("invalid email or password");
+  if (!foundEmail.isVerified)
+    return res.status(400).json("Please activate your account");
   const accessToken = jwt.sign(
     { id: foundEmail.id, type: foundEmail.userType },
     "artlance",
     { expiresIn: "7d" }
   );
   res.header("x-auth-token", accessToken);
-  return res.json("Login Successfully");
+  return res.status(200).json("Login Successfully");
 }
 //#endregion
 module.exports = {

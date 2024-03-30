@@ -4,14 +4,13 @@ const portfolioRoutes = require("../Routes/portfolioRouts");
 const clientRoutes = require("../Routes/clientRoutes");
 const FreelancerRoutes = require("../Routes/FreelancerRoutes");
 const HomeRoutes = require("../Routes/HomeRoutes");
-const cors = require('cors');
-
+const cors = require("cors");
 
 const app = express();
 const corsOptions = {
-  origin: 'http://localhost:4200', // Allow requests from this origin
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allow specified HTTP methods
-  allowedHeaders: 'Content-Type,Authorization', // Allow specified headers
+  origin: "http://localhost:4200", // Allow requests from this origin
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow specified HTTP methods
+  allowedHeaders: "*", // Allow specified headers
 };
 
 app.use(cors(corsOptions));
@@ -32,7 +31,6 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/portfolio", portfolioRoutes);
 //#endregion
 
-
 //#region Freelancer Routes
 app.use("/api/Freelancer", FreelancerRoutes);
 //#endregion
@@ -40,8 +38,6 @@ app.use("/api/Freelancer", FreelancerRoutes);
 //#region Freelancer Routes
 app.use("/api/Home", HomeRoutes);
 //#endregion
-
-
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
