@@ -17,7 +17,6 @@
                     id="floatingInput"
                     placeholder="name@example.com"
                     formControlName="email"
-                    required
                   />
                   <label for="floatingInput">Email address</label>
                 </div>
@@ -28,8 +27,9 @@
                     id="floatingPassword"
                     placeholder="Password"
                     formControlName="password"
-                    required
+                    [required]="true"
                   />
+
                   <label for="floatingPassword">Password</label>
                 </div>
 

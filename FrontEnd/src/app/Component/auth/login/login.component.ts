@@ -27,6 +27,7 @@ import { RouterModule } from '@angular/router';
 export class LoginComponent {
   form: FormGroup;
   valid = true;
+  passwordFieldType: string = 'password';
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -44,6 +45,12 @@ export class LoginComponent {
     if (!this.form.valid) {
       this.valid = false;
     } else {
+      this.valid = true;
     }
+  }
+
+  togglePasswordVisibility() {
+    this.passwordFieldType =
+      this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }
