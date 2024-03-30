@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose Topics</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <style>
+      * {
+        color: #2d2e2d;
+        font-family: "Montserrat", sans-serif;
+      }
+      /* Add custom styles here */
+      body {
+        background: url("background.jpg") no-repeat center center fixed;
+        background-size: cover;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent grey */
+      }
+
+      .container-card {
+        display: flex; /* Display as flex container */
+        flex-direction: column; /* Arrange children in a column */
+        width: 1000px;
+        height: calc(100vh - 100px); /* Adjust height to accommodate footer */
+        margin: 20px auto;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Elevated effect */
+        background-color: #fff8ea; /* White background */
+        overflow: hidden; /* Prevents content from overflowing the rounded corners */
+        overflow-y: auto; /* Enable vertical scrolling */
+        position: relative; /* Relative positioning */
+      }
+      .title {
+        padding-left: 4%;
+        padding-top: 4%;
+        font-size: 24px;
+        font-weight: bold;
+        color: #594545; /* Dark grey color */
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        padding-left: 4%;
+        padding-top: 1%;
+        font-size: 18px;
+        color: #6c757d; /* Grey color */
+        margin-bottom: 20px;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 4%;
+      }
+
+      .col-md-4 {
+        width: calc(50% - 20px); /* Two cards per row with a gap of 20px */
+        margin-bottom: 40px; /* Space between rows */
+      }
+
+      .topic-card {
+        height: 180px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Elevated effect for individual cards */
+        transition: transform 0.3s ease; /* Smooth transition on hover */
+        cursor: pointer; /* Change cursor to pointer on hover */
+      }
+
+      .topic-card.selected {
+        border: 3px solid #86604f; /* Highlight selected card with darker blue */
+      }
+
+      .topic-card:hover {
+        transform: scale(1.05); /* Scale up on hover */
+      }
+
+      .topic-image {
+        width: 100%;
+        height: 100px;
+        border-radius: 10px;
+        object-fit: cover; /* Rounded corners */
+      }
+
+      .card-title {
+        text-align: start;
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        padding: 20px;
+        background-color: #f8f3ec;
+        z-index: 1;
+      }
+
+      .footer-text {
+        text-align: end;
+        color: #6c757d;
+        margin-bottom: 10px;
+        margin-left: 40%;
+      }
+
+      .disabled-btn {
+        background-color: #ad9185;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px; /* Adjust border-radius to make it rounded */
+        cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+        height: 40px;
+        opacity: 0.5; /* Reduce opacity to indicate it's disabled */
+        pointer-events: none; /* Disable pointer events to prevent clicking */
+        transition: background-color 0.3s ease;
+      }
+      .enabled-btn {
+        background-color: #7f6256;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        height: 40px;
+        border-radius: 25px; /* Adjust border-radius to make it rounded */
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .enabled-btn:hover {
+        background-color: #694535;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="container-fluid d-flex align-items-center justify-content-center"
+      style="height: 100vh"
+    >
+      <div class="container-card">
+        <h2 class="title">Pick one or more topics</h2>
+        <p class="subtitle">
+          This will help us recommend creative work you'll love
+        </p>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div
+              class="card topic-card"
+              [class.selected]="isSelected('Photography')"
+              (click)="toggleSelection('Photography')"
+            >
+              <img
+                src="assets/Images/photography.jpeg"
+                class="card-img-top topic-image"
+                alt="Photography"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Photography</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div
+              class="card topic-card"
+              [class.selected]="isSelected('UI-UX Design')"
+              (click)="toggleSelection('UI-UX Design')"
+            >
+              <img
+                src="assets/Images/ui-ux.jpg"
+                class="card-img-top topic-image"
+                alt="UI-UX Design"
+              />
+              <div class="card-body">
+                <h5 class="card-title">UI-UX Design</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div
+              class="card topic-card"
+              [class.selected]="isSelected('Art')"
+              (click)="toggleSelection('Art')"
+            >
+              <img
+                src="assets/Images/art.jpg"
+                class="card-img-top topic-image"
+                alt="Art"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Art</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div
+              class="card topic-card"
+              [class.selected]="isSelected('Graphic Design')"
+              (click)="toggleSelection('Graphic Design')"
+            >
+              <img
+                src="assets/Images/graphic-design.jpg"
+                class="card-img-top topic-image"
+                alt="Graphic Design"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Graphic Design</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div
+              class="card topic-card"
+              [class.selected]="isSelected('Illustration')"
+              (click)="toggleSelection('Illustration')"
+            >
+              <img
+                src="assets/Images/illustration.jpg"
+                class="card-img-top topic-image"
+                alt="Illustration"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Illustration</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div
+              class="card topic-card"
+              [class.selected]="isSelected('Architecture')"
+              (click)="toggleSelection('Architecture')"
+            >
+              <img
+                src="assets/Images/architecture.jpg"
+                class="card-img-top topic-image"
+                alt="Architecture"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Architecture</h5>
+              </div>
+            </div>
+          </div>
+          <!-- Add more topic cards here -->
+        </div>
+
+        <div class="footer">
+          <div class="footer-text">
+            <span>Follow at least 1 category to continue</span>
+          </div>
+          <div>
+            @if(selectedTopics.length==0){
+            <button class="disabled-btn">See my custom feed</button>
+            } @else{
+            <button class="enabled-btn" (click)="onSubmit()">
+              See my custom feed
+            </button>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
