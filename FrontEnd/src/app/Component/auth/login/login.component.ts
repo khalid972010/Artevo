@@ -30,6 +30,7 @@ import { AuthService } from '../../../services/auth.service';
 export class LoginComponent {
   form: FormGroup;
   valid = true;
+  defaultError = 'Invalid mail or password!';
   passwordFieldType: string = 'password';
   constructor(
     private fb: FormBuilder,
@@ -38,13 +39,7 @@ export class LoginComponent {
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$'),
-        ],
-      ],
+      password: ['', [Validators.required]],
     });
   }
 
@@ -60,7 +55,9 @@ export class LoginComponent {
             this.router.navigate(['/'], { replaceUrl: true });
           },
           error: (err) => {
+            console.log(err.error);
             this.valid = false;
+            this.defaultError = err.error;
           },
         });
     }

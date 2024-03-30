@@ -203,6 +203,8 @@ const resetPasswordSubmit = async (req, res) => {
 //#region Login
 async function loginUser(req, res) {
   const { email, password } = req.body;
+  console.log(email);
+  console.log(password);
   let foundClientEmail = await Clients.findOne({ email });
   let foundFreelancerEmail = await Freelancers.findOne({ email });
 
@@ -210,7 +212,7 @@ async function loginUser(req, res) {
     return res.status(400).json("invalid email or password");
 
   foundEmail = foundFreelancerEmail || foundClientEmail;
-  let isCorrectPass = bcrypt.compare(password, foundEmail.password);
+  let isCorrectPass = await bcrypt.compare(password, foundEmail.password);
 
   if (!isCorrectPass) return res.status(400).json("invalid email or password");
   if (!foundEmail.isVerified)

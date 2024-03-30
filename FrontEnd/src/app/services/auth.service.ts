@@ -18,7 +18,6 @@ export class AuthService {
         map((response) => {
           const statusCode = response.status;
           const responseBody = response.body;
-
           // this.authInterceptor.intercept();
           this.token = response.headers.get('x-auth-token');
           return { statusCode, responseBody };
