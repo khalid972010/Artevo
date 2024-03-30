@@ -1,0 +1,102 @@
+.services {
+  background-color: #ada69d;
+  padding: 65px 0px;
+ }
+
+ .services .service-item {
+  margin: 15px 0px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.5s;
+ }
+
+  .services .service-item:hover {
+    background-color: #86604F;
+  }
+
+ .services .service-item .icon {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  display: inline-block;
+  line-height: 50px;
+ }
+
+.services .service-item .icon img {
+  max-width: 100%;
+}
+
+.services .service-item h4 {
+  margin-top: 20px;
+  color: #313131;
+  font-size: 20px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+}
+
+.services .service-item:hover h4 {
+  color: #E4DCD1;
+}
+
+.services .service-item:hover p {
+  color: #bbb;
+}
+
+.services .service-item p {
+  color: #474747;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 28px;
+}
+
+.more-about-us .content {
+  background-color: rgba(0,0,0,0.8);
+  text-align: left;
+  padding: 150px 60px;
+  color: #fff;
+}
+
+.more-about-us .content h2 {
+  margin-top: 0px;
+  font-size: 34px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+.more-about-us .content span {
+  font-size: 16px;
+  font-weight: 200;
+  display: inline-block;
+  margin-bottom: 30px;
+  letter-spacing: 0.5px;
+}
+
+.more-about-us .content p {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 28px;
+}
+
+.more-about-us .content .simple-btn {
+  margin-top: 30px;
+}
+
+.more-about-us .content .simple-btn a {
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: transparent;
+  color: #fff;
+  letter-spacing: 2px;
+  border-bottom: 3px solid #fff;
+  padding-bottom: 3px;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+
+.more-about-us .content .simple-btn a:hover {
+  opacity: 0.5;
+}
