@@ -7,8 +7,6 @@ const freelancerController = require("../Controllers/FreelancerController");
 router.get("/", freelancerController.getAllfreelancers);
 //#region Add freelancer
 router.post("/", freelancerController.Addfreelancer);
-router.put("/:id", freelancerController.updateFreelancer);
-router.delete("/:id", freelancerController.deleteFreelancer);
 
 
 router.get("/rana",(req, res) => {

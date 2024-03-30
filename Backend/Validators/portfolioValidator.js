@@ -14,14 +14,33 @@ const portfolioSchema = {
     owner: {
       type: "string",
     },
-
-    url: { type: "string", pattern: ".(jpeg|png|jpg)$" },
+    photos: {
+      type: "array",
+      items: {
+        type: "string",
+    //  pattern: ".(jpeg|png|jpg)$", // assuming URLs are used for photos
+      },
+    },
+    description: {
+      type: "string",
+    },
+    likesCount: {
+      type: "integer",
+      default: 0, // Set default value to 0
+      minimum: 0, // assuming likes cannot be negative
+    },
+    likes: {
+      type: "array",
+      items: {
+        type: "string"
+      },
+    },
     type: {
       type: "string",
       enum: ["UI/UX", "Graphic Design", "Digital Art", "Game Design"],
     },
   },
-  required: ["date", "owner", "url", "type"],
-  additionalProperties: false,
+  required: ["date", "owner", "photos", "description", "type"],
+  additionalProperties: true,
 };
 module.exports = ajv.compile(portfolioSchema);

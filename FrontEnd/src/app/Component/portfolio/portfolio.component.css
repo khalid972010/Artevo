@@ -1,0 +1,32 @@
+img {
+  width: 100%; /* Ensures the image fills its container */
+  height: auto; /* Maintains the image's aspect ratio */
+  max-width: 303px; /* Limits the maximum width */
+  max-height: 220px; /* Limits the maximum height */
+  display: block; /* Ensures proper spacing */
+  image-rendering: pixelated; 
+
+}
+
+
+
+.card{
+  width: 303px;
+  border-radius: 22px;
+  box-shadow: #4a4440;
+  background-color: whitesmoke;
+  /* background-color:lightgoldenrodyellow; */
+
+
+}
+
+.card:hover{
+  transform: scale(1.1);
+
+}
+.author{
+  color: #4a4440;
+}
+.card-text{
+  color:#4a4440
+}

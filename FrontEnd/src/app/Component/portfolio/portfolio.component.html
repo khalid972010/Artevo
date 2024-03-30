@@ -1,0 +1,110 @@
+<!-- <div class="card" style="width: 18rem;">
+
+  <div class="card-header headerClass" >
+    <div class="row">
+      <div class="col">
+        <strong>{{ portfolio.owner }}</strong>
+      </div>
+
+      <div class="col dateClass">
+        {{ portfolio.date }}
+      </div>
+
+    </div>
+  </div>
+
+  <img [src]="portfolio.photos[0]" class="imageClass">
+  <div class="card-body">
+    <p class="card-text">{{ portfolio.description }}</p>
+    <button (click)="likePost(portfolio._id, '660091b08b6161e112617698')">{{LikeText}}</button>
+
+    <span class="like-count">{{ portfolio.likesCount }}</span>
+  </div>
+</div> -->
+
+<!-- <div class="container text-center">
+  <div class="row">
+    <div class="col">
+      Column
+    </div>
+  </div>
+</div> -->
+
+<!-- restart -->
+<!-- <div class="card" style="width: 19rem;">
+  <img [src]="portfolio.photos[0]"  class="card-img-top" >
+  <div class="card-body">
+    <p class="card-text" style="margin-top: -10px;">{{ portfolio.description }}</p>
+    <div class="row">
+    <p style="font-size: 22px; font-weight: bolder;margin-top: -22px;" class="col-4">{{ portfolio.owner }}</p>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill col-1" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+            </svg>
+
+            <p class="like-count col-7">{{ portfolio.likesCount }}</p>
+      </div>
+    {{ portfolio.date }}
+  </div>
+</div> -->
+
+<!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+</svg> -->
+
+
+
+
+<!-- <div class="row">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+          <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+        </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16" (click)="likePost(portfolio._id, '660091b08b6161e112617698')">
+        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+      </svg>
+      
+      <p class="like-count">{{ portfolio.likesCount }}</p>
+      </div> -->
+
+
+<!-- <button (click)="likePost(portfolio._id, '660091b08b6161e112617698')" class="col-3" style="margin-top: -15px;">{{LikeText}}</button> -->
+<!-- <button (click)="likePost(portfolio._id, '660091b08b6161e112617698')" class="col-4" style="margin-top: -15px; width: auto; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); border-radius: 20px;">{{LikeText}}</button> -->
+
+
+
+
+
+<div class="card" style="width: 19rem; max-height:329px;">
+  <img [src]="portfolio.photos[0]" class="card-img-top">  
+  <div class="card-body">
+    <div class="row">
+
+      <p class="card-text col-8" style="font-size: 18 px;font-weight: bolder; font-family: Georgia, 'Times New Roman', Times, serif;
+     overflow: hidden;
+     display: -webkit-box;
+     -webkit-line-clamp: 2; /* Number of lines to show */
+     -webkit-box-orient: vertical;
+     text-overflow: ellipsis;">
+  {{ portfolio.description }}
+</p>
+
+      <!-- <p class="card-text col-8" style="font-size: 22px;font-weight: bolder; font-family: Georgia, 'Times New Roman', Times, serif;">{{ portfolio.description }}</p> -->
+      <div class=" row col-4  ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="27" fill="currentColor" class="bi bi-heart-fill col-7 " viewBox="0 0 16 16" *ngIf="IsLike" (click)="likePost(portfolio._id, '660091b08b6161e112617698')">
+          <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="27" fill="currentColor" class="bi bi-heart col-7 " viewBox="0 0 16 16" *ngIf="!IsLike" (click)="likePost(portfolio._id, '660091b08b6161e112617698')">
+          <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+        </svg>
+        <p class="like-count col-2" style="margin-left: -17px; margin-top: -4px; font-size: 20px;">{{ portfolio.likesCount }}</p>
+
+
+      </div>
+
+    </div>
+    <p style="font-size: 15px; margin-top: -18px; font-family: Georgia, 'Times New Roman', Times, serif;" class="author">{{ portfolio.owner }}</p>
+
+  </div>
+</div>

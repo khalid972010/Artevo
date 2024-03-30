@@ -1,0 +1,15 @@
+button {
+  background-color: #e6dfd0;
+  border-color: black;
+  border: 1px solid black;
+  color: #4a4440;
+  font-weight: bolder;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  /* font-family: monospace; */
+
+}
+
+button:hover {
+  background-color: #4a4440;
+  color: wheat;
+}
