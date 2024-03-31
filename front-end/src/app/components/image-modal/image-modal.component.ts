@@ -10,7 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class ImageModalComponent {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { imageUrl: string },
+    @Inject(MAT_DIALOG_DATA) public data: { imageUrl: any },
     public dialogRef: MatDialogRef<ImageModalComponent>
   ) { }
 
