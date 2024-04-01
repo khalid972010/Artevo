@@ -4,7 +4,7 @@
   --bg-color: #E4DCD1;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   position: relative;
-  width: 300px;
+  width: 400px;
   height: 384px;
   display: flex;
   flex-direction: column;
@@ -14,12 +14,7 @@
   margin: 15px 0px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease; /* Adjust transition for smoother effect */
-}
-
-#coverPhoto {
-  border-radius: 20px;
-  padding-left: 1px;
-  padding-top: 1px;
+  padding: 0; /* Remove padding */
 }
 
 .card:hover {
@@ -30,6 +25,8 @@
 .card__img {
   height: 192px;
   width: 100%;
+  overflow: hidden; /* Hide any content that overflows the container */
+  border-radius: 20px 20px 0 0; /* Apply border radius only to the top */
 }
 
 .card__img svg {
@@ -70,7 +67,7 @@
 
 .card__btn {
   margin-top: 15px;
-  width: 76px;
+  width: 150px;
   height: 31px;
   border: 2px solid var(--main-color);
   border-radius: 4px;
