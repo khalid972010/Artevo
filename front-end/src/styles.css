@@ -25,7 +25,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .page-heading {
-  background-image: url('assets/img/heading_bg.jpg');
+  background-image: url('assets/images/heading_bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -51,7 +51,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .more-about-us {
-  background-image: url('assets/img/about_us.jpg');
+  background-image: url('assets/images/about_us.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
