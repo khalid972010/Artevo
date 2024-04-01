@@ -43,6 +43,10 @@ export class LoginComponent {
     });
   }
 
+  togglePasswordVisibility() {
+    this.passwordFieldType =
+      this.passwordFieldType === 'password' ? 'text' : 'password';
+  }
   onSubmit() {
     if (!this.form.valid) {
       this.valid = false;
@@ -55,7 +59,6 @@ export class LoginComponent {
             this.router.navigate(['/'], { replaceUrl: true });
           },
           error: (err) => {
-            console.log(err.error);
             this.valid = false;
             this.defaultError = err.error;
           },

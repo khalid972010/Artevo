@@ -103,6 +103,10 @@ form .btn-primary {
   opacity: 0;
 }
 
+* {
+  font-family: "Poppins", sans-serif;
+}
+
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;

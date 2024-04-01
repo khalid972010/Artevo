@@ -10,7 +10,7 @@
               <div class="col-md-9 col-lg-8 mx-auto">
                 <h1 class="login-heading mb-5">Welcome back!</h1>
 
-                <div class="form-floating mb-3">
+                <div class="form-floating mb-3" style="height: 18%">
                   <input
                     type="email"
                     class="form-control"
@@ -20,17 +20,25 @@
                   />
                   <label for="floatingInput">Email address</label>
                 </div>
-                <div class="form-floating mb-3">
+                <div class="input-group mb-3" style="height: 18%">
                   <input
-                    type="password"
+                    type="{{ passwordFieldType }}"
                     class="form-control"
                     id="floatingPassword"
                     placeholder="Password"
                     formControlName="password"
                     [required]="true"
                   />
-
-                  <label for="floatingPassword">Password</label>
+                  <span
+                    class="input-group-text password-toggle"
+                    (click)="togglePasswordVisibility()"
+                  >
+                    <i
+                      class="bi bi-eye{{
+                        passwordFieldType === 'password' ? '-slash' : ''
+                      }}"
+                    ></i>
+                  </span>
                 </div>
 
                 @if (!valid ) {
