@@ -1,31 +1,21 @@
 <app-about></app-about>
 
-
-
-
-
-
-
- <div class="grid-portfolio" id="portfolio">
+<div class="grid-portfolio" id="portfolio">
   <div class="container">
     <div class="row">
-
-
-
-  <app-portfolio [portfolio]="portfolioItem" class="col-md-4 col-sm-6" *ngFor="let portfolioItem of Portfolio.data" ></app-portfolio>
-
+      <app-portfolio
+        [portfolio]="portfolioItem"
+        class="col-md-4 col-sm-6"
+        *ngFor="let portfolioItem of Portfolio.data"
+      ></app-portfolio>
+    </div>
+  </div>
 </div>
-</div>
-</div>
 
-
-<div class="row">
+<div class="row container m-auto p-0" id="btn">
   <div class="col-md-12">
     <div class="load-more-button">
       <a href="#">Load More</a>
     </div>
   </div>
 </div>
-
-
-

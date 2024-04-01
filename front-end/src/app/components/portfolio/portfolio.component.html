@@ -36,24 +36,17 @@
 
  -->
 
-
-
-
-
-        <div class="portfolio-item">
-          <a (click)="openImageModal(portfolio.photos[0])"
-            ><div class="thumb">
-              <div class="hover-effect">
-                <div class="hover-content">
-                  <h1 >{{portfolio.owner}}</h1>
-                  <p>{{portfolio.description.slice(0, 40) + '...'}}</p>
-                </div>
-              </div>
-              <div class="image">
-                <img  [src]="portfolio.photos[0]" />
-              </div></div
-          ></a>
+<div class="portfolio-item">
+  <a (click)="openImageModal(portfolio.photos[0])"
+    ><div class="thumb">
+      <div class="hover-effect">
+        <div class="hover-content">
+          <h1>{{ portfolio.owner }}</h1>
+          <p>{{ portfolio.description.slice(0, 40) + "..." }}</p>
         </div>
-
-
-
+      </div>
+      <div class="image">
+        <img [src]="portfolio.photos[0]" class="rounded h-100 w-100" />
+      </div></div
+  ></a>
+</div>

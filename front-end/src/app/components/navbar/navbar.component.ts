@@ -19,20 +19,30 @@ isMenuOpen: boolean = false;
 
   navigateAbout(event: Event) {
     event.preventDefault();
-    this.router.navigateByUrl("/about");
-    this.toggleMenu();
+    this.router.navigateByUrl("/about", {replaceUrl:true});
+    if(this.isMenuOpen == true) this.toggleMenu();
   }
 
   navigateHome(event: Event) {
     event.preventDefault();
-    this.router.navigateByUrl("/");
-    this.toggleMenu();
+    this.router.navigateByUrl("/", {replaceUrl:true});
+    if(this.isMenuOpen == true) this.toggleMenu();
   }
 
   navigatePortfolioList(event: Event) {
     event.preventDefault();
-    this.router.navigateByUrl("/portfolio-list");
-    this.toggleMenu();
+    this.router.navigateByUrl("/portfolio-list", {replaceUrl:true});
+    if(this.isMenuOpen == true) this.toggleMenu();
+  }
+  navigateToLogin(event: Event) {
+    event.preventDefault();
+    this.router.navigateByUrl("/login", {replaceUrl:true});
+    if(this.isMenuOpen == true) this.toggleMenu();
+  }
+  navigateToRegister(event: Event) {
+    event.preventDefault();
+    this.router.navigateByUrl("/register", {replaceUrl:true});
+    if(this.isMenuOpen == true) this.toggleMenu();
   }
 }
 

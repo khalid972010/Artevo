@@ -1,23 +1,40 @@
-.grid-portfolio {
-  padding: 65px 0px;
-  background-color: #ada69d;
+/* Add this rule to decrease brightness of the image on hover */
+.portfolio-item:hover img {
+  filter: brightness(0.3); /* Decrease brightness to 70% */
+  transition: filter 0.5s ease; /* Add transition */
 }
 
- .portfolio-item {
+/* Elevate the portfolio item slowly on hover */
+.portfolio-item {
   margin: 15px 0px;
+  position: relative;
+  transition: transform 0.5s ease, box-shadow 0.5s ease; /* Add transition for transform and box-shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
 }
+
+.portfolio-item:hover {
+  transform: translateY(-5px); /* Elevate the item by 5 pixels */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+}
+
 
 .portfolio-item .hover-effect .hover-content {
-    position: absolute;
-    text-align: left;
-    width: 100%;
-    bottom: 5px;
-    left: 0;
+  position: absolute;
+  text-align: left;
+  width: 100%;
+  bottom: 5px;
+  left: 0;
+  z-index: 2;
 }
 
-
- .portfolio-item h1 {
+/* Adjust the position of the text content */
+.portfolio-item .hover-effect .hover-content h1,
+.portfolio-item .hover-effect .hover-content p {
   position: relative;
+  z-index: 1;
+}
+
+.portfolio-item h1 {
   font-size: 22px;
   text-transform: uppercase;
   color: #fff;
@@ -27,28 +44,18 @@
   transform: translateY(25px);
   transition: .5s ease-in-out;
   letter-spacing: 0.5px;
- }
-.portfolio-item em {
+}
+
+   .portfolio-item em {
   font-style: normal;
   font-weight: 200;
- }
+}
 
- .portfolio-item:hover h1 {
+   .portfolio-item:hover h1 {
   transform: translateY(0);
- }
- .portfolio-item .image img {
-  width: 410px;
-  height: 365px;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease-in-out; /* Add transition for smooth effect */
 }
 
-.portfolio-item .image img:hover {
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* Apply box shadow on hover */
-}
-
-
- .portfolio-item p {
+   .portfolio-item p {
   padding-left: 20px;
   font-weight: 300!important;
   letter-spacing: 0.5px;
@@ -58,55 +65,61 @@
   transform: translateY(10px);
   transition: .5s ease-in-out;
   text-transform: uppercase;
- }
+}
 
- .portfolio-item:hover p {
+.portfolio-item:hover p {
   opacity: 1;
   transform: translateY(0);
- }
+}
 
+.load-more-button {
+  margin-top: 15px;
+}
 
- .full-screen-portfolio .container-fluid,
+.load-more-button a {
+  width: 100%;
+  height: 80px;
+  display: inline-block;
+  text-align: center;
+  line-height: 80px;
+  font-size: 15px;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1px;
+  color: #fff;
+  background-color: #694535;
+  transition: all 0.5s;
+}
+.load-more-button a:hover {
+  color: rgba(250,250,250,0.5);
+}
+
+.full-screen-portfolio .container-fluid,
 .full-screen-portfolio .col-md-4, .col-md-8 {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-
-.portfolio-item img  {
-  width: 410px;
-  height: 365px;
+.portfolio-item img {
+  height: 50%;
+  width: 50%;
   overflow: hidden;
-
+  transition: filter 0.5s ease; /* Add transition */
 }
-
-
 
 .portfolio-item .thumb {
   position: relative;
 }
 
-
 .portfolio-item .hover-effect .hover-content {
-    position: absolute;
-    text-align: left;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-
+  position: absolute;
+  text-align: left;
+  width: 100%;
+  bottom: 0;
+  left: 0;
 }
-
-
-.portfolio-item  .hover-effect img {
-
-  width: 10px;
-}
-
-
-
 
 .full-screen-portfolio .portfolio-item h1 {
-  position: relative;
   font-size: 22px;
   text-transform: uppercase;
   color: #fff;
@@ -116,17 +129,16 @@
   transform: translateY(25px);
   transition: .5s ease-in-out;
   letter-spacing: 0.5px;
- }
+}
 
- .full-screen-portfolio .portfolio-item em {
+.full-screen-portfolio .portfolio-item em {
   font-style: normal;
   font-weight: 200;
- }
+}
 
 .full-screen-portfolio .portfolio-item:hover h1 {
   transform: translateY(0);
-
- }
+}
 
 .full-screen-portfolio .portfolio-item p {
   padding-left: 20px;
@@ -138,28 +150,21 @@
   transform: translateY(10px);
   transition: .5s ease-in-out;
   text-transform: uppercase;
- }
+}
 
- .full-screen-portfolio .portfolio-item {
- text-align: center;
- line-height: 150%;
- text-transform: lowercase;
- cursor: pointer;
+.full-screen-portfolio .portfolio-item {
+  text-align: center;
+  line-height: 150%;
+  text-transform: lowercase;
+  cursor: pointer;
 }
 
 .full-screen-portfolio .portfolio-item:hover p {
   opacity: 1;
   transform: translateY(0);
- }
+}
 
- /* portfolio.component.css */
+/* Additional styling for the blur effect (optional) */
 .blur-background {
-    filter: blur(5px); /* Adjust the blur strength as needed */
+  filter: blur(5px); /* Adjust the blur strength as needed */
 }
-.bi-heart-fill,
-.bi-heart {
-  font-size: 20px;
-  color: #ff6b6b;
-  margin-right: 5px;
-}
-
