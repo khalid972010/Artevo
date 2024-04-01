@@ -3,7 +3,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { register } from 'module';
 
 import { Router } from '@angular/router';
 import { RegisterService } from '../../../services/register.service';
