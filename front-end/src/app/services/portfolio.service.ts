@@ -2,21 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PortfolioService {
-
-  constructor(private http:HttpClient) {};
-  DB_URL = "http://localhost:7010/api/portfolio";
-  getAllPortfolio(){
+  constructor(private http: HttpClient) {}
+  DB_URL = 'http://localhost:7010/api/portfolio';
+  getAllPortfolio() {
     return this.http.get(this.DB_URL);
   }
-  like(portfolioId: string, userId: string) {
-    return this.http.post(this.DB_URL+'/Like', { portfolioId, userId });
+  getPortfolioByCategory(category: string) {
+    const url = `${this.DB_URL}?category=${encodeURIComponent(category)}`;
+    return this.http.get(url);
   }
-
+  like(portfolioId: string, userId: string) {
+    return this.http.post(this.DB_URL + '/Like', { portfolioId, userId });
+  }
 }
-
 
 /*
 import { Injectable } from '@angular/core';

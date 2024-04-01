@@ -8,11 +8,13 @@ import { EnterMailComponent } from './components/auth/enter-mail/enter-mail.comp
 import { FreelancerListComponent } from './components/freelancer-list/freelancer-list.component';
 
 import { HomeComponent } from './components/home/home.component';
+import { TopicsComponent } from './components/topics/topics.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'about', component: AboutUsComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'topics', component: TopicsComponent },
   { path: 'portfolio-list', component: PortfolioListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

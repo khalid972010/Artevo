@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class CategoriesService {
   private categories: { title: string; description: string }[] = [
     {
-      title: 'UI/UX Design',
+      title: 'UI/UX',
       description: 'User Interface and User Experience Design',
     },
     {

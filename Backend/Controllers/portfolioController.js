@@ -6,14 +6,16 @@ const { isValidObjectId } = require("mongoose");
 //Methods..
 //1-get all portfolios..
 const getAllPortfolios = async (req, res) => {
-  let allportfolios = await portfolioModel.find({});
-
-  res.status(200).json({ data: allportfolios });
+  const category = req.query.category;
+  if (!category) {
+    let allportfolios = await portfolioModel.find({});
+    return res.status(200).json({ data: allportfolios });
+  }
+  let foundPosts = await portfolioModel.find({ type: category });
+  return res.status(200).json({ data: foundPosts });
 };
 //2-add new portfolio
 const addPortfolio = async (req, res) => {
-
-
   let newPortfolio = req.body;
   //check validation..
   if (portfoliosValidator(newPortfolio)) {
@@ -55,7 +57,7 @@ const removePortfolio = async (req, res) => {
 
 const Like = async (req, res) => {
   const portfolioId = req.body.portfolioId;
-  const userId = req.body.userId; 
+  const userId = req.body.userId;
   try {
     let portfolio = await portfolioModel.findById(portfolioId);
     if (!portfolio) {
@@ -64,30 +66,38 @@ const Like = async (req, res) => {
     // Check if the user has already liked the post
     console.log(userId);
     if (portfolio.likes.includes(userId)) {
-
       portfolio.likesCount -= 1;
-    portfolio.likes = portfolio.likes.filter(id => id !== userId);
-    await portfolio.save();
-    res.json({ isLike:false , message: "Like removed successfully", data: portfolio });
-    }  
-    else
-    {
+      portfolio.likes = portfolio.likes.filter((id) => id !== userId);
+      await portfolio.save();
+      res.json({
+        isLike: false,
+        message: "Like removed successfully",
+        data: portfolio,
+      });
+    } else {
       portfolio.likesCount += 1;
       portfolio.likes.push(userId);
       await portfolio.save();
-      res.json({isLike:true, message: "Like added successfully", data: portfolio });
+      res.json({
+        isLike: true,
+        message: "Like added successfully",
+        data: portfolio,
+      });
     }
-   
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
 
-
-
-
-
+const findPortfolioByCategory = async (request, response) => {
+  const category = request.body.category;
+  if (!category) {
+    return response.status(404).json("Invalid category!");
+  }
+  let foundPosts = await portfolioModel.find({ type: category });
+  return response.status(200).json({ Data: foundPosts });
+};
 
 //SALLAH -- MAHMOUD
 //SALLAH -- MAHMOUD
@@ -122,6 +132,6 @@ module.exports = {
   getAllPortfolios,
   addPortfolio,
   removePortfolio,
-  Like
-  
+  Like,
+  findPortfolioByCategory,
 };

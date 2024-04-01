@@ -1,29 +1,139 @@
-.card {
-  width: 220px;
-  height: 80px;
-  padding: 0.5rem;
-  background: #e4dcd1;
-  border-radius: 8px;
-  border-bottom: 3px solid rgba(255, 255, 255, 0.44);
-  border-left: 2px rgba(255, 255, 255, 0.545) outset;
-  box-shadow: 0px 20px 10px rgba(134, 96, 79, 0.2);
-  transform: skewX(4deg);
-  transition: 0.4s;
-  overflow: hidden;
+.container {
+  --UnChacked-color: hsl(0, 0%, 10%);
+  --chacked-color: hsl(32, 25%, 34%);
+  --font-color: white;
+  --chacked-font-color: var(--font-color);
+  --icon-size: 1.5em;
+  --anim-time: 0.2s;
+  --anim-scale: 0.1;
+  --base-radius: 0.8em;
+  font-family: Arial, Helvetica, sans-serif, monospace;
 }
 
-.card:hover {
-  height: 170px;
-  transform: skew(0deg);
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.2rem;
+  user-select: none;
+  fill: var(--font-color);
+  color: var(--font-color);
 }
 
-.card h1 {
-  text-align: center;
-  font-size: 23px;
-  margin: 1.3rem;
-  color: #694535;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+/* Hide the default checkbox */
+.container input {
+  display: none;
 }
-.link-no-underline {
-  text-decoration: none;
+
+/* Base custom checkbox */
+.checkmark {
+  background: var(--UnChacked-color);
+  border-radius: var(--base-radius);
+
+  display: flex;
+  padding: 0.5em;
+}
+.icon {
+  width: var(--icon-size);
+  height: auto;
+  filter: drop-shadow(0px 2px var(--base-radius) rgba(0, 0, 0, 0.25));
+}
+.name {
+  margin: 0 0.25em;
+}
+.Yes {
+  width: 0;
+}
+.name.Yes {
+  display: none;
+}
+
+/* action custom checkbox */
+.container:hover .checkmark,
+.container:hover .icon,
+.container:hover .name {
+  transform: scale(calc(1 + var(--anim-scale)));
+}
+
+.container:active .checkmark,
+.container:active .icon,
+.container:active .name {
+  transform: scale(calc(1 - var(--anim-scale) / 2));
+  border-radius: calc(var(--base-radius) * 2);
+}
+.checkmark::before {
+  content: "";
+  opacity: 0.5;
+  transform: scale(1);
+  border-radius: var(--base-radius);
+  position: absolute;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.checkmark:hover:before {
+  background-color: hsla(0, 0%, 50%, 0.2);
+}
+.container input:checked + .checkmark:before {
+  animation: boon calc(var(--anim-time)) ease;
+  animation-delay: calc(var(--anim-time) / 2);
+}
+
+/* When the checkbox is checked*/
+.container input:checked + .checkmark {
+  --UnChacked-color: var(--chacked-color);
+  fill: var(--chacked-font-color);
+  color: var(--chacked-font-color);
+}
+
+.container input:checked ~ .checkmark .No {
+  width: 0;
+}
+.container input:checked ~ .checkmark .name.No {
+  display: none;
+}
+
+.container input:checked ~ .checkmark .Yes {
+  width: var(--icon-size);
+}
+.container input:checked ~ .checkmark .name.Yes {
+  width: auto;
+  display: unset;
+}
+
+/*Animation*/
+.container,
+.checkmark,
+.checkmark:after,
+.icon,
+.checkmark .name {
+  transition: all var(--anim-time);
+}
+
+/*Unuse*/
+@keyframes icon-rot {
+  50% {
+    transform: rotateZ(180deg) scale(calc(1 - var(--anim-scale)));
+    border-radius: 1em;
+  }
+  to {
+    transform: rotate(360deg);
+    border-radius: var(--base-radius);
+  }
+}
+/*Unuse*/
+@keyframes boo {
+  80% {
+    transform: scale(1.4);
+  }
+  99% {
+    transform: scale(1.7);
+    border: 2px solid var(--UnChacked-color);
+  }
+  to {
+    transform: scale(0);
+  }
 }

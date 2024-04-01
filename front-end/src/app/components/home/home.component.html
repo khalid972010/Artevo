@@ -16,8 +16,20 @@
       <div class="col-3" *ngFor="let category of categories">
         <app-category-card
           [title]="category.title"
-          [description]="category.description"
+          (click)="getCategoryName(category.title)"
         ></app-category-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-portfolio" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <app-portfolio
+          [portfolio]="portfolioItem"
+          class="col-md-4 col-sm-6"
+          *ngFor="let portfolioItem of Portfolio.data"
+        ></app-portfolio>
       </div>
     </div>
   </div>
