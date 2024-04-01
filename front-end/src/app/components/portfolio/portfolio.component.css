@@ -12,6 +12,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
 }
 
+.image{
+  height: 400px;
+}
+
 .portfolio-item:hover {
   transform: translateY(-5px); /* Elevate the item by 5 pixels */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
@@ -101,8 +105,6 @@
 }
 
 .portfolio-item img {
-  height: 50%;
-  width: 50%;
   overflow: hidden;
   transition: filter 0.5s ease; /* Add transition */
 }

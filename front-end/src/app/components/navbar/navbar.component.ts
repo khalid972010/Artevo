@@ -44,5 +44,10 @@ isMenuOpen: boolean = false;
     this.router.navigateByUrl("/register", {replaceUrl:true});
     if(this.isMenuOpen == true) this.toggleMenu();
   }
+  navigateToFreelancers(event: Event) {
+    event.preventDefault();
+    this.router.navigateByUrl("/freelancers", {replaceUrl:true});
+    if(this.isMenuOpen == true) this.toggleMenu();
+  }
 }
 
