@@ -24,4 +24,5 @@ router.post(
 router.get("/reset-password-form/:token", UserController.getResetPasswordForm);
 router.get("/verify/:token", UserController.verifyUser);
 router.post("/login", UserController.loginUser);
+router.get("/email/:email", UserController.findUserByMail);
 module.exports = router;

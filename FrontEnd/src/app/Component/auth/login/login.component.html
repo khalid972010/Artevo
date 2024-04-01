@@ -35,7 +35,7 @@
 
                 @if (!valid ) {
                 <div class="text-danger small m-2">
-                  Invalid mail or password!
+                  {{ defaultError }}
                 </div>
                 }
 
@@ -47,7 +47,9 @@
                     Sign in
                   </button>
                   <div class="text-center">
-                    <a class="small" href="#">Forgot password?</a>
+                    <a class="small" href="#" routerLink="/login/reset/mail"
+                      >Forgot password?</a
+                    >
                   </div>
                 </div>
               </div>

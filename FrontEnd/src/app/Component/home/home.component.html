@@ -1,6 +1,14 @@
 <app-navbar></app-navbar>
 <app-about></app-about>
+<div class="line">
+  <span class="word-in-line">FEATURED POSTS</span>
+</div>
 
-<ng-container *ngFor="let portfolioItem of Portfolio.data">
-  <app-portfolio [portfolio]="portfolioItem"></app-portfolio>
-</ng-container>
+
+<div class="container" style="margin-top: 40px;">
+  <div class="card-container" style="margin-top: 80px;">
+    <ng-container *ngFor="let portfolioItem of Portfolio.data">
+      <app-portfolio [portfolio]="portfolioItem"></app-portfolio>
+    </ng-container>
+  </div>
+</div>

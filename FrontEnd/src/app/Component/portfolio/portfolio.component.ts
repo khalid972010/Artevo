@@ -1,6 +1,7 @@
 import { Component ,Input,OnInit} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PortfolioService } from '../../services/portfolio.service';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -8,7 +9,7 @@ import { PortfolioService } from '../../services/portfolio.service';
 @Component({
   selector: 'app-portfolio',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule,CommonModule],
   providers:[PortfolioService],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.css'

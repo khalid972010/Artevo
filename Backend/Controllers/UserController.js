@@ -203,25 +203,39 @@ const resetPasswordSubmit = async (req, res) => {
 //#region Login
 async function loginUser(req, res) {
   const { email, password } = req.body;
+  console.log(email);
+  console.log(password);
   let foundClientEmail = await Clients.findOne({ email });
   let foundFreelancerEmail = await Freelancers.findOne({ email });
 
   if (!foundClientEmail && !foundFreelancerEmail)
-    return res.json("invalid email or password");
+    return res.status(400).json("invalid email or password");
 
   foundEmail = foundFreelancerEmail || foundClientEmail;
-  let isCorrectPass = bcrypt.compare(password, foundEmail.password);
+  let isCorrectPass = await bcrypt.compare(password, foundEmail.password);
 
-  if (!isCorrectPass) return res.json("invalid email or password");
-  if (!foundEmail.isVerified) return res.json("Please activate your account");
+  if (!isCorrectPass) return res.status(400).json("invalid email or password");
+  if (!foundEmail.isVerified)
+    return res.status(400).json("Please activate your account");
   const accessToken = jwt.sign(
     { id: foundEmail.id, type: foundEmail.userType },
     "artlance",
     { expiresIn: "7d" }
   );
   res.header("x-auth-token", accessToken);
-  return res.json("Login Successfully");
+  return res.status(200).json("Login Successfully");
 }
+
+let findUserByMail = async (request, response) => {
+  mail = request.params.email;
+  let freelancer = await Freelancers.findOne({ email: mail });
+  let client = await Clients.findOne({ email: mail });
+  let user = freelancer || client;
+  if (!user) {
+    return response.status(404).json("Mail not found!");
+  }
+  return response.status(200).json({ User: user });
+};
 //#endregion
 module.exports = {
   GetAllUsers,
@@ -233,4 +247,5 @@ module.exports = {
   getResetPasswordForm,
   sendResetToken,
   loginUser,
+  findUserByMail,
 };

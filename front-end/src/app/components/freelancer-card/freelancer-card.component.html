@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card__img">
+    <img
+      src="{{ freelancer.coverPicture }}"
+      height="200"
+      width="298"
+      id="coverPhoto"
+    />
+  </div>
+  <div class="card__avatar">
+    <img
+      src="{{ freelancer.profilePicture }}"
+      height="110"
+      width="110"
+      class="rounded-circle"
+    />
+  </div>
+  <div class="card__title">{{ freelancer.fullName }}</div>
+  <div class="card__subtitle">{{ freelancer.headLine }}</div>
+  <div class="card__wrapper">
+    <button class="card__btn me-3">Profile</button>
+    <button class="card__btn card__btn-solid">Hire</button>
+  </div>
+</div>

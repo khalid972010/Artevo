@@ -1,0 +1,17 @@
+<div class="page-heading mb-5">
+  <div class="container">
+    <div class="heading-content">
+      <h1>Free<em>lancers</em></h1>
+    </div>
+  </div>
+</div>
+
+<div class="container m-auto">
+  <div class="row ms-5">
+    <app-freelancer-card
+      [freelancer]="freelancerItem"
+      class="col-xl-4 col-sm-6 mb-4"
+      *ngFor="let freelancerItem of Freelancer.data"
+    ></app-freelancer-card>
+  </div>
+</div>

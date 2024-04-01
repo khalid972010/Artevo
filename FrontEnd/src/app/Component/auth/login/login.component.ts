@@ -7,13 +7,16 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports: [RouterModule, ReactiveFormsModule, HttpClientModule],
+  providers: [AuthService],
+
   standalone: true,
   animations: [
     trigger('slideInAnimation', [
@@ -27,17 +30,16 @@ import { RouterModule } from '@angular/router';
 export class LoginComponent {
   form: FormGroup;
   valid = true;
+  defaultError = 'Invalid mail or password!';
   passwordFieldType: string = 'password';
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$'),
-        ],
-      ],
+      password: ['', [Validators.required]],
     });
   }
 
@@ -45,12 +47,18 @@ export class LoginComponent {
     if (!this.form.valid) {
       this.valid = false;
     } else {
-      this.valid = true;
+      this.authService
+        .loginUser(this.form.value.email, this.form.value.password)
+        .subscribe({
+          next: () => {
+            this.valid = true;
+            this.router.navigate(['/'], { replaceUrl: true });
+          },
+          error: (err) => {
+            this.valid = false;
+            this.defaultError = err.error;
+          },
+        });
     }
-  }
-
-  togglePasswordVisibility() {
-    this.passwordFieldType =
-      this.passwordFieldType === 'password' ? 'text' : 'password';
   }
 }
