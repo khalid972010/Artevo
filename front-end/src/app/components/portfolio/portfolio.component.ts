@@ -35,9 +35,10 @@ export class PortfolioComponent implements OnInit {
   @Input() portfolio: any;
   LikeText:any;
   IsLike:boolean=false;
-  openImageModal(imageUrl: string): void {
+  openImageModal(imageUrl: string, freelancer:any): void {
     const dialogRef = this.dialog.open(ImageModalComponent, {
-      data: { imageUrl }
+      data: { imageUrl, freelancer }
+
     });
   }
 
