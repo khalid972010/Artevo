@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FreelancerService } from '../../services/free.lancer';
+import { FreelancerService } from '../../services/freelancer.service';
 import { FreelancerCardComponent } from '../freelancer-card/freelancer-card.component';
 import { HttpClientModule } from '@angular/common/http';
 

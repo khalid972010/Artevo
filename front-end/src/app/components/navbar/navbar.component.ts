@@ -1,16 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { HttpClientModule, HttpErrorResponse} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { FreelancerService } from '../../services/freelancer.service';
+import { SearchbarComponent } from '../../searchbar/searchbar.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule,HttpClientModule,SearchbarComponent],
+  providers:[FreelancerService],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(private router:Router){}
+  constructor(private router: Router, private http: HttpClient, private freelancerService: FreelancerService) {}
+
+
 isMenuOpen: boolean = false;
 
   toggleMenu() {
@@ -49,5 +56,8 @@ isMenuOpen: boolean = false;
     this.router.navigateByUrl("/freelancers", {replaceUrl:true});
     if(this.isMenuOpen == true) this.toggleMenu();
   }
+
+
+
 }
 

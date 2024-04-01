@@ -8,15 +8,14 @@ router.get("/", freelancerController.getAllfreelancers);
 //#region Add freelancer
 router.post("/", freelancerController.Addfreelancer);
 
-
-router.get("/rana",(req, res) => {
-    res.send("ya rab");
-});
-
 router.post("/follow", freelancerController.AddFollower);
 router.post("/Unfollow", freelancerController.RemoveFollower);
+router.get("/search", freelancerController.searchFreelancers);
 router.get("/:id", freelancerController.getFreelancerByTD);
 
+router.use("*",(req, res) => {
+    res.send("Defaultt");
+});
 
 //#endregion
 

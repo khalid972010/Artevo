@@ -106,6 +106,25 @@ let RemoveFollower = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+let searchFreelancers = async (request, response) => {
+  try {
+    let queryName = request.query.fullName;
+
+    if (queryName.length >= 1) {
+      let searchResults = await Freelancer.find({
+        $or: [
+          { fullName: { $regex: `^${queryName}`, $options: 'i' } }, 
+          { userName: { $regex: `^${queryName}`, $options: 'i' } }, 
+          { email: { $regex: `^${queryName}`, $options: 'i' } } 
+        ]
+      });
+      response.status(200).json({ data: searchResults });
+    }
+  } catch (error) {
+    console.error("Error searching for freelancers:", error);
+    response.status(500).json({ error: "Failed to search for freelancers" });
+  }
+}
 
 module.exports = {
   getAllfreelancers,
@@ -113,4 +132,5 @@ module.exports = {
   AddFollower,
   RemoveFollower,
   getFreelancerByTD,
+  searchFreelancers
 };
