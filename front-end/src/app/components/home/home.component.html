@@ -21,24 +21,33 @@
       </div>
     </div>
   </div>
-
-  <div class="grid-portfolio" id="portfolio">
-    <div class="container">
-      <div class="row">
-        <app-portfolio
-          [portfolio]="portfolioItem"
-          class="col-md-4 col-sm-6"
-          *ngFor="let portfolioItem of Portfolio.data"
-        ></app-portfolio>
-      </div>
+  <!-- Button -->
+  <div class="body">
+    <div class="tabs">
+      <input
+        [(ngModel)]="selectedTab"
+        value="posts"
+        name="selected"
+        id="posts"
+        type="radio"
+        class="input"
+      />
+      <label for="posts" class="label">POSTS</label>
+      <input
+        [(ngModel)]="selectedTab"
+        value="freelancers"
+        name="selected"
+        id="freelancers"
+        type="radio"
+        class="input"
+      />
+      <label for="freelancers" class="label">FREELANCERS</label>
     </div>
   </div>
 
   <!-- Content Below Categories -->
-  <div class="row">
-    <div class="col">
-      <h2>Featured Products</h2>
-      <p>Check out our latest featured products.</p>
-    </div>
-  </div>
+  <app-freelancer-list
+    *ngIf="selectedTab === 'freelancers'"
+  ></app-freelancer-list>
+  <app-portfolios-main *ngIf="selectedTab === 'posts'"></app-portfolios-main>
 </div>

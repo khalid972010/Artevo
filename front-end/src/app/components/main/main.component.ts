@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { PortfoliosMainComponent } from '../portfolios-main/portfolios-main.component';
 
 
 
@@ -19,30 +20,18 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [HttpClientModule,
-    PortfolioComponent,
+  imports: [
     RouterModule,
     CommonModule,
     AboutComponent,
-    NavbarComponent
+    NavbarComponent,
+    PortfoliosMainComponent
     ],
     providers:[PortfolioService],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
-export class MainComponent implements OnInit {
-  Portfolio:any;
- constructor (private portfolioService:PortfolioService){}
- ngOnInit(): void {
- this.portfolioService.getAllPortfolio().subscribe(
-   (data)=>{
-     console.log(data);
-     if (data)
-      this.Portfolio = data;
-
-   },
-   (err)=>{console.log(err)});
- }
+export class MainComponent{
 
 }
 
