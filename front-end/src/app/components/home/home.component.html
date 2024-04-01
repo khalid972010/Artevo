@@ -1,0 +1,32 @@
+<!-- Heading Container -->
+<div class="container heading-container">
+  <div class="row">
+    <div class="col">
+      <h1>Welcome to Our Website!</h1>
+      <p style="color: black">
+        Explore our categories below to find what you're looking for.
+      </p>
+    </div>
+  </div>
+
+  <!-- Category Cards Container -->
+  <div class="container cards-container">
+    <div class="row">
+      <!-- Category Cards -->
+      <div class="col-3" *ngFor="let category of categories">
+        <app-category-card
+          [title]="category.title"
+          [description]="category.description"
+        ></app-category-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Below Categories -->
+  <div class="row">
+    <div class="col">
+      <h2>Featured Products</h2>
+      <p>Check out our latest featured products.</p>
+    </div>
+  </div>
+</div>
