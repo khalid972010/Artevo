@@ -25,10 +25,10 @@ let createClient = async (request, response) => {
   let client = request.body;
 
   if (await Clients.findOne({ email: client.email })) {
-    return response.json({ message: "Mail already exists!" });
+    return response.status(400).json({ message: "Mail already exists!" });
   }
   if (await Clients.findOne({ userName: client.userName })) {
-    return response.json({ message: "user name already exists!" });
+    return response.status(400).json({ message: "user name already exists!" });
   }
   if (ClientValidator(client)) {
     client.password = await bcrypt.hash(client.password, 10);
@@ -36,7 +36,7 @@ let createClient = async (request, response) => {
     let newClient = await Clients.create(client);
     await UserController.sendVerification(request, response);
   } else {
-    response.json({
+    response.status(400).json({
       message:
         ClientValidator.errors[0].instancePath.substring(1) +
         " " +
