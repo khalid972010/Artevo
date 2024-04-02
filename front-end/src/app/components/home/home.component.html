@@ -9,15 +9,9 @@
     </div>
   </div>
 
-
-
-  
   <div class="filter-list-container">
     <app-filter-list></app-filter-list>
   </div>
-
-
-
 
   <!-- Category Cards Container -->
   <div class="container cards-container">
@@ -35,7 +29,6 @@
     </div>
   </div>
 
-<<<<<<< Updated upstream
   <!-- Button -->
   <div class="body">
     <div class="tabs">
@@ -57,23 +50,25 @@
         class="input"
       />
       <label for="freelancers" class="label">FREELANCERS</label>
-=======
-  <div class="grid-portfolio" id="portfolio">
-    <div class="container">
-      <div class="row">
-        <app-portfolio
-          [portfolio]="portfolioItem"
-          class="col-md-4 col-sm-6"
-          *ngFor="let portfolioItem of Portfolio?.data"
-        ></app-portfolio>
+      <div class="grid-portfolio" id="portfolio">
+        <div class="container">
+          <div class="row">
+            <app-portfolio
+              [portfolio]="portfolioItem"
+              class="col-md-4 col-sm-6"
+              *ngFor="let portfolioItem of Portfolio?.data"
+            ></app-portfolio>
+          </div>
+        </div>
       </div>
->>>>>>> Stashed changes
+
+      <!-- Content Below Categories -->
+      <app-freelancer-list
+        *ngIf="selectedTab === 'freelancers'"
+      ></app-freelancer-list>
+      <app-portfolios-main
+        *ngIf="selectedTab === 'posts'"
+      ></app-portfolios-main>
     </div>
   </div>
-
-  <!-- Content Below Categories -->
-  <app-freelancer-list
-    *ngIf="selectedTab === 'freelancers'"
-  ></app-freelancer-list>
-  <app-portfolios-main *ngIf="selectedTab === 'posts'"></app-portfolios-main>
 </div>

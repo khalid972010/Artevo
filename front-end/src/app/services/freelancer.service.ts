@@ -2,19 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FreelancerService {
-<<<<<<< Updated upstream
-  private DB_URL = "http://localhost:7010/api/Freelancer";
+  private DB_URL = 'http://localhost:7010/api/Freelancer';
 
-  constructor(private http: HttpClient) {};
+  constructor(private http: HttpClient) {}
   getAllFreelancers() {
     return this.http.get(this.DB_URL);
   }
 
-  searchFreelancers( fullName:string) {
-    return this.http.get(this.DB_URL+"/search" , { params: { fullName } });
+  searchFreelancers(fullName: string) {
+    return this.http.get(this.DB_URL + '/search', { params: { fullName } });
   }
 }
 
@@ -28,13 +27,6 @@ export class FreelancerService {
 //   like(portfolioId: string, userId: string) {
 //     return this.http.post(this.DB_URL+'/Like', { portfolioId, userId });
 //   }
-
-
-
-
-
-
-
 
 /*
 import { Injectable } from '@angular/core';
@@ -61,13 +53,3 @@ export class StudentsService {
 }
 
  */
-=======
-
-  constructor(private http:HttpClient) {};
-  DB_URL = "http://localhost:7010/api/Freelancer";
-  getAllFreelancers(){
-    return this.http.get(this.DB_URL);
-  }
-
-}
->>>>>>> Stashed changes
