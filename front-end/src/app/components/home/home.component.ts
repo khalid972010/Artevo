@@ -22,7 +22,7 @@ import { FilterListComponent } from '../filter-list/filter-list.component';
     CommonModule,
     FormsModule,
     FreelancerListComponent,
-    FilterListComponent
+    FilterListComponent,
   ],
   providers: [CategoriesService, PortfolioService, ],
   templateUrl: './home.component.html',
@@ -31,6 +31,7 @@ import { FilterListComponent } from '../filter-list/filter-list.component';
 export class HomeComponent implements OnInit {
   categories: any;
   Portfolio: any;
+  selectedCategories: any[] = [];
   @Input() selectedTab: string = 'posts';
   selectedChoices: string[] = [];
   constructor(

@@ -31,11 +31,11 @@ export class PortfolioComponent implements OnInit {
     }
   }
   @Input() portfolio: any;
-  LikeText:any;
-  IsLike:boolean=false;
-  openImageModal(imageUrl: string, freelancer:any): void {
+  LikeText: any;
+  IsLike: boolean = false;
+  openImageModal(imageUrl: string, freelancer: any): void {
     const dialogRef = this.dialog.open(ImageModalComponent, {
-      data: { imageUrl, freelancer }
+      data: { imageUrl, freelancer },
     });
   }
 
