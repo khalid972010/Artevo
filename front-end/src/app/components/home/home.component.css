@@ -141,8 +141,8 @@ a {
 
 .filter-list-container {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 80px;
+  right: 10px;
   z-index: 1000;
 }
 
@@ -152,5 +152,5 @@ a {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

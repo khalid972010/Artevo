@@ -31,20 +31,11 @@ export class PortfolioComponent implements OnInit {
     }
   }
   @Input() portfolio: any;
-<<<<<<< Updated upstream
   LikeText:any;
   IsLike:boolean=false;
   openImageModal(imageUrl: string, freelancer:any): void {
     const dialogRef = this.dialog.open(ImageModalComponent, {
       data: { imageUrl, freelancer }
-
-=======
-  LikeText: any;
-  IsLike: boolean = false;
-  openImageModal(imageUrl: string): void {
-    const dialogRef = this.dialog.open(ImageModalComponent, {
-      data: { imageUrl },
->>>>>>> Stashed changes
     });
   }
 

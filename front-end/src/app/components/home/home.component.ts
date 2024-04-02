@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 import { Component, Input, OnInit } from '@angular/core';
-=======
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
->>>>>>> Stashed changes
 import { CategoryCardComponent } from '../category-card/category-card.component';
 import { CategoriesService } from '../../services/categories.service';
 import { CommonModule } from '@angular/common';
@@ -28,23 +24,15 @@ import { FilterListComponent } from '../filter-list/filter-list.component';
     FreelancerListComponent,
     FilterListComponent
   ],
-<<<<<<< Updated upstream
   providers: [CategoriesService, PortfolioService, ],
-=======
-  providers: [PortfolioService],
->>>>>>> Stashed changes
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   categories: any;
   Portfolio: any;
-<<<<<<< Updated upstream
-  selectedCategories: any[] = [];
   @Input() selectedTab: string = 'posts';
-=======
   selectedChoices: string[] = [];
->>>>>>> Stashed changes
   constructor(
     private categoriesData: CategoriesService,
     private portfolioService: PortfolioService
