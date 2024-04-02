@@ -54,7 +54,7 @@ const UpdateProfile = async (req, res) => {
 
       return res.status(200).json({ message: "Updated Successfully!" });
     } else if (!ClientValidator(newUser)) {
-      return res.json({
+      return res.status(400).json({
         message:
           ClientValidator.errors[0].instancePath.substring(1) +
           " " +

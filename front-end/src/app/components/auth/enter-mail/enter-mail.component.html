@@ -10,10 +10,10 @@
     <form class="form-inline" method="post" (submit)="submit($event)">
       <div class="form-group justify-content-center d-flex">
         <input
-          #mail
+          [(ngModel)]="mail"
+          name="email"
           class="form-control w-25"
           type="email"
-          name="email"
           placeholder="Your Email"
         />
       </div>

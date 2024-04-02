@@ -9,7 +9,16 @@ import { TokenService } from './token.service';
 export class AuthService {
   DB_URL = 'http://localhost:7010/api/';
   token: string | null = '';
+  email: string | null = null;
   constructor(private http: HttpClient, private tokenService: TokenService) {}
+
+  setEmail(email: string) {
+    this.email = email;
+  }
+
+  getEmail(): string | null {
+    return this.email;
+  }
 
   loginUser(email: string, password: string): Observable<any> {
     const url = this.DB_URL + 'users/login';
@@ -25,17 +34,5 @@ export class AuthService {
           return { statusCode, responseBody };
         })
       );
-  }
-
-  findByMail(email: string): Observable<any> {
-    const url = this.DB_URL + 'users/login/' + email;
-    return this.http.get(url, { observe: 'response' }).pipe(
-      map((response) => {
-        const statusCode = response.status;
-        const responseBody = response.body;
-
-        return { statusCode, responseBody };
-      })
-    );
   }
 }

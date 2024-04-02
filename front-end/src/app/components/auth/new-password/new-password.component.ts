@@ -6,20 +6,22 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-new-password',
   standalone: true,
   imports: [RouterModule, ReactiveFormsModule, HttpClientModule],
-  providers: [AuthService],
+  providers: [AuthService, UserService],
   templateUrl: './new-password.component.html',
   styleUrl: './new-password.component.css',
 })
 export class NewPasswordComponent {
   form: FormGroup;
   valid = true;
+  mail: string | null = null;
   defaultError = 'Invalid Password!';
   passwordFieldType: string = 'password';
   confirmPasswordFieldType: string = 'password';
@@ -27,6 +29,7 @@ export class NewPasswordComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private userService: UserService,
     private router: Router
   ) {
     this.form = this.fb.group({
@@ -45,6 +48,7 @@ export class NewPasswordComponent {
         ],
       ],
     });
+    this.mail = this.authService.getEmail();
   }
 
   togglePasswordVisibility() {
@@ -64,18 +68,13 @@ export class NewPasswordComponent {
     if (!this.form.valid) {
       this.valid = false;
     } else {
-      // this.authService
-      //   .loginUser(this.form.value.email, this.form.value.password)
-      //   .subscribe({
-      //     next: () => {
-      //       this.valid = true;
-      //       this.router.navigate(['/'], { replaceUrl: true });
-      //     },
-      //     error: (err) => {
-      //       this.valid = false;
-      //       this.defaultError = err.error;
-      //     },
-      //   });
+      this.userService
+        .updateUserByMail(this.mail!, {
+          password: this.form.value.password,
+        })
+        .subscribe({
+          next: () => {},
+        });
     }
   }
 }
