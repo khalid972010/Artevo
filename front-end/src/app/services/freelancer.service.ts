@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FreelancerService {
+<<<<<<< Updated upstream
   private DB_URL = "http://localhost:7010/api/Freelancer";
 
   constructor(private http: HttpClient) {};
@@ -60,3 +61,13 @@ export class StudentsService {
 }
 
  */
+=======
+
+  constructor(private http:HttpClient) {};
+  DB_URL = "http://localhost:7010/api/Freelancer";
+  getAllFreelancers(){
+    return this.http.get(this.DB_URL);
+  }
+
+}
+>>>>>>> Stashed changes

@@ -1,7 +1,9 @@
-<label class="container">
-  <input type="checkbox" />
-  <div class="checkmark">
-    <p class="No name">{{ title }}</p>
-    <p class="Yes name">{{ title }}</p>
-  </div>
-</label>
+<button
+  class="button"
+  data-text="Awesome"
+  (click)="toggleButton()"
+  [class.toggled]="isToggled"
+>
+  <span class="actual-text">&nbsp;{{ title }}&nbsp;</span>
+  <span aria-hidden="true" class="hover-text">&nbsp;{{ title }}&nbsp;</span>
+</button>

@@ -10,8 +10,10 @@ export class PortfolioService {
   getAllPortfolio() {
     return this.http.get(this.DB_URL);
   }
-  getPortfolioByCategory(category: string) {
-    const url = `${this.DB_URL}?category=${encodeURIComponent(category)}`;
+  getPortfolioByCategory(categories: string[]) {
+    const url = `${this.DB_URL}?categories=${encodeURIComponent(
+      categories.join(',')
+    )}`;
     return this.http.get(url);
   }
   like(portfolioId: string, userId: string) {

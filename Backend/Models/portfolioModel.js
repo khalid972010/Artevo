@@ -10,11 +10,10 @@ let portfolioSchema = new mongoose.Schema(
     date: String,
     owner: String,
     photos: [String],
-    description:String,
+    description: String,
     likesCount: Number,
-    likes:[String],
+    likes: [String],
     type: String,
-    
   },
   { versionKey: false }
 );

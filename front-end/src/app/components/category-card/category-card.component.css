@@ -1,139 +1,68 @@
-.container {
-  --UnChacked-color: hsl(0, 0%, 10%);
-  --chacked-color: hsl(32, 25%, 34%);
-  --font-color: white;
-  --chacked-font-color: var(--font-color);
-  --icon-size: 1.5em;
-  --anim-time: 0.2s;
-  --anim-scale: 0.1;
-  --base-radius: 0.8em;
-  font-family: Arial, Helvetica, sans-serif, monospace;
-}
-
-.container {
-  display: flex;
-  align-items: center;
-  position: relative;
-  cursor: pointer;
-  font-size: 1.2rem;
-  user-select: none;
-  fill: var(--font-color);
-  color: var(--font-color);
-}
-
-/* Hide the default checkbox */
-.container input {
-  display: none;
-}
-
-/* Base custom checkbox */
-.checkmark {
-  background: var(--UnChacked-color);
-  border-radius: var(--base-radius);
-
-  display: flex;
-  padding: 0.5em;
-}
-.icon {
-  width: var(--icon-size);
+/* === removing default button style ===*/
+.button {
+  font-size: 17px;
+  margin: 0;
   height: auto;
-  filter: drop-shadow(0px 2px var(--base-radius) rgba(0, 0, 0, 0.25));
-}
-.name {
-  margin: 0 0.25em;
-}
-.Yes {
-  width: 0;
-}
-.name.Yes {
-  display: none;
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
 }
 
-/* action custom checkbox */
-.container:hover .checkmark,
-.container:hover .icon,
-.container:hover .name {
-  transform: scale(calc(1 + var(--anim-scale)));
+/* button styling */
+.button {
+  --border-right: 6px;
+  --text-stroke-color: rgba(255, 255, 255, 0.6);
+  --animation-color: #694535;
+  --fs-size: 2.7em;
+  letter-spacing: 3px;
+  text-decoration: none;
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+  overflow: hidden; /* Add overflow: hidden */
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 
-.container:active .checkmark,
-.container:active .icon,
-.container:active .name {
-  transform: scale(calc(1 - var(--anim-scale) / 2));
-  border-radius: calc(var(--base-radius) * 2);
-}
-.checkmark::before {
-  content: "";
-  opacity: 0.5;
-  transform: scale(1);
-  border-radius: var(--base-radius);
+/* this is the text, when you hover on button */
+.hover-text {
   position: absolute;
   box-sizing: border-box;
-  left: 0;
-  top: 0;
-  height: 100%;
+  content: attr(data-text);
+  color: var(--animation-color);
+  width: 0%;
+  inset: 0;
+  border-right: var(--border-right) solid var(--animation-color);
+  overflow: hidden;
+  transition: 0.5s;
+  -webkit-text-stroke: 1px var(--animation-color);
+}
+
+/* hover */
+.button:hover .hover-text {
+  width: 100%;
+  filter: drop-shadow(0 0 23px var(--animation-color));
+}
+
+/* Toggle styles */
+.button.toggled .hover-text {
   width: 100%;
 }
-.checkmark:hover:before {
-  background-color: hsla(0, 0%, 50%, 0.2);
-}
-.container input:checked + .checkmark:before {
-  animation: boon calc(var(--anim-time)) ease;
-  animation-delay: calc(var(--anim-time) / 2);
+
+/* Animation */
+.button.toggled .hover-text:before,
+.button.toggled .hover-text:after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
 }
 
-/* When the checkbox is checked*/
-.container input:checked + .checkmark {
-  --UnChacked-color: var(--chacked-color);
-  fill: var(--chacked-font-color);
-  color: var(--chacked-font-color);
-}
-
-.container input:checked ~ .checkmark .No {
-  width: 0;
-}
-.container input:checked ~ .checkmark .name.No {
-  display: none;
-}
-
-.container input:checked ~ .checkmark .Yes {
-  width: var(--icon-size);
-}
-.container input:checked ~ .checkmark .name.Yes {
-  width: auto;
-  display: unset;
-}
-
-/*Animation*/
-.container,
-.checkmark,
-.checkmark:after,
-.icon,
-.checkmark .name {
-  transition: all var(--anim-time);
-}
-
-/*Unuse*/
-@keyframes icon-rot {
-  50% {
-    transform: rotateZ(180deg) scale(calc(1 - var(--anim-scale)));
-    border-radius: 1em;
-  }
-  to {
-    transform: rotate(360deg);
-    border-radius: var(--base-radius);
-  }
-}
-/*Unuse*/
-@keyframes boo {
-  80% {
-    transform: scale(1.4);
-  }
-  99% {
-    transform: scale(1.7);
-    border: 2px solid var(--UnChacked-color);
-  }
-  to {
-    transform: scale(0);
-  }
+.button.toggled:hover .hover-text:before,
+.button.toggled:hover .hover-text:after {
+  opacity: 1;
+  transition: opacity 0.5s ease;
 }

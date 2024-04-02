@@ -6,13 +6,20 @@ const { isValidObjectId } = require("mongoose");
 //Methods..
 //1-get all portfolios..
 const getAllPortfolios = async (req, res) => {
-  const category = req.query.category;
-  if (!category) {
-    let allportfolios = await portfolioModel.find({});
-    return res.status(200).json({ data: allportfolios });
+  const categories = req.query.categories;
+
+  if (!categories || categories.length === 0) {
+    const allPortfolios = await portfolioModel.find({});
+    return res.status(200).json({ data: allPortfolios });
   }
-  let foundPosts = await portfolioModel.find({ type: category });
-  return res.status(200).json({ data: foundPosts });
+  const categoriesArray = categories.split(",");
+  const portfolios = [];
+  for (const category of categoriesArray) {
+    const foundPosts = await portfolioModel.find({ type: category });
+    portfolios.push(...foundPosts);
+  }
+
+  return res.status(200).json({ data: portfolios });
 };
 //2-add new portfolio
 const addPortfolio = async (req, res) => {

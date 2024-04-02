@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import { Component, Input, OnInit } from '@angular/core';
+=======
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+>>>>>>> Stashed changes
 import { CategoryCardComponent } from '../category-card/category-card.component';
 import { CategoriesService } from '../../services/categories.service';
 import { CommonModule } from '@angular/common';
@@ -24,33 +28,50 @@ import { FilterListComponent } from '../filter-list/filter-list.component';
     FreelancerListComponent,
     FilterListComponent
   ],
+<<<<<<< Updated upstream
   providers: [CategoriesService, PortfolioService, ],
+=======
+  providers: [PortfolioService],
+>>>>>>> Stashed changes
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   categories: any;
   Portfolio: any;
+<<<<<<< Updated upstream
   selectedCategories: any[] = [];
   @Input() selectedTab: string = 'posts';
+=======
+  selectedChoices: string[] = [];
+>>>>>>> Stashed changes
   constructor(
     private categoriesData: CategoriesService,
     private portfolioService: PortfolioService
   ) {}
-  getCategoryName(categoryName: string) {
-    console.log(categoryName);
+
+  getSelected() {
+    console.log(this.selectedChoices);
+    this.selectedChoices = this.categoriesData.getSelectedChoices();
+    this.updatePortfolios();
+  }
+
+  updatePortfolios() {
+    this.portfolioService
+      .getPortfolioByCategory(this.selectedChoices)
+      .subscribe({
+        next: (data) => {
+          this.Portfolio = data;
+          console.log('Im DAta: ' + data);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 
   ngOnInit(): void {
     this.categories = this.categoriesData.getCategories();
-    this.portfolioService.getAllPortfolio().subscribe(
-      (data) => {
-        console.log(data);
-        if (data) this.Portfolio = data;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.updatePortfolios();
   }
 }

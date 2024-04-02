@@ -23,7 +23,22 @@ export class CategoriesService {
     },
   ];
 
-  getCategories(): any {
+  private static selectedChoices: string[] = [];
+
+  getCategories(): { title: string; description: string }[] {
     return this.categories;
+  }
+
+  setSelectedChoice(title: string) {
+    const index = CategoriesService.selectedChoices.indexOf(title);
+    if (index !== -1) {
+      CategoriesService.selectedChoices.splice(index, 1);
+    } else {
+      CategoriesService.selectedChoices.push(title);
+    }
+  }
+
+  getSelectedChoices(): string[] {
+    return CategoriesService.selectedChoices;
   }
 }

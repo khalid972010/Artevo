@@ -21,17 +21,21 @@
 
   <!-- Category Cards Container -->
   <div class="container cards-container">
-    <div class="row">
+    <div class="row justify-content-start">
       <!-- Category Cards -->
-      <div class="col-3" *ngFor="let category of categories">
+      <div
+        style="width: fit-content; padding-left: 0%"
+        *ngFor="let category of categories"
+      >
         <app-category-card
           [title]="category.title"
-          (click)="getCategoryName(category.title)"
+          (click)="getSelected()"
         ></app-category-card>
       </div>
     </div>
   </div>
 
+<<<<<<< Updated upstream
   <!-- Button -->
   <div class="body">
     <div class="tabs">
@@ -53,6 +57,17 @@
         class="input"
       />
       <label for="freelancers" class="label">FREELANCERS</label>
+=======
+  <div class="grid-portfolio" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <app-portfolio
+          [portfolio]="portfolioItem"
+          class="col-md-4 col-sm-6"
+          *ngFor="let portfolioItem of Portfolio?.data"
+        ></app-portfolio>
+      </div>
+>>>>>>> Stashed changes
     </div>
   </div>
 

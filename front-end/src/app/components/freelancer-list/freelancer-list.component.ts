@@ -8,21 +8,22 @@ import { HttpClientModule } from '@angular/common/http';
   selector: 'app-freelancer-list',
   standalone: true,
   imports: [HttpClientModule, CommonModule, FreelancerCardComponent],
-  providers:[FreelancerService],
+  providers: [FreelancerService],
   templateUrl: './freelancer-list.component.html',
-  styleUrl: './freelancer-list.component.css'
+  styleUrl: './freelancer-list.component.css',
 })
 export class FreelancerListComponent {
   Freelancer: any;
-  constructor(private freelancerService: FreelancerService) { }
+  constructor(private freelancerService: FreelancerService) {}
   ngOnInit(): void {
     this.freelancerService.getAllFreelancers().subscribe(
       (data) => {
-        console.log(data)
-        if (data)
-          this.Freelancer = data;
+        console.log(data);
+        if (data) this.Freelancer = data;
       },
-      (err)=>{console.log(err)});
-
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
