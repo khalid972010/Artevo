@@ -1,0 +1,69 @@
+<div class="main">
+  <!-- Button to toggle filter options -->
+  <button class="filter-button" (click)="toggleFilterOptions()">Filter</button>
+  <!-- Filter options -->
+  <div *ngIf="showFilterOptions" class="sidenav">
+     <!-- Button to toggle filter options -->
+    <button  (click)="toggleFilterOptions()">hide</button>
+    <h1 style="color:white">Filter</h1>
+     <!--   Portfolio filter  -->
+    <h2 style="color:white" (click)="togglePortfolioFilter()">Portfolio</h2>
+    <div *ngIf="PortfolioFilter">
+     <h3 style="color:white" (click)="toggleShowPortfolioTechnology()">Technologies</h3>
+    <!-- Portfolio technologies -->
+    <div class="checkbox-group" *ngIf="ShowPortfolioTechnology">
+      <label><input type="checkbox" name="technology" value="css" (change)="updateSelectedTechnologies('css')"> CSS</label>
+      <label><input type="checkbox" name="technology" value="html" (change)="updateSelectedTechnologies('html')"> HTML</label>
+      <label><input type="checkbox" name="technology" value="flutter" (change)="updateSelectedTechnologies('flutter')"> Flutter</label>
+      <label><input type="checkbox" name="technology" value="angular" (change)="updateSelectedTechnologies('angular')"> Angular</label>
+
+     </div>
+
+
+   </div>
+    <!-- Freelancers filter  -->
+
+   <h3 style="color:white" (click)="toggleFreelancersFilter()">Freelancers</h3>
+   <div *ngIf="FreelancersFilter">
+    <!-- Freelancers budget -->
+    <h3 style="color:white" (click)="toggleShowBudget()">budget(peer-hour)</h3>
+
+   <div *ngIf="ShowBudget">
+     <label><input type="radio" name="budget" value="5$-10$" (change)="updateSelectedbudget(5,10)"> 5$-10$</label><br>
+     <label><input type="radio" name="budget" value="10$-20$" (change)="updateSelectedbudget(10,20)"> 10$-20$</label><br>
+     <label><input type="radio" name="budget" value="20$-30$" (change)="updateSelectedbudget(20,30)"> 20$-30$</label><br>
+     <label><input type="radio" name="budget" value="40$-50$" (change)="updateSelectedbudget(40,50)"> 40$-50$</label><br>
+
+    </div>
+
+
+    <h3 style="color:white" (click)="toggleShowFreelancerTechnology()">Technologies</h3>
+
+    <div class="checkbox-group" *ngIf="ShowFreelancerTechnology">
+      <label><input type="checkbox" name="technology" value="css" (change)="updateSelectedFreelancerTechnology('css')"> CSS</label>
+      <label><input type="checkbox" name="technology" value="html" (change)="updateSelectedFreelancerTechnology('html')"> HTML</label>
+      <label><input type="checkbox" name="technology" value="flutter" (change)="updateSelectedFreelancerTechnology('flutter')"> Flutter</label>
+      <label><input type="checkbox" name="technology" value="angular" (change)="updateSelectedFreelancerTechnology('angular')"> Angular</label>
+
+     </div>
+
+
+    <h3 style="color:white" (click)="toggleShowFreelancerLocation()">Location</h3>
+
+    <div class="checkbox-group" *ngIf="ShowFreelancerLocation">
+      <label><input type="radio" name="Location" value="Cairo" (change)="updateSelectedFreelancerLocation('Cairo')"> Cairo</label>
+      <label><input type="radio" name="Location" value="Giza" (change)="updateSelectedFreelancerLocation('Giza')"> Giza</label>
+      <label><input type="radio" name="Location" value="Aswan" (change)="updateSelectedFreelancerLocation('Aswan')"> Aswan</label>
+      <label><input type="radio" name="Location" value="Assuit" (change)="updateSelectedFreelancerLocation('Assuit')"> Assuit</label>
+      <label><input type="radio" name="Location" value="Alexandria" (change)="updateSelectedFreelancerLocation('Alexandria')"> Alexandria</label>
+
+     </div>
+
+
+  </div>
+
+ </div>
+</div>
+
+
+

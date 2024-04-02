@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PortfoliosMainComponent } from '../portfolios-main/portfolios-main.component';
 import { FormsModule } from '@angular/forms';
 import { FreelancerListComponent } from '../freelancer-list/freelancer-list.component';
+import { FilterListComponent } from '../filter-list/filter-list.component';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ import { FreelancerListComponent } from '../freelancer-list/freelancer-list.comp
     PortfoliosMainComponent,
     CommonModule,
     FormsModule,
-    FreelancerListComponent
+    FreelancerListComponent,
+    FilterListComponent
   ],
   providers: [CategoriesService, PortfolioService, ],
   templateUrl: './home.component.html',

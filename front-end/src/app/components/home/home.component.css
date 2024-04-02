@@ -137,3 +137,20 @@ a {
 .tabs:has(:focus-visible)::after {
   outline-color: red;
 }
+
+
+.filter-list-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Filter List Styling */
+.filter-list {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}

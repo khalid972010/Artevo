@@ -1,0 +1,68 @@
+.main {
+  position: relative;
+}
+
+.filter-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  background-color: #964B00; /* Brown color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Shadow */
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: #7a3d00; /* Darker brown color on hover */
+}
+
+.sidenav {
+  height: 100%; /* Full-height */
+  width: 250px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0; /* Position on the right side */
+  background-color: #111; /* Black */
+  overflow-y: auto; /* Enable vertical scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+.sidenav h1,
+.sidenav h2,
+.sidenav h3 {
+  color: white;
+}
+
+.technology-dropdown {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 5px;
+  background-color: white;
+  color: #333; /* Dark gray text color */
+  font-size: 20px;
+}
+
+.checkbox-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+  color: #f3eded;
+}
+
+.checkbox-group input[type="checkbox"]:hover {
+  color: #f1f1f1;
+}
