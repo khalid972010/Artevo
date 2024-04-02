@@ -14,6 +14,7 @@ let portfolioSchema = new mongoose.Schema(
     likesCount: Number,
     likes: [String],
     type: String,
+    technologies:[String]
   },
   { versionKey: false }
 );

@@ -13,7 +13,7 @@ const FreelancerSchema = new mongoose.Schema(
     password: String,
     profilePicture: String,
     favTopics: String,
-
+    budget:Number,
     coverPicture: String,
     headLine: String,
     location: String,

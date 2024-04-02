@@ -105,6 +105,21 @@ const findPortfolioByCategory = async (request, response) => {
   let foundPosts = await portfolioModel.find({ type: category });
   return response.status(200).json({ Data: foundPosts });
 };
+const filter = async (req, res) => {
+  var technologies = req.body.technologies;
+  var filteredPortfolio = await portfolioModel.find({});
+  console.log(req.body.technologies);
+  try {
+    if (technologies && technologies.length > 0) {
+      filteredPortfolio = filteredPortfolio.filter(item => {
+        return item.technologies.some(tech => technologies.includes(tech));
+      });
+    }
+    return res.json(filteredPortfolio);
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
 
 //SALLAH -- MAHMOUD
 //SALLAH -- MAHMOUD
@@ -141,4 +156,5 @@ module.exports = {
   removePortfolio,
   Like,
   findPortfolioByCategory,
+  filter
 };

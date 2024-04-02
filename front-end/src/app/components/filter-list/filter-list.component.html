@@ -8,14 +8,14 @@
     <h1 style="color:white">Filter</h1>
      <!--   Portfolio filter  -->
     <h2 style="color:white" (click)="togglePortfolioFilter()">Portfolio</h2>
-    <div *ngIf="PortfolioFilter">
+    <div *ngIf="showPortfolioFilter">
      <h3 style="color:white" (click)="toggleShowPortfolioTechnology()">Technologies</h3>
     <!-- Portfolio technologies -->
     <div class="checkbox-group" *ngIf="ShowPortfolioTechnology">
-      <label><input type="checkbox" name="technology" value="css" (change)="updateSelectedTechnologies('css')"> CSS</label>
-      <label><input type="checkbox" name="technology" value="html" (change)="updateSelectedTechnologies('html')"> HTML</label>
-      <label><input type="checkbox" name="technology" value="flutter" (change)="updateSelectedTechnologies('flutter')"> Flutter</label>
-      <label><input type="checkbox" name="technology" value="angular" (change)="updateSelectedTechnologies('angular')"> Angular</label>
+      <label><input type="checkbox" name="technology" value="css" (change)="updateSelectedTechnologies($event)"> CSS</label>
+      <label><input type="checkbox" name="technology" value="Html" (change)="updateSelectedTechnologies($event)"> Html</label>
+      <label><input type="checkbox" name="technology" value="flutter" (change)="updateSelectedTechnologies($event)"> flutter</label>
+      <label><input type="checkbox" name="technology" value="Angular" (change)="updateSelectedTechnologies($event)"> Angular</label>
 
      </div>
 
@@ -37,13 +37,14 @@
     </div>
 
 
-    <h3 style="color:white" (click)="toggleShowFreelancerTechnology()">Technologies</h3>
+    <h3 style="color:white" (click)="toggleShowFreelancerJopTitle()">Jop Title</h3>
 
-    <div class="checkbox-group" *ngIf="ShowFreelancerTechnology">
-      <label><input type="checkbox" name="technology" value="css" (change)="updateSelectedFreelancerTechnology('css')"> CSS</label>
-      <label><input type="checkbox" name="technology" value="html" (change)="updateSelectedFreelancerTechnology('html')"> HTML</label>
-      <label><input type="checkbox" name="technology" value="flutter" (change)="updateSelectedFreelancerTechnology('flutter')"> Flutter</label>
-      <label><input type="checkbox" name="technology" value="angular" (change)="updateSelectedFreelancerTechnology('angular')"> Angular</label>
+    <div class="checkbox-group" *ngIf="ShowFreelancerJopTitle">
+      <label><input type="radio" name="JopTitle" value="photographer" (change)="updateSelectedFreelancerJopTitle('css')"> photographer</label>
+      <label><input type="radio" name="JopTitle" value=".net" (change)="updateSelectedFreelancerJopTitle('html')">.net Developer</label>
+      <label><input type="radio" name="JopTitle" value="flutter" (change)="updateSelectedFreelancerJopTitle('flutter')"> Flutter Developer</label>
+      <label><input type="radio" name="JopTitle" value="frontEnd" (change)="updateSelectedFreelancerJopTitle('angular')"> frontEnd Developer</label>
+      <label><input type="radio" name="JopTitle" value="mobile" (change)="updateSelectedFreelancerJopTitle('mobile')"> mobile Developer </label>
 
      </div>
 

@@ -63,4 +63,11 @@ export class HomeComponent implements OnInit {
     this.categories = this.categoriesData.getCategories();
     this.updatePortfolios();
   }
+  receiveFilteredPortfolio(filteredPortfolio: any) {
+    this.Portfolio.data = filteredPortfolio;
+    console.log("home");
+    console.log(this.Portfolio);
+   // console.log("2"); // Logging the updated Portfolio
+   // console.log(filteredPortfolio);
+  }
 }

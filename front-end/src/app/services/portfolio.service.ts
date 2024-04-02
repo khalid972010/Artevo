@@ -19,6 +19,9 @@ export class PortfolioService {
   like(portfolioId: string, userId: string) {
     return this.http.post(this.DB_URL + '/Like', { portfolioId, userId });
   }
+  filter(technologies: string[]) {
+    return this.http.post(this.DB_URL+'/filter', { technologies: technologies  });
+  }
 }
 
 /*
