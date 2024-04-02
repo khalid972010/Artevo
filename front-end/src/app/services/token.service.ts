@@ -6,18 +6,30 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class TokenService {
   private tokenSubject: BehaviorSubject<string | null>;
-  public token: Observable<string | null>;
+  private resetTokenSubject: BehaviorSubject<string | null>;
+  private static token: Observable<string | null>;
+  private static resetToken: Observable<string | null>;
 
   constructor() {
     this.tokenSubject = new BehaviorSubject<string | null>(null);
-    this.token = this.tokenSubject.asObservable();
+    this.resetTokenSubject = new BehaviorSubject<string | null>(null);
+    TokenService.token = this.tokenSubject.asObservable();
+    TokenService.resetToken = this.resetTokenSubject.asObservable();
   }
 
   setToken(token: string | null) {
     this.tokenSubject.next(token);
   }
 
+  setResetToken(token: string | null) {
+    this.resetTokenSubject.next(token);
+  }
+
   getToken(): string | null {
     return this.tokenSubject.getValue();
+  }
+
+  getResetToken(): string | null {
+    return this.resetTokenSubject.getValue();
   }
 }

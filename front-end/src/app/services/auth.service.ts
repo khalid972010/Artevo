@@ -9,15 +9,15 @@ import { TokenService } from './token.service';
 export class AuthService {
   DB_URL = 'http://localhost:7010/api/';
   token: string | null = '';
-  email: string | null = null;
+  static email: string | null = null;
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   setEmail(email: string) {
-    this.email = email;
+    AuthService.email = email;
   }
 
   getEmail(): string | null {
-    return this.email;
+    return AuthService.email;
   }
 
   loginUser(email: string, password: string): Observable<any> {

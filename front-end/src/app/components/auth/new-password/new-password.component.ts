@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/auth.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from '../../../services/user.service';
+import { TokenService } from '../../../services/token.service';
 
 @Component({
   selector: 'app-new-password',
@@ -18,10 +19,11 @@ import { UserService } from '../../../services/user.service';
   templateUrl: './new-password.component.html',
   styleUrl: './new-password.component.css',
 })
-export class NewPasswordComponent {
+export class NewPasswordComponent implements OnInit {
   form: FormGroup;
   valid = true;
   mail: string | null = null;
+  resetToken: string | null = null;
   defaultError = 'Invalid Password!';
   passwordFieldType: string = 'password';
   confirmPasswordFieldType: string = 'password';
@@ -29,26 +31,34 @@ export class NewPasswordComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private tokenService: TokenService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.form = this.fb.group({
       password: [
         '',
         [
           Validators.required,
-          Validators.pattern('"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$",'),
+          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$'),
         ],
       ],
       confirmPassword: [
         '',
         [
           Validators.required,
-          Validators.pattern('"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$",'),
+          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$'),
         ],
       ],
     });
-    this.mail = this.authService.getEmail();
+  }
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.resetToken = params.get('token');
+    });
+
+    this.tokenService.setResetToken(this.resetToken);
   }
 
   togglePasswordVisibility() {
@@ -64,16 +74,28 @@ export class NewPasswordComponent {
     if (this.form.value.password != this.form.value.confirmPassword) {
       this.valid = false;
       this.defaultError = "Password and Confirm Password Values don't match!";
-    }
-    if (!this.form.valid) {
+    } else if (!this.form.valid) {
+      console.log(this.form);
       this.valid = false;
+      this.defaultError = 'Invalid password!';
     } else {
+      console.log(this.resetToken);
       this.userService
-        .updateUserByMail(this.mail!, {
-          password: this.form.value.password,
-        })
+        .updatePassword(this.form.value.password, this.resetToken)
         .subscribe({
-          next: () => {},
+          next: () => {
+            alert('Updated succesfully!');
+            setTimeout(
+              () =>
+                this.router.navigate(['/login'], {
+                  replaceUrl: true,
+                }),
+              2000
+            );
+          },
+          error: (err) => {
+            console.log(err);
+          },
         });
     }
   }

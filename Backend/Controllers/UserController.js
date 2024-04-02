@@ -42,11 +42,8 @@ const UpdateProfile = async (req, res) => {
     let user = req.body.user;
     let type = req.body.type;
     let newUser = Object.assign(user, req.body);
-    console.log(newUser);
 
     if (type == "Client" && ClientValidator(newUser)) {
-      console.log(user);
-
       const result = await Clients.updateOne(
         { _id: user._id },
         { $set: req.body }
@@ -77,6 +74,44 @@ const UpdateProfile = async (req, res) => {
     return res.status(404).json({ message: "Failed to get user!" });
   }
 };
+//#endregion
+
+//#region Update Profile By E-mail
+
+const UpdateProfileByMail = async (request, response) => {
+  try {
+    let user = request.body.user;
+    const newPassword = request.body.password;
+    const type = request.body.type;
+    console.log(user);
+
+    user.password = await bcrypt.hash(newPassword, 10);
+    if (type == "Client" && ClientValidator(user)) {
+      await user.save();
+      return response.status(200).json({ message: "Updated Successfully!" });
+    } else if (!ClientValidator(user)) {
+      return response.status(400).json({
+        message:
+          ClientValidator.errors[0].instancePath.substring(1) +
+          " " +
+          ClientValidator.errors[0].message,
+      });
+    } else if (type == "Freelancer" && freelancerValidator(user)) {
+      await user.save();
+      return response.status(200).json({ message: "Updated Successfully!" });
+    } else if (!freelancerValidator(user)) {
+      return response.status(400).json({
+        message:
+          freelancerValidator.errors[0].instancePath.substring(1) +
+          " " +
+          freelancerValidator.errors[0].message,
+      });
+    }
+  } catch (error) {
+    return response.status(404).json({ message: "Failed to update user!" });
+  }
+};
+
 //#endregion
 
 //#region Verification E-mail
@@ -128,12 +163,12 @@ const verifyUser = async (req, res) => {
 
   ToBeVerifiedUser = ToBeVerifiedClient || ToBeVerifiedFreelancer;
   if (!ToBeVerifiedUser) {
-    return res.status(404).send("Invalid or expired verification token");
+    return res.status(404).json("Invalid or expired verification token");
   }
   ToBeVerifiedUser.isVerified = true;
   ToBeVerifiedUser.verificationToken = null;
   ToBeVerifiedUser.save();
-  return res.send("Your email has been successfully verified");
+  return res.json("Your email has been successfully verified");
 };
 //#endregion
 
@@ -147,7 +182,7 @@ const sendResetToken = async (req, res) => {
   let TobeReset = client || freelancer;
   TobeReset.resetToken = resetToken;
   TobeReset.save();
-  let text = `Click the following link to reset your password: http://localhost:7005/api/users/reset-password-form/${resetToken}`;
+  let text = `Click the following link to reset your password: http://localhost:4200/login/reset/password/${resetToken}`;
   try {
     await sendEmail(email, text);
     return res.json({ message: "reset password sent successfully" });
@@ -167,14 +202,16 @@ const getResetPasswordForm = async (req, res) => {
 
     user = freelancer || client;
     if (!user) {
-      return res.status(404).send("Invalid or expired reset token");
+      return res.status(404).json("Invalid or expired reset token");
     }
+
+    user.resetToken = null;
 
     // Render the password reset form
     return res.send("reset-password-form");
   } catch (error) {
     console.error("Error rendering reset password form:", error);
-    return res.status(500).send("Internal Server Error");
+    return res.status(500).json("Internal Server Error");
   }
 };
 const resetPasswordSubmit = async (req, res) => {
@@ -186,12 +223,12 @@ const resetPasswordSubmit = async (req, res) => {
     let ToBeResetFreelancer = await Freelancers.findOne({ resetToken: token });
     let ToBeReset = ToBeResetClient || ToBeResetFreelancer;
     if (!ToBeReset) {
-      return res.status(404).send("Invalid or expired reset token");
+      return res.status(404).json("Invalid or expired reset token");
     }
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     ToBeReset.password = hashedPassword;
     ToBeReset.save();
-    return res.send("Password reset successfully");
+    return res.json("Password reset successfully");
   }
   return res.status(400).json({
     Message:
@@ -203,8 +240,6 @@ const resetPasswordSubmit = async (req, res) => {
 //#region Login
 async function loginUser(req, res) {
   const { email, password } = req.body;
-  console.log(email);
-  console.log(password);
   let foundClientEmail = await Clients.findOne({ email });
   let foundFreelancerEmail = await Freelancers.findOne({ email });
 
@@ -234,13 +269,14 @@ let findUserByMail = async (request, response) => {
   if (!user) {
     return response.status(404).json("Mail not found!");
   }
-  return response.status(200).json({ User: user });
+  return response.status(200).json({ user: user });
 };
 //#endregion
 module.exports = {
   GetAllUsers,
   GetProfile,
   UpdateProfile,
+  UpdateProfileByMail,
   sendVerification,
   verifyUser,
   resetPasswordSubmit,

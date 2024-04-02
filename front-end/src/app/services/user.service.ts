@@ -11,28 +11,33 @@ export class UserService {
   token: string | null = '';
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  updateUserByMail(email: string, newValues: object): Observable<any> {
-    var user;
-    this.findByMail(email).subscribe({
-      next: (value) => {
-        user = value;
-      },
-      error: (err) => {
-        throw new Error(err.toString());
-      },
-    });
-    if (user) {
-      const url = this.DB_URL + user['_id'];
-      return this.http.patch(url, newValues, { observe: 'response' }).pipe(
-        map((response) => {
-          const statusCode = response.status;
-          const responseBody = response.body;
+  updatePassword(
+    newPassword: String,
+    resetToken: String | null
+  ): Observable<any> {
+    const url = this.DB_URL + 'reset-password-submit/' + resetToken;
+    let body = {
+      newPassword: newPassword,
+    };
+    return this.http.post(url, body, { observe: 'response' }).pipe(
+      map((response) => {
+        const statusCode = response.status;
+        const responseBody = response.body;
+        return { statusCode, responseBody };
+      })
+    );
+  }
 
-          return { statusCode, responseBody };
-        })
-      );
-    }
-    throw new Error();
+  sendResetToken(email: string): Observable<any> {
+    const url = this.DB_URL + 'send-reset-password';
+    return this.http.post(url, { email }, { observe: 'response' }).pipe(
+      map((response) => {
+        const statusCode = response.status;
+        const responseBody = response.body;
+
+        return { statusCode, responseBody };
+      })
+    );
   }
 
   findByMail(email: string): Observable<any> {

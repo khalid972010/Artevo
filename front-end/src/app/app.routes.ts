@@ -20,6 +20,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login/reset/mail', component: EnterMailComponent },
-  { path: 'login/reset/password', component: NewPasswordComponent },
+  { path: 'login/reset/password/:token', component: NewPasswordComponent },
   { path: 'freelancers', component: FreelancerListComponent },
 ];

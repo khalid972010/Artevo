@@ -24,18 +24,13 @@ export class EnterMailComponent {
 
   submit(event: Event) {
     event.preventDefault();
-    this.usersService.findByMail(this.mail).subscribe({
+    this.usersService.sendResetToken(this.mail).subscribe({
       next: () => {
         this.valid = true;
         this.authService.setEmail(this.mail);
+        console.log(this.authService.getEmail());
+
         alert('A mail has been sent to you, please check your email!');
-        setTimeout(
-          () =>
-            this.router.navigate(['/login/reset/password'], {
-              replaceUrl: true,
-            }),
-          2000
-        );
       },
       error: () => {
         this.valid = false;

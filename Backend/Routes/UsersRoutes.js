@@ -15,6 +15,7 @@ router.patch(
   userMiddleware.verifyTokenAndGetUserData,
   UserController.UpdateProfile
 );
+
 router.post("/send-verification-email", UserController.sendVerification);
 router.post("/send-reset-password", UserController.sendResetToken);
 router.post(
