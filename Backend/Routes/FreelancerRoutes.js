@@ -12,6 +12,7 @@ router.post("/follow", freelancerController.AddFollower);
 router.post("/Unfollow", freelancerController.RemoveFollower);
 router.get("/search", freelancerController.searchFreelancers);
 router.get("/:id", freelancerController.getFreelancerByTD);
+router.post("/filter", freelancerController.filter);
 
 router.use("*",(req, res) => {
     res.send("Defaultt");

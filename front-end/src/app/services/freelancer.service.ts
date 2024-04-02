@@ -15,6 +15,12 @@ export class FreelancerService {
   searchFreelancers(fullName: string) {
     return this.http.get(this.DB_URL + '/search', { params: { fullName } });
   }
+  filter(Budget:{ max: Number, min: Number } ,JopTitle:String,Location:String) {
+
+     var res= this.http.post(this.DB_URL+'/filter', {  Location:Location, budget:Budget ,JopTitle: JopTitle });
+
+     return res;
+  }
 }
 
 // export class PortfolioService {

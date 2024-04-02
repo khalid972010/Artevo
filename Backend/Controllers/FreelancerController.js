@@ -113,10 +113,10 @@ let searchFreelancers = async (request, response) => {
     if (queryName.length >= 1) {
       let searchResults = await Freelancer.find({
         $or: [
-          { fullName: { $regex: `^${queryName}`, $options: 'i' } }, 
-          { userName: { $regex: `^${queryName}`, $options: 'i' } }, 
-          { email: { $regex: `^${queryName}`, $options: 'i' } } 
-        ]
+          { fullName: { $regex: `^${queryName}`, $options: "i" } },
+          { userName: { $regex: `^${queryName}`, $options: "i" } },
+          { email: { $regex: `^${queryName}`, $options: "i" } },
+        ],
       });
       response.status(200).json({ data: searchResults });
     }
@@ -124,7 +124,38 @@ let searchFreelancers = async (request, response) => {
     console.error("Error searching for freelancers:", error);
     response.status(500).json({ error: "Failed to search for freelancers" });
   }
-}
+};
+
+const filter = async (req, res) => {
+  try {
+    const { Location, budget, JopTitle } = req.body;
+
+    var allFreelancers = await Freelancer.find({});
+    console.log(allFreelancers);
+
+    if (Location !== "")
+      allFreelancers = allFreelancers.filter(freelancer => freelancer.location === Location);
+
+    if (JopTitle !== "")
+      allFreelancers = allFreelancers.filter(freelancer => freelancer.headLine === JopTitle);
+   
+    if (budget && budget.min !== undefined && budget.max !== undefined) {
+      
+
+
+      allFreelancers = allFreelancers.filter(freelancer =>(  freelancer.budget <= budget.max));
+      
+    }
+    console.log(req.body);
+    console.log(allFreelancers);
+    res.status(200).json( allFreelancers );
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
 
 module.exports = {
   getAllfreelancers,
@@ -132,5 +163,6 @@ module.exports = {
   AddFollower,
   RemoveFollower,
   getFreelancerByTD,
-  searchFreelancers
+  searchFreelancers,
+  filter,
 };

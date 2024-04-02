@@ -9,6 +9,8 @@ import { PortfoliosMainComponent } from '../portfolios-main/portfolios-main.comp
 import { FormsModule } from '@angular/forms';
 import { FreelancerListComponent } from '../freelancer-list/freelancer-list.component';
 import { FilterListComponent } from '../filter-list/filter-list.component';
+import { FreelancerService } from '../../services/freelancer.service';
+import { FreelancerCardComponent } from '../freelancer-card/freelancer-card.component';
 
 @Component({
   selector: 'app-home',
@@ -23,20 +25,23 @@ import { FilterListComponent } from '../filter-list/filter-list.component';
     FormsModule,
     FreelancerListComponent,
     FilterListComponent,
+    FreelancerCardComponent
   ],
-  providers: [CategoriesService, PortfolioService, ],
+  providers: [CategoriesService, PortfolioService,FreelancerService ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   categories: any;
   Portfolio: any;
+  freelancer:any;
   selectedCategories: any[] = [];
   @Input() selectedTab: string = 'posts';
   selectedChoices: string[] = [];
   constructor(
     private categoriesData: CategoriesService,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    private freelancerService :FreelancerService
   ) {}
 
   getSelected() {
@@ -61,13 +66,28 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories = this.categoriesData.getCategories();
+    this.freelancerService.getAllFreelancers().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.freelancer = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+
     this.updatePortfolios();
   }
   receiveFilteredPortfolio(filteredPortfolio: any) {
     this.Portfolio.data = filteredPortfolio;
     console.log("home");
     console.log(this.Portfolio);
-   // console.log("2"); // Logging the updated Portfolio
-   // console.log(filteredPortfolio);
+  // console.log("2"); // Logging the updated Portfolio
+   //console.log(filteredPortfolio);
+  }
+  // Method to receive filtered freelancer data
+  receiveFilteredFreelancer(filteredData: any) {
+   this.freelancer.data=filteredData;
+   console.log(this.freelancer);
   }
 }
