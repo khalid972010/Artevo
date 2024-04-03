@@ -1,5 +1,5 @@
-const Admins = require("../Models/adminModel");
 const Orders = require("../Models/orderModel");
+const Clients = require("../Models/ClientModel");
 const Freelancer = require("../Models/FreelancerModel");
 const FreelancerValidator = require("../Validators/FreelancerValidator");
 const { isValidObjectId } = require("mongoose");
@@ -33,6 +33,21 @@ const modifyOrder = async (request, response) => {
 const getAllfreelancers = async (request, response) => {
   let allfreelancers = await Freelancer.find({});
   return response.status(200).json({ data: allfreelancers });
+};
+
+const getAllClients = async (request, response) => {
+  let allClients = await Clients.find({});
+  return response.status(200).json({ data: allClients });
+};
+
+const deleteClient = async (request, response) => {
+  const clientID = request.body.id;
+
+  if (!isValidObjectId(clientID) || !(await Clients.findById(clientID))) {
+    return response.status(400).json({ message: "Invalid Client ID!" });
+  }
+  await Clients.findByIdAndDelete(clientID);
+  return response.status(200).json({ message: "Deleted Successfully!" });
 };
 
 const CreateFreelancer = async (request, response) => {
@@ -114,6 +129,8 @@ const searchFreelancers = async (request, response) => {
 module.exports = {
   getAllOrders,
   modifyOrder,
+  getAllClients,
+  deleteClient,
   getAllfreelancers,
   CreateFreelancer,
   UpdateFreelancer,

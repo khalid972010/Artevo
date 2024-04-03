@@ -13,6 +13,16 @@ router.post("/orders", adminController.modifyOrder);
 //#endregion
 
 //#region Get Freelancers
+router.get("/clients", adminController.getAllClients);
+
+//#endregion
+
+//#region Delete Client
+router.delete("/clients", adminController.deleteClient);
+
+//#endregion
+
+//#region Get Freelancers
 router.get("/freelancers", adminController.getAllfreelancers);
 
 //#endregion
