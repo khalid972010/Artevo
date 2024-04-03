@@ -1,70 +1,134 @@
-<div class="main">
-  <!-- Button to toggle filter options -->
-  <button class="filter-button" (click)="toggleFilterOptions()">Filter</button>
-  <!-- Filter options -->
-  <div *ngIf="showFilterOptions" class="sidenav">
-     <!-- Button to toggle filter options -->
-    <button  (click)="toggleFilterOptions()">hide</button>
-    <h1 style="color:white">Filter</h1>
-     <!--   Portfolio filter  -->
-    <h2 style="color:white" (click)="togglePortfolioFilter()">Portfolio</h2>
-    <div *ngIf="showPortfolioFilter">
-     <h3 style="color:white" (click)="toggleShowPortfolioTechnology()">Technologies</h3>
-    <!-- Portfolio technologies -->
-    <div class="checkbox-group" *ngIf="ShowPortfolioTechnology">
-      <label><input type="checkbox" name="technology" value="css" (change)="updateSelectedTechnologies($event)"> CSS</label>
-      <label><input type="checkbox" name="technology" value="Html" (change)="updateSelectedTechnologies($event)"> Html</label>
-      <label><input type="checkbox" name="technology" value="flutter" (change)="updateSelectedTechnologies($event)"> flutter</label>
-      <label><input type="checkbox" name="technology" value="Angular" (change)="updateSelectedTechnologies($event)"> Angular</label>
 
-     </div>
+<button class="filter-button" (click)="toggleFilterOptions()">Filter</button>
+<!-- Filter options -->
+<!-- <div [ngStyle]="{'max-height': showFilterOptions ? '1000px' : '0', 'opacity': showFilterOptions ? '1' : '0'}" class="sidenav"> -->
+  <div [ngClass]="{'sidenav-open': showFilterOptions, 'sidenav-closed': !showFilterOptions}" class="sidenav">
 
 
-   </div>
-    <!-- Freelancers filter  -->
+  <!-- Portfolio -->
 
-   <h3 style="color:white" (click)="toggleFreelancersFilter()">Freelancers</h3>
-   <div *ngIf="FreelancersFilter">
-    <!-- Freelancers budget -->
-    <h3 style="color:white" (click)="toggleShowBudget()">budget(peer-hour)</h3>
 
-   <div *ngIf="ShowBudget">
-     <label><input type="radio" name="budget" value="5$-10$" (change)="updateSelectedbudget(5,10)"> 5$-10$</label><br>
-     <label><input type="radio" name="budget" value="10$-20$" (change)="updateSelectedbudget(10,20)"> 10$-20$</label><br>
-     <label><input type="radio" name="budget" value="20$-30$" (change)="updateSelectedbudget(20,30)"> 20$-30$</label><br>
-     <label><input type="radio" name="budget" value="40$-50$" (change)="updateSelectedbudget(40,50)"> 40$-50$</label><br>
 
+
+    <h4 (click)="toggleFreelancersFilter()" style="margin-bottom: 15px; margin-top: 15px;">Freelancers</h4>
+    <div *ngIf="FreelancersFilter">
+
+      <h5  (click)="toggleShowBudget()" style="color:white;font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)">Budget</h5>
+
+      <div *ngIf="ShowBudget">
+        <label style="  color: #694535;"><input type="radio" style="  color: #694535;"  name="budget" value="5$-10$" (change)="updateSelectedbudget(5,10)"> 5$ -
+          10$</label><br>
+        <label style="  color: #694535;"><input type="radio" style="  color: #694535;"  name="budget" value="10$-20$" (change)="updateSelectedbudget(10,20)"> 10$ -
+          20$</label><br>
+        <label style="  color: #694535;"><input type="radio"   name="budget" value="20$-30$" (change)="updateSelectedbudget(20,30)"> 20$ -
+          30$</label><br>
+        <label style="  color: #694535;"><input type="radio"  name="budget" value="40$-50$" (change)="updateSelectedbudget(40,50)"> 40$ -
+          50$</label><br>
+
+      </div>
+      <hr style="color:black">
+
+
+      <h5 style="color: white; margin-top: 10px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);" (click)="toggleShowFreelancerLocation()">Location</h5>
+
+      <div class="checkbox-group" *ngIf="ShowFreelancerLocation">
+
+        <label style="  color: #694535;"><input type="radio" name="Location" [checked]="selectedLocation =='Cairo'" style="  color: #694535;" value="Cairo"   (change)="updateSelectedFreelancerLocation('Cairo')">
+          Cairo</label><br>
+        <label style="  color: #694535;"><input type="radio" name="Location" style="  color: #694535;"  value="Giza" (change)="updateSelectedFreelancerLocation('Giza')">
+          Giza</label><br>
+        <label style="  color: #694535;"><input type="radio" name="Location" style="  color: #694535;"  value="Aswan" (change)="updateSelectedFreelancerLocation('Aswan')">
+          Aswan</label><br>
+        <label style="  color: #694535;"><input type="radio" name="Location" style="  color: #694535;"  value="Assuit"
+            (change)="updateSelectedFreelancerLocation('Assuit')"> Assuit</label><br>
+        <label style="  color: #694535;"><input type="radio" name="Location"  style="  color: #694535;" value="Alexandria"
+            (change)="updateSelectedFreelancerLocation('Alexandria')"> Alexandria</label>
+
+      </div>
+
+      <hr style="color:black">
+
+
+
+      <h5 style="color:white;margin-top: 10px;font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);"(click)="toggleShowFreelancerJopTitle()">Jop Title</h5>
+      <div class="cntr" *ngIf="ShowFreelancerJopTitle">
+        <label style="  color: #694535;"><input type="radio" name="JopTitle"  style="  color: #694535;" value="photographer"   (change)="updateSelectedFreelancerJopTitle('photographer')">
+          photographer</label><br>
+        <label style="  color: #694535;"><input type="radio" name="JopTitle" style="  color: #694535;"  value=".net Developer" (change)="updateSelectedFreelancerJopTitle('.net Developer')">
+          .net Developer</label><br>
+        <label style="  color: #694535;"><input type="radio" name="JopTitle" style="  color: #694535;"  value="Flutter Developer" (change)="updateSelectedFreelancerJopTitle('Flutter Developer')">
+          Flutter Developer</label><br>
+        <label style="  color: #694535;"><input type="radio" name="JopTitle" style="  color: #694535;"  value="frontEnd Developer"
+            (change)="updateSelectedFreelancerJopTitle('frontEnd Developer')"> frontEnd Developer</label><br>
+        <label style="  color: #694535;"><input type="radio" name="JopTitle"  style="  color: #694535;" value="mobile developer"
+            (change)="updateSelectedFreelancerJopTitle('mobile developer')"> mobile developer</label>
+
+      </div>
     </div>
+    <h4 (click)="togglePortfolioFilter()" style="margin-bottom: 15px;margin-top: 25px;font-weight: bold;">Portfolio</h4>
+    <!-- Other content in the sidenav -->
+    <div *ngIf="PortfolioFilter">
+      <h5 style="color:white;margin-top: 10px;font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);"(click)="toggleShowPortfolioTechnology()">Technologies</h5>
 
 
-    <h3 style="color:white" (click)="toggleShowFreelancerJopTitle()">Jop Title</h3>
-
-    <div class="checkbox-group" *ngIf="ShowFreelancerJopTitle">
-      <label><input type="radio" name="JopTitle" value="photographer" (change)="updateSelectedFreelancerJopTitle('photographer')"> photographer</label>
-      <label><input type="radio" name="JopTitle" value=".net" (change)="updateSelectedFreelancerJopTitle('.net Developer')">.net Developer</label>
-      <label><input type="radio" name="JopTitle" value="flutter" (change)="updateSelectedFreelancerJopTitle('Flutter Developer')"> Flutter Developer</label>
-      <label><input type="radio" name="JopTitle" value="frontEnd" (change)="updateSelectedFreelancerJopTitle('frontEnd Developer')"> frontEnd Developer</label>
-      <label><input type="radio" name="JopTitle" value="mobile" (change)="updateSelectedFreelancerJopTitle('mobile developer')"> mobile Developer </label>
-
-     </div>
 
 
-    <h3 style="color:white" (click)="toggleShowFreelancerLocation()">Location</h3>
+<!-- Portflio technology checkboxes -->
+      <div class="cntr" *ngIf="ShowPortfolioTechnology">
+        <div class="row">
+          <div class="col-2">
+            <input id="cbx" class="hidden-xs-up " type="checkbox" value="css" style="border:none"
+              (change)="updateSelectedTechnologies($event)">
+            <label for="cbx" class="cbx"></label>
+          </div>
 
-    <div class="checkbox-group" *ngIf="ShowFreelancerLocation">
-      <label><input type="radio" name="Location" value="Cairo" (change)="updateSelectedFreelancerLocation('Cairo')"> Cairo</label>
-      <label><input type="radio" name="Location" value="Giza" (change)="updateSelectedFreelancerLocation('Giza')"> Giza</label>
-      <label><input type="radio" name="Location" value="Aswan" (change)="updateSelectedFreelancerLocation('Aswan')"> Aswan</label>
-      <label><input type="radio" name="Location" value="Assuit" (change)="updateSelectedFreelancerLocation('Assuit')"> Assuit</label>
-      <label><input type="radio" name="Location" value="Alexandria" (change)="updateSelectedFreelancerLocation('Alexandria')"> Alexandria</label>
+          <div class="col-10">
+            <label class="labell">CSS</label>
+          </div>
+        </div>
 
-     </div>
+        <div class="row" style="margin-top:5px;">
+          <div class="col-2">
+            <input id="cbx2" class="hidden-xs-up " type="checkbox" value="Html" style="border:none"
+              (change)="updateSelectedTechnologies($event)">
+            <label for="cbx2" class="cbx"></label>
+          </div>
+
+          <div class="col-10">
+            <label class="labell">HTML</label>
+          </div>
+        </div>
+
+
+        <div class="row" style="margin-top:5px;">
+          <div class="col-2">
+            <input id="cbx3" class="hidden-xs-up " type="checkbox" value="flutter" style="border:none"
+              (change)="updateSelectedTechnologies($event)">
+            <label for="cbx3" class="cbx"></label>
+          </div>
+
+          <div class="col-10">
+            <label class="labell">Flutter</label>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:5px;">
+          <div class="col-2">
+            <input  id="cbx4"  class="hidden-xs-up" type="checkbox" name="technology" value="Angular" style="border:none"
+              (change)="updateSelectedTechnologies($event)">
+            <label for="cbx4" class="cbx"></label>
+          </div>
+
+          <div class="col-10">
+            <label class="labell">Angular</label>
+          </div>
+        </div>
+
+      </div>
+
+
+    <!-- <h4 (click)="resetFilters()" style="margin-bottom: 15px;margin-top: 25px;font-weight: bold;">Reset</h4> -->
 
 
   </div>
-
- </div>
 </div>
-
-
-

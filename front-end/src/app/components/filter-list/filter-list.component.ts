@@ -1,8 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, Output ,EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PortfolioService  } from '../../services/portfolio.service';
+import { createPopper } from '@popperjs/core';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';import { PortfolioService  } from '../../services/portfolio.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+
 import { FreelancerService } from '../../services/freelancer.service';
 
 @Component({
@@ -19,29 +21,33 @@ export class FilterListComponent {
   selectedFreelancerJopTitle:String="";
   selectedFreelancerBudget: { max: Number, min: Number } = { max: 1000, min: 0 };
 
-  ShowPortfolioTechnology: boolean = false;
-  showPortfolioFilter: boolean = false;
+    ShowPortfolioTechnology: boolean = false;
+  PortfolioFilter: boolean = false;
   FreelancersFilter: boolean = false;
   ShowBudget: boolean = false;
   ShowFreelancerJopTitle = false;
   ShowFreelancerLocation = false;
   showFilterOptions: boolean = false;
+  selectedLocation = '';
   @Output() filteredPortfolio: EventEmitter<any> = new EventEmitter<any>();
   @Output() filteredFreelancer: EventEmitter<any> = new EventEmitter<any>();
+  // Array to store selected technologies
   constructor(private portfolioService: PortfolioService ,private freelancerService:FreelancerService) {}
 
   toggleShowPortfolioTechnology() {
     this.ShowPortfolioTechnology = !this.ShowPortfolioTechnology;
   }
+
   toggleFreelancersFilter() {
     this.FreelancersFilter = !this.FreelancersFilter;
   }
   togglePortfolioFilter() {
-    this.showPortfolioFilter = !this.showPortfolioFilter;
+    this.PortfolioFilter = !this.PortfolioFilter;
   }
   toggleFilterOptions() {
     this.showFilterOptions = !this.showFilterOptions;
   }
+
   toggleShowBudget() {
     this.ShowBudget = !this.ShowBudget;
   }
@@ -56,6 +62,16 @@ export class FilterListComponent {
     console.log(this.selectedFreelancerLocation);
     this.Freelancerfilter();
   }
+
+  resetFilters() {
+    // Reset selected location to default
+    this.selectedLocation = '';
+    this.selectedPortfolioTechnologies=[];
+    this.selectedFreelancerJopTitle="";
+    // Reset other filter options to default state
+    // (including hiding options, unchecking radio buttons, etc.)
+  }
+
   updateSelectedTechnologies(event: any) {
     const technology = event.target.value;
     if (event.target.checked) {
@@ -66,7 +82,7 @@ export class FilterListComponent {
         this.selectedPortfolioTechnologies.splice(index, 1);
       }
     }
-   // console.log(this.selectedPortfolioTechnologies);
+    console.log(this.selectedPortfolioTechnologies);
     this.Portfoliofilter();
   }
   updateSelectedFreelancerJopTitle(JopTitle:string) {

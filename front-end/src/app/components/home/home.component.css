@@ -1,10 +1,15 @@
 .heading-container {
   margin-top: 7%;
+
   color: #694535;
   font-family: "artifika";
+  text-align: center;
+  margin-bottom: 30px;
 }
 .cards-container {
   margin-bottom: 5%;
+  margin-left: 120px;
+  /* margin-left: 550px; */
 }
 .selected {
   border: 2px solid brown;
@@ -35,7 +40,7 @@ a {
   border-radius: var(--radius);
   grid-auto-columns: 1fr;
   position: relative;
-  border: var(--border) solid hsl(0 0% 0%);
+  border: 2px solid black;
 }
 
 .tabs {
@@ -115,7 +120,7 @@ a {
 
 .input:not(:checked) + .label:hover {
   --highlight: 0.35;
-  background: hsl(0 0% 20%);
+  background:  #694535;
 }
 
 .tabs::after {
@@ -131,7 +136,7 @@ a {
   transition: translate, outline-color;
   transition-duration: var(--speed);
   transition-timing-function: var(--ease, ease);
-  outline: 2px solid transparent;
+  outline: 1px solid transparent;
 }
 
 .tabs:has(:focus-visible)::after {
@@ -139,12 +144,7 @@ a {
 }
 
 
-.filter-list-container {
-  position: fixed;
-  top: 80px;
-  right: 10px;
-  z-index: 1000;
-}
+
 
 /* Filter List Styling */
 .filter-list {
