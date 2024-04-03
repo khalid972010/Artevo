@@ -8,7 +8,7 @@ export class TopicService {
   private selectedTopic!: string;
 
   constructor(private http: HttpClient) {}
-  private apiUrl = 'http://localhost:7010/api/users';
+  private apiUrl = 'https://angularproject-rokp.onrender.com/api/users';
   setSelectedTopic(topic: string) {
     this.selectedTopic = topic;
   }

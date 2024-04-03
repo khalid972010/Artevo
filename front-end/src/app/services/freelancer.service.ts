@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class FreelancerService {
-  private DB_URL = "http://localhost:7010/api/Freelancer";
+  private DB_URL = "https://angularproject-rokp.onrender.com/api/Freelancer";
 
   constructor(private http: HttpClient) {}
   getAllFreelancers() {

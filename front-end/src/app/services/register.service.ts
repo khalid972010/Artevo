@@ -6,7 +6,7 @@ import { map } from 'rxjs';
   providedIn: 'root',
 })
 export class RegisterService {
-  private apiURL = 'http://localhost:7010/api';
+  private apiURL = 'https://angularproject-rokp.onrender.com/api';
   constructor(private httpClient: HttpClient) {}
   createClient(body: any) {
     return this.httpClient

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PortfolioService {
   constructor(private http: HttpClient) {}
-  DB_URL = 'http://localhost:7010/api/portfolio';
+  DB_URL = 'https://angularproject-rokp.onrender.com/api/portfolio';
   getAllPortfolio() {
     return this.http.get(this.DB_URL);
   }
@@ -20,7 +20,9 @@ export class PortfolioService {
     return this.http.post(this.DB_URL + '/Like', { portfolioId, userId });
   }
   filter(technologies: string[]) {
-    return this.http.post(this.DB_URL+'/filter', { technologies: technologies  });
+    return this.http.post(this.DB_URL + '/filter', {
+      technologies: technologies,
+    });
   }
 }
 
