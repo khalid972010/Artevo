@@ -6,6 +6,7 @@
 </div>
 
 
+
 <!-- Category Cards Container -->
 <div class="container cards-container">
   <div class="row justify-content-center">
@@ -27,12 +28,25 @@
     </div>
   </div>
   <div class="filter-list-container" style="margin-right:132px">
-    <app-filter-list></app-filter-list>
+    <app-filter-list
+     (filteredPortfolio)="receiveFilteredPortfolio($event)"
+    (filteredFreelancer)="receiveFilteredFreelancer($event)"></app-filter-list>
   </div>
 </div>
 
 <!-- Content Below Categories -->
-<app-freelancer-list *ngIf="selectedTab === 'freelancers'"></app-freelancer-list>
+
+<div class="container" *ngIf="selectedTab === 'freelancers'">
+  <div class="row">
+    <app-freelancer-card
+      [freelancer]="freelancerItem"
+      class="col-xl-4 col-sm-6 mb-4"
+      *ngFor="let freelancerItem of freelancer.data"
+    ></app-freelancer-card>
+  </div>
+</div>
+
+
 <div class="grid-portfolio" id="portfolio" *ngIf="selectedTab === 'posts'">
   <div class="container">
     <div class="row">

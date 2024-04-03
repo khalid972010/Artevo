@@ -17,4 +17,11 @@ export class ImageModalComponent {
   closeModal(): void {
     this.dialogRef.close();
   }
+
+ handleModalContentClick(event: Event) {
+  if ((event.target as HTMLElement)?.classList.contains('closingModal')) {
+    this.closeModal(); // Call your closeModal function here
+  }
+}
+
 }
