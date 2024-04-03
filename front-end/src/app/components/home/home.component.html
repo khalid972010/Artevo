@@ -1,6 +1,6 @@
 <!-- Heading Container -->
-<div class="container heading-container">
-  <div class="row">
+<div class="container heading-container pt-5 pt-md-0">
+  <div class="row pt-2 pt-md-0">
     <div class="col">
       <h1>Welcome to Our Website!</h1>
       <p style="color: black">
@@ -12,10 +12,9 @@
 
 <div class="filter-list-container">
   <app-filter-list
-  (filteredPortfolio)="receiveFilteredPortfolio($event)"
-  (filteredFreelancer)="receiveFilteredFreelancer($event)"
-></app-filter-list>
-
+    (filteredPortfolio)="receiveFilteredPortfolio($event)"
+    (filteredFreelancer)="receiveFilteredFreelancer($event)"
+  ></app-filter-list>
 </div>
 
 <!-- Category Cards Container -->
@@ -60,7 +59,6 @@
 
 <!-- Content Below Categories -->
 
-
 <div class="container" *ngIf="selectedTab === 'freelancers'">
   <div class="row">
     <app-freelancer-card
@@ -70,8 +68,6 @@
     ></app-freelancer-card>
   </div>
 </div>
-
-
 
 <div class="grid-portfolio" id="portfolio" *ngIf="selectedTab === 'posts'">
   <div class="container">

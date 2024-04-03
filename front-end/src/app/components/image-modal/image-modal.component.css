@@ -1,4 +1,6 @@
 /* CSS for the image modal and background blur effect */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+
 .image-modal {
   position: fixed;
   top: 0;
@@ -10,18 +12,43 @@
   align-items: center;
   z-index: 1000;
 }
+
 .row {
   background-color: rgba(255, 255, 255, 0.8) !important;
   backdrop-filter: blur(5px) !important;
 }
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:focus {
+  text-decoration: none;
+}
+
+p {
+  color: white;
+}
+
+#infos {
+  background-color: transparent !important;
+}
+
+#followLink:hover {
+  text-decoration: underline;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-  backdrop-filter: blur(5px); /* Apply blur effect to the background */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent black */
+  backdrop-filter: blur(5px);
+  /* Apply blur effect to the background */
 }
 
 .modal-content {
@@ -32,14 +59,16 @@
 
 .modal-content img {
   display: block;
-  max-height: 80vh; /* Maximum height of the image */
-  max-width: 80vw; /* Maximum width of the image */
-  margin: 0 auto; /* Center the image horizontally */
+  max-height: 80vh;
+  /* Maximum height of the image */
+  max-width: 80vw;
+  /* Maximum width of the image */
+  margin: 0 auto;
+  /* Center the image horizontally */
 }
 
 /*newCard------------------------------------------------------------------------------------*/
 
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 
 *,
 *::before,
@@ -98,7 +127,7 @@ img {
   font-size: 0.75rem;
 }
 
-.tag + .tag {
+.tag+.tag {
   margin-left: 0.5em;
 }
 
@@ -126,13 +155,13 @@ img {
 }
 
 .card__footer {
-  display: contents;
+  display: flex;
   padding: 1rem;
   margin-top: auto;
 }
 
 .user {
-  display: contents;
+  display: flex;
   gap: 0.5rem;
 }
 
@@ -140,9 +169,10 @@ img {
   border-radius: 50%;
 }
 
-.user__info > small {
+.user__info>small {
   color: #666;
 }
+
 /*like button----------------------------------------------------------------*/
 .ui-like {
   --icon-size: 24px;
@@ -225,16 +255,14 @@ img {
   fill: var(--icon-hover-color);
 }
 
-.ui-like input:checked + .like::after {
-  -webkit-animation: circles var(--icon-anmt-duration)
-    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  animation: circles var(--icon-anmt-duration)
-    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+.ui-like input:checked+.like::after {
+  -webkit-animation: circles var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circles var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   -webkit-animation-delay: var(--icon-anmt-duration);
   animation-delay: var(--icon-anmt-duration);
 }
 
-.ui-like input:checked + .like {
+.ui-like input:checked+.like {
   fill: var(--icon-primary-color);
   -webkit-animation: like var(--icon-anmt-duration) forwards;
   animation: like var(--icon-anmt-duration) forwards;
@@ -243,11 +271,9 @@ img {
   transition-delay: 0.3s;
 }
 
-.ui-like input:checked + .like::before {
-  -webkit-animation: circle var(--icon-anmt-duration)
-    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  animation: circle var(--icon-anmt-duration)
-    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+.ui-like input:checked+.like::before {
+  -webkit-animation: circle var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circle var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   -webkit-animation-delay: var(--icon-anmt-duration);
   animation-delay: var(--icon-anmt-duration);
 }
@@ -345,21 +371,201 @@ img {
     opacity: 0;
   }
 }
+
 /*fit image*/
 .fitImage {
-  width: 100%; /* Ensure the container spans the entire width */
-  max-width: 800px; /* Optionally, set a maximum width for the container */
-  height: 400px; /* Set the desired height for the container */
-  overflow: hidden; /* Hide any overflow from the image */
+  width: 100%;
+  /* Ensure the container spans the entire width */
+  max-width: 800px;
+  /* Optionally, set a maximum width for the container */
+  height: 400px;
+  /* Set the desired height for the container */
+  overflow: hidden;
+  /* Hide any overflow from the image */
   position: relative;
 }
+
 .img12 {
-  width: 100%; /* Make the image fill the width of its container */
-  height: 100%; /* Maintain aspect ratio */
-  display: block; /* Remove any default inline spacing */
+  width: 100%;
+  /* Make the image fill the width of its container */
+  height: 100%;
+  /* Maintain aspect ratio */
+  display: block;
+  /* Remove any default inline spacing */
 
   object-fit: fill;
-  position: absolute; /* Position the image within its container */
-  top: 0; /* Position the image at the top */
+  position: absolute;
+  /* Position the image within its container */
+  top: 0;
+  /* Position the image at the top */
   left: 0;
+}
+
+/* .scrollable-image {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+
+}
+
+.scrollable-image img {
+  max-width: none;
+  max-height: 70%;
+} */
+
+
+/* The switch - the box around the slider */
+.comment-react {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  scale: 1.5;
+  width: 100px;
+}
+
+
+.comment-react button {
+  width: 15px;
+  height: 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
+
+.comment-react button:after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  background-color: #f5356e;
+  border-radius: 50%;
+  z-index: 0;
+  transform: scale(0);
+}
+
+.comment-react button svg {
+  position: relative;
+  z-index: 9;
+}
+
+.comment-react button:hover:after {
+  animation: ripple 0.6s ease-in-out forwards;
+}
+
+.comment-react button:hover svg {
+  fill: #f5356e;
+}
+
+.comment-react button:hover svg path {
+  stroke: #f5356e;
+  fill: #f5356e;
+}
+
+.comment-react hr {
+  width: 80%;
+  height: 1px;
+  background-color: #dfe1e6;
+  margin: auto;
+  border: 0;
+}
+
+.comment-react span {
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 600;
+  color: #707277;
+  padding-right: 10px;
+  text-align: center;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.buttonLove {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+  transition: 100ms;
+}
+
+.checkmark {
+  top: 0;
+  left: 0;
+  height: 2em;
+  width: 2em;
+  transition: 100ms;
+  animation: dislike_effect 400ms ease;
+}
+
+.container input:checked~.checkmark path {
+  fill: #FF5353;
+  stroke-width: 0;
+}
+
+.container input:checked~.checkmark {
+  animation: like_effect 400ms ease;
+}
+
+.buttonLove:hover {
+  transform: scale(1.1);
+}
+
+@keyframes like_effect {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes dislike_effect {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
