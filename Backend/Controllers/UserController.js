@@ -145,7 +145,7 @@ const sendVerification = async (req, res) => {
   ToBeVerifiedUser = ToBeVerifiedClient || ToBeVerifiedFreelancer;
   ToBeVerifiedUser.verificationToken = verificationToken;
   ToBeVerifiedUser.save();
-  let text = `Click the following link to verify your email: http://localhost:7005/api/users/verify/${verificationToken}`;
+  let text = `Click the following link to verify your email: https://angularproject-rokp.onrender.com/api/users/verify/${verificationToken}`;
   try {
     await sendEmail(email, text);
     return res.json({ message: "Verification email sent successfully" });
@@ -183,7 +183,7 @@ const sendResetToken = async (req, res) => {
   let TobeReset = client || freelancer;
   TobeReset.resetToken = resetToken;
   TobeReset.save();
-  let text = `Click the following link to reset your password: http://localhost:4200/login/reset/password/${resetToken}`;
+  let text = `Click the following link to reset your password: https://angularproject-rokp.onrender.com/login/reset/password/${resetToken}`;
   try {
     await sendEmail(email, text);
     return res.json({ message: "reset password sent successfully" });

@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FreelancerService } from '../../services/free.lancer';
+import { FreelancerService } from '../../services/freelancer.service';
 
 @Component({
   selector: 'app-image-modal',

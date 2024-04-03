@@ -14,6 +14,7 @@ const checkForClientID = async (request, response, next) => {
   if (client == undefined) {
     return response.status(404).json({ message: "Client not found!" });
   }
+  next();
 };
 const checkForFreelancerID = async (request, response, next) => {
   const freelancerID = request.params.id;
