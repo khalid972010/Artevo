@@ -4,6 +4,7 @@ const portfolioRoutes = require("../Routes/portfolioRouts");
 const clientRoutes = require("../Routes/clientRoutes");
 const FreelancerRoutes = require("../Routes/FreelancerRoutes");
 const HomeRoutes = require("../Routes/HomeRoutes");
+const adminRoutes = require("../Routes/adminRoutes");
 const cors = require("cors");
 
 const app = express();
@@ -19,6 +20,9 @@ const PORT = process.env.PORT || 7010;
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Routes
+app.use("/api/admins", adminRoutes);
 
 // Routes
 app.use("/api/users", UserRoute);

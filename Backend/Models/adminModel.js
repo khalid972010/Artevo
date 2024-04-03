@@ -4,7 +4,7 @@ mongoose.connect(
 );
 const adminSchema = new mongoose.Schema(
   {
-    userName: String,
+    email: String,
     password: String,
   },
   { versionKey: false }

@@ -4,6 +4,7 @@ const Clients = require("../Models/ClientModel");
 const Freelancers = require("../Models/FreelancerModel");
 const ClientValidator = require("../Validators/clientValidator");
 const freelancerValidator = require("../Validators/FreelancerValidator");
+const Admins = require("../Models/adminModel");
 
 const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
@@ -240,9 +241,13 @@ const resetPasswordSubmit = async (req, res) => {
 //#region Login
 async function loginUser(req, res) {
   const { email, password } = req.body;
+
   let foundClientEmail = await Clients.findOne({ email });
   let foundFreelancerEmail = await Freelancers.findOne({ email });
-
+  let foundAdmin = await Admins.findOne({ email });
+  if (foundAdmin) {
+    return res.status(200).json("Login Successfully");
+  }
   if (!foundClientEmail && !foundFreelancerEmail)
     return res.status(400).json("invalid email or password");
 
