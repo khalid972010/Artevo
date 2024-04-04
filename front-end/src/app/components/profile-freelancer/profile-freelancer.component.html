@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Responsive Photography App</title>
+
+    <link
+      rel="stylesheet prefetch"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet prefetch"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet prefetch"
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600"
+    />
+  </head>
+
+  <body>
+    <div class="container-fluid p-0" style="margin-top: 80px">
+      <header>
+        <img src="assets/images/about_us.jpg" />
+      </header>
+      <main>
+        <div class="row container-fluid m-0 p-0">
+          <div class="left col-lg-4">
+            <div class="photo-left">
+              <img class="photo" src="assets/images/about-pic.webp" />
+            </div>
+            <h4 class="name">Jane Doe</h4>
+            <p class="info">UI/UX Designer</p>
+            <p class="info">jane.doegmail.com</p>
+            <!--edit butoon-->
+            <button (click)="updateProfile()">
+              Update Profile
+              <div class="star-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xml:space="preserve"
+                  version="1.1"
+                  style="
+                    shape-rendering: geometricPrecision;
+                    text-rendering: geometricPrecision;
+                    image-rendering: optimizeQuality;
+                    fill-rule: evenodd;
+                    clip-rule: evenodd;
+                  "
+                  viewBox="0 0 784.11 815.53"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs></defs>
+                  <g id="Layer_x0020_1">
+                    <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                    <path
+                      class="fil0"
+                      d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="star-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xml:space="preserve"
+                  version="1.1"
+                  style="
+                    shape-rendering: geometricPrecision;
+                    text-rendering: geometricPrecision;
+                    image-rendering: optimizeQuality;
+                    fill-rule: evenodd;
+                    clip-rule: evenodd;
+                  "
+                  viewBox="0 0 784.11 815.53"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs></defs>
+                  <g id="Layer_x0020_1">
+                    <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                    <path
+                      class="fil0"
+                      d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="star-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xml:space="preserve"
+                  version="1.1"
+                  style="
+                    shape-rendering: geometricPrecision;
+                    text-rendering: geometricPrecision;
+                    image-rendering: optimizeQuality;
+                    fill-rule: evenodd;
+                    clip-rule: evenodd;
+                  "
+                  viewBox="0 0 784.11 815.53"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs></defs>
+                  <g id="Layer_x0020_1">
+                    <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                    <path
+                      class="fil0"
+                      d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="star-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xml:space="preserve"
+                  version="1.1"
+                  style="
+                    shape-rendering: geometricPrecision;
+                    text-rendering: geometricPrecision;
+                    image-rendering: optimizeQuality;
+                    fill-rule: evenodd;
+                    clip-rule: evenodd;
+                  "
+                  viewBox="0 0 784.11 815.53"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs></defs>
+                  <g id="Layer_x0020_1">
+                    <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                    <path
+                      class="fil0"
+                      d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="star-5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xml:space="preserve"
+                  version="1.1"
+                  style="
+                    shape-rendering: geometricPrecision;
+                    text-rendering: geometricPrecision;
+                    image-rendering: optimizeQuality;
+                    fill-rule: evenodd;
+                    clip-rule: evenodd;
+                  "
+                  viewBox="0 0 784.11 815.53"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs></defs>
+                  <g id="Layer_x0020_1">
+                    <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                    <path
+                      class="fil0"
+                      d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+              <div class="star-6">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xml:space="preserve"
+                  version="1.1"
+                  style="
+                    shape-rendering: geometricPrecision;
+                    text-rendering: geometricPrecision;
+                    image-rendering: optimizeQuality;
+                    fill-rule: evenodd;
+                    clip-rule: evenodd;
+                  "
+                  viewBox="0 0 784.11 815.53"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <defs></defs>
+                  <g id="Layer_x0020_1">
+                    <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                    <path
+                      class="fil0"
+                      d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"
+                    ></path>
+                  </g>
+                </svg>
+              </div>
+            </button>
+            <!--edit butoon-->
+            <!--about section-->
+            <div class="stats row">
+              <div class="stat col-xs-4">
+                <p class="number-stat">3,619</p>
+                <p class="desc-stat">Followers</p>
+              </div>
+              <div class="stat col-xs-4">
+                <p class="number-stat">42</p>
+                <p class="desc-stat">Following</p>
+              </div>
+              <div class="stat col-xs-4">
+                <p class="number-stat">38</p>
+                <p class="desc-stat">Uploads</p>
+              </div>
+            </div>
+            <p class="desc">
+              Hi ! My name is Jane Doe. I'm a UI/UX Designer from Paris, in
+              France. I really enjoy photography and mazen.
+            </p>
+            <div class="social">
+              <i class="fa fa-facebook-square" aria-hidden="true"></i>
+              <i class="fa fa-twitter-square" aria-hidden="true"></i>
+              <i class="fa fa-pinterest-square" aria-hidden="true"></i>
+              <i class="fa fa-tumblr-square" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="right col-lg-8" style="background-color: #ada69d">
+            <!--button post/order-->
+            <div class="row justify-content-between align-items-center">
+              <div
+                class="radio-inputs col-auto"
+                style="background-color: #ada69d"
+              >
+                <label class="radio">
+                  <input
+                    [(ngModel)]="selectedTab"
+                    type="radio"
+                    name="selected"
+                    value="posts"
+                    checked=""
+                  />
+                  <span class="name">Posts</span>
+                </label>
+                <label class="radio">
+                  <input
+                    [(ngModel)]="selectedTab"
+                    value="orders"
+                    type="radio"
+                    name="selected"
+                  />
+                  <span class="name">Orders</span>
+                </label>
+              </div>
+
+              <!--button add post end -------------------->
+
+              <button type="button" class="button" (click)="addPost()">
+                <span class="button__text">Add Post</span>
+                <span class="button__icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke="currentColor"
+                    height="24"
+                    fill="none"
+                    class="svg"
+                  >
+                    <line y2="19" y1="5" x2="12" x1="12"></line>
+                    <line y2="12" y1="12" x2="19" x1="5"></line>
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <!--content below buttons-->
+            <div class="container" *ngIf="selectedTab === 'orders'">
+              <div class="row">
+                <!-- <app-freelancer-card
+                  [freelancer]="freelancerItem"
+                  class="col-xl-4 col-sm-6 mb-4"
+                  *ngFor="let freelancerItem of freelancer.data"
+                ></app-freelancer-card> -->
+                <p>salah</p>
+              </div>
+            </div>
+
+            <div
+              class="grid-portfolio"
+              id="portfolio"
+              *ngIf="selectedTab === 'posts'"
+            >
+              <div class="container">
+                <div class="row">
+                  <div>mazen</div>
+                </div>
+              </div>
+            </div>
+            <!--button add post end-->
+            <!-- <div class="row gallery">
+              <div class="col-md-4">
+                <img src="assets/images/about-pic.webp" />
+              </div>
+              <div class="col-md-4">
+                <img src="assets/images/about-pic.webp" />
+              </div>
+              <div class="col-md-4">
+                <img src="assets/images/about-pic.webp" />
+              </div>
+              <div class="col-md-4">
+                <img src="assets/images/about-pic.webp" />
+              </div>
+              <div class="col-md-4">
+                <img src="assets/images/about-pic.webp" />
+              </div>
+              <div class="col-md-4">
+                <img src="assets/images/about-pic.webp" />
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
