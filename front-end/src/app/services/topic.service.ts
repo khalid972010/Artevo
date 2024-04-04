@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class TopicService {
   private selectedTopic!: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
   private apiUrl = 'https://angularproject-rokp.onrender.com/api/users';
   setSelectedTopic(topic: string) {
     this.selectedTopic = topic;
@@ -23,8 +24,7 @@ export class TopicService {
       { favTopics: topic },
       {
         headers: {
-          'x-auth-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDFmMzgwZDBkNjJlOThiN2RhNDE5YyIsInR5cGUiOiJDbGllbnQiLCJpYXQiOjE3MTE0MDQ0MTEsImV4cCI6MTcxMjAwOTIxMX0.NTsTQYXoauwCt6ye4TFV_RVo77riblkNI2EyGwtLjac',
+          'x-auth-token': this.tokenService.getToken()!,
         },
       }
     );

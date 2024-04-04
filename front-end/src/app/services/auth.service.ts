@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { TokenService } from './token.service';
 
@@ -12,14 +12,6 @@ export class AuthService {
   static email: string | null = null;
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  setEmail(email: string) {
-    AuthService.email = email;
-  }
-
-  getEmail(): string | null {
-    return AuthService.email;
-  }
-
   loginUser(email: string, password: string): Observable<any> {
     const url = this.DB_URL + 'users/login';
     return this.http
@@ -29,14 +21,11 @@ export class AuthService {
           const statusCode = response.status;
           const responseBody = response.body;
           const token = response.headers.get('x-auth-token');
-          console.log(statusCode);
-          console.log(responseBody);
-          console.log(token);
-
           if (statusCode === 200 && responseBody && token) {
             this.tokenService.setToken(token);
-            const user = responseBody.user;
-            this.tokenService.setUser(user);
+            const user = responseBody;
+
+            this.tokenService.setUser(user['user']);
           }
 
           return { statusCode, responseBody };

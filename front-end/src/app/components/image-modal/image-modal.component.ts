@@ -50,8 +50,6 @@ export class ImageModalComponent implements OnInit {
   initializeClientAndToken() {
     this.client = this.userToken.getUser();
     this.token = this.userToken.getToken();
-    console.log(this.token);
-    console.log(this.client);
   }
 
   getFreelancerData() {
@@ -60,6 +58,7 @@ export class ImageModalComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.freelancer = data.data;
+          console.log(this.freelancer);
         },
         error: (error) => {
           alert(error);
@@ -67,13 +66,51 @@ export class ImageModalComponent implements OnInit {
       });
   }
   checkIfClientFollowsFreelancer() {
-    if (this.client.following.includes(this.freelancer._id)) {
+    console.log(this.client);
+
+    if (this.client.following.includes(this.data.portfolio.ownerID)) {
       this.following = true;
       this.followText = 'unfollow';
     }
   }
 
+  checkFollowing(freelancerID: string) {
+    if (this.following == true) {
+      this.unfollowFreelancer(this.data.portfolio.ownerID);
+    } else {
+      this.followFreelancer(this.data.portfolio.ownerID);
+    }
+  }
+
   followFreelancer(freelancerID: string) {
-    this.clientService.followFreelancer(freelancerID).subscribe({});
+    this.clientService.followFreelancer(this.token, freelancerID).subscribe({
+      next: () => {
+        this.following = true;
+        this.followText = 'unfollow';
+        this.client.following.push(freelancerID);
+        localStorage.setItem('user', JSON.stringify(this.client));
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+  unfollowFreelancer(freelancerID: string) {
+    this.clientService.unfollowFreelancer(this.token, freelancerID).subscribe({
+      next: () => {
+        this.following = false;
+        this.followText = 'follow';
+        let index = this.client.following.indexOf(freelancerID);
+
+        if (index !== -1) {
+          this.client.following.splice(index, 1);
+        }
+
+        localStorage.setItem('user', JSON.stringify(this.client));
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

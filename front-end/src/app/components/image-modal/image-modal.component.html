@@ -1,4 +1,4 @@
-@if (this.data.portfolio && this.client != null) {
+@if (this.data.portfolio && this.client && this.freelancer) {
 <div class="image-modal" style="overflow: auto">
   <div class="modal-overlay h-100"></div>
 
@@ -28,8 +28,8 @@
           id="followLink"
           class="small"
           style="color: lightseagreen"
-          (click)="followFreelancer(this.freelancer._Id)"
-          >Follow</a
+          (click)="checkFollowing(this.data.portfolio.ownerID)"
+          >{{ this.followText }}</a
         >
       </div>
       <!--Button-->

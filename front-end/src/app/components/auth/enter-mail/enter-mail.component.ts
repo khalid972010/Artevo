@@ -27,8 +27,6 @@ export class EnterMailComponent {
     this.usersService.sendResetToken(this.mail).subscribe({
       next: () => {
         this.valid = true;
-        this.authService.setEmail(this.mail);
-        console.log(this.authService.getEmail());
 
         alert('A mail has been sent to you, please check your email!');
       },

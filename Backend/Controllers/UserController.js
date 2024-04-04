@@ -288,6 +288,7 @@ let findUserByMail = async (request, response) => {
   }
   return response.status(200).json({ user: user });
 };
+
 //#endregion
 module.exports = {
   GetAllUsers,

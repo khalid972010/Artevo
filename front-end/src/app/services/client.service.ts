@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { TokenService } from './token.service';
 
@@ -13,13 +13,17 @@ export class ClientService {
     ClientService.token = tokenService.getToken();
   }
 
-  followFreelancer(freelancerID: string) {
+  followFreelancer(token: string, freelancerID: string) {
     const url = this.DB_URL + 'follow/' + freelancerID;
-    return this.http.post(url, {});
+    const headers = new HttpHeaders().set('x-auth-token', token);
+
+    return this.http.post(url, {}, { headers: headers });
   }
 
-  unfollowFreelancer(freelancerID: string) {
+  unfollowFreelancer(token: string, freelancerID: string) {
     const url = this.DB_URL + 'unfollow/' + freelancerID;
-    return this.http.post(url, {});
+    const headers = new HttpHeaders().set('x-auth-token', token);
+
+    return this.http.post(url, {}, { headers: headers });
   }
 }

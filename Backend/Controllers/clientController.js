@@ -4,6 +4,7 @@ const Freelancers = require("../Models/FreelancerModel"); ///////////////////// 
 const ClientValidator = require("../Validators/clientValidator");
 const UserController = require("../Controllers/UserController");
 const Reviews = require("../Models/reviewModel");
+const Portfolios = require("../Models/portfolioModel");
 
 const { isValidObjectId } = require("mongoose");
 const bcrypt = require("bcrypt");
@@ -275,6 +276,39 @@ const removeReview = async (request, response) => {
   }
 };
 
+const likePortfolioPost = async (request, response) => {
+  let client = request.body.client;
+  const postID = request.body.id;
+  if (!postID) {
+    return response.status(400).json("Invalid post ID!");
+  }
+
+  let post = await Portfolios.findById(postID);
+  if (post.likes.includes(client._id)) {
+    return json.status(400).json("You already like this post!");
+  }
+  post.likesCount += 1;
+  await post.save();
+  return response.status(400).json("Post liked!");
+};
+const unlikePortfolioPost = async (request, response) => {
+  let client = request.body.client;
+  const postID = request.body.id;
+  if (!postID) {
+    return response.status(400).json("Invalid post ID!");
+  }
+
+  let post = await Portfolios.findById(postID);
+  if (post.likes.includes(client._id)) {
+    return json.status(400).json("You already like this post!");
+  }
+  let index = post.likes.indexOf(client._id);
+  post.likes.splice(index, 1);
+  post.likesCount -= 1;
+  await post.save();
+  return response.status(400).json("Post unliked!");
+};
+
 module.exports = {
   getAllClients,
   getClient,
@@ -288,4 +322,6 @@ module.exports = {
   postReview,
   editReview,
   removeReview,
+  likePortfolioPost,
+  unlikePortfolioPost,
 };

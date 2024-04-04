@@ -5,44 +5,34 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TokenService {
-  private static tokenSubject: BehaviorSubject<string | null>;
-  private static resetTokenSubject: BehaviorSubject<string | null>;
-  private static userSubject: BehaviorSubject<any | null>;
-  private static token: Observable<string | null>;
-  private static resetToken: Observable<string | null>;
-  private static user: Observable<any | null>;
+  private static token: string | null = null;
+  private static resetToken: string | null = null;
+  private static user: string | null = null;
 
-  constructor() {
-    TokenService.tokenSubject = new BehaviorSubject<string | null>(null);
-    TokenService.resetTokenSubject = new BehaviorSubject<string | null>(null);
-    TokenService.userSubject = new BehaviorSubject<any | null>(null);
-    TokenService.token = TokenService.tokenSubject.asObservable();
-    TokenService.resetToken = TokenService.resetTokenSubject.asObservable();
-    TokenService.user = TokenService.userSubject.asObservable();
-  }
+  constructor() {}
 
   setToken(token: string | null) {
-    TokenService.tokenSubject.next(token);
+    localStorage.setItem('token', token!);
   }
 
   setResetToken(token: string | null) {
-    TokenService.resetTokenSubject.next(token);
+    localStorage.setItem('resetToken', token!);
   }
 
   setUser(user: any | null) {
-    console.log(user);
-    TokenService.userSubject.next(user);
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   getToken(): string | null {
-    return TokenService.tokenSubject.getValue();
+    return localStorage.getItem('token');
   }
 
   getResetToken(): string | null {
-    return TokenService.resetTokenSubject.getValue();
+    return localStorage.getItem('resetToken');
   }
 
   getUser(): any | null {
-    return TokenService.userSubject.getValue();
+    let user = localStorage.getItem('user');
+    return JSON.parse(user!);
   }
 }

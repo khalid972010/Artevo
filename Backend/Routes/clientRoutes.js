@@ -94,4 +94,20 @@ router.delete(
 );
 //#endregion
 
+//#region Like Post
+router.post(
+  "/like/:id",
+  clientMiddleware.verifyTokenAndGetUserData,
+  clientController.likePortfolioPost
+);
+//#endregion
+
+//#region unfollow Freelancer
+router.post(
+  "/unlike/:id",
+  clientMiddleware.verifyTokenAndGetUserData,
+  clientController.unlikePortfolioPost
+);
+//#endregion
+
 module.exports = router;
