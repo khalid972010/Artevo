@@ -43,6 +43,7 @@ header i {
   justify-content: center;
   flex-direction: column;
   background-color: #e4dcd1;
+  height: inherit;
 }
 
 .photo {
@@ -255,7 +256,7 @@ header i {
   transition: all 0.15s ease-in-out;
 }
 
-.radio-inputs .radio input:checked + .name {
+.radio-inputs .radio input:checked+.name {
   background-color: #86604f;
   font-weight: 600;
 }
@@ -334,13 +335,16 @@ header i {
   padding-bottom: 20px;
   border-bottom: 1px solid #ededed;
   font-family: "Montserrat", sans-serif;
-  display: flex; /* Use flexbox to align items horizontally */
+  display: flex;
+  /* Use flexbox to align items horizontally */
 }
 
 .stat {
-  flex: 1; /* Each stat item will take equal space */
+  flex: 1;
+  /* Each stat item will take equal space */
   text-align: center;
-  padding: 0 10px; /* Adjust spacing */
+  padding: 0 10px;
+  /* Adjust spacing */
 }
 
 .number-stat {
@@ -358,6 +362,7 @@ header i {
   font-size: 10pt;
   color: grey;
 }
+
 /*edit button--------------------------------*/
 button {
   position: relative;
@@ -508,4 +513,26 @@ button:hover .star-6 {
 
 .fil0 {
   fill: #fffdef;
+}
+
+.status-rejected,
+.status-pending,
+.status-accepted {
+  color: white;
+  padding: 5px 20px;
+  border-radius: 20px;
+  width: 120px;
+  text-align: center;
+}
+
+.status-rejected {
+  background-color: red;
+}
+
+.status-pending {
+  background-color: blue;
+}
+
+.status-accepted {
+  background-color: green;
 }
