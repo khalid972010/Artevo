@@ -278,7 +278,7 @@ const removeReview = async (request, response) => {
 
 const likePortfolioPost = async (request, response) => {
   let client = request.body.client;
-  const postID = request.body.id;
+  const postID = request.params.id;
   if (!postID) {
     return response.status(400).json("Invalid post ID!");
   }
@@ -293,7 +293,7 @@ const likePortfolioPost = async (request, response) => {
 };
 const unlikePortfolioPost = async (request, response) => {
   let client = request.body.client;
-  const postID = request.body.id;
+  const postID = request.params.id;
   if (!postID) {
     return response.status(400).json("Invalid post ID!");
   }

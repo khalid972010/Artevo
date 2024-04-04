@@ -26,4 +26,18 @@ export class ClientService {
 
     return this.http.post(url, {}, { headers: headers });
   }
+
+  likePost(token: string, postID: string) {
+    const url = this.DB_URL + 'like/' + postID;
+    const headers = new HttpHeaders().set('x-auth-token', token);
+
+    return this.http.post(url, {}, { headers: headers });
+  }
+
+  unlikePost(token: string, postID: string) {
+    const url = this.DB_URL + 'unlike/' + postID;
+    const headers = new HttpHeaders().set('x-auth-token', token);
+
+    return this.http.post(url, {}, { headers: headers });
+  }
 }

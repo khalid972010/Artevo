@@ -20,7 +20,8 @@ export class ImageModalComponent implements OnInit {
   token: any;
   client: any;
   followText: string = 'follow';
-  following = false;
+  isFollowing = false;
+  isLiked = false;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: { portfolio: any },
@@ -34,7 +35,7 @@ export class ImageModalComponent implements OnInit {
     this.initializeClientAndToken();
     this.getFreelancerData();
     this.checkIfClientFollowsFreelancer();
-    console.log(this.client);
+    this.checkIfClientLikesPost();
   }
 
   closeModal(): void {
@@ -58,7 +59,6 @@ export class ImageModalComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.freelancer = data.data;
-          console.log(this.freelancer);
         },
         error: (error) => {
           alert(error);
@@ -66,26 +66,41 @@ export class ImageModalComponent implements OnInit {
       });
   }
   checkIfClientFollowsFreelancer() {
-    console.log(this.client);
-
     if (this.client.following.includes(this.data.portfolio.ownerID)) {
-      this.following = true;
+      this.isFollowing = true;
       this.followText = 'unfollow';
     }
   }
 
+  checkIfClientLikesPost() {
+    console.log(this.data.portfolio._id);
+
+    if (this.data.portfolio.likes?.includes(this.client._id)) {
+      this.isLiked = true;
+    } else {
+      this.isLiked = false;
+    }
+  }
+
   checkFollowing(freelancerID: string) {
-    if (this.following == true) {
+    if (this.isFollowing == true) {
       this.unfollowFreelancer(this.data.portfolio.ownerID);
     } else {
       this.followFreelancer(this.data.portfolio.ownerID);
+    }
+  }
+  checkLikes() {
+    if (this.isLiked) {
+      this.likePost(this.data.portfolio._id);
+    } else {
+      this.unlikePost(this.data.portfolio._id);
     }
   }
 
   followFreelancer(freelancerID: string) {
     this.clientService.followFreelancer(this.token, freelancerID).subscribe({
       next: () => {
-        this.following = true;
+        this.isFollowing = true;
         this.followText = 'unfollow';
         this.client.following.push(freelancerID);
         localStorage.setItem('user', JSON.stringify(this.client));
@@ -98,7 +113,7 @@ export class ImageModalComponent implements OnInit {
   unfollowFreelancer(freelancerID: string) {
     this.clientService.unfollowFreelancer(this.token, freelancerID).subscribe({
       next: () => {
-        this.following = false;
+        this.isFollowing = false;
         this.followText = 'follow';
         let index = this.client.following.indexOf(freelancerID);
 
@@ -107,6 +122,28 @@ export class ImageModalComponent implements OnInit {
         }
 
         localStorage.setItem('user', JSON.stringify(this.client));
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  likePost(postID: string) {
+    this.clientService.likePost(this.token, postID).subscribe({
+      next: () => {
+        this.isLiked = true;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  unlikePost(postID: string) {
+    this.clientService.unlikePost(this.token, postID).subscribe({
+      next: () => {
+        this.isLiked = false;
       },
       error: (err) => {
         console.log(err);

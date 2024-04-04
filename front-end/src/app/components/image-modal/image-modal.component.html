@@ -33,7 +33,7 @@
         >
       </div>
       <!--Button-->
-      <label class="container buttonLove col-1">
+      <label class="container buttonLove col-1" (click)="checkLikes()">
         <input checked="checked" type="checkbox" />
         <div class="checkmark">
           <svg viewBox="0 0 256 256">
@@ -47,6 +47,8 @@
           </svg>
         </div>
       </label>
+
+      <p>{{ this.data.portfolio.likesCount }}</p>
       <!--Button-->
     </div>
     <div
