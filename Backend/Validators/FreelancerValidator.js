@@ -18,21 +18,24 @@ const freelancerSchema = {
       type: "string",
     },
     bookingOrder: {
-      type: "object",
-      properties: {
+      type: "array",
+      items: {
+        type: "object",
+        properties:{
         clientID: { type: "number" }, // Corrected "Number" to "number"
 
-        status: { type: "string", enum: ["Accepted", "Pending", "Rejected"] },
-      },
-      required: ["clientID", "status"],
+        status: { type: "string", enum: ["Accepted", "Pending", "Rejected"] }
+      }
+      }
+     // required: ["clientID", "status"],
     },
     followers: {
       type: "array",
-      items: { type: "number" },
+      items: { type: "string" },
     },
     following: {
       type: "array",
-      items: { type: "number" },
+      items: { type: "string" },
     },
     links: {
       type: "array",

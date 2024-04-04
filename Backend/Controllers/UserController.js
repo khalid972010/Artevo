@@ -42,35 +42,47 @@ const UpdateProfile = async (req, res) => {
   try {
     let user = req.body.user;
     let type = req.body.type;
-    let newUser = Object.assign(user, req.body);
+   var result;
 
-    if (type == "Client" && ClientValidator(newUser)) {
-      const result = await Clients.updateOne(
-        { _id: user._id },
-        { $set: req.body }
+    if (type == "Client" ) {
+       result = await Clients.find(
+        { _id: user._id }
       );
+      let newUser = Object.assign(result, req.body.user);
+      if (!ClientValidator(newUser)) {
+        return res.status(400).json({
+          message:
+            ClientValidator.errors[0].instancePath.substring(1) +
+            " " +
+            ClientValidator.errors[0].message,
+        });
+      }
+    // let newUser = Object.assign(result, req.body.user);
+      await Clients.findByIdAndUpdate(user._id, { $set: newUser });
 
       return res.status(200).json({ message: "Updated Successfully!" });
-    } else if (!ClientValidator(newUser)) {
-      return res.status(400).json({
-        message:
-          ClientValidator.errors[0].instancePath.substring(1) +
-          " " +
-          ClientValidator.errors[0].message,
-      });
-    }
+    } 
 
-    if (type == "Freelancer" && freelancerValidator(newUser)) {
-      await Freelancers.findByIdAndUpdate(user._id, { $set: req.body });
+
+
+    if (type == "Freelancer" ) {
+      result = await Freelancers.findById(user._id);
+      let newUser = Object.assign(result, req.body.user);
+      console.log(newUser);
+      if (!freelancerValidator(newUser)) {
+        return res.json({
+          message:
+            freelancerValidator.errors[0].instancePath.substring(1) +
+            " " +
+            freelancerValidator.errors[0].message,
+        });
+      }
+     
+      await Freelancers.findByIdAndUpdate(user._id, { $set: newUser });
       return res.status(200).json({ message: "Updated Successfully!" });
-    } else if (!freelancerValidator(newUser)) {
-      return res.json({
-        message:
-          freelancerValidator.errors[0].instancePath.substring(1) +
-          " " +
-          freelancerValidator.errors[0].message,
-      });
-    }
+    }  
+
+
   } catch (error) {
     return res.status(404).json({ message: "Failed to get user!" });
   }

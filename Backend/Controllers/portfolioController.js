@@ -62,6 +62,24 @@ const removePortfolio = async (req, res) => {
   }
 };
 
+ const OwnerPortfolio =async (req,res)=>{
+  const ownerID = req.body.ownerID;
+  try {
+    console.log(ownerID);
+    let portfolio = await portfolioModel.find({ownerID:ownerID});
+    console.log(portfolio);
+    if (!portfolio) {
+      return res.status(404).json({ message: "owner has no posted work yet!" });
+    }
+    return res.status(200).json(portfolio);
+    }
+  catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+
+ } 
+
 const Like = async (req, res) => {
   const portfolioId = req.body.portfolioId;
   const userId = req.body.userId;
@@ -156,5 +174,8 @@ module.exports = {
   removePortfolio,
   Like,
   findPortfolioByCategory,
-  filter
+  filter,
+  OwnerPortfolio
+  
+
 };

@@ -18,14 +18,14 @@ import { FreelancerService } from '../../services/freelancer.service';
 export class FilterListComponent {
   selectedPortfolioTechnologies: string[] = [];
   selectedFreelancerLocation:String="";
-  selectedFreelancerJopTitle:String="";
+  selectedFreelancerJobTitle:String="";
   selectedFreelancerBudget: { max: Number, min: Number } = { max: 1000, min: 0 };
 
     ShowPortfolioTechnology: boolean = false;
   PortfolioFilter: boolean = false;
   FreelancersFilter: boolean = false;
   ShowBudget: boolean = false;
-  ShowFreelancerJopTitle = false;
+  ShowFreelancerJobTitle = false;
   ShowFreelancerLocation = false;
   showFilterOptions: boolean = false;
   selectedLocation = '';
@@ -51,8 +51,8 @@ export class FilterListComponent {
   toggleShowBudget() {
     this.ShowBudget = !this.ShowBudget;
   }
-  toggleShowFreelancerJopTitle() {
-    this.ShowFreelancerJopTitle = !this.ShowFreelancerJopTitle;
+  toggleShowFreelancerJobTitle() {
+    this.ShowFreelancerJobTitle = !this.ShowFreelancerJobTitle;
   }
   toggleShowFreelancerLocation() {
     this.ShowFreelancerLocation = !this.ShowFreelancerLocation;
@@ -67,7 +67,7 @@ export class FilterListComponent {
     // Reset selected location to default
     this.selectedLocation = '';
     this.selectedPortfolioTechnologies=[];
-    this.selectedFreelancerJopTitle="";
+    this.selectedFreelancerJobTitle="";
     // Reset other filter options to default state
     // (including hiding options, unchecking radio buttons, etc.)
   }
@@ -85,9 +85,9 @@ export class FilterListComponent {
     console.log(this.selectedPortfolioTechnologies);
     this.Portfoliofilter();
   }
-  updateSelectedFreelancerJopTitle(JopTitle:string) {
-    this.selectedFreelancerJopTitle = JopTitle;
-    console.log(this.selectedFreelancerJopTitle);
+  updateSelectedFreelancerJobTitle(JobTitle:string) {
+    this.selectedFreelancerJobTitle = JobTitle;
+    console.log(this.selectedFreelancerJobTitle);
     this.Freelancerfilter();
   }
   updateSelectedbudget(x: Number, y: Number) {
@@ -113,7 +113,7 @@ export class FilterListComponent {
 
   Freelancerfilter() {
 
-    this.freelancerService.filter(this.selectedFreelancerBudget,this.selectedFreelancerJopTitle,this.selectedFreelancerLocation).subscribe(
+    this.freelancerService.filter(this.selectedFreelancerBudget,this.selectedFreelancerJobTitle,this.selectedFreelancerLocation).subscribe(
       (res) => {
         console.log("res")
         console.log(res);

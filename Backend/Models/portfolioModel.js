@@ -9,6 +9,7 @@ let portfolioSchema = new mongoose.Schema(
   {
     date: String,
     owner: String,
+    ownerID:String,
     photos: [String],
     description: String,
     likesCount: Number,
