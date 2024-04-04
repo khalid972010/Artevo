@@ -43,7 +43,7 @@ const ClientSchema = {
     isVerified: { type: "boolean", default: false },
     resetToken: { type: "string" },
   },
-  required: ["fullName", "userName", "password", "userType", "email"],
+    required: ["fullName", "userName", "password", "userType", "email"],
   additionalProperties: true,
 };
 

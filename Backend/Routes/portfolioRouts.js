@@ -18,5 +18,7 @@ router.delete("/", portfolioController.removePortfolio);
 
 router.post("/Like", portfolioController.Like);
 router.post("/filter", portfolioController.filter);
+router.get("/OwnerPortfolio", portfolioController.OwnerPortfolio);
+
 //export
 module.exports = router;
