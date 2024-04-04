@@ -29,6 +29,9 @@ export class AuthService {
           const statusCode = response.status;
           const responseBody = response.body;
           const token = response.headers.get('x-auth-token');
+          console.log(statusCode);
+          console.log(responseBody);
+          console.log(token);
 
           if (statusCode === 200 && responseBody && token) {
             this.tokenService.setToken(token);

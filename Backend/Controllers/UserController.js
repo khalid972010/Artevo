@@ -42,12 +42,10 @@ const UpdateProfile = async (req, res) => {
   try {
     let user = req.body.user;
     let type = req.body.type;
-   var result;
+    var result;
 
-    if (type == "Client" ) {
-       result = await Clients.find(
-        { _id: user._id }
-      );
+    if (type == "Client") {
+      result = await Clients.find({ _id: user._id });
       let newUser = Object.assign(result, req.body.user);
       if (!ClientValidator(newUser)) {
         return res.status(400).json({
@@ -57,15 +55,13 @@ const UpdateProfile = async (req, res) => {
             ClientValidator.errors[0].message,
         });
       }
-    // let newUser = Object.assign(result, req.body.user);
+      // let newUser = Object.assign(result, req.body.user);
       await Clients.findByIdAndUpdate(user._id, { $set: newUser });
 
       return res.status(200).json({ message: "Updated Successfully!" });
-    } 
+    }
 
-
-
-    if (type == "Freelancer" ) {
+    if (type == "Freelancer") {
       result = await Freelancers.findById(user._id);
       let newUser = Object.assign(result, req.body.user);
       console.log(newUser);
@@ -77,12 +73,10 @@ const UpdateProfile = async (req, res) => {
             freelancerValidator.errors[0].message,
         });
       }
-     
+
       await Freelancers.findByIdAndUpdate(user._id, { $set: newUser });
       return res.status(200).json({ message: "Updated Successfully!" });
-    }  
-
-
+    }
   } catch (error) {
     return res.status(404).json({ message: "Failed to get user!" });
   }
@@ -279,7 +273,8 @@ async function loginUser(req, res) {
     { expiresIn: "7d" }
   );
 
-  const userData = { user: foundEmail, token: accessToken };
+  const userData = { user: foundEmail };
+  res.header("x-auth-token", accessToken);
   return res.status(200).json(userData);
 }
 

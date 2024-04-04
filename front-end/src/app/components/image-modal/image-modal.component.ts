@@ -50,6 +50,8 @@ export class ImageModalComponent implements OnInit {
   initializeClientAndToken() {
     this.client = this.userToken.getUser();
     this.token = this.userToken.getToken();
+    console.log(this.token);
+    console.log(this.client);
   }
 
   getFreelancerData() {
