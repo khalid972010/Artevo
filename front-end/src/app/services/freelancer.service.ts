@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class FreelancerService {
-  private DB_URL = "https://angularproject-rokp.onrender.com/api/Freelancer";
+  private DB_URL = 'https://angularproject-rokp.onrender.com/api/Freelancer';
 
   constructor(private http: HttpClient) {}
   getAllFreelancers() {
@@ -15,11 +15,22 @@ export class FreelancerService {
   searchFreelancers(fullName: string) {
     return this.http.get(this.DB_URL + '/search', { params: { fullName } });
   }
-  filter(Budget:{ max: Number, min: Number } ,JopTitle:String,Location:String) {
+  filter(
+    Budget: { max: Number; min: Number },
+    JopTitle: String,
+    Location: String
+  ) {
+    var res = this.http.post(this.DB_URL + '/filter', {
+      Location: Location,
+      budget: Budget,
+      JopTitle: JopTitle,
+    });
 
-     var res= this.http.post(this.DB_URL+'/filter', {  Location:Location, budget:Budget ,JopTitle: JopTitle });
-
-     return res;
+    return res;
+  }
+  getFreelancerByID(freelancerID: any) {
+    const url = this.DB_URL + '/' + freelancerID;
+    return this.http.get<any>(url);
   }
 }
 

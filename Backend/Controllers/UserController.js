@@ -245,9 +245,12 @@ async function loginUser(req, res) {
   let foundClientEmail = await Clients.findOne({ email });
   let foundFreelancerEmail = await Freelancers.findOne({ email });
   let foundAdmin = await Admins.findOne({ email });
+
   if (foundAdmin) {
-    return res.status(200).json("Login Successfully");
+    const adminData = { user: foundAdmin, token: accessToken };
+    return res.status(200).json(adminData);
   }
+
   if (!foundClientEmail && !foundFreelancerEmail)
     return res.status(400).json("invalid email or password");
 
@@ -257,13 +260,15 @@ async function loginUser(req, res) {
   if (!isCorrectPass) return res.status(400).json("invalid email or password");
   if (!foundEmail.isVerified)
     return res.status(400).json("Please activate your account");
+
   const accessToken = jwt.sign(
     { id: foundEmail.id, type: foundEmail.userType },
     "artlance",
     { expiresIn: "7d" }
   );
-  res.header("x-auth-token", accessToken);
-  return res.status(200).json("Login Successfully");
+
+  const userData = { user: foundEmail, token: accessToken };
+  return res.status(200).json(userData);
 }
 
 let findUserByMail = async (request, response) => {

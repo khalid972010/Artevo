@@ -7,19 +7,23 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PortfolioService } from '../../services/portfolio.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FreelancerService } from '../../services/freelancer.service';
 
 @Component({
   selector: 'app-portfolio',
   standalone: true,
   imports: [RouterModule, CommonModule, HttpClientModule],
-  providers: [PortfolioService],
+  providers: [PortfolioService, FreelancerService],
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.css',
 })
 export class PortfolioComponent implements OnInit {
+  freelancer: any;
+
   constructor(
     private dialog: MatDialog,
-    private portfolioService: PortfolioService
+    private portfolioService: PortfolioService,
+    private freelancerService: FreelancerService
   ) {}
   ngOnInit() {
     if (this.portfolio.likes.includes('660091b08b6161e112617698')) {
@@ -33,9 +37,9 @@ export class PortfolioComponent implements OnInit {
   @Input() portfolio: any;
   LikeText: any;
   IsLike: boolean = false;
-  openImageModal(imageUrl: string, freelancer: any): void {
+  openImageModal(portfolio: any): void {
     const dialogRef = this.dialog.open(ImageModalComponent, {
-      data: { imageUrl, freelancer },
+      data: { portfolio },
     });
   }
 

@@ -69,7 +69,6 @@ p {
 
 /*newCard------------------------------------------------------------------------------------*/
 
-
 *,
 *::before,
 *::after {
@@ -127,7 +126,7 @@ img {
   font-size: 0.75rem;
 }
 
-.tag+.tag {
+.tag + .tag {
   margin-left: 0.5em;
 }
 
@@ -169,7 +168,7 @@ img {
   border-radius: 50%;
 }
 
-.user__info>small {
+.user__info > small {
   color: #666;
 }
 
@@ -255,14 +254,16 @@ img {
   fill: var(--icon-hover-color);
 }
 
-.ui-like input:checked+.like::after {
-  -webkit-animation: circles var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  animation: circles var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+.ui-like input:checked + .like::after {
+  -webkit-animation: circles var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circles var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   -webkit-animation-delay: var(--icon-anmt-duration);
   animation-delay: var(--icon-anmt-duration);
 }
 
-.ui-like input:checked+.like {
+.ui-like input:checked + .like {
   fill: var(--icon-primary-color);
   -webkit-animation: like var(--icon-anmt-duration) forwards;
   animation: like var(--icon-anmt-duration) forwards;
@@ -271,9 +272,11 @@ img {
   transition-delay: 0.3s;
 }
 
-.ui-like input:checked+.like::before {
-  -webkit-animation: circle var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  animation: circle var(--icon-anmt-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+.ui-like input:checked + .like::before {
+  -webkit-animation: circle var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: circle var(--icon-anmt-duration)
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   -webkit-animation-delay: var(--icon-anmt-duration);
   animation-delay: var(--icon-anmt-duration);
 }
@@ -413,7 +416,6 @@ img {
   max-height: 70%;
 } */
 
-
 /* The switch - the box around the slider */
 .comment-react {
   margin: 0;
@@ -425,7 +427,6 @@ img {
   scale: 1.5;
   width: 100px;
 }
-
 
 .comment-react button {
   width: 15px;
@@ -529,12 +530,12 @@ img {
   animation: dislike_effect 400ms ease;
 }
 
-.container input:checked~.checkmark path {
-  fill: #FF5353;
+.container input:checked ~ .checkmark path {
+  fill: #ff5353;
   stroke-width: 0;
 }
 
-.container input:checked~.checkmark {
+.container input:checked ~ .checkmark {
   animation: like_effect 400ms ease;
 }
 
@@ -542,6 +543,13 @@ img {
   transform: scale(1.1);
 }
 
+*:focus {
+  outline: none !important;
+}
+
+* {
+  font-family: "poppins", sans-serif;
+}
 @keyframes like_effect {
   0% {
     transform: scale(0);

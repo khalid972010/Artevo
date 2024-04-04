@@ -23,13 +23,18 @@ export class AuthService {
   loginUser(email: string, password: string): Observable<any> {
     const url = this.DB_URL + 'users/login';
     return this.http
-      .post(url, { email, password }, { observe: 'response' })
+      .post<any>(url, { email, password }, { observe: 'response' })
       .pipe(
         map((response) => {
           const statusCode = response.status;
           const responseBody = response.body;
-          this.token = response.headers.get('x-auth-token');
-          this.tokenService.setToken(this.token);
+          const token = response.headers.get('x-auth-token');
+
+          if (statusCode === 200 && responseBody && token) {
+            this.tokenService.setToken(token);
+            const user = responseBody.user;
+            this.tokenService.setUser(user);
+          }
 
           return { statusCode, responseBody };
         })

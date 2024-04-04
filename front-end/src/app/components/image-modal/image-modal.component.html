@@ -1,3 +1,4 @@
+@if (this.data.portfolio && this.client != null) {
 <div class="image-modal" style="overflow: auto">
   <div class="modal-overlay h-100"></div>
 
@@ -10,14 +11,26 @@
       id="infos"
     >
       <img
-        [src]="data.imageUrl"
+        [src]="this.freelancer.profilePicture"
         style="width: 75px; height: 75px"
         alt="user__image"
         class="user__image col-2 m-2"
       />
       <div class="user__details col-4">
-        <h5><a href="">Salah Zaher</a></h5>
-        <p>salah zaher . <a href="#" id="followLink">Follow</a></p>
+        <h5 class="fs-4 text-light">
+          <a>{{ this.freelancer.fullName }} </a>
+        </h5>
+
+        <p class="small">
+          {{ this.data.portfolio.description }}
+        </p>
+        <a
+          id="followLink"
+          class="small"
+          style="color: lightseagreen"
+          (click)="followFreelancer(this.freelancer._Id)"
+          >Follow</a
+        >
       </div>
       <!--Button-->
       <label class="container buttonLove col-1">
@@ -41,8 +54,10 @@
       (click)="handleModalContentClick($event)"
     >
       <div class="scrollable-image">
-        <img [src]="data.imageUrl" alt="Image" class="h-100" />
+        <img [src]="this.data.portfolio.photos[0]" alt="Image" class="h-100" />
       </div>
     </div>
   </div>
 </div>
+
+}
