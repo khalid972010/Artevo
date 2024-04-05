@@ -18,6 +18,7 @@ import { PortfolioService } from '../../services/portfolio.service';
   providers: [FreelancerService, AuthService, TokenService, ClientService],
 })
 export class ImageModalComponent implements OnInit {
+  portfolio: any;
   freelancer: any;
   token: any;
   client: any;
@@ -32,13 +33,17 @@ export class ImageModalComponent implements OnInit {
     public dialogRef: MatDialogRef<ImageModalComponent>,
     private freelancerService: FreelancerService,
     private userToken: TokenService
-  ) {
+  ) {}
+  ngOnInit(): void {
+    localStorage.setItem('portfolioItem', JSON.stringify(this.data.portfolio));
+    this.portfolio = JSON.parse(localStorage.getItem('portfolioItem') ?? '');
     this.initializeClientAndToken();
     this.getFreelancerData();
     this.checkIfClientFollowsFreelancer();
     this.checkIfClientLikesPost();
+
+    console.log(this.portfolio);
   }
-  ngOnInit(): void {}
 
   closeModal(): void {
     this.dialogRef.close();
@@ -46,7 +51,7 @@ export class ImageModalComponent implements OnInit {
 
   handleModalContentClick(event: Event) {
     if ((event.target as HTMLElement)?.classList.contains('closingModal')) {
-      this.closeModal(); // Call your closeModal function here
+      this.closeModal();
     }
   }
 
@@ -56,19 +61,17 @@ export class ImageModalComponent implements OnInit {
   }
 
   getFreelancerData() {
-    this.freelancerService
-      .getFreelancerByID(this.data.portfolio.ownerID)
-      .subscribe({
-        next: (data) => {
-          this.freelancer = data.data;
-        },
-        error: (error) => {
-          alert(error);
-        },
-      });
+    this.freelancerService.getFreelancerByID(this.portfolio.ownerID).subscribe({
+      next: (data) => {
+        this.freelancer = data.data;
+      },
+      error: (error) => {
+        alert(error);
+      },
+    });
   }
   checkIfClientFollowsFreelancer() {
-    if (this.client.following.includes(this.data.portfolio.ownerID)) {
+    if (this.client.following.includes(this.portfolio.ownerID)) {
       this.isFollowing = true;
       this.followText = 'Unfollow';
     }
@@ -84,9 +87,9 @@ export class ImageModalComponent implements OnInit {
 
   checkFollowing() {
     if (this.isFollowing == true) {
-      this.unfollowFreelancer(this.data.portfolio.ownerID);
+      this.unfollowFreelancer(this.portfolio.ownerID);
     } else {
-      this.followFreelancer(this.data.portfolio.ownerID);
+      this.followFreelancer(this.portfolio.ownerID);
     }
   }
   handleCheckLikes(event: Event) {
@@ -95,9 +98,9 @@ export class ImageModalComponent implements OnInit {
   }
   checkLikes() {
     if (!this.isLiked) {
-      this.likePost(this.data.portfolio._id);
+      this.likePost(this.portfolio._id);
     } else {
-      this.unlikePost(this.data.portfolio._id);
+      this.unlikePost(this.portfolio._id);
     }
   }
 
@@ -137,8 +140,8 @@ export class ImageModalComponent implements OnInit {
     this.clientService.likePost(this.token, postID).subscribe({
       next: () => {
         this.isLiked = true;
-        this.data.portfolio.likes.push(this.client._id);
-        this.data.portfolio.likesCount += 1;
+        this.portfolio.likesCount += 1;
+        this.portfolio.likes.push(this.client._id);
       },
       error: (err) => {
         console.log(err);
@@ -150,12 +153,12 @@ export class ImageModalComponent implements OnInit {
     this.clientService.unlikePost(this.token, postID).subscribe({
       next: () => {
         this.isLiked = false;
-        let index = this.data.portfolio.likes.indexOf(this.client._id);
+        let index = this.portfolio.likes.indexOf(this.client._id);
 
         if (index !== -1) {
-          this.data.portfolio.likes.splice(index, 1);
+          this.portfolio.likes.splice(index, 1);
         }
-        this.data.portfolio.likesCount -= 1;
+        this.portfolio.likesCount -= 1;
       },
       error: (err) => {
         console.log(err);
