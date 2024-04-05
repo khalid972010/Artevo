@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ProfileClientComponent {
   constructor(private router: Router) {}
-  @Input() selectedTab: string = '';
+  @Input() selectedTab: string = 'orders';
 
   addPost() {
     console.log('add post method');
