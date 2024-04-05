@@ -11,6 +11,10 @@ import { HomeComponent } from './components/home/home.component';
 import { TopicsComponent } from './components/topics/topics.component';
 import { NewPasswordComponent } from './components/auth/new-password/new-password.component';
 import { ProfileFreelancerComponent } from './components/profile-freelancer/profile-freelancer.component';
+import { ProfileFreelancerUpdateComponent } from './components/profile-freelancer-update/profile-freelancer-update.component';
+import { ProfileClientUpdate } from './components/profile-client-update/profile-client-update.component';
+import { AddPostComponent } from './components/add-post/add-post.component';
+import { ProfileClientComponent } from './components/profile-client/profile-client.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -24,4 +28,12 @@ export const routes: Routes = [
   { path: 'login/reset/password/:token', component: NewPasswordComponent },
   { path: 'freelancers', component: FreelancerListComponent },
   { path: 'profile/freelancer', component: ProfileFreelancerComponent },
+  { path: 'profile/freelancer/add-post', component: AddPostComponent },
+  { path: 'profile/freelancer/update', component: ProfileFreelancerUpdateComponent },
+  {
+    path: 'profile/freelancer/update',
+    component: ProfileFreelancerUpdateComponent,
+  },
+  { path: 'profile/client/update', component: ProfileClientUpdate },
+  { path: 'profile/client', component: ProfileClientComponent },
 ];
