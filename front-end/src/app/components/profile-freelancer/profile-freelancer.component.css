@@ -603,3 +603,7 @@ button:hover .star-6 {
   background-color: blue;
   color: white;
 }
+
+.pressedText {
+  color: white;
+}

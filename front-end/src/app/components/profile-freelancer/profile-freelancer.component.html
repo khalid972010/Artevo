@@ -244,7 +244,7 @@
 
           <!--Follow button-->
           <div
-            (click)="toggleTooltipColor($event)"
+            (click)="toggleTooltipColor()"
             class="tooltip-container col-2 mt-3"
             *ngIf="!hisProfile"
           >
@@ -257,18 +257,18 @@
                 class="svgIcon"
               >
                 <rect
-                  fill="black"
+                  [attr.fill]="isTooltipActive ? 'white' : 'black'"
                   rx="28.5"
                   height="57"
                   width="57"
                   x="19"
                 ></rect>
                 <path
-                  fill="black"
+                  [attr.fill]="isTooltipActive ? 'white' : 'black'"
                   d="M0 109.5C0 83.2665 21.2665 62 47.5 62V62C73.7335 62 95 83.2665 95 109.5V114H0V109.5Z"
                 ></path>
               </svg>
-              Follow</span
+              {{ isTooltipActive ? "Followed" : "Follow" }}</span
             >
           </div>
         </div>

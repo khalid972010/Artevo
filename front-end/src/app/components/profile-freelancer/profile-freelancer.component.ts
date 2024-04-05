@@ -15,6 +15,7 @@ export class ProfileFreelancerComponent implements OnInit {
   @Input() selectedTab: string = 'posts';
   @Input() hisProfile!: boolean;
   @Input() freelancer!: any;
+  isTooltipActive = false;
 
   NavigateUpdateProfile(event: Event) {
     event.preventDefault();
@@ -25,11 +26,18 @@ export class ProfileFreelancerComponent implements OnInit {
     this.router.navigate(['/profile/freelancer/add-post']);
   }
 
-  toggleTooltipColor(event: Event) {
-   //TODO: Handle Follow Logic
-    const element = event.target as HTMLElement;
+  toggleTooltipColor() {
+    //TODO: Handle Follow Logic
+
+    this.isTooltipActive = !this.isTooltipActive;
     var tooltipElement = document.querySelector('.tooltip-container');
+    var textElement = document.querySelector('.text');
+    var followersElement = document.querySelector('.tooltip');
+    var svgIconElement = document.querySelector('.svgIcon');
     tooltipElement!.classList.toggle('pressed');
+    textElement!.classList.toggle('pressedText');
+    followersElement!.classList.toggle('pressed');
+    svgIconElement!.classList.toggle('pressed');
   }
 
   ngOnInit(): void {
