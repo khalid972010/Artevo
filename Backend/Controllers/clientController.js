@@ -280,34 +280,37 @@ const likePortfolioPost = async (request, response) => {
   let client = request.body.client;
   const postID = request.params.id;
   if (!postID) {
-    return response.status(400).json("Invalid post ID!");
+    return response.status(400).json({ message: "Invalid post ID!" });
   }
 
   let post = await Portfolios.findById(postID);
   if (post.likes.includes(client._id)) {
-    return response.status(400).json("You already like this post!");
+    return response
+      .status(400)
+      .json({ message: "You already like this post!" });
   }
   post.likes.push(client._id);
   post.likesCount += 1;
   await post.save();
-  return response.status(200).json("Post liked!");
+  return response.status(200).json({ message: "Post liked!" });
 };
+
 const unlikePortfolioPost = async (request, response) => {
   let client = request.body.client;
   const postID = request.params.id;
   if (!postID) {
-    return response.status(400).json("Invalid post ID!");
+    return response.status(400).json({ message: "Invalid post ID!" });
   }
 
   let post = await Portfolios.findById(postID);
-  if (post.likes.includes(client._id)) {
-    return response.status(400).json("You don't like this post!");
+  if (!post.likes.includes(client._id)) {
+    return response.status(400).json({ message: "You don't like this post!" });
   }
   let index = post.likes.indexOf(client._id);
   post.likes.splice(index, 1);
   post.likesCount -= 1;
   await post.save();
-  return response.status(200).json("Post unliked!");
+  return response.status(200).json({ message: "Post unliked!" });
 };
 
 module.exports = {

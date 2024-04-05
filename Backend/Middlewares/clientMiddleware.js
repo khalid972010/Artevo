@@ -33,10 +33,12 @@ const verifyTokenAndGetUserData = async (request, response, next) => {
     const token = request.headers["x-auth-token"];
     const decoded = jwt.verify(token, "artlance");
     const client = await Clients.findById(decoded.id);
+
     if (!client) {
       return response.status(400).json({ message: "Invalid client ID!" });
     }
     request.body.client = client;
+
     next();
   } catch (error) {
     throw new Error("Failed to verify token: " + error.message);

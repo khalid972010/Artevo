@@ -21,7 +21,7 @@ export class ImageModalComponent implements OnInit {
   freelancer: any;
   token: any;
   client: any;
-  followText: string = 'follow';
+  followText: string = 'Follow';
   isFollowing = false;
   isLiked = false;
   constructor(
@@ -70,7 +70,7 @@ export class ImageModalComponent implements OnInit {
   checkIfClientFollowsFreelancer() {
     if (this.client.following.includes(this.data.portfolio.ownerID)) {
       this.isFollowing = true;
-      this.followText = 'unfollow';
+      this.followText = 'Unfollow';
     }
   }
 
@@ -95,7 +95,6 @@ export class ImageModalComponent implements OnInit {
   }
   checkLikes() {
     if (!this.isLiked) {
-      console.log('hello');
       this.likePost(this.data.portfolio._id);
     } else {
       this.unlikePost(this.data.portfolio._id);

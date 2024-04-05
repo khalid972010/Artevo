@@ -16,7 +16,7 @@
           [src]="this.freelancer.profilePicture"
           style="width: 75px; height: 75px"
           alt="user__image"
-          class="user__image m-2"
+          class="user__image mx-auto"
         />
       </div>
       <!-- Full Name, Follow Link, Like Button, and Like Count -->
@@ -34,10 +34,10 @@
             >{{ this.followText }}</a
           >
         </div>
-        <div class="col-3 d-flex align-items-center justify-content-end">
+        <div class="d-flex align-items-center justify-content-end">
           <!-- Like Button -->
           <label
-            class="container buttonLove"
+            class="container buttonLove mx-auto"
             (click)="handleCheckLikes($event)"
           >
             <input type="checkbox" [checked]="isLiked" />
@@ -54,7 +54,7 @@
             </div>
           </label>
           <!-- Like Count -->
-          <p class="ms-2">{{ this.data.portfolio.likesCount }}</p>
+          <p class="ms-2 ps-2">{{ this.data.portfolio.likesCount }}</p>
         </div>
       </div>
     </div>

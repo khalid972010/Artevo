@@ -15,7 +15,6 @@ export class PortfolioService {
   getPortfolioById(id: string) {
     return this.http.get<any>(this.DB_URL + '/', { observe: 'response' }).pipe(
       map((response) => {
-        console.log(response);
         const statusCode = response.status;
         const responseBody = response.body;
         return { statusCode, responseBody };
