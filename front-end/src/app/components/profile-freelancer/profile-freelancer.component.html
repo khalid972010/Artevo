@@ -12,7 +12,10 @@
         <p class="info">{{ freelancer.headline }}</p>
         <p class="info">{{ freelancer.email }}</p>
         <!--edit button-->
-        <button *ngIf="hisProfile" (click)="NavigateUpdateProfile($event)">
+        <button
+          *ngIf="hisProfile"
+          (click)="NavigateUpdateFreelancerProfile($event)"
+        >
           Update Profile
           <div class="star-1">
             <svg

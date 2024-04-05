@@ -10,15 +10,31 @@
           <!-- Profile picture image-->
           <img
             class="img-account-profile rounded-circle mb-2"
-            src="http://bootdey.com/img/Content/avatar/avatar1.png"
+            [src]="imageUrl"
             alt=""
+            height="160px"
+            width="160px"
+            style="object-fit: cover"
           />
           <!-- Profile picture help block-->
           <div class="small font-italic text-muted mb-4">
             JPG or PNG no larger than 5 MB
           </div>
           <!-- Profile picture upload button-->
-          <button class="btn btn-primary" id="uploadBtn" type="button">
+          <input
+            type="file"
+            id="uploadInput"
+            accept="image/*"
+            value="Upload Image"
+            (change)="handleFileInput($event)"
+            style="display: none"
+          />
+          <button
+            class="btn btn-primary"
+            type="button"
+            id="uploadBtn"
+            onclick="document.getElementById('uploadInput').click();"
+          >
             Upload new image
           </button>
         </div>
@@ -41,7 +57,7 @@
                 id="inputUsername"
                 type="text"
                 placeholder="Enter your username"
-                value="username"
+                [value]="freelancer.userName"
               />
             </div>
             <!-- Form Row-->
@@ -56,7 +72,7 @@
                   id="inputFirstName"
                   type="text"
                   placeholder="Enter your first name"
-                  value="Valerie"
+                  [value]="freelancer.fullName.split(' ')[0]"
                 />
               </div>
               <!-- Form Group (last name)-->
@@ -67,7 +83,7 @@
                   id="inputLastName"
                   type="text"
                   placeholder="Enter your last name"
-                  value="Luna"
+                  [value]="freelancer.fullName.split(' ')[1]"
                 />
               </div>
             </div>
@@ -81,7 +97,7 @@
                   id="inputPass"
                   type="password"
                   placeholder="Enter your password"
-                  value="1231232123"
+                  value="freelancer.password"
                 />
               </div>
               <!-- Form Group (location)-->
@@ -92,7 +108,7 @@
                   id="inputLocation"
                   type="text"
                   placeholder="Enter your location"
-                  value="San Francisco, CA"
+                  [value]="freelancer.location"
                 />
               </div>
             </div>
@@ -106,7 +122,7 @@
                 id="inputEmailAddress"
                 type="email"
                 placeholder="Enter your email address"
-                value="name@example.com"
+                [value]="freelancer.email"
               />
             </div>
             <!-- Form Row-->
@@ -121,8 +137,7 @@
                   placeholder="Enter your description"
                   style="resize: none; overflow: auto"
                   rows="3"
-                >
-This is my description</textarea
+                  >{{ freelancer.about }}</textarea
                 >
               </div>
             </div>

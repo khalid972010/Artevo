@@ -17,10 +17,11 @@ export class ProfileFreelancerComponent implements OnInit {
   @Input() freelancer!: any;
   isTooltipActive = false;
 
-  NavigateUpdateProfile(event: Event) {
+  NavigateUpdateFreelancerProfile(event: Event) {
     event.preventDefault();
-    this.router.navigate(['/profile/freelancer/update']);
+    this.router.navigate(['/profile/freelancer/update'], { state: {freelancer: this.freelancer } });
   }
+
   NavigateAddPost(event: Event) {
     event.preventDefault();
     this.router.navigate(['/profile/freelancer/add-post']);

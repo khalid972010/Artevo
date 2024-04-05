@@ -18,7 +18,20 @@
             JPG or PNG no larger than 5 MB
           </div>
           <!-- Profile picture upload button-->
-          <button class="btn btn-primary" id="uploadBtn" type="button">
+          <input
+            type="file"
+            id="uploadInput"
+            accept="image/*"
+            value="Upload Image"
+            (change)="handleFileInput($event)"
+            style="display: none"
+          />
+          <button
+            class="btn btn-primary"
+            type="button"
+            id="uploadBtn"
+            onclick="document.getElementById('uploadInput').click();"
+          >
             Upload new image
           </button>
         </div>

@@ -10,7 +10,17 @@
           <!-- Profile picture image-->
           <img
             class="img-account-profile mb-2"
+            *ngIf="imageUrl"
             [src]="imageUrl"
+            alt=""
+            height="200px"
+            width="200px"
+            style="object-fit: cover"
+          />
+          <img
+            class="img-account-profile mb-2"
+            *ngIf="!imageUrl"
+            src="assets/images/Image-not-found.png"
             alt=""
             height="200px"
             width="200px"
