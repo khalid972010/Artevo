@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-freelancer-card',
@@ -8,5 +10,11 @@ import { Component, Input } from '@angular/core';
   styleUrl: './freelancer-card.component.css'
 })
 export class FreelancerCardComponent {
+  constructor(private router:Router){}
   @Input() freelancer: any;
+
+  NavigateFreelancerProfile(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['/profile/freelancer'], { state: { hisProfile: false, freelancer: this.freelancer } });
+  }
 }
