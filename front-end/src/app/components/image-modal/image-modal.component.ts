@@ -6,12 +6,14 @@ import { RouterModule } from '@angular/router';
 import { TokenService } from '../../services/token.service';
 import { ClientService } from '../../services/client.service';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { PortfolioService } from '../../services/portfolio.service';
 
 @Component({
   selector: 'app-image-modal',
   templateUrl: './image-modal.component.html',
   styleUrls: ['./image-modal.component.css'],
-  imports: [HttpClientModule, RouterModule],
+  imports: [HttpClientModule, RouterModule, CommonModule],
   standalone: true,
   providers: [FreelancerService, AuthService, TokenService, ClientService],
 })
@@ -23,20 +25,20 @@ export class ImageModalComponent implements OnInit {
   isFollowing = false;
   isLiked = false;
   constructor(
+    @Inject(ClientService) private clientService: ClientService,
+
     @Inject(MAT_DIALOG_DATA)
     public data: { portfolio: any },
     public dialogRef: MatDialogRef<ImageModalComponent>,
-    private authService: AuthService,
     private freelancerService: FreelancerService,
-    private userToken: TokenService,
-    private clientService: ClientService
-  ) {}
-  ngOnInit(): void {
+    private userToken: TokenService
+  ) {
     this.initializeClientAndToken();
     this.getFreelancerData();
     this.checkIfClientFollowsFreelancer();
     this.checkIfClientLikesPost();
   }
+  ngOnInit(): void {}
 
   closeModal(): void {
     this.dialogRef.close();
@@ -73,8 +75,6 @@ export class ImageModalComponent implements OnInit {
   }
 
   checkIfClientLikesPost() {
-    console.log(this.data.portfolio._id);
-
     if (this.data.portfolio.likes?.includes(this.client._id)) {
       this.isLiked = true;
     } else {
@@ -82,15 +82,20 @@ export class ImageModalComponent implements OnInit {
     }
   }
 
-  checkFollowing(freelancerID: string) {
+  checkFollowing() {
     if (this.isFollowing == true) {
       this.unfollowFreelancer(this.data.portfolio.ownerID);
     } else {
       this.followFreelancer(this.data.portfolio.ownerID);
     }
   }
+  handleCheckLikes(event: Event) {
+    event.preventDefault();
+    this.checkLikes();
+  }
   checkLikes() {
-    if (this.isLiked) {
+    if (!this.isLiked) {
+      console.log('hello');
       this.likePost(this.data.portfolio._id);
     } else {
       this.unlikePost(this.data.portfolio._id);
@@ -133,6 +138,8 @@ export class ImageModalComponent implements OnInit {
     this.clientService.likePost(this.token, postID).subscribe({
       next: () => {
         this.isLiked = true;
+        this.data.portfolio.likes.push(this.client._id);
+        this.data.portfolio.likesCount += 1;
       },
       error: (err) => {
         console.log(err);
@@ -144,6 +151,12 @@ export class ImageModalComponent implements OnInit {
     this.clientService.unlikePost(this.token, postID).subscribe({
       next: () => {
         this.isLiked = false;
+        let index = this.data.portfolio.likes.indexOf(this.client._id);
+
+        if (index !== -1) {
+          this.data.portfolio.likes.splice(index, 1);
+        }
+        this.data.portfolio.likesCount -= 1;
       },
       error: (err) => {
         console.log(err);

@@ -21,6 +21,15 @@ const getAllPortfolios = async (req, res) => {
 
   return res.status(200).json({ data: portfolios });
 };
+
+const getPortfolioByID = async (request, response) => {
+  const id = request.params.id;
+  let portfolio = await portfolioModel.findById(id);
+  if (!id || !portfolio) {
+    return response.status(400).json("Invalid id!");
+  }
+  return response.status(200).json(portfolio);
+};
 //2-add new portfolio
 const addPortfolio = async (req, res) => {
   let newPortfolio = req.body;
@@ -62,23 +71,21 @@ const removePortfolio = async (req, res) => {
   }
 };
 
- const OwnerPortfolio =async (req,res)=>{
+const OwnerPortfolio = async (req, res) => {
   const ownerID = req.body.ownerID;
   try {
     console.log(ownerID);
-    let portfolio = await portfolioModel.find({ownerID:ownerID});
+    let portfolio = await portfolioModel.find({ ownerID: ownerID });
     console.log(portfolio);
     if (!portfolio) {
       return res.status(404).json({ message: "owner has no posted work yet!" });
     }
     return res.status(200).json(portfolio);
-    }
-  catch (error) {
+  } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
-
- } 
+};
 
 const Like = async (req, res) => {
   const portfolioId = req.body.portfolioId;
@@ -129,13 +136,13 @@ const filter = async (req, res) => {
   console.log(req.body.technologies);
   try {
     if (technologies && technologies.length > 0) {
-      filteredPortfolio = filteredPortfolio.filter(item => {
-        return item.technologies.some(tech => technologies.includes(tech));
+      filteredPortfolio = filteredPortfolio.filter((item) => {
+        return item.technologies.some((tech) => technologies.includes(tech));
       });
     }
     return res.json(filteredPortfolio);
   } catch (error) {
-    return res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -170,12 +177,11 @@ const filter = async (req, res) => {
 //export..
 module.exports = {
   getAllPortfolios,
+  getPortfolioByID,
   addPortfolio,
   removePortfolio,
   Like,
   findPortfolioByCategory,
   filter,
-  OwnerPortfolio
-  
-
+  OwnerPortfolio,
 };
