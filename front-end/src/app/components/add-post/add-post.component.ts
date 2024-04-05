@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-add-post',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './add-post.component.html',
   styleUrl: './add-post.component.css'
 })

@@ -1,18 +1,21 @@
 <div class="container-fluid p-0" style="margin-top: 80px">
   <header>
-    <img src="assets/images/about_us.jpg" />
+    <img [src]="freelancer.coverPicture" />
   </header>
   <div class="main-content">
     <div class="row container-fluid m-0 p-0 align-items-start h-100">
       <div class="left col-lg-4 h-100">
         <div class="photo-left">
-          <img class="photo" src="assets/images/about-pic.webp" />
+          <img class="photo" [src]="freelancer.profilePicture" />
         </div>
-        <h4 class="name">Jane Doe</h4>
-        <p class="info">UI/UX Designer</p>
-        <p class="info">jane.doegmail.com</p>
-        <!--edit butoon-->
-        <button (click)="NavigateUpdateProfile($event)">
+        <h4 class="name">{{ freelancer.fullName }}</h4>
+        <p class="info">{{ freelancer.headline }}</p>
+        <p class="info">{{ freelancer.email }}</p>
+        <!--edit button-->
+        <button
+          *ngIf="hisProfile"
+          (click)="NavigateUpdateFreelancerProfile($event)"
+        >
           Update Profile
           <div class="star-1">
             <svg
@@ -165,15 +168,15 @@
             </svg>
           </div>
         </button>
-        <!--edit butoon-->
+        <!--edit button-->
         <!--about section-->
         <div class="stats row">
           <div class="stat col-xs-4">
-            <p class="number-stat">3,619</p>
+            <p class="number-stat">{{ freelancer.followers.length }}</p>
             <p class="desc-stat">Followers</p>
           </div>
           <div class="stat col-xs-4">
-            <p class="number-stat">42</p>
+            <p class="number-stat">{{ freelancer.following.length }}</p>
             <p class="desc-stat">Following</p>
           </div>
           <div class="stat col-xs-4">
@@ -181,10 +184,7 @@
             <p class="desc-stat">Uploads</p>
           </div>
         </div>
-        <p class="desc">
-          Hi ! My name is Jane Doe. I'm a UI/UX Designer from Paris, in France.
-          I really enjoy photography and mazen.
-        </p>
+        <p class="desc">{{ freelancer.about }}</p>
         <div class="social">
           <i class="fa fa-facebook-square" aria-hidden="true"></i>
           <i class="fa fa-twitter-square" aria-hidden="true"></i>
@@ -207,7 +207,7 @@
               />
               <span class="name">Posts</span>
             </label>
-            <label class="radio">
+            <label class="radio" *ngIf="hisProfile">
               <input
                 [(ngModel)]="selectedTab"
                 value="orders"
@@ -219,8 +219,8 @@
           </div>
 
           <!--button add post end -------------------->
-
           <button
+            *ngIf="hisProfile"
             type="button"
             class="button"
             (click)="NavigateAddPost($event)"
@@ -244,6 +244,36 @@
               </svg>
             </span>
           </button>
+
+          <!--Follow button-->
+          <div
+            (click)="toggleTooltipColor()"
+            class="tooltip-container col-2 mt-3"
+            *ngIf="!hisProfile"
+          >
+            <span class="tooltip">{{ freelancer.followers.length }}</span>
+            <span class="text">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 95 114"
+                class="svgIcon"
+              >
+                <rect
+                  [attr.fill]="isTooltipActive ? 'white' : 'black'"
+                  rx="28.5"
+                  height="57"
+                  width="57"
+                  x="19"
+                ></rect>
+                <path
+                  [attr.fill]="isTooltipActive ? 'white' : 'black'"
+                  d="M0 109.5C0 83.2665 21.2665 62 47.5 62V62C73.7335 62 95 83.2665 95 109.5V114H0V109.5Z"
+                ></path>
+              </svg>
+              {{ isTooltipActive ? "Followed" : "Follow" }}</span
+            >
+          </div>
         </div>
         <!--content below buttons-->
         <div class="container" *ngIf="selectedTab === 'orders'">
@@ -251,7 +281,7 @@
             <thead>
               <tr>
                 <th>Image</th>
-                <th>Owner</th>
+                <th>Client</th>
                 <th>Status</th>
                 <th>Price</th>
               </tr>

@@ -15,7 +15,10 @@
       class="rounded-circle"
     />
   </div>
-  <a href="#" style="text-decoration: none"
+  <a
+    href="#"
+    (click)="NavigateFreelancerProfile($event)"
+    style="text-decoration: none"
     ><div class="card__title">{{ freelancer.fullName }}</div></a
   >
   <div class="card__subtitle">{{ freelancer.headLine }}</div>
