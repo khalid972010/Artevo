@@ -220,7 +220,11 @@
 
           <!--button add post end -------------------->
 
-          <button type="button" class="button" (click)="addPost()">
+          <button
+            type="button"
+            class="button"
+            (click)="NavigateAddPost($event)"
+          >
             <span class="button__text">Add Post</span>
             <span class="button__icon"
               ><svg

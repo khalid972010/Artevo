@@ -21,4 +21,8 @@ export class ProfileFreelancerComponent {
     event.preventDefault();
     this.router.navigate(['/profile/freelancer/update']);
   }
+  NavigateAddPost(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['/profile/freelancer/add-post']);
+  }
 }
