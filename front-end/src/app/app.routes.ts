@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TopicsComponent } from './components/topics/topics.component';
 import { NewPasswordComponent } from './components/auth/new-password/new-password.component';
 import { ProfileFreelancerComponent } from './components/profile-freelancer/profile-freelancer.component';
+import { ProfileFreelancerUpdateComponent } from './components/profile-freelancer-update/profile-freelancer-update.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -24,4 +25,5 @@ export const routes: Routes = [
   { path: 'login/reset/password/:token', component: NewPasswordComponent },
   { path: 'freelancers', component: FreelancerListComponent },
   { path: 'profile/freelancer', component: ProfileFreelancerComponent },
+  { path: 'profile/freelancer/update', component: ProfileFreelancerUpdateComponent },
 ];
