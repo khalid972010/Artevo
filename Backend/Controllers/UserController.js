@@ -253,7 +253,7 @@ async function loginUser(req, res) {
   let foundAdmin = await Admins.findOne({ email });
 
   if (foundAdmin) {
-    const adminData = { user: foundAdmin, token: accessToken };
+    const adminData = { user: foundAdmin, type: "Admin" };
     return res.status(200).json(adminData);
   }
 

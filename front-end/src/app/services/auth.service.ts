@@ -7,7 +7,7 @@ import { TokenService } from './token.service';
   providedIn: 'root',
 })
 export class AuthService {
-  DB_URL = 'https://angularproject-rokp.onrender.com/api/';
+  DB_URL = 'http://localhost:7010/api/';
   token: string | null = '';
   static email: string | null = null;
   constructor(private http: HttpClient, private tokenService: TokenService) {}
@@ -21,10 +21,11 @@ export class AuthService {
           const statusCode = response.status;
           const responseBody = response.body;
           const token = response.headers.get('x-auth-token');
-          if (statusCode === 200 && responseBody && token) {
+          if (token) {
             this.tokenService.setToken(token);
+          }
+          if (statusCode === 200 && responseBody) {
             const user = responseBody;
-
             this.tokenService.setUser(user['user']);
           }
 

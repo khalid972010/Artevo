@@ -1,0 +1,87 @@
+<!--sidebar-->
+<c-sidebar
+  #sidebar1="cSidebar"
+  class="d-print-none sidebar sidebar-fixed border-end"
+  colorScheme="light"
+  id="sidebar1"
+  visible
+>
+  <c-sidebar-header class="border-bottom">
+    <c-sidebar-brand [routerLink]="[]"
+      ><span class="logo-text"
+        ><span class="logo-l text-white">ArtLance</span></span
+      ></c-sidebar-brand
+    >
+  </c-sidebar-header>
+
+  <ng-scrollbar
+    #scrollbar="ngScrollbar"
+    (updated)="onScrollbarUpdate(scrollbar.state)"
+    class="overflow"
+    pointerEventsMethod="scrollbar"
+    visibility="hover"
+  >
+    <c-sidebar-nav
+      #overflow
+      [navItems]="navItems"
+      dropdownMode="close"
+      compact
+    />
+  </ng-scrollbar>
+  @if (!sidebar1.narrow) {
+  <c-sidebar-footer
+    cSidebarToggle="sidebar1"
+    class="border-top d-none d-lg-flex"
+    toggle="unfoldable"
+    style="cursor: pointer"
+  >
+    <button cSidebarToggler></button>
+  </c-sidebar-footer>
+  }
+</c-sidebar>
+
+@switch (colorMode()) { @case ('dark') {
+<!--main-->
+<div
+  class="wrapper d-flex flex-column min-vh-100"
+  style="background-color: #212631"
+>
+  <!--app-header-->
+  <app-default-header
+    [cShadowOnScroll]="'sm'"
+    class="mb-4 d-print-none header header-sticky p-0 shadow-sm"
+    position="sticky"
+    sidebarId="sidebar1"
+  />
+  <!--app-body-->
+  <div class="body flex-grow-1">
+    <c-container breakpoint="lg" class="h-auto">
+      <router-outlet />
+    </c-container>
+  </div>
+  <!--app footer-->
+  <app-default-footer style="background-color: #212631" />
+</div>
+}@default{
+<!--main-->
+<div
+  class="wrapper d-flex flex-column min-vh-100"
+  style="background-color: white"
+>
+  <!--app-header-->
+  <app-default-header
+    [cShadowOnScroll]="'sm'"
+    class="mb-4 d-print-none header header-sticky p-0 shadow-sm"
+    position="sticky"
+    sidebarId="sidebar1"
+  />
+  <!--app-body-->
+  <div class="body flex-grow-1">
+    <c-container breakpoint="lg" class="h-auto">
+      <router-outlet />
+    </c-container>
+  </div>
+  <!--app footer-->
+</div>
+<app-default-footer />
+} }

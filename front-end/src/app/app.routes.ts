@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { DefaultLayoutComponent } from './layout';
+
 import { MainComponent } from './components/main/main.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PortfolioListComponent } from './components/portfolio-list/portfolio-list.component';
@@ -29,11 +31,41 @@ export const routes: Routes = [
   { path: 'freelancers', component: FreelancerListComponent },
   { path: 'profile/freelancer', component: ProfileFreelancerComponent },
   { path: 'profile/freelancer/add-post', component: AddPostComponent },
-  { path: 'profile/freelancer/update', component: ProfileFreelancerUpdateComponent },
+  {
+    path: 'profile/freelancer/update',
+    component: ProfileFreelancerUpdateComponent,
+  },
   {
     path: 'profile/freelancer/update',
     component: ProfileFreelancerUpdateComponent,
   },
   { path: 'profile/client/update', component: ProfileClientUpdate },
   { path: 'profile/client', component: ProfileClientComponent },
+  {
+    path: '',
+    component: DefaultLayoutComponent,
+    data: {
+      title: 'Admin',
+    },
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('../app/dashboard/routes').then((m) => m.routes),
+      },
+
+      {
+        path: 'listings',
+        loadChildren: () => import('../app/theme/routes').then((m) => m.routes),
+      },
+
+      {
+        path: 'widgets',
+        loadChildren: () =>
+          import('../app/widgets/routes').then((m) => m.routes),
+      },
+    ],
+  },
+  { path: 'admin', component: DefaultLayoutComponent },
+  { path: '**', redirectTo: 'dashboard' },
 ];

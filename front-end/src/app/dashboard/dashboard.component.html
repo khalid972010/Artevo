@@ -1,0 +1,267 @@
+@if ( usersdata ) {
+<app-widgets-dropdown />
+<c-card class="my-4">
+  <c-card-body>
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic">Traffic</h4>
+        <div class="small text-body-secondary">March - April 2024</div>
+      </c-col>
+      <c-col class="d-none d-md-block" sm="7">
+        <button cButton class="float-end" color="primary">
+          <svg cIcon name="cilCloudDownload"></svg>
+        </button>
+        <form [formGroup]="trafficRadioGroup">
+          <c-button-group class="float-end me-3" role="group">
+            <input
+              class="btn-check"
+              formControlName="trafficRadio"
+              type="radio"
+              value="Day"
+            />
+            <label
+              (click)="setTrafficPeriod('Day')"
+              cButton
+              cFormCheckLabel
+              color="secondary"
+              variant="outline"
+            >
+              Day
+            </label>
+            <input
+              class="btn-check"
+              formControlName="trafficRadio"
+              type="radio"
+              value="Month"
+            />
+            <label
+              (click)="setTrafficPeriod('Month')"
+              cButton
+              cFormCheckLabel
+              color="secondary"
+              variant="outline"
+            >
+              Month
+            </label>
+            <input
+              class="btn-check"
+              formControlName="trafficRadio"
+              type="radio"
+              value="Year"
+            />
+            <label
+              (click)="setTrafficPeriod('Year')"
+              cButton
+              cFormCheckLabel
+              color="secondary"
+              variant="outline"
+            >
+              Year
+            </label>
+          </c-button-group>
+        </form>
+      </c-col>
+    </c-row>
+    <c-chart
+      [data]="mainChart.data"
+      [height]="300"
+      [ngStyle]="{ 'marginTop.px': 40 }"
+      [options]="mainChart.options"
+      [type]="mainChart.type"
+      (chartRef)="handleChartRef($event)"
+    >
+      Main chart
+    </c-chart>
+  </c-card-body>
+  <c-card-footer>
+    <c-row
+      class="text-center mb-2"
+      [xl]="5"
+      [lg]="4"
+      [sm]="2"
+      [xs]="1"
+      [gutter]="4"
+    >
+      <c-col>
+        <div class="text-body-secondary">Visits</div>
+        <strong>29.703 Users (40%)</strong>
+        <c-progress class="mt-2" thin color="success" value="40" />
+      </c-col>
+      <c-col>
+        <div class="text-body-secondary">Unique</div>
+        <div class="fw-semibold text-truncate">24.093 Users (20%)</div>
+        <c-progress class="mt-2" thin color="info" value="20" />
+      </c-col>
+      <c-col>
+        <div class="text-body-secondary">Page views</div>
+        <div class="fw-semibold text-truncate">78.706 Views (60%)</div>
+        <c-progress class="mt-2" thin color="warning" value="60" />
+      </c-col>
+      <c-col>
+        <div class="text-body-secondary">New Users</div>
+        <div class="fw-semibold text-truncate">22.123 Users (80%)</div>
+        <c-progress class="mt-2" thin color="danger" value="80" />
+      </c-col>
+      <c-col class="d-none d-xl-block">
+        <div class="text-body-secondary">Bounce Rate</div>
+        <div class="fw-semibold text-truncate">Average Rate (40.15%)</div>
+        <c-progress class="mt-2" thin value="40" />
+      </c-col>
+    </c-row>
+  </c-card-footer>
+</c-card>
+<!--Table of Freelancers-->
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-body>
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <thead class="text-nowrap text-truncate">
+            <tr>
+              <th class="bg-body-tertiary text-center">
+                <svg cIcon name="cilPeople"></svg>
+              </th>
+              <th class="bg-body-tertiary">User</th>
+              <th class="bg-body-tertiary">Location</th>
+              <th class="bg-body-tertiary">Followers</th>
+              <th class="bg-body-tertiary text-center">Hourly rate</th>
+              <th class="bg-body-tertiary">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (user of usersdata['data']; track user._id; let i = $index) {
+            <tr>
+              <td class="text-center">
+                <c-avatar [size]="'md'" src="{{ user.profilePicture }}" />
+              </td>
+              <td>
+                <div>{{ user.fullName }}</div>
+                <div class="small text-body-secondary text-nowrap">
+                  <span> New | Registered: {{ user.joinDate }} </span>
+                </div>
+              </td>
+              <td>
+                <div class="small text-body-secondary">{{ user.location }}</div>
+              </td>
+              <td>
+                <div class="d-flex justify-content-between">
+                  <div class="float-start">
+                    <strong>{{ user.followers.length }}</strong>
+                  </div>
+                  <div class="float-end ms-1 text-nowrap"></div>
+                </div>
+                <progress
+                  value="{{ user.followers.length }}"
+                  min="0"
+                  max="20"
+                ></progress>
+              </td>
+
+              <td class="text-center">{{ user.budget }}&#36;</td>
+              <td class="ps-3">
+                <button
+                  class="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  (click)="setDeletion(user._id)"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 69 14"
+                    class="svgIcon bin-top"
+                  >
+                    <g clip-path="url(#clip0_35_24)">
+                      <path
+                        fill="black"
+                        d="M20.8232 2.62734L19.9948 4.21304C19.8224 4.54309 19.4808 4.75 19.1085 4.75H4.92857C2.20246 4.75 0 6.87266 0 9.5C0 12.1273 2.20246 14.25 4.92857 14.25H64.0714C66.7975 14.25 69 12.1273 69 9.5C69 6.87266 66.7975 4.75 64.0714 4.75H49.8915C49.5192 4.75 49.1776 4.54309 49.0052 4.21305L48.1768 2.62734C47.3451 1.00938 45.6355 0 43.7719 0H25.2281C23.3645 0 21.6549 1.00938 20.8232 2.62734ZM64.0023 20.0648C64.0397 19.4882 63.5822 19 63.0044 19H5.99556C5.4178 19 4.96025 19.4882 4.99766 20.0648L8.19375 69.3203C8.44018 73.0758 11.6746 76 15.5712 76H53.4288C57.3254 76 60.5598 73.0758 60.8062 69.3203L64.0023 20.0648Z"
+                      ></path>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_35_24">
+                        <rect fill="white" height="14" width="69"></rect>
+                      </clipPath>
+                    </defs>
+                  </svg>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 69 57"
+                    class="svgIcon bin-bottom"
+                  >
+                    <g clip-path="url(#clip0_35_22)">
+                      <path
+                        fill="black"
+                        d="M20.8232 -16.3727L19.9948 -14.787C19.8224 -14.4569 19.4808 -14.25 19.1085 -14.25H4.92857C2.20246 -14.25 0 -12.1273 0 -9.5C0 -6.8727 2.20246 -4.75 4.92857 -4.75H64.0714C66.7975 -4.75 69 -6.8727 69 -9.5C69 -12.1273 66.7975 -14.25 64.0714 -14.25H49.8915C49.5192 -14.25 49.1776 -14.4569 49.0052 -14.787L48.1768 -16.3727C47.3451 -17.9906 45.6355 -19 43.7719 -19H25.2281C23.3645 -19 21.6549 -17.9906 20.8232 -16.3727ZM64.0023 1.0648C64.0397 0.4882 63.5822 0 63.0044 0H5.99556C5.4178 0 4.96025 0.4882 4.99766 1.0648L8.19375 50.3203C8.44018 54.0758 11.6746 57 15.5712 57H53.4288C57.3254 57 60.5598 54.0758 60.8062 50.3203L64.0023 1.0648Z"
+                      ></path>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_35_22">
+                        <rect fill="white" height="57" width="69"></rect>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </button>
+                <!-- Modal -->
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          Are you sure?
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          (click)="confirmDeletion()"
+                          data-bs-dismiss="modal"
+                        >
+                          Save changes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+}@else {
+<app-loading></app-loading>
+
+}

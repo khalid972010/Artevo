@@ -9,13 +9,14 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { TokenService } from '../../../services/token.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports: [RouterModule, ReactiveFormsModule, HttpClientModule],
-  providers: [AuthService],
+  providers: [AuthService, TokenService],
 
   standalone: true,
   animations: [
@@ -35,6 +36,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private tokenService: TokenService,
     private router: Router
   ) {
     this.form = this.fb.group({
@@ -54,9 +56,14 @@ export class LoginComponent {
       this.authService
         .loginUser(this.form.value.email, this.form.value.password)
         .subscribe({
-          next: () => {
+          next: (next) => {
             this.valid = true;
-            this.router.navigate(['/'], { replaceUrl: true });
+            let user = this.tokenService.getUser();
+            if (next.responseBody.type === 'Admin') {
+              this.router.navigate(['/dashboard'], { replaceUrl: true });
+            } else {
+              this.router.navigate(['/'], { replaceUrl: true });
+            }
           },
           error: (err) => {
             this.valid = false;

@@ -14,6 +14,10 @@ export class ClientService {
     ClientService.token = tokenService.getToken();
   }
 
+  getByID(clientID: string) {
+    const url = this.DB_URL + clientID;
+    return this.http.get<any>(url, {});
+  }
   followFreelancer(token: string, freelancerID: string) {
     const url = this.DB_URL + 'follow/' + freelancerID;
     const headers = new HttpHeaders().set('x-auth-token', token);
