@@ -10,6 +10,7 @@ import { FreelancerListComponent } from './components/freelancer-list/freelancer
 import { HomeComponent } from './components/home/home.component';
 import { TopicsComponent } from './components/topics/topics.component';
 import { NewPasswordComponent } from './components/auth/new-password/new-password.component';
+import { ProfileFreelancerComponent } from './components/profile-freelancer/profile-freelancer.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -22,4 +23,5 @@ export const routes: Routes = [
   { path: 'login/reset/mail', component: EnterMailComponent },
   { path: 'login/reset/password/:token', component: NewPasswordComponent },
   { path: 'freelancers', component: FreelancerListComponent },
+  { path: 'profile/freelancer', component: ProfileFreelancerComponent },
 ];
