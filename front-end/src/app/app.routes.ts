@@ -12,6 +12,7 @@ import { TopicsComponent } from './components/topics/topics.component';
 import { NewPasswordComponent } from './components/auth/new-password/new-password.component';
 import { ProfileFreelancerComponent } from './components/profile-freelancer/profile-freelancer.component';
 import { ProfileFreelancerUpdateComponent } from './components/profile-freelancer-update/profile-freelancer-update.component';
+import { ProfileClientUpdate } from './components/profile-client-update/profile-client-update.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -26,4 +27,5 @@ export const routes: Routes = [
   { path: 'freelancers', component: FreelancerListComponent },
   { path: 'profile/freelancer', component: ProfileFreelancerComponent },
   { path: 'profile/freelancer/update', component: ProfileFreelancerUpdateComponent },
+  { path: 'profile/client/update', component: ProfileClientUpdate },
 ];
