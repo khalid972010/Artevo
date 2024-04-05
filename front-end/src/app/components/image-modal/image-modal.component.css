@@ -13,11 +13,6 @@
   z-index: 1000;
 }
 
-.row {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(5px) !important;
-}
-
 a {
   text-decoration: none;
   color: white;
@@ -528,6 +523,10 @@ img {
   width: 2em;
   transition: 100ms;
   animation: dislike_effect 400ms ease;
+}
+
+.liked {
+  fill: red;
 }
 
 .container input:checked ~ .checkmark path {

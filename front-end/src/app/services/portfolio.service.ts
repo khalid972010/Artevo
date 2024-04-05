@@ -1,14 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PortfolioService {
   constructor(private http: HttpClient) {}
-  DB_URL = 'https://angularproject-rokp.onrender.com/api/portfolio';
+  DB_URL = 'http://localhost:7010/api/portfolio';
   getAllPortfolio() {
     return this.http.get(this.DB_URL);
+  }
+
+  getPortfolioById(id: string) {
+    return this.http.get<any>(this.DB_URL + '/', { observe: 'response' }).pipe(
+      map((response) => {
+        console.log(response);
+        const statusCode = response.status;
+        const responseBody = response.body;
+        return { statusCode, responseBody };
+      })
+    );
   }
   getPortfolioByCategory(categories: string[]) {
     const url = `${this.DB_URL}?categories=${encodeURIComponent(

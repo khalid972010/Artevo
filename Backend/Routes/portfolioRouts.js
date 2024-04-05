@@ -7,6 +7,9 @@ const router = express.Router();
 //get all portfolios..
 router.get("/", portfolioController.getAllPortfolios);
 
+//#region Get Portfolio by id
+router.get("/:id", portfolioController.getPortfolioByID);
+//#endregion
 //add portfolios..
 router.post("/", portfolioController.addPortfolio);
 
