@@ -607,3 +607,10 @@ button:hover .star-6 {
 .pressedText {
   color: white;
 }
+
+.btnProfile {
+  height: 40px;
+  width: 220px;
+  margin-top: 20px;
+  padding: 0%
+}

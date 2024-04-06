@@ -11,6 +11,7 @@ import { FreelancerListComponent } from '../freelancer-list/freelancer-list.comp
 import { FilterListComponent } from '../filter-list/filter-list.component';
 import { FreelancerService } from '../../services/freelancer.service';
 import { FreelancerCardComponent } from '../freelancer-card/freelancer-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private categoriesData: CategoriesService,
     private portfolioService: PortfolioService,
-    private freelancerService :FreelancerService
+    private freelancerService: FreelancerService,
   ) {}
 
   getSelected() {
@@ -90,4 +91,6 @@ export class HomeComponent implements OnInit {
    this.freelancer.data=filteredData;
    console.log(this.freelancer);
   }
+
+
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -10,12 +10,13 @@ import { FreelancerService } from '../../services/freelancer.service';
 @Component({
   selector: 'app-searchbar',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   providers: [FreelancerService, HttpClient],
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css',
 })
 export class SearchbarComponent {
+  @ViewChild('searchQuery') searchQuery?: ElementRef;
   searchResults: any[] = [];
   name: any;
   query: string = '';
@@ -23,8 +24,9 @@ export class SearchbarComponent {
   showDropdownFlag: boolean = false;
 
   constructor(
-    private http: HttpClient,
-    private freelancerService: FreelancerService
+    private freelancerService: FreelancerService,
+    private router:Router
+
   ) {}
   ngOnInit() {
     this.freelancerService.getAllFreelancers().subscribe(
@@ -36,9 +38,6 @@ export class SearchbarComponent {
       }
     );
   }
-  // toString(): string {
-  //   return this.fullName;
-  // }
   displayFn(freelancer: any): string {
     return freelancer && freelancer.fullName
       ? freelancer.fullName.toString()
@@ -66,6 +65,22 @@ export class SearchbarComponent {
   }
 
   hideDropdown() {
-    this.showDropdownFlag = false;
+    setTimeout(() => {
+    this.showDropdownFlag= false;
+  }, 700); // Adjust the delay time as needed
+  }
+
+  NavigateFreelancerProfile(event: Event, freelancer: any) {
+    event.preventDefault(); // Prevents the default behavior of the click event
+    event.stopPropagation(); // Prevents the click event from bubbling up to the parent elements
+    this.router.navigate(['/profile/freelancer'], {
+      state: {
+        hisProfile: true,
+        freelancer: freelancer
+      },
+      replaceUrl: true
+    });
+    this.searchQuery!.nativeElement.value = '';
+    this.searchResults = [];
   }
 }
