@@ -40,7 +40,7 @@ const portfolioSchema = {
       enum: ["UI/UX", "Graphic Design", "Digital Art", "Game Design"],
     },
   },
-  required: ["date", "owner", "photos", "description", "type"],
+  required: ["date", "ownerID", "photos", "description", "type"],
   additionalProperties: true,
 };
 module.exports = ajv.compile(portfolioSchema);

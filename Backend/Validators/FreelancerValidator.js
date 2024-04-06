@@ -45,21 +45,20 @@ const freelancerSchema = {
           title: { type: "string" },
 
           url: { type: "string" },
-        },
-        required: ["title", "url"],
+        }
       },
     },
     reviews: {
       type: "array",
       items: { type: "string" },
     },
-    joinDate: { type: "string", format: "date-time" },
+   // joinDate: { type: "string" },
     // Changed format to "date-time"
     verificationToken: { type: "string" },
     isVerified: { type: "boolean", default: false },
     resetToken: { type: "string" },
   },
-  required: ["fullName", "userName", "email", "password", "services"],
+  required: ["fullName", "userName", "email", "password"]
 };
 
 const validateFreelancer = ajv.compile(freelancerSchema);

@@ -42,7 +42,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private categoriesData: CategoriesService,
     private portfolioService: PortfolioService,
-    private freelancerService: FreelancerService,
+    private freelancerService :FreelancerService,
+    private router :Router
   ) {}
 
   getSelected() {
@@ -91,6 +92,8 @@ export class HomeComponent implements OnInit {
    this.freelancer.data=filteredData;
    console.log(this.freelancer);
   }
-
-
+  goToFreelancerProfile(freelancerId: String) {
+    //console.log(freelancerId);
+    this.router.navigate(['/freelancer', freelancerId]);
+  }
 }

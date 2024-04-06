@@ -64,11 +64,34 @@
               placeholder="Enter your description"
               style="resize: none; overflow: auto"
               rows="3"
+              [(ngModel)]="description"
             >
-This is my description</textarea
-            >
+This is my description</textarea>
+
+            <label for="categoryDropdown">Select a Category:</label>
+            <select id="categoryDropdown" class="form-control"  (change)="SelectedCategory($event)">
+              <option value="" disabled>Select a category</option>
+              <option value="UI/UX">UI/UX</option>
+              <option value="Graphic Design">Graphic Design</option>
+              <option value="Digital Art">Digital Art</option>
+              <option value="Game Design">Game Design</option>
+            </select>
+
+
+            <form [formGroup]="TechnologyForm">
+              <label for="Technology">Technology:</label>
+              <div formArrayName="Technology">
+                <div *ngFor="let TechnologyControl of TechnologyControls; let i = index">
+                  <input type="text" [formControlName]="i">
+                  <button type="button" (click)="removeTechnology(i)">Remove</button>
+                </div>
+              </div>
+              <button type="button" (click)="addTechnology()">Add Technology</button>
+            </form>
+
+
             <div class="row justify-content-around mt-4">
-              <button class="btn btn-success col-auto" type="button">
+              <button class="btn btn-success col-auto" type="button" (click)="submit()">
                 Submit
               </button>
               <button

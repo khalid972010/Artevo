@@ -8,6 +8,7 @@ import { TokenService } from './token.service';
 })
 export class UserService {
   DB_URL = 'https://angularproject-rokp.onrender.com/api/users/';
+  //DB_URL = 'http://localhost:7010/api/users/';
   token: string | null = '';
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
@@ -50,5 +51,9 @@ export class UserService {
         return { statusCode, responseBody };
       })
     );
+  }
+
+  UpdateUser(updatedUser:any){
+    return this.http.post(this.DB_URL+'UpdateProfile',updatedUser);
   }
 }

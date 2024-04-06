@@ -19,6 +19,7 @@ import { FreelancerService } from '../../services/freelancer.service';
 })
 export class PortfolioComponent implements OnInit {
   freelancer: any;
+  OwnerName:any;
 
   constructor(
     private dialog: MatDialog,
@@ -33,6 +34,16 @@ export class PortfolioComponent implements OnInit {
       this.IsLike = false;
       this.LikeText = 'Like';
     }
+    this.freelancerService.getFreelancerByID(this.portfolio.ownerID).subscribe(
+      (res) => {
+     console.log(this.portfolio);
+     this.OwnerName=res.data.fullName;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
   }
   @Input() portfolio: any;
   LikeText: any;

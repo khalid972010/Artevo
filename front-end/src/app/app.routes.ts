@@ -29,12 +29,9 @@ export const routes: Routes = [
   { path: 'login/reset/mail', component: EnterMailComponent },
   { path: 'login/reset/password/:token', component: NewPasswordComponent },
   { path: 'freelancers', component: FreelancerListComponent },
-  { path: 'profile/freelancer', component: ProfileFreelancerComponent },
-  { path: 'profile/freelancer/add-post', component: AddPostComponent },
-  {
-    path: 'profile/freelancer/update',
-    component: ProfileFreelancerUpdateComponent,
-  },
+  { path: 'freelancer/:id', component: ProfileFreelancerComponent },
+  { path: 'profile/freelancer/add-post/:id', component: AddPostComponent },
+  { path: 'profile/freelancer/update/:id', component: ProfileFreelancerUpdateComponent },
   {
     path: 'profile/freelancer/update',
     component: ProfileFreelancerUpdateComponent,

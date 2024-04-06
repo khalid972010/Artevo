@@ -8,6 +8,7 @@ import { map } from 'rxjs';
 export class PortfolioService {
   constructor(private http: HttpClient) {}
   DB_URL = 'https://angularproject-rokp.onrender.com/api/portfolio';
+ // DB_URL = 'http://localhost:7010/api/portfolio';
   getAllPortfolio() {
     return this.http.get(this.DB_URL);
   }
@@ -35,6 +36,16 @@ export class PortfolioService {
       technologies: technologies,
     });
   }
+
+  getOwnerPortfolio(ownerID: string) {
+    return this.http.post(this.DB_URL + '/OwnerPortfolio', { ownerID} );
+  }
+
+  AddPortfolio(Portfolio:any){
+    console.log(Portfolio);
+    return this.http.post(this.DB_URL ,Portfolio);
+  }
+
 }
 
 /*

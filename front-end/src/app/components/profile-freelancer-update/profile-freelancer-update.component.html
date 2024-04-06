@@ -57,7 +57,7 @@
                 id="inputUsername"
                 type="text"
                 placeholder="Enter your username"
-                [value]="freelancer.userName"
+                value="{{freelancer.Username}}"
               />
             </div>
             <!-- Form Row-->
@@ -72,7 +72,8 @@
                   id="inputFirstName"
                   type="text"
                   placeholder="Enter your first name"
-                  [value]="freelancer.fullName.split(' ')[0]"
+                 value="{{freelancer.fullName.split(' ')[0]}}"
+                 #firstName
                 />
               </div>
               <!-- Form Group (last name)-->
@@ -83,7 +84,8 @@
                   id="inputLastName"
                   type="text"
                   placeholder="Enter your last name"
-                  [value]="freelancer.fullName.split(' ')[1]"
+                  value="{{ freelancer.fullName.split(' ')[1] }}"
+                  #lasttName
                 />
               </div>
             </div>
@@ -97,7 +99,8 @@
                   id="inputPass"
                   type="password"
                   placeholder="Enter your password"
-                  value="freelancer.password"
+                  value="{{freelancer.password}}"
+                  #Password
                 />
               </div>
               <!-- Form Group (location)-->
@@ -108,7 +111,8 @@
                   id="inputLocation"
                   type="text"
                   placeholder="Enter your location"
-                  [value]="freelancer.location"
+                  value="{{freelancer.location}}"
+                  #Location
                 />
               </div>
             </div>
@@ -122,14 +126,15 @@
                 id="inputEmailAddress"
                 type="email"
                 placeholder="Enter your email address"
-                [value]="freelancer.email"
+                value="{{freelancer.email}}"
+                #Email
               />
             </div>
             <!-- Form Row-->
             <div class="row gx-3 mb-3">
               <!-- Form Group (description)-->
               <div class="col-md-12">
-                <label class="small mb-1" for="inputDesc">Description</label>
+                <label class="small mb-1" for="inputDesc">About</label>
                 <textarea
                   class="form-control"
                   id="inputDesc"
@@ -137,13 +142,19 @@
                   placeholder="Enter your description"
                   style="resize: none; overflow: auto"
                   rows="3"
-                  >{{ freelancer.about }}</textarea
+                  #About
+                >{{freelancer.about}}</textarea
                 >
               </div>
             </div>
             <!-- Save changes button-->
             <div class="row justify-content-around">
-              <button class="btn btn-success col-auto" type="button">
+              <button class="btn btn-success col-auto" type="button"  (click)="saveChanges(firstName.value,
+                                                                                           lasttName.value,
+                                                                                           Password.value,
+                                                                                           Location.value,
+                                                                                           Email.value,
+                                                                                           About.value)">
                 Save Changes
               </button>
               <button

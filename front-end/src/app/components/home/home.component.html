@@ -42,6 +42,7 @@
       [freelancer]="freelancerItem"
       class="col-xl-4 col-sm-6 mb-4"
       *ngFor="let freelancerItem of freelancer.data"
+      (click)="goToFreelancerProfile(freelancerItem._id)"
     ></app-freelancer-card>
   </div>
 </div>

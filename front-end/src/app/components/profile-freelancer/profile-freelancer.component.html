@@ -8,14 +8,14 @@
         <div class="photo-left">
           <img class="photo" [src]="freelancer.profilePicture" />
         </div>
-        <h4 class="name">{{ freelancer.fullName }}</h4>
-        <p class="info">{{ freelancer.headline }}</p>
-        <p class="info">{{ freelancer.email }}</p>
-        <!--edit button-->
+        <h4 class="name">{{freelancer.fullName}}</h4>
+        <p class="info">{{freelancer.headLine}}</p>
+        <p class="info">{{freelancer.email}}</p>
+        <!--edit butoon-->
         <button
-          *ngIf="hisProfile"
-          (click)="NavigateUpdateFreelancerProfile($event)"
-          class="btnProfile"
+        *ngIf="hisProfile"
+        (click)="NavigateUpdateProfile($event)"
+        class="btnProfile"
         >
           Update Profile
           <div class="star-1">
@@ -169,7 +169,7 @@
             </svg>
           </div>
         </button>
-        <!--edit button-->
+        <!--edit butoon-->
         <!--about section-->
         <div class="stats row">
           <div class="stat col-xs-4">
@@ -221,7 +221,7 @@
 
           <!--button add post end -------------------->
           <button
-            *ngIf="hisProfile"
+          *ngIf="hisProfile"
             type="button"
             class="button"
             (click)="NavigateAddPost($event)"
@@ -245,6 +245,7 @@
               </svg>
             </span>
           </button>
+
 
           <!--Follow button-->
           <div
@@ -334,24 +335,20 @@
           *ngIf="selectedTab === 'posts'"
         >
           <div class="row gallery">
-            <div class="col-md-4">
+
+            <!-- <div class="col-md-4">
               <img src="assets/images/about-pic.webp" />
-            </div>
-            <div class="col-md-4">
-              <img src="assets/images/about-pic.webp" />
-            </div>
-            <div class="col-md-4">
-              <img src="assets/images/about-pic.webp" />
-            </div>
-            <div class="col-md-4">
-              <img src="assets/images/about-pic.webp" />
-            </div>
-            <div class="col-md-4">
-              <img src="assets/images/about-pic.webp" />
-            </div>
-            <div class="col-md-4">
-              <img src="assets/images/about-pic.webp" />
-            </div>
+            </div> -->
+
+
+
+  <div class="container col-md-4">
+    <div class="row">
+      <app-portfolio [portfolio]="portfolioItem"
+        *ngFor="let portfolioItem of freelancerPortfolio"></app-portfolio>
+    </div>
+  </div>
+
           </div>
         </div>
         <!--button add post end-->
