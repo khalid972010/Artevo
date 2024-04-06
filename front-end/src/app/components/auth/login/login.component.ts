@@ -66,6 +66,7 @@ export class LoginComponent {
             }
           },
           error: (err) => {
+            console.log(err);
             this.valid = false;
             this.defaultError = err.error;
           },

@@ -64,5 +64,4 @@ export const routes: Routes = [
     ],
   },
   { path: 'admin', component: DefaultLayoutComponent },
-  { path: '**', redirectTo: 'dashboard' },
 ];
