@@ -185,6 +185,9 @@
             <p class="desc-stat">Uploads</p>
           </div>
         </div>
+
+        <button (click)="openHireFreelancer()">Hire Freelancer</button>
+
         <p class="desc">{{ freelancer.about }}</p>
         <div class="social">
           <i class="fa fa-facebook-square" aria-hidden="true"></i>
@@ -332,10 +335,9 @@
         </div>
 
         <div
-          class="grid-portfolio"
-          id="portfolio"
           *ngIf="selectedTab === 'posts'"
         >
+<<<<<<< HEAD
           <div class="container">
             <div class="row">
               <app-portfolio
@@ -347,6 +349,13 @@
           </div>
         </div>
         <!--button add post end-->
+=======
+            <div class="row gallery">
+
+              <app-portfolio [portfolio]="portfolioItem" class="col-md-5"
+                *ngFor="let portfolioItem of freelancerPortfolio"></app-portfolio>
+            </div>
+>>>>>>> 7f063b509aa76b737029d5b4c3bf201fb75bfa85
       </div>
     </div>
   </div>
