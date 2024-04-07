@@ -8,14 +8,14 @@
         <div class="photo-left">
           <img class="photo" [src]="freelancer.profilePicture" />
         </div>
-        <h4 class="name">{{freelancer.fullName}}</h4>
-        <p class="info">{{freelancer.headLine}}</p>
-        <p class="info">{{freelancer.email}}</p>
+        <h4 class="name">{{ freelancer.fullName }}</h4>
+        <p class="info">{{ freelancer.headLine }}</p>
+        <p class="info">{{ freelancer.email }}</p>
         <!--edit butoon-->
         <button
-        *ngIf="hisProfile"
-        (click)="NavigateUpdateProfile($event)"
-        class="btnProfile"
+          *ngIf="hisProfile"
+          (click)="NavigateUpdateProfile($event)"
+          class="btnProfile"
         >
           Update Profile
           <div class="star-1">
@@ -194,10 +194,13 @@
         </div>
       </div>
 
-      <div class="col-lg-8 m-0 px-4" style="background-color: #ada69d">
+      <div class="col-lg-8 m-0 px-4">
         <!--button post/order-->
         <div class="row justify-content-between align-items-center m-0">
-          <div class="radio-inputs col-auto" style="background-color: #ada69d">
+          <div
+            class="radio-inputs col-auto"
+            style="color: var(--primary-color); width: 150px"
+          >
             <label class="radio">
               <input
                 [(ngModel)]="selectedTab"
@@ -221,7 +224,7 @@
 
           <!--button add post end -------------------->
           <button
-          *ngIf="hisProfile"
+            *ngIf="hisProfile"
             type="button"
             class="button"
             (click)="NavigateAddPost($event)"
@@ -245,7 +248,6 @@
               </svg>
             </span>
           </button>
-
 
           <!--Follow button-->
           <div
@@ -334,21 +336,14 @@
           id="portfolio"
           *ngIf="selectedTab === 'posts'"
         >
-          <div class="row gallery">
-
-            <!-- <div class="col-md-4">
-              <img src="assets/images/about-pic.webp" />
-            </div> -->
-
-
-
-  <div class="container col-md-4">
-    <div class="row">
-      <app-portfolio [portfolio]="portfolioItem"
-        *ngFor="let portfolioItem of freelancerPortfolio"></app-portfolio>
-    </div>
-  </div>
-
+          <div class="container">
+            <div class="row">
+              <app-portfolio
+                class="col-md-4 col-sm-6"
+                [portfolio]="portfolioItem"
+                *ngFor="let portfolioItem of freelancerPortfolio"
+              ></app-portfolio>
+            </div>
           </div>
         </div>
         <!--button add post end-->

@@ -52,7 +52,7 @@ nav {
   border-radius: 1px;
   height: 2px;
   width: 35px;
-  background: #694535;
+  background: var(--tertiary-color);
   position: absolute;
   left: 15%;
   top: 50%;
@@ -96,7 +96,7 @@ nav {
 /* Menu */
 
 .overlay-menu {
-  background: rgba(174, 160, 141, 0.85);
+  background: var(--tertiary-color);
   color: #ffffff;
   position: fixed;
   z-index: 100;
@@ -107,7 +107,6 @@ nav {
   -webkit-overflow-scrolling: touch;
   width: 100%;
   padding: 50px 0;
-  opacity: 0;
   text-align: center;
   transform: translateY(-100%);
   transition: all 0.5s;
@@ -123,6 +122,7 @@ nav {
   opacity: 0;
   transition: all 0.3s;
   transition-delay: 0s;
+
 }
 
 .overlay-menu.open .main-menu {
@@ -130,6 +130,7 @@ nav {
   transition-delay: 0.7s;
   opacity: 1;
   transform: translateY(0%);
+  font-family: var(--font-family);
 }
 
 .overlay-menu .main-menu:nth-child(2) {
@@ -161,15 +162,15 @@ nav {
 .overlay-menu ul li a {
   font-size: 24px;
   font-weight: 300;
-  color: black;
+  color: white;
   text-decoration: none;
   transition: all 0.5s;
   font-weight: 400;
-  font-family: "Artifika", serif;
+  font-family: var(--font-family);
 }
 
 .overlay-menu ul li a:hover {
-  color: #694535;
+  color: var(--primary-color);
 }
 
 

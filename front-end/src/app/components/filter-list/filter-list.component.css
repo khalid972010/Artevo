@@ -1,8 +1,13 @@
+* {
+  font-family: 'artifika' !important;
+
+}
+
 .filter-button {
   transition: all 0.5s ease;
 
   padding: 10px 20px;
-  background-color: #694535;
+  background-color: var(--secondary-color);
   /* Brown color */
   color: white;
   border: none;
@@ -14,9 +19,11 @@
 }
 
 .filter-button:hover {
-  background-color: #694535;
+  background-color: var(--secondary-color);
+
   /* Darker brown color on hover */
 }
+
 
 
 .sidenav-open {
@@ -40,7 +47,7 @@
   /* Stay at the top */
   right: 0;
   /* Position on the right side */
-  background-color: rgba(174, 160, 141, 0.85);
+  background-color: var(--secondary-color);
   /* Black */
   overflow-y: auto;
   /* Enable vertical scroll */
@@ -53,6 +60,7 @@
   color: #fff;
   /* transition: max-height 1.5s ease; Add transition effect */
   transition: max-height 1.5s, opacity 1s;
+  font-family: var(--font-family);
 }
 
 
@@ -141,7 +149,7 @@
 #cbx7:checked~.cbx,
 #cbx8:checked~.cbx {
   border-color: transparent;
-  background: #694535;
+  background: var(--primary-color);
   animation: jelly 0.6s ease;
 }
 
@@ -194,13 +202,21 @@
 
 .hidden-xs-up {
   display: none !important;
+  color: var(--primary-color);
+
 
 }
 
 .labell {
   font-size: 15px;
-  color: #694535;
+  color: var(--primary-color);
 
+}
+
+
+
+h4, h5 {
+  cursor: pointer;
 }
 
 
@@ -214,7 +230,65 @@
 
 
 
+#checkbox {
+  display: none;
+}
 
+.toggle {
+  position: relative;
+  width: 40px;
+  cursor: pointer;
+  margin: auto;
+  display: block;
+  height: calc(4px * 3 + 11px * 2);
+}
 
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: calc(4px / 2);
+  background: var(--primary-color);
+  color: inherit;
+  opacity: 1;
+  transition: none 0.35s cubic-bezier(.5, -0.35, .35, 1.5) 0s;
+}
 
+/***** Tornado Animation *****/
 
+.bar--top {
+  bottom: calc(50% + 11px + 4px/ 2);
+  transition-property: bottom, transform;
+  transition-delay: calc(0s + 0.35s) * .6;
+}
+
+.bar--middle {
+  top: calc(50% - 4px/ 2);
+  transition-property: opacity, transform;
+  transition-delay: calc(0s + 0.35s * .3);
+}
+
+.bar--bottom {
+  top: calc(50% + 11px + 4px/ 2);
+  transition-property: top, transform;
+  transition-delay: 0s;
+}
+
+#checkbox:checked+.toggle .bar--top {
+  transform: rotate(-135deg);
+  transition-delay: 0s;
+  bottom: calc(50% - 4px/ 2);
+}
+
+#checkbox:checked+.toggle .bar--middle {
+  opacity: 0;
+  transform: rotate(-135deg);
+  transition-delay: calc(0s + 0.35s * .3);
+}
+
+#checkbox:checked+.toggle .bar--bottom {
+  top: calc(50% - 4px/ 2);
+  transform: rotate(-225deg);
+  transition-delay: calc(0s + 0.35s * .6);
+}

@@ -17,8 +17,8 @@
     --width-of-input: 500px;
     --height-of-input: 42px;
     --border-height: 2px;
-    --input-bg: #694535;
-    --border-color: #694535;
+    --input-bg: var(--primary-color);
+    --border-color: var(--primary-color);
     --border-radius: 30px;
     --after-border-radius: 1px;
     position: relative;
@@ -115,8 +115,7 @@
     top: calc(100% + 5px);
     /* Adjust the distance between search bar and dropdown */
     left: 0;
-    background-color: white;
-    border: 1px solid #ccc;
+    background-color: var(--tertiary-color);
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 5px 0;
@@ -131,10 +130,11 @@
     list-style-type: none;
     padding: 10px;
     cursor: pointer;
+    color: #ffffffc4;
   }
 
   .dropdown li:hover {
-    background-color: #f0f0f0;
+    background-color: var(--secondary-color);
   }
 
   .freelancer-info {

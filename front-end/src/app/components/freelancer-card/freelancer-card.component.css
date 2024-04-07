@@ -1,8 +1,6 @@
 .card {
-  --main-color: #694535;
-  --submain-color: #86604F;
-  --bg-color: #E4DCD1;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--secondary-color);
+  font-family: var(--font-family);
   position: relative;
   width: 400px;
   height: 384px;
@@ -10,23 +8,28 @@
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  background: var(--bg-color);
   margin: 15px 0px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease; /* Adjust transition for smoother effect */
-  padding: 0; /* Remove padding */
+  transition: transform 0.3s ease;
+  /* Adjust transition for smoother effect */
+  padding: 0;
+  /* Remove padding */
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Elevate the item by 5 pixels */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+  transform: translateY(-5px);
+  /* Elevate the item by 5 pixels */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  /* Increase box shadow on hover */
 }
 
 .card__img {
   height: 192px;
   width: 100%;
-  overflow: hidden; /* Hide any content that overflows the container */
-  border-radius: 20px 20px 0 0; /* Apply border radius only to the top */
+  overflow: hidden;
+  /* Hide any content that overflows the container */
+  border-radius: 20px 20px 0 0;
+  /* Apply border radius only to the top */
 }
 
 .card__img svg {
@@ -53,16 +56,18 @@
 
 .card__title {
   margin-top: 60px;
-  font-weight: 500;
+  font-weight: 800;
   font-size: 18px;
-  color: var(--main-color);
+  font-family: "artifika";
+  color: var(--primary-color);
 }
 
 .card__subtitle {
   margin-top: 10px;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 15px;
-  color: var(--submain-color);
+  font-family: var(--font-family);
+  color: var(--tertiary-color);
 }
 
 .card__btn {
@@ -73,27 +78,28 @@
   border-radius: 4px;
   font-weight: 700;
   font-size: 11px;
-  color: var(--main-color);
-  background: var(--bg-color);
+
   text-transform: uppercase;
   transition: all 0.3s;
 }
 
 .card__btn-solid {
-  background: var(--main-color);
-  color: var(--bg-color);
+  background: var(--primary-color);
+  color: white;
 }
 
 .card__btn:hover {
-  background: var(--main-color);
-  color: var(--bg-color);
+  background: rgba(34, 92, 34, 0.552);
+  color: white;
 }
 
 .card__btn-solid:hover {
-  background: var(--bg-color);
-  color: var(--main-color);
+  background: rgba(34, 92, 34, 0.552);
+
+  color: white;
 }
 
 .card__title a {
   text-decoration: none;
+
 }

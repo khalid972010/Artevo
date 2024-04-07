@@ -1,25 +1,35 @@
 /* Add this rule to decrease brightness of the image on hover */
 .portfolio-item:hover img {
-  filter: brightness(0.3); /* Decrease brightness to 70% */
-  transition: filter 0.5s ease; /* Add transition */
+  filter: brightness(0.3);
+  /* Decrease brightness to 70% */
+  transition: filter 0.5s ease;
+  /* Add transition */
 }
 
 /* Elevate the portfolio item slowly on hover */
 .portfolio-item {
   margin: 15px 0px;
   position: relative;
-  transition: transform 0.5s ease, box-shadow 0.5s ease; /* Add transition for transform and box-shadow */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
-  width: 400px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  /* Add transition for transform and box-shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add box shadow */
+  width: 95%;
 }
 
-.image{
+img {
+  object-fit: cover;
+}
+
+.image {
   height: 400px;
 }
 
 .portfolio-item:hover {
-  transform: translateY(-5px); /* Elevate the item by 5 pixels */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box shadow on hover */
+  transform: translateY(-5px);
+  /* Elevate the item by 5 pixels */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  /* Increase box shadow on hover */
 }
 
 
@@ -51,18 +61,18 @@
   letter-spacing: 0.5px;
 }
 
-   .portfolio-item em {
+.portfolio-item em {
   font-style: normal;
   font-weight: 200;
 }
 
-   .portfolio-item:hover h1 {
+.portfolio-item:hover h1 {
   transform: translateY(0);
 }
 
-   .portfolio-item p {
+.portfolio-item p {
   padding-left: 20px;
-  font-weight: 300!important;
+  font-weight: 300 !important;
   letter-spacing: 0.5px;
   font-size: 14px;
   color: #fff;
@@ -95,8 +105,9 @@
   background-color: #694535;
   transition: all 0.5s;
 }
+
 .load-more-button a:hover {
-  color: rgba(250,250,250,0.5);
+  color: rgba(250, 250, 250, 0.5);
 }
 
 .full-screen-portfolio .container-fluid,
@@ -107,7 +118,8 @@
 
 .portfolio-item img {
   overflow: hidden;
-  transition: filter 0.5s ease; /* Add transition */
+  transition: filter 0.5s ease;
+  /* Add transition */
 }
 
 .portfolio-item .thumb {
@@ -145,7 +157,7 @@
 
 .full-screen-portfolio .portfolio-item p {
   padding-left: 20px;
-  font-weight: 300!important;
+  font-weight: 300 !important;
   letter-spacing: 0.5px;
   font-size: 14px;
   color: #fff;
@@ -169,5 +181,6 @@
 
 /* Additional styling for the blur effect (optional) */
 .blur-background {
-  filter: blur(5px); /* Adjust the blur strength as needed */
+  filter: blur(5px);
+  /* Adjust the blur strength as needed */
 }

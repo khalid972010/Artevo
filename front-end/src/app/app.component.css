@@ -1,3 +1,11 @@
-body{
-  background-color: #ada69d;
+body {
+  background-color: var(--tertiary-color);
+}
+
+:host {
+  --primary-color: #446063;
+  --secondary-color: #CCD4DD;
+  --tertiary-color: #141E1D;
+  --font-family: "Poppins", sans-serif;
+  --font-size: 16px;
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router} from '@angular/router';
+import { Router, NavigationExtras} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -15,7 +15,7 @@ import { FreelancerService } from '../../services/freelancer.service';
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css',
 })
-export class SearchbarComponent {
+export class SearchbarComponent{
   @ViewChild('searchQuery') searchQuery?: ElementRef;
   searchResults: any[] = [];
   name: any;
@@ -71,16 +71,17 @@ export class SearchbarComponent {
   }
 
   NavigateFreelancerProfile(event: Event, freelancer: any) {
-    event.preventDefault(); // Prevents the default behavior of the click event
-    event.stopPropagation(); // Prevents the click event from bubbling up to the parent elements
-    this.router.navigate(['/profile/freelancer'], {
-      state: {
-        hisProfile: true,
-        freelancer: freelancer
-      },
-      replaceUrl: true
-    });
-    this.searchQuery!.nativeElement.value = '';
-    this.searchResults = [];
-  }
+  event.preventDefault();
+
+  const navigationExtras: NavigationExtras = {
+    queryParams: {
+      refresh: new Date().getTime() // Append a timestamp query parameter to force refresh
+    },
+    queryParamsHandling: 'merge' // Merge with existing query parameters if any
+  };
+
+  this.router.navigate(['/freelancer', freelancer._id], navigationExtras);
+  this.searchQuery!.nativeElement.value = '';
+  this.searchResults = [];
+}
 }

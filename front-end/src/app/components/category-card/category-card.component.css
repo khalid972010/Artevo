@@ -13,17 +13,19 @@
 /* button styling */
 .button {
   --border-right: 6px;
-  --text-stroke-color: rgba(255, 255, 255, 0.6);
-  --animation-color: #694535;
+  --text-stroke-color: white;
+  --animation-color: var(--primary-color);
   --fs-size: 2.7em;
   letter-spacing: 3px;
   text-decoration: none;
   position: relative;
   text-transform: uppercase;
   color: transparent;
-  -webkit-text-stroke: 1px var(--text-stroke-color);
-  overflow: hidden; /* Add overflow: hidden */
-  white-space: nowrap; /* Prevent text from wrapping */
+  -webkit-text-stroke: 0.5px var(--text-stroke-color);
+  overflow: hidden;
+  /* Add overflow: hidden */
+  white-space: nowrap;
+  /* Prevent text from wrapping */
 }
 
 /* this is the text, when you hover on button */

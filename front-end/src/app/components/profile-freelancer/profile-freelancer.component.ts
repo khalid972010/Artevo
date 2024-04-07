@@ -57,32 +57,32 @@ export class ProfileFreelancerComponent implements OnInit  {
     const navigation = history.state;
     this.hisProfile = navigation.hisProfile;
     this.freelancer = navigation.freelancer;
+
     this.route.params.subscribe(params => {
       this.freelancerId = params['id'];
-      console.log( this.freelancerId);
-          });
+      console.log(this.freelancerId);
 
-          this.freelancerService.getFreelancerByID(this.freelancerId).subscribe(
-            (res) => {
-           this.freelancer=res.data;
-           console.log(this.freelancer);
-            },
-            (error) => {
-              console.error(error);
-            }
-          );
+      this.freelancerService.getFreelancerByID(this.freelancerId).subscribe(
+        (res) => {
+          this.freelancer = res.data;
+          console.log(this.freelancer);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
 
-          this.portfolioService.getOwnerPortfolio(this.freelancerId).subscribe(
-            (res) => {
-              this.freelancerPortfolio=res;
-              console.log(res);
-              console.log(this.freelancerPortfolio);
-            },
-            (error) => {
-              console.log(error);
-
-            }
-          );
+      this.portfolioService.getOwnerPortfolio(this.freelancerId).subscribe(
+        (res) => {
+          this.freelancerPortfolio = res;
+          console.log(res);
+          console.log(this.freelancerPortfolio);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
   }
 
 }
