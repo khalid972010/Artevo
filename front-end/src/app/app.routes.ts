@@ -17,6 +17,7 @@ import { ProfileFreelancerUpdateComponent } from './components/profile-freelance
 import { ProfileClientUpdate } from './components/profile-client-update/profile-client-update.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
 import { ProfileClientComponent } from './components/profile-client/profile-client.component';
+import { HireFreelancerComponent } from './hire-freelancer/hire-freelancer.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -37,7 +38,9 @@ export const routes: Routes = [
     component: ProfileFreelancerUpdateComponent,
   },
   { path: 'profile/client/update', component: ProfileClientUpdate },
+  { path: 'profile/freelancer/hire-freelancer', component: HireFreelancerComponent },
   { path: 'profile/client', component: ProfileClientComponent },
+  
   {
     path: '',
     component: DefaultLayoutComponent,

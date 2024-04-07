@@ -6,12 +6,13 @@ import { FreelancerService } from '../../services/freelancer.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-
+import { HireFreelancerComponent } from '../../hire-freelancer/hire-freelancer.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile-freelancer',
   standalone: true,
-  imports: [FormsModule, CommonModule,PortfolioComponent],
+  imports: [FormsModule, CommonModule,PortfolioComponent,HireFreelancerComponent],
   providers:[FreelancerService,PortfolioService],
   templateUrl: './profile-freelancer.component.html',
   styleUrl: './profile-freelancer.component.css',
@@ -23,7 +24,8 @@ export class ProfileFreelancerComponent implements OnInit  {
   constructor(private router:Router,
               private route: ActivatedRoute,
                private freelancerService:FreelancerService,
-               private portfolioService:PortfolioService){}
+               private portfolioService:PortfolioService,
+               private dialog: MatDialog){}
   @Input() selectedTab: string = 'posts';
   @Input() hisProfile!: boolean;
   isTooltipActive = false;
@@ -83,6 +85,14 @@ export class ProfileFreelancerComponent implements OnInit  {
 
             }
           );
+  }
+
+
+  openHireFreelancer() {
+
+    const dialogRef = this.dialog.open(HireFreelancerComponent, {
+      width: '400px', // Set the width of the dialog
+    });
   }
 
 }
