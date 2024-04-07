@@ -5,17 +5,23 @@ mongoose.connect(
 const orderSchema = new mongoose.Schema(
   {
     date: { type: Date, default: Date.now },
-    from: { type: mongoose.Schema.Types.ObjectId, required: true },
-    to: { type: mongoose.Schema.Types.ObjectId, required: true },
+    from: { type: mongoose.Schema.Types.ObjectId, required: true },//Client
+    to: { type: mongoose.Schema.Types.ObjectId, required: true },//Freelancer
     description: { type: String, required: true },
     price: { type: Number, required: true },
     state: {
       type: String,
       enum: ["Pending", "inProgress", "Refused", "Completed"],
       required: true,
+      default: "Pending",
+    },
+    deadline: {
+      type: String,
+      enum: ["Now", "Within 2 weeks", "in a month"],
+      required: true,
     },
     isPaid: { type: Boolean, default: false },
-    product: { type: String },
+    // product: { type: String }, 
   },
   { versionKey: false }
 );
