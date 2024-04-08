@@ -10,18 +10,23 @@ import { CommonModule } from '@angular/common';
   styleUrl: './hire-freelancer.component.css'
 })
 export class HireFreelancerComponent {
-  showForm: boolean = false;
-  formData: any = {};
+  showForm: boolean = true;
+  showModal: boolean = false;
+
+  constructor() { }
+
+  openModal(): void {
+    this.showModal = true;
+  }
+
+  closeModal(): void {
+    this.showModal = false;
+    this.showForm = false;  
+  }
 
   openForm() {
     this.showForm = true;
   }
 
-  submitForm() {
 
-    console.log('Form submitted:', this.formData);
-
-    this.formData = {};
-    this.showForm = false;
-  }
 }

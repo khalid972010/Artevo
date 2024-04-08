@@ -91,7 +91,7 @@ export class ProfileFreelancerComponent implements OnInit  {
   openHireFreelancer() {
 
     const dialogRef = this.dialog.open(HireFreelancerComponent, {
-      width: '400px', // Set the width of the dialog
+      width: '400px', 
     });
   }
 

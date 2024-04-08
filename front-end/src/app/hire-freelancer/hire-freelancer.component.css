@@ -2,21 +2,21 @@
     display: flex;
     flex-direction: column;
     background: #606c88;
-    background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
-    background: linear-gradient(to right, #3f4c6b, #606c88);
+    background: -webkit-linear-gradient(to right,  #141E1D , #446063);
+    background: linear-gradient(to right,  #141E1D , #446063);
     padding: 20px;
     border-radius: 5px;
  
     max-width: 600px;
-    
   }
   
   .title {
-    font-size: 2rem;
+    font-size: 15px;
     line-height: 2rem;
     font-weight: 700;
     letter-spacing: -0.025em;
     color: #fff;
+
   }
   
   .description {
@@ -50,7 +50,7 @@
   }
   
   .form div input:focus, .form div textarea:focus, .form div select:focus {
-    border: 1px solid rgb(99 102 241);
+    border: 3px white solid;
   }
   
   .form div button {
@@ -65,3 +65,71 @@
     outline: none;
     margin-top: 20px;
   }
+  .btn {
+    background-color: #446063; 
+    color: #CCD4DD;
+    margin: 15px auto;
+    font-weight: bolder;
+    width: 200px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for background color and box shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+  }
+  
+  .btn:hover {
+    background-color: rgb(255 255 255 / 0.05);
+    color: whitesmoke;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+/* Select the checkbox input */
+input[type="checkbox"] {
+  /* Increase the width and height */
+  margin-top: 10px;
+  width: 2em;
+  height: 2em;
+  background-color: #446063;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 50%; 
+  top: 50%; 
+  transform: translate(-50%, -50%);
+  width: 20%;
+  max-width: 100px;
+  padding: 20px;
+  height: 12%;
+  border-radius: 10px;
+  background-color:  #141E1D;
+  color:#446063;
+  text-align: center;
+}
+
+.modal-content {
+  text-align: center;
+  background: -webkit-linear-gradient(to right,  #141E1D , #446063);
+  background: linear-gradient(to right,  #141E1D , #446063);
+}
+
+.close {
+  color: white;
+  align-items: end;
+  font-size: 28px;
+  font-weight: bold;
+  
+}
+
+.close:hover,
+.close:focus {
+  color: grey;
+  text-decoration: none;
+  cursor: pointer;
+}
