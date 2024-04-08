@@ -56,11 +56,7 @@ export class AddPostComponent implements OnInit {
 }
 submit(){
   const currentDate: Date = new Date();
-  // console.log(this.description);
-  // console.log(this.selectedCategory);
-  // console.log(this.TechnologyForm.value.Technology);
-  // console.log('Current Date:', currentDate);
-  // console.log(this.freelancerId);
+
   const formattedDate: string = currentDate.toISOString().split('T')[0];
 
 
@@ -70,7 +66,10 @@ submit(){
                                        "photos":["https://images.unsplash.com/photo-1711968558539-1bcc5b6222db?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4OHx8fGVufDB8fHx8fA%3D%3D"],
                                        "description":this.description,
                                        "type":this.selectedCategory,
-                                       "technologies":this.TechnologyForm.value.Technology}).subscribe(
+                                       "technologies":this.TechnologyForm.value.Technology,
+                                       "likesCount": 0,
+                                       "likes": [],
+                                      }).subscribe(
     (res) => {
 
       console.log(res);

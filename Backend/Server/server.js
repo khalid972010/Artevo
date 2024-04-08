@@ -30,6 +30,7 @@ app.use("/api/users", UserRoute);
 
 //#region Client Routes
 app.use("/api/clients", clientRoutes);
+app.use("/api/clients/like/:id", clientRoutes);
 //#endregion
 
 //#region Portfolio Routes
