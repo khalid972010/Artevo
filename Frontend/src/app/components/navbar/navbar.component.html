@@ -1,5 +1,5 @@
 <nav class="navbar-blur row">
-  <div class="logo col-xxl-5 col-xl-3 col-lg-2 d-lg-block d-none">
+  <div class="logo col-xxl-5 col-xl-3 col-lg-2 col-0 d-lg-block d-none">
     <a href="#" (click)="navigateHome($event)">Art<em>lance</em></a>
   </div>
   <app-searchbar class="col-xl-3 col-lg-3 col-1"></app-searchbar>
@@ -17,7 +17,10 @@
   >
     <span></span>
   </div>
-  <ul *ngIf="isLogged" class="navbar-nav m-0 mb-2 mb-lg-0 profile-menu col-1">
+  <ul
+    *ngIf="isLogged"
+    class="navbar-nav m-0 mb-2 mb-lg-0 profile-menu col-1 d-none d-md-block"
+  >
     <li class="nav-item dropdown">
       <a
         class="nav-link dropdown-toggle"
@@ -53,6 +56,15 @@
     <div class="row">
       <div class="main-menu">
         <ul>
+          <li *ngIf="!isLogged">
+            <a href="#" (click)="navigateToLogin($event)">Log In</a>
+          </li>
+          <li *ngIf="!isLogged">
+            <a href="#" (click)="navigateToRegister($event)">Sign Up</a>
+          </li>
+          <li *ngIf="isLogged">
+            <a href="#" (click)="visitMyProfile($event)">My Profile</a>
+          </li>
           <li>
             <a href="#" (click)="navigateHome($event)">Home</a>
           </li>
@@ -66,10 +78,9 @@
             <a href="#" (click)="navigatePortfolioList($event)">Portfolios</a>
           </li>
           <li>
-            <a href="#" (click)="navigateToLogin($event)">Log In</a>
-          </li>
-          <li>
-            <a href="#" (click)="navigateToRegister($event)">Sign Up</a>
+            <a *ngIf="isLogged" class="pt-5" href="#" (click)="logout()"
+              >Log Out</a
+            >
           </li>
         </ul>
       </div>

@@ -1,26 +1,26 @@
 .services {
-  background-color: #ada69d;
+  background-color: var(--tertiary-color);
   padding: 65px 0px;
- }
+}
 
- .services .service-item {
+.services .service-item {
   margin: 15px 0px;
   padding: 20px;
   text-align: center;
   transition: all 0.5s;
- }
+}
 
-  .services .service-item:hover {
-    background-color: #86604F;
-  }
+.services .service-item:hover {
+  background-color: var(--primary-color);
+}
 
- .services .service-item .icon {
+.services .service-item .icon {
   width: 50px;
   height: 50px;
   text-align: center;
   display: inline-block;
   line-height: 50px;
- }
+}
 
 .services .service-item .icon img {
   max-width: 100%;
@@ -28,7 +28,7 @@
 
 .services .service-item h4 {
   margin-top: 20px;
-  color: #313131;
+  color: var(--secondary-color);
   font-size: 20px;
   text-transform: capitalize;
   letter-spacing: 0.5px;
@@ -51,7 +51,7 @@
 }
 
 .more-about-us .content {
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   text-align: left;
   padding: 150px 60px;
   color: #fff;

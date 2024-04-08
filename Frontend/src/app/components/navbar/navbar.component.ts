@@ -44,8 +44,9 @@ export class NavbarComponent implements OnInit {
   }
 
   navigateHome(event: Event) {
+    var path = this.isLogged ? '/home' : '/';
     event.preventDefault();
-    this.router.navigateByUrl('/', { replaceUrl: true });
+    this.router.navigateByUrl(path, { replaceUrl: true });
     if (this.isMenuOpen == true) this.toggleMenu();
   }
 
@@ -82,6 +83,7 @@ export class NavbarComponent implements OnInit {
 
   visitMyProfile(event:Event) {
     event.preventDefault();
-    this.router.navigate(['/freelancer',this.freelancer._id]);
+    this.router.navigate(['/freelancer', this.freelancer._id]);
+    if (this.isMenuOpen == true) this.toggleMenu();
   }
 }
