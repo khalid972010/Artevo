@@ -1,7 +1,10 @@
 .container-fluid {
   background-color: var(--primary-color) !important;
 }
-
+.main-content {
+  flex: 1;
+  display: flex;
+}
 header {
   background-repeat: no-repeat;
   background-position: center;
@@ -27,12 +30,12 @@ header img {
 }
 
 .left {
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
   background-color: var(--tertiary-color);
-  height: 100vh !important;
 }
 
 .photo {
@@ -92,7 +95,6 @@ header img {
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
   color: var(--primary-color);
-
 }
 
 .desc-stat {
@@ -202,20 +204,17 @@ header img {
 }
 
 .portfolio-item {
-  width: calc(20% - 20px); 
-  margin-bottom: 20px; 
-  height: calc(20.2% - 100px); ;
+  width: calc(20% - 20px);
+  margin-bottom: 20px;
+  height: calc(20.2% - 100px);
 }
 
 .portfolio-item img {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
-  width: 100%; 
+  width: 100%;
   height: auto;
   cursor: pointer;
 }
-
-
-
 
 /*button---------------------------------------------------------------------*/
 .radio-inputs {
@@ -240,7 +239,6 @@ header img {
 }
 
 .radio-inputs .radio .name {
-
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -252,7 +250,7 @@ header img {
   transition: all 0.15s ease-in-out;
 }
 
-.radio-inputs .radio input:checked+.name {
+.radio-inputs .radio input:checked + .name {
   background-color: var(--secondary-color);
   font-weight: 600;
   color: black;
@@ -263,8 +261,8 @@ header img {
 .button {
   --main-focus: #2d8cf0;
   --font-color: #323232;
-  --bg-color-sub: #ad9185;
-  --bg-color: #e4dcd1;
+  --bg-color-sub: var(--primary-color);
+  --bg-color: var(--secondary-color);
   --main-color: #323232;
   position: relative;
   width: 187px;
@@ -273,8 +271,8 @@ header img {
   display: flex;
   align-items: center;
   border: 2px solid var(--main-color);
-  box-shadow: 4px 4px var(--main-color);
-  background-color: var(--bg-color);
+  box-shadow: 1px 1px var(--main-color);
+
   border-radius: 10px;
   overflow: hidden;
 }
@@ -295,7 +293,7 @@ header img {
   position: absolute;
   transform: translateX(109px);
   height: 100%;
-  width: 39px;
+  width: 40px;
   background-color: var(--bg-color-sub);
   display: flex;
   align-items: center;
@@ -316,12 +314,11 @@ header img {
 }
 
 .button:hover .button__icon {
-  width: 148px;
+  width: 100%;
   transform: translateX(0);
 }
 
 .button:active {
-  transform: translate(3px, 3px);
   box-shadow: 0px 0px var(--main-color);
 }
 
@@ -586,7 +583,7 @@ button:hover .star-6 {
   bottom: -0.2em;
   left: 50%;
   transform: translate(-50%) rotate(45deg);
-  background-color: var(--secondary-color)
+  background-color: var(--secondary-color);
 }
 
 .tooltip-container:hover .tooltip {
@@ -609,7 +606,7 @@ button:hover .star-6 {
   height: 40px;
   width: 220px;
   margin-top: 20px;
-  padding: 0%
+  padding: 0%;
 }
 .form {
   display: flex;
@@ -648,7 +645,7 @@ button:hover .star-6 {
   outline: none;
   line-height: 1.5rem;
   font-size: 0.875rem;
-  color: rgb(255 255 255 );
+  color: rgb(255 255 255);
   padding: 0.5rem 0.875rem;
   background-color: rgb(255 255 255 / 0.05);
   border: 1px solid rgba(253, 253, 253, 0.363);
@@ -676,16 +673,15 @@ button:hover .star-6 {
   outline: none;
 }
 
-
 .btn {
-width: 200px;
+  width: 200px;
   height: 50px; /* Set height for the button */
   display: flex; /* Use flexbox */
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
   width: 6.5em;
   height: 2.3em;
-  background-color:  #CCD4DD;
+  background-color: #ccd4dd;
   color: #446063;
   border: none;
   border-radius: 0.625em;
@@ -699,19 +695,16 @@ width: 200px;
   margin-bottom: 10px;
   margin-top: 10px;
   padding: 0 20px;
+}
 
- }
+button:hover {
+  color: #141e1d;
+}
 
-
- 
- button:hover {
-  color:#141E1D
- }
- 
- button:after {
+button:after {
   content: "";
   background-color: #446063;
-  color: #CCD4DD;
+  color: #ccd4dd;
   position: absolute;
   z-index: -1;
   left: -20%;
@@ -720,10 +713,10 @@ width: 200px;
   bottom: 0;
   transform: skewX(-45deg) scale(0, 1);
   transition: all 0.5s;
- }
- 
- button:hover:after {
+}
+
+button:hover:after {
   transform: skewX(-45deg) scale(1, 1);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
- }
+}
