@@ -62,7 +62,10 @@ export class LoginComponent {
             if (next.responseBody.type === 'Admin') {
               this.router.navigate(['/dashboard'], { replaceUrl: true });
             } else {
-              this.router.navigate(['/'], { replaceUrl: true });
+              this.router.navigate(['/'], { replaceUrl: true }).then(() => {
+                // Reload the page after navigation
+                location.reload();
+              });
             }
           },
           error: (err) => {

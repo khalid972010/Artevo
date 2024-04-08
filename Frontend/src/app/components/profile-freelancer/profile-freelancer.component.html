@@ -4,7 +4,7 @@
   </header>
   <div class="main-content">
     <div class="row container-fluid m-0 p-0 align-items-start h-100">
-      <div class="left col-lg-4 h-100">
+      <div class="left col-lg-4" style="min-height: 100vh">
         <div class="photo-left">
           <img class="photo" [src]="freelancer?.profilePicture" />
         </div>
@@ -187,6 +187,7 @@
         </div>
 
         <button
+          *ngIf="!hisProfile"
           (click)="openHireFreelancer()"
           class="btn"
           style="width: 300px; margin-top: 30px"
@@ -207,10 +208,10 @@
         <!--button post/order-->
         <div class="row justify-content-between align-items-center m-0">
           <div
-            class="radio-inputs col-auto"
-            style="color: var(--primary-color); width: 150px"
+            class="radio-inputs col-auto row"
+            style="color: var(--primary-color)"
           >
-            <label class="radio">
+            <label class="radio col-6">
               <input
                 [(ngModel)]="selectedTab"
                 type="radio"
@@ -220,7 +221,7 @@
               />
               <span class="name">Posts</span>
             </label>
-            <label class="radio" *ngIf="hisProfile">
+            <label class="radio col-6" *ngIf="hisProfile">
               <input
                 [(ngModel)]="selectedTab"
                 value="orders"

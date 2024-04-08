@@ -1,23 +1,35 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClientModule} from '@angular/common/http';
 import { FreelancerService } from '../../services/freelancer.service';
 import { SearchbarComponent } from '../searchbar/searchbar.component';
+import { TokenService } from '../../services/token.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule, RouterModule, HttpClientModule, SearchbarComponent],
-  providers: [FreelancerService],
+  providers: [FreelancerService, TokenService],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
 
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  isLogged = false;
+  freelancer?: any;
   constructor(
     private router: Router,
-  ) {}
+    private tokenService: TokenService,
+  ) { }
+
+  ngOnInit(): void {
+    this.isLogged = this.tokenService.getUser() != null;
+    if (this.isLogged) {
+      this.freelancer = this.tokenService.getUser();
+    }
+    console.log(this.freelancer)
+  }
 
   isMenuOpen: boolean = false;
 
@@ -56,5 +68,20 @@ export class NavbarComponent {
     event.preventDefault();
     this.router.navigateByUrl('/freelancers', { replaceUrl: true });
     if (this.isMenuOpen == true) this.toggleMenu();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/'], { replaceUrl: true }).then(() => {
+      // Reload the page after navigation
+      location.reload();
+    });
+    if (this.isMenuOpen == true) this.toggleMenu();
+  }
+
+  visitMyProfile(event:Event) {
+    event.preventDefault();
+    this.router.navigate(['/freelancer',this.freelancer._id]);
   }
 }

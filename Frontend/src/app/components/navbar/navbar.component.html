@@ -1,0 +1,78 @@
+<nav class="navbar-blur row">
+  <div class="logo col-xxl-5 col-xl-3 col-lg-2 d-lg-block d-none">
+    <a href="#" (click)="navigateHome($event)">Art<em>lance</em></a>
+  </div>
+  <app-searchbar class="col-xl-3 col-lg-3 col-1"></app-searchbar>
+  <div
+    *ngIf="!isLogged"
+    class="menu-icon col-xl-2 col-lg-2 col-2 d-sm-block d-none"
+    (click)="toggleMenu()"
+  >
+    <span></span>
+  </div>
+  <div
+    *ngIf="isLogged"
+    class="menu-icon col-xl-3 col-lg-3 col-3 d-sm-block d-none"
+    (click)="toggleMenu()"
+  >
+    <span></span>
+  </div>
+  <ul *ngIf="isLogged" class="navbar-nav m-0 mb-2 mb-lg-0 profile-menu col-1">
+    <li class="nav-item dropdown">
+      <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        id="navbarDropdown"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <div class="profile-pic">
+          <img [src]="freelancer?.profilePicture" alt="Profile Picture" />
+        </div>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li>
+          <a class="dropdown-item" href="" (click)="visitMyProfile($event)"
+            ><i class="fas fa-sliders-h fa-fw"></i> Account</a
+          >
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+        <li>
+          <a class="dropdown-item" href="" (click)="logout()"
+            ><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a
+          >
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<section class="overlay-menu" [ngClass]="{ open: isMenuOpen }">
+  <div class="container">
+    <div class="row">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="#" (click)="navigateHome($event)">Home</a>
+          </li>
+          <li>
+            <a href="#" (click)="navigateAbout($event)">About Us</a>
+          </li>
+          <li>
+            <a href="#" (click)="navigateToFreelancers($event)">Freelancers</a>
+          </li>
+          <li>
+            <a href="#" (click)="navigatePortfolioList($event)">Portfolios</a>
+          </li>
+          <li>
+            <a href="#" (click)="navigateToLogin($event)">Log In</a>
+          </li>
+          <li>
+            <a href="#" (click)="navigateToRegister($event)">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
