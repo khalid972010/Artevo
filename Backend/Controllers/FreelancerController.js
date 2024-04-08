@@ -32,33 +32,27 @@ let getFreelancerByTD = async (request, response) => {
 };
 
 let Addfreelancer = async (request, response) => {
-  console.log("In Function");
   let freelancer = request.body;
 
-  try {
-    if (await Freelancer.findOne({ email: freelancer.email })) {
-      response.status(400).json({ message: "Email already exists!" });
-    } else if (await Freelancer.findOne({ userName: freelancer.userName })) {
-      response.status(400).json({ message: "Username already exists!" });
-    } else {
-      if (FreelancerValidator(freelancer)) {
-        console.log("In if");
-        freelancer.password = await bcrypt.hash(freelancer.password, 10);
-        freelancer.isVerified = false;
-        console.log(freelancer);
-        await Freelancer.create(freelancer);
-        await UserController.sendVerification(request, response);
-      } else {
-        console.log("In else");
-
-        response.status(400).json({
-          message: "Validation error: " + FreelancerValidator.errors[0].message,
-        });
-      }
-    }
-  } catch (error) {
-    console.error("Error adding freelancer:", error);
-    response.status(500).json({ error: "Failed to add freelancer" });
+  if (await Freelancer.findOne({ email: freelancer.email })) {
+    return response.status(400).json({ message: "Mail already exists!" });
+  }
+  if (await Freelancer.findOne({ userName: freelancer.userName })) {
+    return response.status(400).json({ message: "user name already exists!" });
+  }
+  if (FreelancerValidator(freelancer)) {
+    freelancer.password = await bcrypt.hash(freelancer.password, 10);
+    freelancer.isVerified = false;
+    await Freelancer.create(freelancer);
+    console.log(UserController);
+    await UserController.sendVerification(request, response);
+  } else {
+    response.status(400).json({
+      message:
+        FreelancerValidator.errors[0].instancePath.substring(1) +
+        " " +
+        FreelancerValidator.errors[0].message,
+    });
   }
 };
 

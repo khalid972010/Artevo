@@ -80,6 +80,7 @@ export class RegisterComponent {
               this.emailExists = true;
             } else {
               console.log(data.statusCode);
+              console.log("Hello" + obj.userType);
 
               this.fullName = '';
               this.userName = '';
@@ -95,7 +96,7 @@ export class RegisterComponent {
             }
           },
           error: (error) => {
-            alert(error.error.message);
+            alert(error.message);
           },
         });
       }

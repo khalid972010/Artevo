@@ -10,8 +10,6 @@ const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { request } = require("express");
-const { use } = require("../Routes/FreelancerRoutes");
 //#region Profile
 // Get all Users
 const GetAllUsers = async (req, res) => {
