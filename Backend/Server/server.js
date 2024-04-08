@@ -5,6 +5,7 @@ const clientRoutes = require("../Routes/clientRoutes");
 const FreelancerRoutes = require("../Routes/FreelancerRoutes");
 const HomeRoutes = require("../Routes/HomeRoutes");
 const adminRoutes = require("../Routes/adminRoutes");
+const OrderRoutes = require("../Routes/OrderRoutes");
 const cors = require("cors");
 
 const app = express();
@@ -42,6 +43,7 @@ app.use("/api/Freelancer", FreelancerRoutes);
 //#region Freelancer Routes
 app.use("/api/Home", HomeRoutes);
 //#endregion
+app.use("/api/Order", OrderRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
