@@ -15,6 +15,6 @@ export class FreelancerCardComponent {
 
   NavigateFreelancerProfile(event: Event) {
     event.preventDefault();
-    this.router.navigate(['/profile/freelancer'], { state: { hisProfile: false, freelancer: this.freelancer } });
+    this.router.navigate(['/profile/freelancer'], { state: { hisProfile: true, freelancer: this.freelancer } });
   }
 }

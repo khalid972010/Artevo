@@ -11,6 +11,7 @@ const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { request } = require("express");
+const { use } = require("../Routes/FreelancerRoutes");
 //#region Profile
 // Get all Users
 const GetAllUsers = async (req, res) => {
@@ -65,16 +66,9 @@ const UpdateProfile = async (req, res) => {
       result = await Freelancers.findById(user._id);
       let newUser = Object.assign(result, req.body.user);
       console.log(newUser);
-      if (!freelancerValidator(newUser)) {
-        return res.json({
-          message:
-            freelancerValidator.errors[0].instancePath.substring(1) +
-            " " +
-            freelancerValidator.errors[0].message,
-        });
-      }
 
       await Freelancers.findByIdAndUpdate(user._id, { $set: newUser });
+      console.log(user);
       return res.status(200).json({ message: "Updated Successfully!" });
     }
   } catch (error) {

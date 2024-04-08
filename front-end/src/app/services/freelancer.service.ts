@@ -32,6 +32,9 @@ export class FreelancerService {
     const url = this.DB_URL + '/' + freelancerID;
     return this.http.get<any>(url);
   }
+  updateFreelancer(freelancer: any) {
+    this.http.patch(this.DB_URL, freelancer);
+  }
 }
 
 // export class PortfolioService {

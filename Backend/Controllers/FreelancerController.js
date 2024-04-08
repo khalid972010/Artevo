@@ -1,12 +1,29 @@
 const Freelancer = require("../Models/FreelancerModel");
 const Client = require("../Models/ClientModel");
 const FreelancerValidator = require("../Validators/FreelancerValidator");
+const UserController = require("../Controllers/UserController");
+const bcrypt = require("bcrypt");
 
 let getAllfreelancers = async (request, response) => {
   let allfreelancers = await Freelancer.find({});
   response.status(200).json({ data: allfreelancers });
 };
 
+let updateFreelancer = async (request, response) => {
+  let freelancer = request.body;
+  try {
+    if (FreelancerValidator(freelancer)) {
+      await Freelancer.findByIdAndUpdate(freelancer.id, freelancer);
+    } else {
+      response.status(400).json({
+        message: "Validation error: " + FreelancerValidator.errors[0].message,
+      });
+    }
+  } catch (error) {
+    console.error("Error adding freelancer:", error);
+    response.status(500).json({ error: "Failed to update freelancer" });
+  }
+};
 let getFreelancerByTD = async (request, response) => {
   let freelancerID = request.params.id;
   let freelancer = await Freelancer.findById(freelancerID);
@@ -15,7 +32,9 @@ let getFreelancerByTD = async (request, response) => {
 };
 
 let Addfreelancer = async (request, response) => {
+  console.log("In Function");
   let freelancer = request.body;
+
   try {
     if (await Freelancer.findOne({ email: freelancer.email })) {
       response.status(400).json({ message: "Email already exists!" });
@@ -23,11 +42,15 @@ let Addfreelancer = async (request, response) => {
       response.status(400).json({ message: "Username already exists!" });
     } else {
       if (FreelancerValidator(freelancer)) {
+        console.log("In if");
+        freelancer.password = await bcrypt.hash(freelancer.password, 10);
+        freelancer.isVerified = false;
+        console.log(freelancer);
         await Freelancer.create(freelancer);
-        response
-          .status(201)
-          .json({ message: "Freelancer added", data: { freelancer } });
+        await UserController.sendVerification(request, response);
       } else {
+        console.log("In else");
+
         response.status(400).json({
           message: "Validation error: " + FreelancerValidator.errors[0].message,
         });
@@ -134,32 +157,33 @@ const filter = async (req, res) => {
     console.log(allFreelancers);
 
     if (Location !== "")
-      allFreelancers = allFreelancers.filter(freelancer => freelancer.location === Location);
+      allFreelancers = allFreelancers.filter(
+        (freelancer) => freelancer.location === Location
+      );
 
     if (JopTitle !== "")
-      allFreelancers = allFreelancers.filter(freelancer => freelancer.headLine === JopTitle);
-   
+      allFreelancers = allFreelancers.filter(
+        (freelancer) => freelancer.headLine === JopTitle
+      );
+
     if (budget && budget.min !== undefined && budget.max !== undefined) {
-      
-
-
-      allFreelancers = allFreelancers.filter(freelancer =>(  freelancer.budget <= budget.max));
-      
+      allFreelancers = allFreelancers.filter(
+        (freelancer) => freelancer.budget <= budget.max
+      );
     }
     console.log(req.body);
     console.log(allFreelancers);
-    res.status(200).json( allFreelancers );
+    res.status(200).json(allFreelancers);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Internal server error" });
   }
 };
 
-
-
 module.exports = {
   getAllfreelancers,
   Addfreelancer,
+  updateFreelancer,
   AddFollower,
   RemoveFollower,
   getFreelancerByTD,

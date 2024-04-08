@@ -57,7 +57,8 @@
                 id="inputUsername"
                 type="text"
                 placeholder="Enter your username"
-                value="{{freelancer.Username}}"
+                value="{{ freelancer.userName }}"
+                #userName
               />
             </div>
             <!-- Form Row-->
@@ -72,8 +73,8 @@
                   id="inputFirstName"
                   type="text"
                   placeholder="Enter your first name"
-                 value="{{freelancer.fullName.split(' ')[0]}}"
-                 #firstName
+                  value="{{ freelancer.fullName.split(' ')[0] }}"
+                  #firstName
                 />
               </div>
               <!-- Form Group (last name)-->
@@ -99,7 +100,7 @@
                   id="inputPass"
                   type="password"
                   placeholder="Enter your password"
-                  value="{{freelancer.password}}"
+                  value="{{ freelancer.password }}"
                   #Password
                 />
               </div>
@@ -111,7 +112,7 @@
                   id="inputLocation"
                   type="text"
                   placeholder="Enter your location"
-                  value="{{freelancer.location}}"
+                  value="{{ freelancer.location }}"
                   #Location
                 />
               </div>
@@ -126,7 +127,7 @@
                 id="inputEmailAddress"
                 type="email"
                 placeholder="Enter your email address"
-                value="{{freelancer.email}}"
+                value="{{ freelancer.email }}"
                 #Email
               />
             </div>
@@ -143,18 +144,27 @@
                   style="resize: none; overflow: auto"
                   rows="3"
                   #About
-                >{{freelancer.about}}</textarea
+                  >{{ freelancer.about }}</textarea
                 >
               </div>
             </div>
             <!-- Save changes button-->
             <div class="row justify-content-around">
-              <button class="btn btn-success col-auto" type="button"  (click)="saveChanges(firstName.value,
-                                                                                           lasttName.value,
-                                                                                           Password.value,
-                                                                                           Location.value,
-                                                                                           Email.value,
-                                                                                           About.value)">
+              <button
+                class="btn btn-success col-auto"
+                type="button"
+                (click)="
+                  saveChanges(
+                    firstName.value,
+                    lasttName.value,
+                    userName.value,
+                    Password.value,
+                    Location.value,
+                    Email.value,
+                    About.value
+                  )
+                "
+              >
                 Save Changes
               </button>
               <button

@@ -32,6 +32,7 @@
     "@coreui/icons": "^3.0.1",
     "@coreui/icons-angular": "~5.0.0",
     "@coreui/utils": "^2.0.2",
+    "@stripe/stripe-js": "^3.2.0",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.2",
     "firebase": "^10.10.0",

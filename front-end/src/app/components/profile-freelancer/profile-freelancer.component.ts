@@ -6,13 +6,14 @@ import { FreelancerService } from '../../services/freelancer.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { TokenService } from '../../services/token.service';
 
 
 @Component({
   selector: 'app-profile-freelancer',
   standalone: true,
   imports: [FormsModule, CommonModule,PortfolioComponent],
-  providers:[FreelancerService,PortfolioService],
+  providers:[FreelancerService,PortfolioService, TokenService],
   templateUrl: './profile-freelancer.component.html',
   styleUrl: './profile-freelancer.component.css',
 })
@@ -23,7 +24,8 @@ export class ProfileFreelancerComponent implements OnInit  {
   constructor(private router:Router,
               private route: ActivatedRoute,
                private freelancerService:FreelancerService,
-               private portfolioService:PortfolioService){}
+    private portfolioService: PortfolioService,
+    private tokenService: TokenService) { }
   @Input() selectedTab: string = 'posts';
   @Input() hisProfile!: boolean;
   isTooltipActive = false;
@@ -55,13 +57,14 @@ export class ProfileFreelancerComponent implements OnInit  {
   }
   ngOnInit(): void {
     const navigation = history.state;
-    this.hisProfile = navigation.hisProfile;
     this.freelancer = navigation.freelancer;
+
+
+    console.log(this.freelancer);
 
     this.route.params.subscribe(params => {
       this.freelancerId = params['id'];
-      console.log(this.freelancerId);
-
+      this.hisProfile = this.tokenService.getUser()._id === this.freelancerId
       this.freelancerService.getFreelancerByID(this.freelancerId).subscribe(
         (res) => {
           this.freelancer = res.data;

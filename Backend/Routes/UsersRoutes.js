@@ -10,11 +10,7 @@ router.get("/", UserController.GetAllUsers);
 
 router.get("/:id", UserController.GetProfile);
 
-router.patch(
-  "/",
-  userMiddleware.verifyTokenAndGetUserData,
-  UserController.UpdateProfile
-);
+router.patch("/", UserController.UpdateProfile);
 
 router.post("/send-verification-email", UserController.sendVerification);
 router.post("/send-reset-password", UserController.sendResetToken);

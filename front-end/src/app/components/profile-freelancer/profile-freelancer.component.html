@@ -1,16 +1,16 @@
 <div class="container-fluid p-0" style="margin-top: 80px">
   <header>
-    <img [src]="freelancer.coverPicture" />
+    <img [src]="freelancer?.coverPicture" />
   </header>
   <div class="main-content">
     <div class="row container-fluid m-0 p-0 align-items-start h-100">
       <div class="left col-lg-4 h-100">
         <div class="photo-left">
-          <img class="photo" [src]="freelancer.profilePicture" />
+          <img class="photo" [src]="freelancer?.profilePicture" />
         </div>
-        <h4 class="name">{{ freelancer.fullName }}</h4>
-        <p class="info">{{ freelancer.headLine }}</p>
-        <p class="info">{{ freelancer.email }}</p>
+        <h4 class="name">{{ freelancer?.fullName }}</h4>
+        <p class="info">{{ freelancer?.headLine }}</p>
+        <p class="info">{{ freelancer?.email }}</p>
         <!--edit butoon-->
         <button
           *ngIf="hisProfile"
@@ -173,11 +173,11 @@
         <!--about section-->
         <div class="stats row">
           <div class="stat col-xs-4">
-            <p class="number-stat">{{ freelancer.followers.length }}</p>
+            <p class="number-stat">{{ freelancer?.followers.length ?? 0 }}</p>
             <p class="desc-stat">Followers</p>
           </div>
           <div class="stat col-xs-4">
-            <p class="number-stat">{{ freelancer.following.length }}</p>
+            <p class="number-stat">{{ freelancer?.following.length ?? 0 }}</p>
             <p class="desc-stat">Following</p>
           </div>
           <div class="stat col-xs-4">
@@ -185,7 +185,7 @@
             <p class="desc-stat">Uploads</p>
           </div>
         </div>
-        <p class="desc">{{ freelancer.about }}</p>
+        <p class="desc">{{ freelancer?.about }}</p>
         <div class="social">
           <i class="fa fa-facebook-square" aria-hidden="true"></i>
           <i class="fa fa-twitter-square" aria-hidden="true"></i>
@@ -255,7 +255,7 @@
             class="tooltip-container col-2 mt-3"
             *ngIf="!hisProfile"
           >
-            <span class="tooltip">{{ freelancer.followers.length }}</span>
+            <span class="tooltip">{{ freelancer?.followers.length ?? 0 }}</span>
             <span class="text">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

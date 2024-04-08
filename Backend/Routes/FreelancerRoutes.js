@@ -7,15 +7,15 @@ const freelancerController = require("../Controllers/FreelancerController");
 router.get("/", freelancerController.getAllfreelancers);
 //#region Add freelancer
 router.post("/", freelancerController.Addfreelancer);
-
+router.patch("/", freelancerController.updateFreelancer);
 router.post("/follow", freelancerController.AddFollower);
 router.post("/Unfollow", freelancerController.RemoveFollower);
 router.get("/search", freelancerController.searchFreelancers);
 router.get("/:id", freelancerController.getFreelancerByTD);
 router.post("/filter", freelancerController.filter);
 
-router.use("*",(req, res) => {
-    res.send("Defaultt");
+router.use("*", (req, res) => {
+  res.send("Defaultt");
 });
 
 //#endregion
