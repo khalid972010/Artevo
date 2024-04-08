@@ -1,0 +1,135 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    background: #606c88;
+    background: -webkit-linear-gradient(to right,  #141E1D , #446063);
+    background: linear-gradient(to right,  #141E1D , #446063);
+    padding: 20px;
+    border-radius: 5px;
+ 
+    max-width: 600px;
+  }
+  
+  .title {
+    font-size: 15px;
+    line-height: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #fff;
+
+  }
+  
+  .description {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    color: rgb(209 213 219);
+  }
+  
+  .form div {
+    display: flex;
+    max-width: 30rem;
+    margin-top: 1rem;
+    column-gap: 0.5rem;
+  }
+  
+  .form div input, .form div textarea, .form div select,  .form div select option {
+    outline: none;
+    line-height: 1.5rem;
+    font-size: 0.875rem;
+    color: rgb(255 255 255);
+    padding: 0.5rem 0.875rem;
+    background-color: rgb(255 255 255 / 0.05);
+    border: 1px solid rgba(253, 253, 253, 0.363);
+    border-radius: 0.375rem;
+    flex: 1 1 auto;
+  }
+  
+  .form div input::placeholder, .form div textarea::placeholder {
+    color: rgb(216, 212, 212);
+  }
+  
+  .form div input:focus, .form div textarea:focus, .form div select:focus {
+    border: 3px white solid;
+  }
+  
+  .form div button {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 0.625rem 0.875rem;
+    background-color: rgb(99 102 241);
+    border-radius: 0.375rem;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+  }
+  .btn {
+    background-color: #446063; 
+    color: #CCD4DD;
+    margin: 15px auto;
+    font-weight: bolder;
+    width: 200px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for background color and box shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+  }
+  
+  .btn:hover {
+    background-color: rgb(255 255 255 / 0.05);
+    color: whitesmoke;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+/* Select the checkbox input */
+input[type="checkbox"] {
+  /* Increase the width and height */
+  margin-top: 10px;
+  width: 2em;
+  height: 2em;
+  background-color: #446063;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 50%; 
+  top: 50%; 
+  transform: translate(-50%, -50%);
+  width: 20%;
+  max-width: 100px;
+  padding: 20px;
+  height: 12%;
+  border-radius: 10px;
+  background-color:  #141E1D;
+  color:#446063;
+  text-align: center;
+}
+
+.modal-content {
+  text-align: center;
+  background: -webkit-linear-gradient(to right,  #141E1D , #446063);
+  background: linear-gradient(to right,  #141E1D , #446063);
+}
+
+.close {
+  color: white;
+  align-items: end;
+  font-size: 28px;
+  font-weight: bold;
+  
+}
+
+.close:hover,
+.close:focus {
+  color: grey;
+  text-decoration: none;
+  cursor: pointer;
+}

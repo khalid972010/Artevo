@@ -7,8 +7,8 @@ import { map } from 'rxjs';
 })
 export class PortfolioService {
   constructor(private http: HttpClient) {}
-  DB_URL = 'https://angularproject-rokp.onrender.com/api/portfolio';
- // DB_URL = 'http://localhost:7010/api/portfolio';
+   DB_URL = 'https://angularproject-rokp.onrender.com/api/portfolio';
+ //DB_URL = 'http://localhost:7010/api/portfolio';
   getAllPortfolio() {
     return this.http.get(this.DB_URL);
   }

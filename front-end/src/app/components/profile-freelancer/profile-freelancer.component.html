@@ -185,7 +185,16 @@
             <p class="desc-stat">Uploads</p>
           </div>
         </div>
-        <p class="desc">{{ freelancer?.about }}</p>
+
+        <button
+          (click)="openHireFreelancer()"
+          class="btn"
+          style="width: 300px; margin-top: 30px"
+        >
+          Hire Freelancer
+        </button>
+
+        <p class="desc">{{ freelancer.about }}</p>
         <div class="social">
           <i class="fa fa-facebook-square" aria-hidden="true"></i>
           <i class="fa fa-twitter-square" aria-hidden="true"></i>
@@ -331,11 +340,7 @@
           </table>
         </div>
 
-        <div
-          class="grid-portfolio"
-          id="portfolio"
-          *ngIf="selectedTab === 'posts'"
-        >
+        <div *ngIf="selectedTab === 'posts'">
           <div class="container">
             <div class="row">
               <app-portfolio

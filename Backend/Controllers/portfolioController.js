@@ -131,13 +131,14 @@ const findPortfolioByCategory = async (request, response) => {
   return response.status(200).json({ Data: foundPosts });
 };
 const filter = async (req, res) => {
-  var technologies = req.body.technologies;
-  var filteredPortfolio = await portfolioModel.find({});
-  console.log(req.body.technologies);
   try {
+    var technologies = req.body.technologies.map(tech => tech.toLowerCase());
+    var filteredPortfolio = await portfolioModel.find({});
+    console.log(technologies);
+
     if (technologies && technologies.length > 0) {
       filteredPortfolio = filteredPortfolio.filter((item) => {
-        return item.technologies.some((tech) => technologies.includes(tech));
+        return item.technologies.some((tech) => technologies.includes(tech.toLowerCase()));
       });
     }
     return res.json(filteredPortfolio);
@@ -145,6 +146,8 @@ const filter = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+
 
 //SALLAH -- MAHMOUD
 //SALLAH -- MAHMOUD

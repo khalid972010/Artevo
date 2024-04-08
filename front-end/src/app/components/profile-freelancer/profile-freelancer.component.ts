@@ -8,11 +8,13 @@ import { PortfolioComponent } from '../portfolio/portfolio.component';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { TokenService } from '../../services/token.service';
 
+import { HireFreelancerComponent } from '../../hire-freelancer/hire-freelancer.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile-freelancer',
   standalone: true,
-  imports: [FormsModule, CommonModule,PortfolioComponent],
+  imports: [FormsModule, CommonModule,PortfolioComponent,HireFreelancerComponent],
   providers:[FreelancerService,PortfolioService, TokenService],
   templateUrl: './profile-freelancer.component.html',
   styleUrl: './profile-freelancer.component.css',
@@ -25,7 +27,8 @@ export class ProfileFreelancerComponent implements OnInit  {
               private route: ActivatedRoute,
                private freelancerService:FreelancerService,
     private portfolioService: PortfolioService,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService,
+               private dialog: MatDialog) { }
   @Input() selectedTab: string = 'posts';
   @Input() hisProfile!: boolean;
   isTooltipActive = false;
@@ -85,6 +88,14 @@ export class ProfileFreelancerComponent implements OnInit  {
           console.log(error);
         }
       );
+    });
+  }
+
+
+  openHireFreelancer() {
+
+    const dialogRef = this.dialog.open(HireFreelancerComponent, {
+      width: '400px',
     });
   }
 
