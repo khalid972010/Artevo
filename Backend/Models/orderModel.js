@@ -11,9 +11,13 @@ const orderSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     state: {
       type: String,
-      enum: ["Pending", "inProgress", "Refused", "Completed"],
+      enum: ["Pending", "InProgress", "Declined", "Completed"],
       required: true,
       default: "Pending",
+    },
+    FreelancerResponse:{
+      type:String,
+      default:""
     },
     deadline: {
       type: String,

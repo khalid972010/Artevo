@@ -10,12 +10,16 @@ import { TokenService } from '../../services/token.service';
 
 import { HireFreelancerComponent } from '../../hire-freelancer/hire-freelancer.component';
 import { MatDialog } from '@angular/material/dialog';
+import { OrderService } from '../../services/order.service';
+import { ClientService } from '../../services/client.service';
+//import { error } from 'console';
+//import { error } from 'console';
 
 @Component({
   selector: 'app-profile-freelancer',
   standalone: true,
-  imports: [FormsModule, CommonModule,PortfolioComponent,HireFreelancerComponent],
-  providers:[FreelancerService,PortfolioService, TokenService],
+  imports: [FormsModule, CommonModule,PortfolioComponent],
+  providers:[FreelancerService,PortfolioService, TokenService,OrderService,ClientService],
   templateUrl: './profile-freelancer.component.html',
   styleUrl: './profile-freelancer.component.css',
 })
@@ -23,18 +27,24 @@ export class ProfileFreelancerComponent implements OnInit  {
   freelancerId: string = "";
   freelancerPortfolio:any;
   freelancer:any;
+  orders:any;
+
+
+
   constructor(private router:Router,
               private route: ActivatedRoute,
-               private freelancerService:FreelancerService,
-    private portfolioService: PortfolioService,
-    private tokenService: TokenService,
-               private dialog: MatDialog) { }
+              private freelancerService:FreelancerService,
+              private portfolioService: PortfolioService,
+              private tokenService: TokenService,
+              private dialog: MatDialog,
+              private orderService:OrderService,
+            private clientService:ClientService  ) { }
   @Input() selectedTab: string = 'posts';
   @Input() hisProfile!: boolean;
   isTooltipActive = false;
 
   addPost() {
-    console.log('add post method');
+    //console.log('add post method');
   }
   NavigateUpdateProfile(event: Event) {
     event.preventDefault();
@@ -58,6 +68,15 @@ export class ProfileFreelancerComponent implements OnInit  {
     followersElement!.classList.toggle('pressed');
     svgIconElement!.classList.toggle('pressed');
   }
+  async getClientName(clientID: string): Promise<string> {
+    try {
+        const res = await this.clientService.getByID(clientID).toPromise();
+        return res.data.fullName;
+    } catch (error) {
+        console.error(error);
+        return ''; // or handle error accordingly
+    }
+}
   ngOnInit(): void {
     const navigation = history.state;
     this.freelancer = navigation.freelancer;
@@ -71,24 +90,40 @@ export class ProfileFreelancerComponent implements OnInit  {
       this.freelancerService.getFreelancerByID(this.freelancerId).subscribe(
         (res) => {
           this.freelancer = res.data;
-          console.log(this.freelancer);
+          //console.log(this.freelancer);
         },
         (error) => {
-          console.error(error);
+          //console.error(error);
         }
       );
 
       this.portfolioService.getOwnerPortfolio(this.freelancerId).subscribe(
         (res) => {
           this.freelancerPortfolio = res;
-          console.log(res);
-          console.log(this.freelancerPortfolio);
+         // console.log(res);
+         // console.log(this.freelancerPortfolio);
         },
         (error) => {
-          console.log(error);
+          //console.log(error);
         }
       );
     });
+
+    this.orderService.FreelancerOrders(this.freelancerId).subscribe(
+      (res) => {
+          this.orders = res;
+          this.orders.data.FreelancerOrders.forEach(async (order: { clientName: string; from: string; }) => {
+              order.clientName = await this.getClientName(order.from);
+          });
+          console.log(this.orders.data.FreelancerOrders);
+      },
+      (error) => {
+          console.log(error);
+      }
+  );
+
+
+
   }
 
 
@@ -96,7 +131,60 @@ export class ProfileFreelancerComponent implements OnInit  {
 
     const dialogRef = this.dialog.open(HireFreelancerComponent, {
       width: '400px',
+      data: { freelancerID: this.freelancerId } // Pass your data here
     });
+  }
+
+  AcceptOrder(ordersItemID: string) {
+    // Call your service method to update the order status
+    this.orderService.updateOrderStatus(ordersItemID, 'InProgress').subscribe(
+      (res) => {
+
+      // console.log(res);
+
+        // Handle success response if needed
+        console.log('Order status updated successfully');
+      },
+      (error) => {
+        // Handle error response
+        console.error('Error updating order status:', error);
+      }
+    );
+  }
+  openResponseForm:boolean=false;
+  selectedOrderId: string | null = null;
+  responseText: string = '';
+
+  openFreelancerResponse(orderId: string) {
+    this.selectedOrderId = orderId;
+    this.openResponseForm = true;
+  }
+  closeFreelancerResponse(){
+    this.selectedOrderId = null;
+    this.responseText = '';
+    this.openResponseForm = false;
+
+  }
+  submitResponse() {
+    if (this.selectedOrderId && this.responseText) {
+      // Use this.selectedOrderId and this.responseText here for further processing
+      console.log('Selected Order ID:', this.selectedOrderId);
+      console.log('Response Text:', this.responseText);
+
+       this.orderService.updateFreelancerResponse(this.selectedOrderId,this.responseText).subscribe(
+        (res)=>{
+          console.log(res);
+        },
+        (error)=>{
+          console.log(error);
+        }
+       )
+
+      // Clear selectedOrderId and responseText after submission
+      this.selectedOrderId = null;
+      this.responseText = '';
+      this.openResponseForm = false;
+    }
   }
 
 }

@@ -39,8 +39,8 @@ export const routes: Routes = [
   },
   { path: 'profile/client/update', component: ProfileClientUpdate },
   { path: 'profile/freelancer/hire-freelancer', component: HireFreelancerComponent },
-  { path: 'profile/client', component: ProfileClientComponent },
-  
+  { path: 'profile/client/:id', component: ProfileClientComponent },
+
   {
     path: '',
     component: DefaultLayoutComponent,

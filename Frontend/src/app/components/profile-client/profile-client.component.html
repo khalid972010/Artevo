@@ -8,9 +8,9 @@
         <div class="photo-left">
           <img class="photo" src="assets/images/about-pic.webp" />
         </div>
-        <h4 class="name">Jane Doe</h4>
-        <p class="info">UI/UX Designer</p>
-        <p class="info">jane.doegmail.com</p>
+        <h4 class="name">{{Client.fullName}}</h4>
+        <p class="info">{{Client.email}}</p>
+
         <!--edit butoon-->
         <button (click)="NavigateUpdateProfile($event)">
           Update Profile
@@ -168,10 +168,6 @@
         <!--edit butoon-->
         <!--about section-->
         <div class="stats row">
-          <div class="stat col-xs-4">
-            <p class="number-stat">3,619</p>
-            <p class="desc-stat">Followers</p>
-          </div>
           <div class="stat col-xs-4">
             <p class="number-stat">42</p>
             <p class="desc-stat">Following</p>

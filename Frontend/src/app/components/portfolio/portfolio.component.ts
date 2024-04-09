@@ -36,7 +36,7 @@ export class PortfolioComponent implements OnInit {
     }
     this.freelancerService.getFreelancerByID(this.portfolio.ownerID).subscribe(
       (res) => {
-     console.log(this.portfolio);
+    // console.log(this.portfolio);
      this.OwnerName=res.data.fullName;
       },
       (error) => {
@@ -65,7 +65,7 @@ export class PortfolioComponent implements OnInit {
     this.portfolioService.like(portfolioId, userId).subscribe(
       (res) => {},
       (error) => {
-        console.error(error);
+        //console.error(error);
       }
     );
   }

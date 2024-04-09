@@ -74,9 +74,9 @@ const removePortfolio = async (req, res) => {
 const OwnerPortfolio = async (req, res) => {
   const ownerID = req.body.ownerID;
   try {
-    console.log(ownerID);
+   // console.log(ownerID);
     let portfolio = await portfolioModel.find({ ownerID: ownerID });
-    console.log(portfolio);
+   // console.log(portfolio);
     if (!portfolio) {
       return res.status(404).json({ message: "owner has no posted work yet!" });
     }

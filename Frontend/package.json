@@ -36,6 +36,7 @@
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.2",
     "firebase": "^10.10.0",
+    "install": "^0.13.0",
     "jquery": "^3.7.1",
     "lightbox2": "^2.11.4",
     "lodash-es": "^4.17.21",

@@ -211,7 +211,7 @@
             class="radio-inputs col-auto row"
             style="color: var(--primary-color)"
           >
-            <label class="radio col-6">
+            <label class="radio col-4">
               <input
                 [(ngModel)]="selectedTab"
                 type="radio"
@@ -221,7 +221,7 @@
               />
               <span class="name">Posts</span>
             </label>
-            <label class="radio col-6" *ngIf="hisProfile">
+            <label class="radio col-4" *ngIf="hisProfile">
               <input
                 [(ngModel)]="selectedTab"
                 value="orders"
@@ -229,6 +229,16 @@
                 name="selected"
               />
               <span class="name">Orders</span>
+            </label>
+            <label class="radio col-4">
+              <input
+                [(ngModel)]="selectedTab"
+                type="radio"
+                name="selected"
+                value="Tasks"
+                checked=""
+              />
+              <span class="name">Tasks</span>
             </label>
           </div>
 
@@ -294,52 +304,65 @@
           <table class="table table-hover table-dark table-striped mt-4">
             <thead>
               <tr>
-                <th>Image</th>
                 <th>Client</th>
-                <th>Status</th>
-                <th>Price</th>
+                <th>Description</th>
+                <th>DeadLine</th>
+                <th>Offering Price</th>
+                <th>date</th>
+
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <img
-                    src="assets/images/blog_post_1.jpg"
-                    height="40px"
-                    width="40px"
-                  />
-                </td>
-                <td>Mazen Ayman</td>
-                <td><div class="status-rejected">Rejected</div></td>
-                <td>120$</td>
+            <tbody *ngFor="let ordersItem of orders.data.FreelancerOrders">
+              <tr *ngIf="ordersItem.state !== 'InProgress'">
+                <td>{{ ordersItem.clientName }}</td>
+                <td>{{ ordersItem.description }}</td>
+                <td>{{ ordersItem.deadline }}</td>
+                <td>{{ ordersItem.price }}</td>
+                <td>{{ ordersItem.date }}</td>
+                <td><button (click)="AcceptOrder(ordersItem._id)">Accept</button></td>
+                <td><button>Reject</button></td>
               </tr>
+            </tbody>
+
+
+          </table>
+        </div>
+
+
+        <div class="container" *ngIf="selectedTab === 'Tasks'">
+          <table class="table table-hover table-dark table-striped mt-4">
+            <thead>
               <tr>
-                <td>
-                  <img
-                    src="assets/images/blog_post_1.jpg"
-                    height="40px"
-                    width="40px"
-                  />
-                </td>
-                <td>Mazen Ayman</td>
-                <td><div class="status-pending">Pending</div></td>
-                <td>120$</td>
+                <th>Client</th>
+                <th>Description</th>
+                <th>DeadLine</th>
+                <th>Offering Price</th>
+                <th>date</th>
               </tr>
-              <tr>
-                <td>
-                  <img
-                    src="assets/images/blog_post_1.jpg"
-                    height="40px"
-                    width="40px"
-                  />
-                </td>
-                <td>Mazen Ayman</td>
-                <td><div class="status-accepted">Accepted</div></td>
-                <td>120$</td>
+            </thead>
+            <tbody *ngFor="let ordersItem of orders.data.FreelancerOrders">
+              <tr *ngIf="ordersItem.state == 'InProgress'">
+                <td>{{ ordersItem.clientName }}</td>
+                <td>{{ ordersItem.description }}</td>
+                <td>{{ ordersItem.deadline }}</td>
+                <td>{{ ordersItem.price }}</td>
+                <td>{{ ordersItem.date }}</td>
+                <td><button  (click)="openFreelancerResponse(ordersItem._id)">send</button></td>
               </tr>
             </tbody>
           </table>
+
+          <div *ngIf="openResponseForm">
+            <textarea [(ngModel)]="responseText" placeholder="Type your response here"></textarea>
+            <button (click)="submitResponse()">Submit</button>
+          </div>
+
+
+
+
         </div>
+
+
 
         <div *ngIf="selectedTab === 'posts'">
           <div class="container">

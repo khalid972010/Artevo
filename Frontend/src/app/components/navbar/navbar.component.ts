@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
     if (this.isLogged) {
       this.freelancer = this.tokenService.getUser();
     }
-    console.log(this.freelancer)
+   // console.log(this.freelancer)
   }
 
   isMenuOpen: boolean = false;
