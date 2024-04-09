@@ -68,12 +68,16 @@
 }
 
 button {
-  width: 20%;
   border: none !important;
   outline: none !important;
 }
 
 #uploadBtn {
   background-color: rgb(44, 41, 41);
-  width: 50% !important;
+  width: 20%
+}
+
+#uploadBtn2 {
+  background-color: rgb(44, 41, 41);
+  width: 50%
 }

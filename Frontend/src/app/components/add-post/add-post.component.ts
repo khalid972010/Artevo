@@ -5,6 +5,7 @@ import { PortfolioService } from '../../services/portfolio.service';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { FileUploadService } from '../../services/file_upload.service';
 
 @Component({
   selector: 'app-add-post',
@@ -12,12 +13,13 @@ import { ActivatedRoute } from '@angular/router';
   imports: [FormsModule,
   CommonModule,
 ReactiveFormsModule],
-  providers:[PortfolioService],
+  providers:[PortfolioService, FileUploadService],
   templateUrl: './add-post.component.html',
   styleUrl: './add-post.component.css'
 })
 export class AddPostComponent implements OnInit {
-  constructor(private portfolioService:PortfolioService ,private fb: FormBuilder,private route:ActivatedRoute){}
+  private imageLink?: string;
+  constructor(private portfolioService:PortfolioService ,private fb: FormBuilder,private route:ActivatedRoute, private fileUploadService: FileUploadService){}
   @Input() imageUrl?: string;
   selectedCategory:any;
   description:string="";
@@ -49,8 +51,13 @@ export class AddPostComponent implements OnInit {
   handleFileInput(event: any) {
   const file = event.target.files[0];
   const reader = new FileReader();
-  reader.onload = (e: any) => {
-    this.imageUrl = e.target.result;
+  reader.onload = async (e: any) => {
+    // this.imageUrl = e.target.result;
+      this.imageUrl = "https://i.gifer.com/YlWC.gif";
+      if (this.imageUrl !== null) {
+        this.imageLink = await this.fileUploadService.uploadAndSaveToDatabase(file);
+      }
+      this.imageUrl = this.imageLink;
   };
   reader.readAsDataURL(file);
 }
@@ -63,7 +70,7 @@ submit(){
 
   this.portfolioService.AddPortfolio({ "date":formattedDate,
                                        "ownerID":this.freelancerId,
-                                       "photos":["https://images.unsplash.com/photo-1711968558539-1bcc5b6222db?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4OHx8fGVufDB8fHx8fA%3D%3D"],
+                                       "photos":[this.imageLink],
                                        "description":this.description,
                                        "type":this.selectedCategory,
                                        "technologies":this.TechnologyForm.value.Technology,

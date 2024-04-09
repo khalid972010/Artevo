@@ -8,7 +8,7 @@ export class FileUploadService {
   private containerClient: ContainerClient;
 
   constructor() {
-    const blobServiceClient = new BlobServiceClient("https://artevoproj.blob.core.windows.net/?sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2024-04-09T11:28:53Z&st=2024-04-09T03:28:53Z&spr=https&sig=9LPQEEYRAYjwbzFs9xDQ3Yv5365m8SUnm6TwiWo%2Bjcs%3D");
+    const blobServiceClient = new BlobServiceClient("https://artevoproj.blob.core.windows.net/?sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2024-04-30T20:17:08Z&st=2024-04-09T12:17:08Z&spr=https,http&sig=U5fQejF78%2FDYWtOjqVMjulkc8vqYy4VrKubiG53rjBQ%3D");
     this.containerClient = blobServiceClient.getContainerClient('test'); // Replace with your container name
   }
 

@@ -40,14 +40,15 @@ const GetProfile = async (req, res) => {
 const UpdateProfile = async (req, res) => {
   try {
     let user = req.body.user;
+    user.password = await bcrypt.hash(user.password, 10);
     let type = req.body.type;
     var result;
 
     if (type == "Client") {
       result = await Clients.findById(user._id);
-     // console.log("1",result);
-      let newUser = Object.assign(result, req.body.user);
-     // console.log("2",newUser);
+      // console.log("1",result);
+      let newUser = Object.assign(result, user);
+      // console.log("2",newUser);
       // if (!ClientValidator(newUser)) {
       //   console.log("3");
       //   return res.status(400).json({
@@ -65,11 +66,11 @@ const UpdateProfile = async (req, res) => {
 
     if (type == "Freelancer") {
       result = await Freelancers.findById(user._id);
-      let newUser = Object.assign(result, req.body.user);
-     // console.log(newUser);
+      let newUser = Object.assign(result, user);
+      // console.log(newUser);
 
       await Freelancers.findByIdAndUpdate(user._id, { $set: newUser });
-     // console.log(user);
+      // console.log(user);
       return res.status(200).json({ message: "Updated Successfully!" });
     }
   } catch (error) {
@@ -85,7 +86,7 @@ const UpdateProfileByMail = async (request, response) => {
     let user = request.body.user;
     const newPassword = request.body.password;
     const type = request.body.type;
-   // console.log(user);
+    // console.log(user);
 
     user.password = await bcrypt.hash(newPassword, 10);
     if (type == "Client" && ClientValidator(user)) {

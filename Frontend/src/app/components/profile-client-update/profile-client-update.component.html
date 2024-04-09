@@ -1,3 +1,40 @@
+<div
+  class="container card mb-4 mb-xl-0 px-0"
+  style="margin-top: 5.3%; width: 83.5%"
+>
+  <div class="card-header">Cover Photo</div>
+  <div class="card-body text-center">
+    <!-- cover picture image-->
+    <img
+      class="img-account-profile mb-2"
+      [src]="coverUrl"
+      alt=""
+      width="100%"
+      [style.object-fit]="isLoaded ? 'cover' : 'none'"
+    />
+    <!-- Profile picture help block-->
+    <div class="small font-italic text-muted mb-4">
+      JPG or PNG no larger than 5 MB
+    </div>
+    <!-- Profile picture upload button-->
+    <input
+      type="file"
+      id="uploadInput"
+      accept="image/*"
+      value="Upload Image"
+      (change)="handleCoverInput($event)"
+      style="display: none"
+    />
+    <button
+      class="btn btn-primary"
+      type="button"
+      id="uploadBtn"
+      onclick="document.getElementById('uploadInput').click();"
+    >
+      Upload cover photo
+    </button>
+  </div>
+</div>
 <div class="container-xl px-4 mt-4 pt-5">
   <!-- Account page navigation-->
   <hr class="mt-0 mb-4" />
@@ -26,7 +63,7 @@
             id="uploadInput"
             accept="image/*"
             value="Upload Image"
-            (change)="handleFileInput($event)"
+            (change)="handleProfileInput($event)"
             style="display: none"
           />
           <button
@@ -105,7 +142,6 @@
                 />
               </div>
               <!-- Form Group (location)-->
-
             </div>
             <!-- Form Group (email address)-->
             <div class="mb-3">
@@ -136,7 +172,6 @@
                     Password.value,
 
                     Email.value
-
                   )
                 "
               >

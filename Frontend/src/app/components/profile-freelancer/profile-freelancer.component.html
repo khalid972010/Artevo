@@ -16,7 +16,7 @@
           *ngIf="hisProfile"
           (click)="NavigateUpdateProfile($event)"
           class="updatebtn"
-          style="font-weight: bold; "
+          style="font-weight: bold"
         >
           Update Profile
           <!-- <div class="star-1">
@@ -196,7 +196,7 @@
           Hire Freelancer
         </button>
 
-        <p class="desc">{{ freelancer.about }}</p>
+        <p class="desc">{{ freelancer?.about }}</p>
         <div class="social">
           <i class="fa fa-facebook-square" aria-hidden="true"></i>
           <i class="fa fa-twitter-square" aria-hidden="true"></i>
@@ -245,29 +245,11 @@
 
           <!--button add post end -------------------->
           <button
-            *ngIf="hisProfile"
-            type="button"
-            class="button"
+            class="button col-2 mt-4 p-1"
             (click)="NavigateAddPost($event)"
+            *ngIf="hisProfile"
           >
-            <span class="button__text">Add Post</span>
-            <span class="button__icon"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke="currentColor"
-                height="24"
-                fill="none"
-                class="svg"
-              >
-                <line y2="19" y1="5" x2="12" x1="12"></line>
-                <line y2="12" y1="12" x2="19" x1="5"></line>
-              </svg>
-            </span>
+            Add Post
           </button>
 
           <!--Follow button-->
@@ -313,7 +295,9 @@
                 <th>Your Response</th>
               </tr>
             </thead>
-            <tbody *ngFor="let order of orders.data.FreelancerOrders; let i = index">
+            <tbody
+              *ngFor="let order of orders.data.FreelancerOrders; let i = index"
+            >
               <tr *ngIf="order.state !== 'InProgress'">
                 <td>{{ order.clientName }}</td>
                 <td>{{ order.description }}</td>
@@ -321,14 +305,20 @@
                 <td>{{ order.price }}</td>
                 <td>{{ order.date }}</td>
                 <td>
-                  <button class="accept-button" (click)="AcceptOrder(order._id)" >Accept</button>
-                  <button class="reject-button "style="margin-left:5px" >Decline</button>
+                  <button
+                    class="accept-button"
+                    (click)="AcceptOrder(order._id)"
+                  >
+                    Accept
+                  </button>
+                  <button class="reject-button" style="margin-left: 5px">
+                    Decline
+                  </button>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-
 
         <div class="orders-table-container" *ngIf="selectedTab === 'Tasks'">
           <table class="tasks-table table-striped">
@@ -347,27 +337,31 @@
               <!-- Table body -->
               <tr *ngIf="ordersItem.state == 'InProgress'">
                 <!-- Table cells -->
-                <td >{{ ordersItem.clientName }}</td>
-                <td >{{ ordersItem.description }}</td>
-                <td >{{ ordersItem.deadline }}</td>
-                <td >{{ ordersItem.price }}</td>
-                <td >{{ ordersItem.date }}</td>
+                <td>{{ ordersItem.clientName }}</td>
+                <td>{{ ordersItem.description }}</td>
+                <td>{{ ordersItem.deadline }}</td>
+                <td>{{ ordersItem.price }}</td>
+                <td>{{ ordersItem.date }}</td>
                 <td>
-                  
-                  <button id="sendBtn"(click)="openFreelancerResponse(ordersItem._id)">Ready to send!</button>
-                  
+                  <button
+                    id="sendBtn"
+                    (click)="openFreelancerResponse(ordersItem._id)"
+                  >
+                    Ready to send!
+                  </button>
                 </td>
               </tr>
             </tbody>
           </table>
 
           <div *ngIf="openResponseForm">
-            <textarea [(ngModel)]="responseText" placeholder="Type your response here"></textarea>
+            <textarea
+              [(ngModel)]="responseText"
+              placeholder="Type your response here"
+            ></textarea>
             <button (click)="submitResponse()">Submit</button>
           </div>
         </div>
-
-
 
         <div *ngIf="selectedTab === 'posts'">
           <div class="container">

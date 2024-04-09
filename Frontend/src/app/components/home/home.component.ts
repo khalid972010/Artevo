@@ -58,7 +58,6 @@ export class HomeComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.Portfolio = data;
-          console.log('Im DAta: ' + data);
         },
         error: (err) => {
           console.log(err);
@@ -70,7 +69,6 @@ export class HomeComponent implements OnInit {
     this.categories = this.categoriesData.getCategories();
     this.freelancerService.getAllFreelancers().subscribe({
       next: (res) => {
-        console.log(res);
         this.freelancer = res;
       },
       error: (err) => {

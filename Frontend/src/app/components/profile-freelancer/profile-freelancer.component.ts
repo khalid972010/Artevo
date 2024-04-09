@@ -74,7 +74,7 @@ export class ProfileFreelancerComponent implements OnInit  {
         return res.data.fullName;
     } catch (error) {
         console.error(error);
-        return ''; // or handle error accordingly
+        return '';
     }
 }
   ngOnInit(): void {
@@ -82,7 +82,6 @@ export class ProfileFreelancerComponent implements OnInit  {
     this.freelancer = navigation.freelancer;
 
 
-    console.log(this.freelancer);
 
     this.route.params.subscribe(params => {
       this.freelancerId = params['id'];
@@ -115,7 +114,6 @@ export class ProfileFreelancerComponent implements OnInit  {
           this.orders.data.FreelancerOrders.forEach(async (order: { clientName: string; from: string; }) => {
               order.clientName = await this.getClientName(order.from);
           });
-          console.log(this.orders.data.FreelancerOrders);
       },
       (error) => {
           console.log(error);
@@ -159,18 +157,18 @@ export class ProfileFreelancerComponent implements OnInit  {
         this.selectedOrderId = orderId;
         this.openResponseForm = true;
       }
-    
+
       closeFreelancerResponse() {
         this.selectedOrderId = null;
         this.responseText = '';
         this.openResponseForm = false;
       }
-    
+
       submitResponse() {
         if (this.selectedOrderId && this.responseText) {
           console.log('Selected Order ID:', this.selectedOrderId);
           console.log('Response Text:', this.responseText);
-    
+
           this.orderService.updateFreelancerResponse(this.selectedOrderId, this.responseText).subscribe(
             (res) => {
               console.log(res);
@@ -179,7 +177,7 @@ export class ProfileFreelancerComponent implements OnInit  {
               console.log(error);
             }
           );
-    
+
           this.selectedOrderId = null;
           this.responseText = '';
           this.openResponseForm = false;

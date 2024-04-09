@@ -7,14 +7,16 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TokenService } from '../../services/token.service';
 import { FileUploadService } from '../../services/file_upload.service';
+import { Router } from 'express';
+import { LoadingComponent } from "../../loading/loading.component";
 
 @Component({
-  selector: 'app-profile-freelancer-update',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  providers:[FreelancerService,UserService, FileUploadService],
-  templateUrl: './profile-freelancer-update.component.html',
-  styleUrl: './profile-freelancer-update.component.css'
+    selector: 'app-profile-freelancer-update',
+    standalone: true,
+    providers: [FreelancerService, UserService, FileUploadService],
+    templateUrl: './profile-freelancer-update.component.html',
+    styleUrl: './profile-freelancer-update.component.css',
+    imports: [ReactiveFormsModule, LoadingComponent]
 })
 export class ProfileFreelancerUpdateComponent implements OnInit {
   freelancerId:any;
@@ -22,6 +24,9 @@ export class ProfileFreelancerUpdateComponent implements OnInit {
   firstName:string="";
   userName:string="";
   imageUrl?: string;
+  coverUrl?: string;
+  isLoaded?: boolean = true;
+
   constructor(private route: ActivatedRoute,
     private freelancerService: FreelancerService,
     private userService: UserService,
@@ -31,27 +36,58 @@ export class ProfileFreelancerUpdateComponent implements OnInit {
 
   NavigateBack() {
   window.history.back();
-}
+  }
+  goBackAndRefresh(): void {
+    window.history.back();
+    setTimeout(() => {
+      window.location.reload(); // Reload the page after a small delay
+    }, 100); // Adjust the delay as needed
+  }
 
-  handleFileInput(event: any) {
-      console.log("Hello");
-
+  imageLink = '';
+  coverLink = '';
+  handleProfileInput(event: any) {
   const file = event.target.files[0];
   const reader = new FileReader();
 
     reader.onload = async (e: any) => {
-  this.imageUrl = e.target.result;
+
+      // this.imageUrl = e.target.result;
+      this.imageUrl = "https://i.gifer.com/YlWC.gif";
       if (this.imageUrl !== null) {
-        let imageLink = await this.fileUploadService.uploadAndSaveToDatabase(file);
-        this.freelancer.profilePicture = imageLink;
+        this.imageLink = await this.fileUploadService.uploadAndSaveToDatabase(file);
+        this.freelancer.profilePicture = this.imageLink;
+      }
+      this.imageUrl = this.imageLink;
+};
+    reader.readAsDataURL(file);
   }
+
+  handleCoverInput(event: any) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+    reader.onload = async (e: any) => {
+
+      this.isLoaded = false
+
+      // this.imageUrl = e.target.result;
+      this.coverUrl = "https://i.gifer.com/YlWC.gif";
+      if (this.coverUrl !== null) {
+        this.coverLink = await this.fileUploadService.uploadAndSaveToDatabase(file);
+        this.freelancer.coverPicture = this.coverLink;
+      }
+
+      this.coverUrl = this.coverLink;
+      setTimeout(() => {
+        this.isLoaded = true; // Reload the page after a small delay
+    }, 2000);
 };
     reader.readAsDataURL(file);
 }
 
   ngOnInit(): void {
-    this.imageUrl = this.freelancer?.profilePicture
-
+    console.log(this.imageUrl);
     this.route.params.subscribe(params => {
       this.freelancerId = params['id'];
 
@@ -59,6 +95,8 @@ export class ProfileFreelancerUpdateComponent implements OnInit {
     this.freelancerService.getFreelancerByID(this.freelancerId).subscribe(
       (res)=>{
         this.freelancer = res.data;
+        this.imageUrl = this.freelancer?.profilePicture
+        this.coverUrl = this.freelancer?.coverPicture
 
       },
       (error)=>{}
@@ -75,14 +113,12 @@ saveChanges(
   about: string,
 
 ): void {
-  console.log("hi");
-
-
   var obj = {
     "_id": this.freelancerId,
     "fullName": firstName + " " + lastName,
     "userName": userName,
     "profilePicture": this.freelancer.profilePicture,
+    "coverPicture": this.freelancer.coverPicture,
     "password": password,
     "location": location,
     "email": email,
@@ -99,7 +135,7 @@ saveChanges(
 
   this.tokenService.setUser(obj);
 
-  this.NavigateBack();
+  this.goBackAndRefresh();
   }
 
 

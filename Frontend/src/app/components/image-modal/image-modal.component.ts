@@ -42,7 +42,6 @@ export class ImageModalComponent implements OnInit {
     this.checkIfClientFollowsFreelancer();
     this.checkIfClientLikesPost();
 
-    console.log(this.portfolio);
   }
 
   closeModal(): void {
@@ -71,7 +70,7 @@ export class ImageModalComponent implements OnInit {
     });
   }
   checkIfClientFollowsFreelancer() {
-    if (this.client.following.includes(this.portfolio.ownerID)) {
+    if (this.client.following?.includes(this.portfolio.ownerID)) {
       this.isFollowing = true;
       this.followText = 'Unfollow';
     }

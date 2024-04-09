@@ -103,3 +103,7 @@
   text-decoration: none;
 
 }
+
+a {
+  cursor: pointer;
+}

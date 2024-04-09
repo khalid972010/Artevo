@@ -11,6 +11,7 @@ let getAllfreelancers = async (request, response) => {
 
 let updateFreelancer = async (request, response) => {
   let freelancer = request.body;
+  console.log("Aloooooooooooooo");
   try {
     if (FreelancerValidator(freelancer)) {
       await Freelancer.findByIdAndUpdate(freelancer.id, freelancer);
@@ -165,8 +166,8 @@ const filter = async (req, res) => {
         (freelancer) => freelancer.budget <= budget.max
       );
     }
-   // console.log(req.body);
-   // console.log(allFreelancers);
+    // console.log(req.body);
+    // console.log(allFreelancers);
     res.status(200).json(allFreelancers);
   } catch (error) {
     console.error(error);
