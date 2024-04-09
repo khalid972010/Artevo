@@ -704,9 +704,6 @@ button:hover .star-6 {
 .orders-table-container {
   margin-top: 20px;
 }
-.orders-table-container {
-  margin-top: 20px;
-}
 
 .orders-table {
   width: 100%;
@@ -727,13 +724,13 @@ button:hover .star-6 {
   color: #fff;
   font-style: italic;
   text-decoration: underline;
-  border: 1px solid #323232;
+  /* border: 1px solid #323232; */
   font-size: 17px;
 }
 
 .orders-table tbody tr:nth-child(even) {
   background-color: #CCD4DD;
-  border: 1px solid #323232;
+  /* border: 1px solid #323232; */
   color:#141E1D;
   font-weight: 500;
 
@@ -741,7 +738,7 @@ button:hover .star-6 {
 
 .orders-table tbody tr:nth-child(odd) {
   background-color: #141E1D;
-  border: 2px solid #323232;
+  /* border: 2px solid #323232; */
 
   color: white;
   font-weight: 500;
@@ -749,7 +746,7 @@ button:hover .star-6 {
 
 .orders-table tbody tr:hover {
   background-color: #8daab9;
-  border: 1px solid #323232;
+  /* border: 1px solid #323232; */
   color:#141E1D
 
 }
@@ -794,7 +791,6 @@ button:hover .star-6 {
 
 .orders-table th,
 .orders-table td {
-  border: 1px solid #ccc; /* Border color and thickness */
   padding: 8px; /* Padding inside each cell */
 }
 
@@ -803,27 +799,37 @@ button:hover .star-6 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
 }
 
 .response-content {
-  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color:#141E1D ;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  color: white;
 }
 
-.response-content textarea {
-  width: 100%;
-  height: 100px;
-  background-color: #CCD4DD;
-  color: #141E1D;
-  margin-bottom: 10px;
-  font-weight: bold; /* Make the textarea bold */
-  transition: border-color 0.3s ease; /* Add transition effect */
-  border: 1px solid transparent; /* Set initial border color */
+.response-content h3 {
+  color: #fff; /* Change to your text color */
+  font-size: 23px;
+  margin-bottom: 20px;
 }
+
+.response-content button {
+  padding: 10px 20px;
+  background-color: #446063; /* Change to your button background color */
+  color: #fff; /* Change to your button text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.response-content button:hover {
+  background-color: #5a7a8a; /* Change to your button hover background color */
+}
+
 
 .response-content textarea:focus {
   border: 1px solid transparent; /* Hide the original border */
@@ -832,20 +838,77 @@ button:hover .star-6 {
 }
 
 
-.response-content button {
-  margin-right: 5px;
-  background-color: #CCD4DD;
-  color: #141E1D;
-  padding: 10px 20px;
+
+.pay-button,
+.view-response-button {
+  padding: 5px 10px;
+  font-size: 15px; 
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s, box-shadow 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.response-content button:hover {
-  background-color: #8daab9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.pay-button:hover,
+.view-response-button:hover {
+  background-color: #141e1d;
+  color: white;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.view-response-button {
+  margin-top: 5px; /* Adjust the margin between buttons */
+}
+
+
+.updatebtn {
+  width: 200px;
+  height: 50px; /* Set height for the button */
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  width: 6.5em;
+  height: 2.3em;
+  background-color: #ccd4dd;
+  color: #446063;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1;
+  max-width: 229px;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.updatebtn:hover {
+  color: #141e1d;
+}
+
+.updatebtn:after {
+  content: "";
+  background-color: #446063;
+  color: #ccd4dd;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+.updatebtn:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }

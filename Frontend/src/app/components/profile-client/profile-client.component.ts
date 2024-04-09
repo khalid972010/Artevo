@@ -82,7 +82,7 @@ export class ProfileClientComponent  implements OnInit {
       openResponse:boolean=false;
       selectedOrderResponse:string='';
 
-      viweResponse(OrderResponse: string) {
+      viewResponse(OrderResponse: string) {
         this.selectedOrderResponse=OrderResponse;
         this.openResponse = true;
       }
