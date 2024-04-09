@@ -54,7 +54,7 @@
           <table class="orders-table">
             <thead>
               <tr>
-
+                <th>Freelancer</th>
                 <th>Description</th>
                 <th>Deadline</th>
                 <th>Offering Price</th>
@@ -63,12 +63,13 @@
               </tr>
             </thead>
             <tbody *ngFor="let order of ClientOrders.data.clientOrders; let i = index">
-              <tr style="text-align: center; border: 1px white solid;">
+              <tr >
+                <td> {{order.freelancerName}}</td>
                 <td>{{ order.description }}</td>
                 <td>{{ order.deadline }}</td>
                 <td>{{ order.price }}</td>
                 <td>{{ order.date }}</td>
-                <td style="text-align: center;" [style.background-color]="order.state === 'Completed' ? 'green' : (order.state === 'InProgress' ? '#89CFF0	' : (order.state === 'Pending' ? '#FFD580	' : ''))">
+                <td style="text-align: center;">
                   {{ order.state }}
                   <div class="button-container">
                     <button class="pay-button" *ngIf="order.state==='Completed' && !order.isPaid">Pay</button>
@@ -77,8 +78,6 @@
                 </td>
               </tr>
             </tbody>
-            
-            
           </table>
            <!-- Popup for response -->
            <div *ngIf="openResponse" class="response-popup">
@@ -87,7 +86,7 @@
               <div style="position: relative; text-align: center; margin-top: 60px;">
                 <button style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 55px; height: 50px; font-size: 20px; padding: 0; line-height: 50px;" (click)="closeResponse()">Close</button>
               </div>
-              
+
               <!-- <button style=" width: 55px; height: 50px; font-size: 20px; padding: 0; line-height: 40px;" (click)="closeResponse()">Close</button> -->
 
             </div>
