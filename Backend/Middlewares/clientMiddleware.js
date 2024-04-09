@@ -5,13 +5,13 @@ const { isValidObjectId } = require("mongoose");
 
 const checkForClientID = async (request, response, next) => {
   let ID = request.params.id;
-  console.log(ID);
+  //console.log(ID);
   if (!isValidObjectId(ID)) {
     return response.status(400).json({ message: "Invalid Client ID!" });
   }
 
   let client = await Clients.findById(ID);
-  console.log(client);
+ // console.log(client);
   if (client == undefined) {
     return response.status(404).json({ message: "Client not found!" });
   }

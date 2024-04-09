@@ -22,8 +22,8 @@ let pickFav = async (req, res) => {
         
         // Filter portfoliosItems based on currentClient's favList
         let filteredPortfolios = portfoliosItems.filter(item => currentClient.favList.includes(item.type));
-        console.log(portfoliosItems);
-        console.log(currentClient.favList);
+       // console.log(portfoliosItems);
+       // console.log(currentClient.favList);
         
         return res.status(200).json({ filteredPortfolios });
     } catch (error) {
@@ -34,11 +34,11 @@ let pickFav = async (req, res) => {
 
 let followingList = async (req,res) =>{
     FollowingList =  await Freelancers.find({}).select("location headLine coverPicture profilePicture email userName  ");; 
-    console.log(FollowingList);
+    //console.log(FollowingList);
     let currentClient = await Clients.findOne({ _id: req.body.ClientId });
     FollowingList = FollowingList.filter(item => currentClient.following.includes(item._id));
 
-    console.log(currentClient.following);
+    //console.log(currentClient.following);
     return res.status(200).json({ FollowingList });
 
 }

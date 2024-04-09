@@ -328,7 +328,7 @@
             </tbody>
           </table>
         </div>
-        
+
 
         <div class="orders-table-container" *ngIf="selectedTab === 'Tasks'">
           <table class="tasks-table table-striped">
@@ -360,17 +360,14 @@
               </tr>
             </tbody>
           </table>
-        
-          <!-- Popup for response -->
-          <div *ngIf="openResponseForm" class="response-popup">
-            <div class="response-content">
-              <textarea [(ngModel)]="responseText" placeholder="Type your response here"></textarea>
-              <button (click)="submitResponse()">Submit</button>
-              <button (click)="closeFreelancerResponse()">Close</button>
-            </div>
+
+          <div *ngIf="openResponseForm">
+            <textarea [(ngModel)]="responseText" placeholder="Type your response here"></textarea>
+            <button (click)="submitResponse()">Submit</button>
           </div>
         </div>
-        
+
+
 
         <div *ngIf="selectedTab === 'posts'">
           <div class="container">
@@ -383,17 +380,8 @@
             </div>
           </div>
         </div>
-        
-        
-          <!-- Popup for response -->
-          <div *ngIf="openResponseForm" class="response-popup" style="background-color: #141E1D;">
-            <div class="response-content" style="background-color: #141E1D;">
-              <textarea [(ngModel)]="responseText" placeholder="Type your response here"></textarea>
-              <button (click)="submitResponse()">Submit</button>
-              <button (click)="closeFreelancerResponse()">Close</button>
-            </div>
-          </div>
-        </div>
+        <!--button add post end-->
       </div>
+    </div>
   </div>
 </div>
