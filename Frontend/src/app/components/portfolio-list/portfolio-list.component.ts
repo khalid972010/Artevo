@@ -1,14 +1,15 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { loadScript } from '@paypal/paypal-js';
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  viewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Stripe, StripeElements, StripeCardElement } from '@stripe/stripe-js';
+import { Action } from 'rxjs/internal/scheduler/Action';
+declare var paypal: any;
 @Component({
   selector: 'app-portfolio-list',
   standalone: true,
@@ -16,17 +17,55 @@ import { Stripe, StripeElements, StripeCardElement } from '@stripe/stripe-js';
   templateUrl: './portfolio-list.component.html',
   styleUrl: './portfolio-list.component.css',
 })
-export class PortfolioListComponent {
-  @ViewChild('cardElement') cardElement!: ElementRef;
-
-  stripe!: Stripe | null;
-  card!: StripeCardElement;
-
+export class PortfolioListComponent implements OnInit {
+  @ViewChild('paypal', { static: true }) paypalElement!: ElementRef;
+  product = {
+    price: 100,
+    description: 'Nice product',
+  };
+  paidFor = false;
   cardholderName = '';
   expireDate = '';
   cardNumber = '';
   CVV!: number;
   flipState: string = 'notFlipped';
+  constructor() {}
+  ngOnInit(): void {
+    paypal
+      .Buttons({
+        style: {
+          layout: 'vertical', // Display buttons horizontally
+          color: 'black', // PayPal button color
+          shape: 'pill', // Button shape
+          label: 'checkout', // Button label
+          tagline: false, // Hide PayPal tagline
+        },
+        createOrder: (data: any, actions: any) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                description: this.product.description,
+                amount: {
+                  currency_code: 'USD',
+                  value: this.product.price,
+                },
+              },
+            ],
+          });
+        },
+        onApprove: async (data: any, actions: any) => {
+          const order = await actions.order.capture().then((details: any) => {
+            console.log(details);
+          });
+          this.paidFor = true;
+        },
+        onError: (err: any) => {
+          console.log(err);
+        },
+      })
+      .render(document.getElementById('paypal'));
+  }
+
   //#region UI of the VISA
   formatCardNumber(): void {
     this.cardNumber = this.cardNumber
@@ -48,34 +87,4 @@ export class PortfolioListComponent {
     this.isFlipped = true;
   }
   //#endregion
-
-  constructor() {
-    // Initialize Stripe
-    this.initializeStripe();
-  }
-
-  async initializeStripe() {
-    this.stripe = await import('@stripe/stripe-js').then((module) =>
-      module.loadStripe(
-        'pk_test_51OyLNFL4QN55PXT7LM20zOR87OroaoIcYA5gOtnic5ZzPUqmnjuPDJASBk9XlUeszewOp1gkoSjxwi2KQQ5XNx9T00U6mcaDy9'
-      )
-    );
-    const elements: StripeElements = this.stripe!.elements();
-    this.card = elements.create('card');
-    this.card.mount(this.cardElement.nativeElement);
-  }
-
-  async handleSubmit() {
-    const { paymentMethod, error } = await this.stripe!.createPaymentMethod({
-      type: 'card',
-      card: this.card,
-    });
-
-    if (error) {
-      console.error('Error:', error.message);
-    } else {
-      console.log('PaymentMethod:', paymentMethod);
-      // Send paymentMethod.id to your server to process payment
-    }
-  }
 }
