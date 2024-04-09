@@ -700,10 +700,6 @@ button:hover .star-6 {
   transition: all 0.5s;
 }
 
-
-.orders-table-container {
-  margin-top: 20px;
-}
 .orders-table-container {
   margin-top: 20px;
 }
@@ -796,4 +792,122 @@ button:hover .star-6 {
 .orders-table td {
   border: 1px solid #ccc; /* Border color and thickness */
   padding: 8px; /* Padding inside each cell */
+}
+
+
+
+.tasks-table-container {
+  margin-top: 20px;
+}
+
+.tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tasks-table th,
+.tasks-table td {
+  padding: 10px;
+  text-align: center;
+}
+
+.tasks-table th {
+  background-color: #141E1D;
+  color: #fff;
+  font-style: italic;
+  text-decoration: underline;
+  border: 1px solid #323232;
+  font-size: 17px;
+}
+
+.tasks-table tbody tr:nth-child(even) {
+  background-color: #CCD4DD;
+  border: 1px solid #323232;
+  color: #141E1D;
+  font-weight: 500;
+}
+
+.tasks-table tbody tr:nth-child(odd) {
+  background-color: #141E1D;
+  border: 2px solid #323232;
+  color: white;
+  font-weight: 500;
+}
+
+.tasks-table tbody tr:hover {
+  background-color: #8daab9;
+  border: 1px solid #323232;
+  color: #141E1D;
+}
+.response-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.response-content {
+  text-align: center;
+}
+
+.response-content textarea {
+  width: 100%;
+  height: 100px;
+  background-color: #CCD4DD;
+  color: #141E1D;
+  margin-bottom: 10px;
+  font-weight: bold; /* Make the textarea bold */
+  transition: border-color 0.3s ease; /* Add transition effect */
+  border: 1px solid transparent; /* Set initial border color */
+}
+
+.response-content textarea:focus {
+  border: 1px solid transparent; /* Hide the original border */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 10px whitesmoke; /* Add glowing effect */
+}
+
+
+.response-content button {
+  margin-right: 5px;
+  background-color: #CCD4DD;
+  color: #141E1D;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold; 
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.response-content button:hover {
+  background-color: #8daab9; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+
+#sendBtn{
+  margin-right: 5px;
+  background-color: #CCD4DD;
+  color: #141E1D;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold; 
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#sendBtn:hover {
+  background-color: #141E1D; 
+  color: #CCD4DD;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
