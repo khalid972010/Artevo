@@ -863,3 +863,52 @@ button:hover .star-6 {
 .view-response-button {
   margin-top: 5px; /* Adjust the margin between buttons */
 }
+
+
+.updatebtn {
+  width: 200px;
+  height: 50px; /* Set height for the button */
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  width: 6.5em;
+  height: 2.3em;
+  background-color: #ccd4dd;
+  color: #446063;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1;
+  max-width: 229px;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.updatebtn:hover {
+  color: #141e1d;
+}
+
+.updatebtn:after {
+  content: "";
+  background-color: #446063;
+  color: #ccd4dd;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+.updatebtn:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
