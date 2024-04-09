@@ -63,7 +63,7 @@ const removePortfolio = async (req, res) => {
   });
   //check if portfolio does exist..
   if (foundPortfolio) {
-    console.log(foundPortfolio);
+   // console.log(foundPortfolio);
     await portfolioModel.deleteOne({ _id: chosenPortfolio._id });
     res.json({ message: "Portfolio Deleted Successfully" });
   } else {
@@ -82,7 +82,7 @@ const OwnerPortfolio = async (req, res) => {
     }
     return res.status(200).json(portfolio);
   } catch (error) {
-    console.error(error);
+   // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -96,7 +96,7 @@ const Like = async (req, res) => {
       return res.status(404).json({ message: "Portfolio not found" });
     }
     // Check if the user has already liked the post
-    console.log(userId);
+   // console.log(userId);
     if (portfolio.likes.includes(userId)) {
       portfolio.likesCount -= 1;
       portfolio.likes = portfolio.likes.filter((id) => id !== userId);
@@ -117,7 +117,7 @@ const Like = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error);
+   // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -134,7 +134,7 @@ const filter = async (req, res) => {
   try {
     var technologies = req.body.technologies.map(tech => tech.toLowerCase());
     var filteredPortfolio = await portfolioModel.find({});
-    console.log(technologies);
+    //console.log(technologies);
 
     if (technologies && technologies.length > 0) {
       filteredPortfolio = filteredPortfolio.filter((item) => {

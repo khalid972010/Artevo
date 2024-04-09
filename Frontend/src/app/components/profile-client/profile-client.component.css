@@ -1,10 +1,11 @@
-html,
-body {
-  background: #efefef;
+.container-fluid {
+  background-color: var(--primary-color) !important;
 }
-
+.main-content {
+  flex: 1;
+  display: flex;
+}
 header {
-  background: #eee;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -18,15 +19,6 @@ header img {
   object-fit: cover;
 }
 
-header i {
-  position: relative;
-  cursor: pointer;
-  right: -96%;
-  top: 25px;
-  font-size: 18px !important;
-  color: #fff;
-}
-
 @media (max-width: 800px) {
   header {
     height: 150px;
@@ -38,12 +30,12 @@ header i {
 }
 
 .left {
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
-  background-color: #e4dcd1;
-  height: 100vh !important;
+  background-color: var(--tertiary-color);
 }
 
 .photo {
@@ -51,7 +43,7 @@ header i {
   height: 200px;
   margin-top: -120px;
   border-radius: 100px;
-  border: 4px solid #fff;
+  border: 4px solid var(--secondary-color);
   object-fit: cover;
 }
 
@@ -78,7 +70,7 @@ header i {
   font-family: "Open Sans";
   font-weight: 600;
   font-size: 18pt;
-  color: black;
+  color: var(--secondary-color);
 }
 
 .info {
@@ -102,7 +94,7 @@ header i {
   font-size: 14pt;
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
-  color: black;
+  color: var(--primary-color);
 }
 
 .desc-stat {
@@ -208,18 +200,20 @@ header i {
 
 .gallery {
   margin-top: 35px;
+  justify-content: space-evenly;
 }
 
-.gallery div {
-  margin-bottom: 30px;
+.portfolio-item {
+  width: calc(20% - 20px);
+  margin-bottom: 20px;
+  height: calc(20.2% - 100px);
 }
 
-.gallery img {
+.portfolio-item img {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
-  width: auto;
+  width: 100%;
   height: auto;
   cursor: pointer;
-  max-width: 100%;
 }
 
 /*button---------------------------------------------------------------------*/
@@ -228,7 +222,7 @@ header i {
   display: flex;
   flex-wrap: wrap;
   border-radius: 0.5rem;
-  background-color: #eee;
+  background-color: transparent;
 
   padding: 0.25rem;
   width: 300px;
@@ -254,12 +248,78 @@ header i {
   padding: 0.5rem 0;
   color: white;
   transition: all 0.15s ease-in-out;
-  border: 2px solid black;
 }
 
 .radio-inputs .radio input:checked + .name {
-  background-color: #86604f;
+  background-color: var(--secondary-color);
   font-weight: 600;
+  color: black;
+}
+
+/*add post button */
+/*ssssssssssss*/
+.button {
+  --main-focus: #2d8cf0;
+  --font-color: #323232;
+  --bg-color-sub: var(--primary-color);
+  --bg-color: var(--secondary-color);
+  --main-color: #323232;
+  position: relative;
+  width: 187px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-color);
+  box-shadow: 1px 1px var(--main-color);
+
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.button,
+.button__icon,
+.button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(22px);
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 40px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .svg {
+  width: 20px;
+  fill: var(--main-color);
+}
+
+.button:hover {
+  background: var(--bg-color);
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 100%;
+  transform: translateX(0);
+}
+
+.button:active {
+  box-shadow: 0px 0px var(--main-color);
 }
 
 /*flowers/folowing*/
@@ -287,7 +347,7 @@ header i {
   font-size: 14pt;
   font-weight: bold;
   font-family: "Montserrat", sans-serif;
-  color: black;
+  color: var(--secondary-color);
 }
 
 .desc-stat {
@@ -449,24 +509,343 @@ button:hover .star-6 {
   fill: #fffdef;
 }
 
-.status-rejected,
-.status-pending,
-.status-accepted {
+
+.tooltip-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s;
+  background-color: var(--secondary-color);
+  padding: 11px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid rgb(211, 211, 211);
+}
+
+.text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+}
+
+.svgIcon {
+  width: 16px;
+  height: auto;
+}
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.3em 0.6em;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+  color: rgb(34, 34, 34);
+}
+
+
+
+.tooltip-container:hover .tooltip {
+  top: -100%;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.tooltip::before {
+  position: absolute;
+  content: "";
+  height: 0.6em;
+  width: 0.6em;
+  bottom: -0.2em;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  background-color: var(--secondary-color);
+}
+.pressed {
+  background-color: var(--tertiary-color);
   color: white;
-  padding: 5px 20px;
-  border-radius: 20px;
-  width: 120px;
+}
+
+.pressedText {
+  color: white;
+}
+
+.btnProfile {
+  height: 40px;
+  width: 220px;
+  margin-top: 20px;
+  padding: 0%;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  background: #606c88;
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
+  background: linear-gradient(to right, #3f4c6b, #606c88);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 350px;
+}
+
+.title {
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+
+.description {
+  line-height: 1.5rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  color: rgb(209 213 219);
+}
+
+.form div {
+  display: flex;
+  max-width: 28rem;
+  margin-top: 1rem;
+  column-gap: 0.5rem;
+}
+
+.form div input {
+  outline: none;
+  line-height: 1.5rem;
+  font-size: 0.875rem;
+  color: rgb(255 255 255);
+  padding: 0.5rem 0.875rem;
+  background-color: rgb(255 255 255 / 0.05);
+  border: 1px solid rgba(253, 253, 253, 0.363);
+  border-radius: 0.375rem;
+  flex: 1 1 auto;
+}
+
+.form div input::placeholder {
+  color: rgb(216, 212, 212);
+}
+
+.form div input:focus {
+  border: 1px solid rgb(99 102 241);
+}
+
+.form div button {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.625rem 0.875rem;
+  background-color: rgb(99 102 241);
+  border-radius: 0.375rem;
+  border: none;
+  outline: none;
+}
+
+.btn {
+  width: 200px;
+  height: 50px; /* Set height for the button */
+  display: flex; /* Use flexbox */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  width: 6.5em;
+  height: 2.3em;
+  background-color: #ccd4dd;
+  color: #446063;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1;
+  max-width: 229px;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.btn:hover {
+  color: #141e1d;
+}
+
+.btn:after {
+  content: "";
+  background-color: #446063;
+  color: #ccd4dd;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+.btn:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+
+.orders-table-container {
+  margin-top: 20px;
+}
+.orders-table-container {
+  margin-top: 20px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 10px;
   text-align: center;
 }
 
-.status-rejected {
-  background-color: red;
+.orders-table th {
+  background-color: #141E1D;
+  /* #446063 */
+  color: #fff;
+  font-style: italic;
+  text-decoration: underline;
+  border: 1px solid #323232;
+  font-size: 17px;
 }
 
-.status-pending {
-  background-color: blue;
+.orders-table tbody tr:nth-child(even) {
+  background-color: #CCD4DD;
+  border: 1px solid #323232;
+  color:#141E1D;
+  font-weight: 500;
+
 }
 
-.status-accepted {
-  background-color: green;
+.orders-table tbody tr:nth-child(odd) {
+  background-color: #141E1D;
+  border: 2px solid #323232;
+
+  color: white;
+  font-weight: 500;
+}
+
+.orders-table tbody tr:hover {
+  background-color: #8daab9;
+  border: 1px solid #323232;
+  color:#141E1D
+
+}
+
+.accept-button,
+.reject-button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.accept-button:hover,
+.reject-button:hover {
+  filter: brightness(110%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.accept-button {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.accept-button:hover {
+  background-color: #218838;
+}
+
+.reject-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.reject-button:hover {
+  background-color: #c82333;
+}
+
+/* CSS */
+.orders-table {
+  border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #ccc; /* Border color and thickness */
+  padding: 8px; /* Padding inside each cell */
+}
+
+.response-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.response-content {
+  text-align: center;
+}
+
+.response-content textarea {
+  width: 100%;
+  height: 100px;
+  background-color: #CCD4DD;
+  color: #141E1D;
+  margin-bottom: 10px;
+  font-weight: bold; /* Make the textarea bold */
+  transition: border-color 0.3s ease; /* Add transition effect */
+  border: 1px solid transparent; /* Set initial border color */
+}
+
+.response-content textarea:focus {
+  border: 1px solid transparent; /* Hide the original border */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 10px whitesmoke; /* Add glowing effect */
+}
+
+
+.response-content button {
+  margin-right: 5px;
+  background-color: #CCD4DD;
+  color: #141E1D;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.response-content button:hover {
+  background-color: #8daab9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

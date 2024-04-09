@@ -44,7 +44,7 @@ let Addfreelancer = async (request, response) => {
     freelancer.password = await bcrypt.hash(freelancer.password, 10);
     freelancer.isVerified = false;
     await Freelancer.create(freelancer);
-    console.log(UserController);
+    //console.log(UserController);
     await UserController.sendVerification(request, response);
   } else {
     response.status(400).json({
@@ -148,7 +148,7 @@ const filter = async (req, res) => {
     const { Location, budget, JopTitle } = req.body;
 
     var allFreelancers = await Freelancer.find({});
-    console.log(allFreelancers);
+    //console.log(allFreelancers);
 
     if (Location !== "")
       allFreelancers = allFreelancers.filter(
@@ -165,8 +165,8 @@ const filter = async (req, res) => {
         (freelancer) => freelancer.budget <= budget.max
       );
     }
-    console.log(req.body);
-    console.log(allFreelancers);
+   // console.log(req.body);
+   // console.log(allFreelancers);
     res.status(200).json(allFreelancers);
   } catch (error) {
     console.error(error);

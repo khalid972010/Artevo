@@ -24,6 +24,10 @@ export class OrderService {
   {
     return this.http.post(this.DB_URL+"/updateFreelancerResponse",{orderID,freelancerResponse});
   }
+  getClientOrders(clientID:string)
+  {
+    return this.http.post(this.DB_URL+"/getClientOrders",{clientID});
+  }
 }
 
 

@@ -29,6 +29,21 @@ const getFreelancerOrders = async (req,res)=>
   
   
 }
+const getClientOrders = async (req,res)=>
+{
+  try{
+   // console.log(req.body.freelancerID );
+    let clientOrders = await orderModel.find({ from : req.body.clientID });
+   // console.log(FreelancerOrders);
+     return res.status(201).json({  data: { clientOrders } });
+  }
+
+  catch{
+    return res.status(500).json({ message: "Internal server error " });
+  }
+  
+  
+}
 const updateOrderStatus=async(req,res)=>{
   try{
    // console.log("1",req.body);
@@ -50,7 +65,7 @@ const updateOrderStatus=async(req,res)=>{
 
 const updateFreelancerResponse=async(req,res)=>{
   try{
-    console.log("1",req.body);
+   // console.log("1",req.body);
      let Order = await orderModel.findById( req.body.orderID );
     // console.log("2",Order);
      Order.FreelancerResponse=req.body.freelancerResponse;
@@ -73,5 +88,6 @@ module.exports = {
     createOrder,
     getFreelancerOrders,
     updateOrderStatus,
-    updateFreelancerResponse
+    updateFreelancerResponse,
+    getClientOrders
 };

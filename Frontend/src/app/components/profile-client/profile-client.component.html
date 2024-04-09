@@ -6,7 +6,7 @@
     <div class="row container-fluid m-0 p-0 align-items-start h-100">
       <div class="left col-lg-4 h-100">
         <div class="photo-left">
-          <img class="photo" src="assets/images/about-pic.webp" />
+          <img class="photo" [src]="Client.profilePicture" />
         </div>
         <h4 class="name">{{Client.fullName}}</h4>
         <p class="info">{{Client.email}}</p>
@@ -169,18 +169,12 @@
         <!--about section-->
         <div class="stats row">
           <div class="stat col-xs-4">
-            <p class="number-stat">42</p>
+            <p class="number-stat">{{ Client?.following.length ?? 0 }}</p>
             <p class="desc-stat">Following</p>
           </div>
-          <div class="stat col-xs-4">
-            <p class="number-stat">38</p>
-            <p class="desc-stat">Uploads</p>
-          </div>
+
         </div>
-        <p class="desc">
-          Hi ! My name is Jane Doe. I'm a UI/UX Designer from Paris, in France.
-          I really enjoy photography and mazen.
-        </p>
+
         <div class="social">
           <i class="fa fa-facebook-square" aria-hidden="true"></i>
           <i class="fa fa-twitter-square" aria-hidden="true"></i>
@@ -205,56 +199,43 @@
           </div>
         </div>
         <!--content below buttons-->
-        <div class="container" *ngIf="selectedTab === 'orders'">
-          <table class="table table-hover table-dark table-striped mt-4">
+        <div class="orders-table-container" *ngIf="selectedTab === 'orders'">
+          <table class="orders-table" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <thead>
               <tr>
-                <th>Image</th>
-                <th>Owner</th>
-                <th>Status</th>
-                <th>Price</th>
+
+                <th>Description</th>
+                <th>Deadline</th>
+                <th>Offering Price</th>
+                <th>Date</th>
+                <th>status</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <img
-                    src="assets/images/blog_post_1.jpg"
-                    height="40px"
-                    width="40px"
-                  />
-                </td>
-                <td>Mazen Ayman</td>
-                <td><div class="status-rejected">Rejected</div></td>
-                <td>120$</td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="assets/images/blog_post_1.jpg"
-                    height="40px"
-                    width="40px"
-                  />
-                </td>
-                <td>Mazen Ayman</td>
-                <td><div class="status-pending">Pending</div></td>
-                <td>120$</td>
-              </tr>
-              <tr>
-                <td>
-                  <img
-                    src="assets/images/blog_post_1.jpg"
-                    height="40px"
-                    width="40px"
-                  />
-                </td>
-                <td>Mazen Ayman</td>
-                <td><div class="status-accepted">Accepted</div></td>
-                <td>120$</td>
+            <tbody *ngFor="let order of ClientOrders.data.clientOrders; let i = index">
+              <tr >
+
+                <td>{{ order.description }}</td>
+                <td>{{ order.deadline }}</td>
+                <td>{{ order.price }}</td>
+                <td>{{ order.date }}</td>
+
+                <td >{{ order.state }}
+                <button *ngIf="order.state==='Completed'&&!order.isPaid ">pay</button>
+                <button (click)="viweResponse(order.FreelancerResponse)" *ngIf="order.state==='Completed'&&order.isPaid ">view response</button>
+              </td>
+
               </tr>
             </tbody>
           </table>
+           <!-- Popup for response -->
+           <div *ngIf="openResponse" class="response-popup">
+            <div class="response-content">
+              <h1>{{selectedOrderResponse}}</h1>
+              <button (click)="closeResponse()">Close</button>
+            </div>
+          </div>
         </div>
+
 
         <div
           class="grid-portfolio"

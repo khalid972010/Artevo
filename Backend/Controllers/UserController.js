@@ -44,16 +44,19 @@ const UpdateProfile = async (req, res) => {
     var result;
 
     if (type == "Client") {
-      result = await Clients.find({ _id: user._id });
+      result = await Clients.findById(user._id);
+     // console.log("1",result);
       let newUser = Object.assign(result, req.body.user);
-      if (!ClientValidator(newUser)) {
-        return res.status(400).json({
-          message:
-            ClientValidator.errors[0].instancePath.substring(1) +
-            " " +
-            ClientValidator.errors[0].message,
-        });
-      }
+     // console.log("2",newUser);
+      // if (!ClientValidator(newUser)) {
+      //   console.log("3");
+      //   return res.status(400).json({
+      //     message:
+      //       ClientValidator.errors[0].instancePath.substring(1) +
+      //       " " +
+      //       ClientValidator.errors[0].message,
+      //   });
+      // }
       // let newUser = Object.assign(result, req.body.user);
       await Clients.findByIdAndUpdate(user._id, { $set: newUser });
 
@@ -63,10 +66,10 @@ const UpdateProfile = async (req, res) => {
     if (type == "Freelancer") {
       result = await Freelancers.findById(user._id);
       let newUser = Object.assign(result, req.body.user);
-      console.log(newUser);
+     // console.log(newUser);
 
       await Freelancers.findByIdAndUpdate(user._id, { $set: newUser });
-      console.log(user);
+     // console.log(user);
       return res.status(200).json({ message: "Updated Successfully!" });
     }
   } catch (error) {
@@ -82,7 +85,7 @@ const UpdateProfileByMail = async (request, response) => {
     let user = request.body.user;
     const newPassword = request.body.password;
     const type = request.body.type;
-    console.log(user);
+   // console.log(user);
 
     user.password = await bcrypt.hash(newPassword, 10);
     if (type == "Client" && ClientValidator(user)) {
