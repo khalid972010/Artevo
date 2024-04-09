@@ -216,6 +216,7 @@ header img {
   cursor: pointer;
 }
 
+/*button---------------------------------------------------------------------*/
 .radio-inputs {
   position: relative;
   display: flex;
@@ -256,7 +257,7 @@ header img {
 }
 
 /*add post button */
-
+/*ssssssssssss*/
 .button {
   --main-focus: #2d8cf0;
   --font-color: #323232;
@@ -321,7 +322,7 @@ header img {
   box-shadow: 0px 0px var(--main-color);
 }
 
-
+/*flowers/folowing*/
 .stats {
   margin-top: 25px;
   text-align: center;
@@ -356,7 +357,7 @@ header img {
   color: grey;
 }
 
-
+/*edit button--------------------------------*/
 button {
   position: relative;
   padding: 12px 35px;
@@ -728,6 +729,7 @@ button:hover .star-6 {
 
 .orders-table tbody tr:nth-child(even) {
   background-color: #CCD4DD;
+  border: 1px solid #323232;
   color:#141E1D;
   font-weight: 500;
 
@@ -735,6 +737,7 @@ button:hover .star-6 {
 
 .orders-table tbody tr:nth-child(odd) {
   background-color: #141E1D;
+  border: 2px solid #323232;
 
   color: white;
   font-weight: 500;
@@ -742,6 +745,7 @@ button:hover .star-6 {
 
 .orders-table tbody tr:hover {
   background-color: #8daab9;
+  border: 1px solid #323232;
   color:#141E1D
 
 }

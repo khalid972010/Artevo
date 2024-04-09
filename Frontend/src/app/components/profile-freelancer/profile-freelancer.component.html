@@ -329,9 +329,9 @@
         </div>
 
 
-        <div class="orders-table-container" *ngIf="selectedTab === 'Tasks'">
-          <table class="tasks-table table-striped">
-            <!-- Table headers -->
+
+        <div class="container" *ngIf="selectedTab === 'Tasks'">
+          <table class="table table-hover table-dark table-striped mt-4">
             <thead>
               <tr>
                 <th>Client</th>
@@ -347,28 +347,21 @@
               <tr *ngIf="ordersItem.state == 'InProgress'">
                 <!-- Table cells -->
                 <td style="border: 1px solid grey;">{{ ordersItem.clientName }}</td>
-                <td style="border: 1px solid grey;">{{ ordersItem.description }}</td>
-                <td style="border: 1px solid grey;">{{ ordersItem.deadline }}</td>
-                <td style="border: 1px solid grey;">{{ ordersItem.price }}</td>
-                <td style="border: 1px solid grey;">{{ ordersItem.date }}</td>
-                <td>
-
-                  <button id="sendBtn"(click)="openFreelancerResponse(ordersItem._id)">Ready to send!</button>
-
-                </td>
+                <td>{{ ordersItem.description }}</td>
+                <td>{{ ordersItem.deadline }}</td>
+                <td>{{ ordersItem.price }}</td>
+                <td>{{ ordersItem.date }}</td>
+                <td><button  (click)="openFreelancerResponse(ordersItem._id)">send</button></td>
               </tr>
             </tbody>
           </table>
 
-          <!-- Popup for response -->
-          <div *ngIf="openResponseForm" class="response-popup">
-            <div class="response-content">
-              <textarea [(ngModel)]="responseText" placeholder="Type your response here"></textarea>
-              <button (click)="submitResponse()">Submit</button>
-              <button (click)="closeFreelancerResponse()">Close</button>
-            </div>
+          <div *ngIf="openResponseForm">
+            <textarea [(ngModel)]="responseText" placeholder="Type your response here"></textarea>
+            <button (click)="submitResponse()">Submit</button>
           </div>
         </div>
+
 
 
         <div *ngIf="selectedTab === 'posts'">
@@ -382,17 +375,8 @@
             </div>
           </div>
         </div>
-
-
-          <!-- Popup for response -->
-          <div *ngIf="openResponseForm" class="response-popup" style="background-color: #141E1D;">
-            <div class="response-content" style="background-color: #141E1D;">
-              <textarea [(ngModel)]="responseText" placeholder="Type your response here"></textarea>
-              <button (click)="submitResponse()">Submit</button>
-              <button (click)="closeFreelancerResponse()">Close</button>
-            </div>
-          </div>
-        </div>
+        <!--button add post end-->
       </div>
+    </div>
   </div>
 </div>

@@ -6,12 +6,13 @@ import { UserService } from '../../services/user.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TokenService } from '../../services/token.service';
+import { FileUploadService } from '../../services/file_upload.service';
 
 @Component({
   selector: 'app-profile-freelancer-update',
   standalone: true,
   imports: [ReactiveFormsModule],
-  providers:[FreelancerService,UserService],
+  providers:[FreelancerService,UserService, FileUploadService],
   templateUrl: './profile-freelancer-update.component.html',
   styleUrl: './profile-freelancer-update.component.css'
 })
@@ -21,26 +22,31 @@ export class ProfileFreelancerUpdateComponent implements OnInit {
   firstName:string="";
   userName:string="";
   imageUrl?: string;
-  constructor(private route:ActivatedRoute,
-              private freelancerService:FreelancerService,
-              private userService: UserService,
-              private tokenService: TokenService
+  constructor(private route: ActivatedRoute,
+    private freelancerService: FreelancerService,
+    private userService: UserService,
+    private tokenService: TokenService,
+    private fileUploadService: FileUploadService,
   ) { }
 
   NavigateBack() {
   window.history.back();
 }
 
-handleFileInput(event: any) {
+  handleFileInput(event: any) {
+      console.log("Hello");
+
   const file = event.target.files[0];
   const reader = new FileReader();
 
-  reader.onload = (e: any) => {
-    this.imageUrl = e.target.result;
-  };
-
+    reader.onload = async (e: any) => {
+  this.imageUrl = e.target.result;
+      if (this.imageUrl !== null) {
+        let imageLink = await this.fileUploadService.uploadAndSaveToDatabase(file);
+        this.freelancer.profilePicture = imageLink;
+  }
+};
     reader.readAsDataURL(file);
-    this.freelancer.profilePicture = this.imageUrl;
 }
 
   ngOnInit(): void {
@@ -75,7 +81,8 @@ saveChanges(
   var obj = {
     "_id": this.freelancerId,
     "fullName": firstName + " " + lastName,
-    "userName":userName,
+    "userName": userName,
+    "profilePicture": this.freelancer.profilePicture,
     "password": password,
     "location": location,
     "email": email,

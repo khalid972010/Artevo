@@ -155,36 +155,34 @@ export class ProfileFreelancerComponent implements OnInit  {
   selectedOrderId: string | null = null;
   responseText: string = '';
 
-  openFreelancerResponse(orderId: string) {
-    this.selectedOrderId = orderId;
-    this.openResponseForm = true;
-  }
-  closeFreelancerResponse(){
-    this.selectedOrderId = null;
-    this.responseText = '';
-    this.openResponseForm = false;
-
-  }
-  submitResponse() {
-    if (this.selectedOrderId && this.responseText) {
-      // Use this.selectedOrderId and this.responseText here for further processing
-      console.log('Selected Order ID:', this.selectedOrderId);
-      console.log('Response Text:', this.responseText);
-
-       this.orderService.updateFreelancerResponse(this.selectedOrderId,this.responseText).subscribe(
-        (res)=>{
-          console.log(res);
-        },
-        (error)=>{
-          console.log(error);
+       openFreelancerResponse(orderId: string) {
+        this.selectedOrderId = orderId;
+        this.openResponseForm = true;
+      }
+    
+      closeFreelancerResponse() {
+        this.selectedOrderId = null;
+        this.responseText = '';
+        this.openResponseForm = false;
+      }
+    
+      submitResponse() {
+        if (this.selectedOrderId && this.responseText) {
+          console.log('Selected Order ID:', this.selectedOrderId);
+          console.log('Response Text:', this.responseText);
+    
+          this.orderService.updateFreelancerResponse(this.selectedOrderId, this.responseText).subscribe(
+            (res) => {
+              console.log(res);
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+    
+          this.selectedOrderId = null;
+          this.responseText = '';
+          this.openResponseForm = false;
         }
-       )
-
-      // Clear selectedOrderId and responseText after submission
-      this.selectedOrderId = null;
-      this.responseText = '';
-      this.openResponseForm = false;
+      }
     }
-  }
-
-}
