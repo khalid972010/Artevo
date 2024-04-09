@@ -509,27 +509,6 @@ button:hover .star-6 {
   fill: #fffdef;
 }
 
-.status-rejected,
-.status-pending,
-.status-accepted {
-  color: white;
-  padding: 5px 20px;
-  border-radius: 20px;
-  width: 120px;
-  text-align: center;
-}
-
-.status-rejected {
-  background-color: red;
-}
-
-.status-pending {
-  background-color: blue;
-}
-
-.status-accepted {
-  background-color: green;
-}
 
 .tooltip-container {
   display: flex;
@@ -575,6 +554,14 @@ button:hover .star-6 {
   color: rgb(34, 34, 34);
 }
 
+
+
+.tooltip-container:hover .tooltip {
+  top: -100%;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 .tooltip::before {
   position: absolute;
   content: "";
@@ -585,14 +572,6 @@ button:hover .star-6 {
   transform: translate(-50%) rotate(45deg);
   background-color: var(--secondary-color);
 }
-
-.tooltip-container:hover .tooltip {
-  top: -100%;
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
 .pressed {
   background-color: var(--tertiary-color);
   color: white;
@@ -697,11 +676,11 @@ button:hover .star-6 {
   padding: 0 20px;
 }
 
-button:hover {
+.btn:hover {
   color: #141e1d;
 }
 
-button:after {
+.btn:after {
   content: "";
   background-color: #446063;
   color: #ccd4dd;
@@ -715,8 +694,106 @@ button:after {
   transition: all 0.5s;
 }
 
-button:hover:after {
+.btn:hover:after {
   transform: skewX(-45deg) scale(1, 1);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+}
+
+
+.orders-table-container {
+  margin-top: 20px;
+}
+.orders-table-container {
+  margin-top: 20px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 10px;
+  text-align: center;
+}
+
+.orders-table th {
+  background-color: #141E1D;
+  /* #446063 */
+  color: #fff;
+  font-style: italic;
+  text-decoration: underline;
+  border: 1px solid #323232;
+  font-size: 17px;
+}
+
+.orders-table tbody tr:nth-child(even) {
+  background-color: #CCD4DD;
+  border: 1px solid #323232;
+  color:#141E1D;
+  font-weight: 500;
+
+}
+
+.orders-table tbody tr:nth-child(odd) {
+  background-color: #141E1D;
+  border: 2px solid #323232;
+
+  color: white;
+  font-weight: 500;
+}
+
+.orders-table tbody tr:hover {
+  background-color: #8daab9;
+  border: 1px solid #323232;
+  color:#141E1D
+
+}
+
+.accept-button,
+.reject-button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.accept-button:hover,
+.reject-button:hover {
+  filter: brightness(110%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.accept-button {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.accept-button:hover {
+  background-color: #218838;
+}
+
+.reject-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.reject-button:hover {
+  background-color: #c82333;
+}
+
+/* CSS */
+.orders-table {
+  border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #ccc; /* Border color and thickness */
+  padding: 8px; /* Padding inside each cell */
 }

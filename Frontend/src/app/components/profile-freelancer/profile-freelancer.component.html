@@ -300,33 +300,34 @@
           </div>
         </div>
         <!--content below buttons-->
-        <div class="container" *ngIf="selectedTab === 'orders'">
-          <table class="table table-hover table-dark table-striped mt-4">
+        <div class="orders-table-container" *ngIf="selectedTab === 'orders'">
+          <table class="orders-table" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <thead>
               <tr>
-                <th>Client</th>
+                <th>Client Name</th>
                 <th>Description</th>
-                <th>DeadLine</th>
+                <th>Deadline</th>
                 <th>Offering Price</th>
-                <th>date</th>
-
+                <th>Date</th>
+                <th>Your Response</th>
               </tr>
             </thead>
-            <tbody *ngFor="let ordersItem of orders.data.FreelancerOrders">
-              <tr *ngIf="ordersItem.state !== 'InProgress'">
-                <td>{{ ordersItem.clientName }}</td>
-                <td>{{ ordersItem.description }}</td>
-                <td>{{ ordersItem.deadline }}</td>
-                <td>{{ ordersItem.price }}</td>
-                <td>{{ ordersItem.date }}</td>
-                <td><button (click)="AcceptOrder(ordersItem._id)">Accept</button></td>
-                <td><button>Reject</button></td>
+            <tbody *ngFor="let order of orders.data.FreelancerOrders; let i = index">
+              <tr *ngIf="order.state !== 'InProgress'">
+                <td>{{ order.clientName }}</td>
+                <td>{{ order.description }}</td>
+                <td>{{ order.deadline }}</td>
+                <td>{{ order.price }}</td>
+                <td>{{ order.date }}</td>
+                <td>
+                  <button class="accept-button" (click)="AcceptOrder(order._id)" >Accept</button>
+                  <button class="reject-button "style="margin-left:5px" >Decline</button>
+                </td>
               </tr>
             </tbody>
-
-
           </table>
         </div>
+        
 
 
         <div class="container" *ngIf="selectedTab === 'Tasks'">
@@ -342,7 +343,7 @@
             </thead>
             <tbody *ngFor="let ordersItem of orders.data.FreelancerOrders">
               <tr *ngIf="ordersItem.state == 'InProgress'">
-                <td>{{ ordersItem.clientName }}</td>
+                <td style="border: 1px solid grey;">{{ ordersItem.clientName }}</td>
                 <td>{{ ordersItem.description }}</td>
                 <td>{{ ordersItem.deadline }}</td>
                 <td>{{ ordersItem.price }}</td>
