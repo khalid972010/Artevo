@@ -203,7 +203,7 @@
           <table class="orders-table" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <thead>
               <tr>
-
+                <th>Freelancer</th>
                 <th>Description</th>
                 <th>Deadline</th>
                 <th>Offering Price</th>
@@ -213,7 +213,7 @@
             </thead>
             <tbody *ngFor="let order of ClientOrders.data.clientOrders; let i = index">
               <tr >
-
+                <td> {{order.freelancerName}}</td>
                 <td>{{ order.description }}</td>
                 <td>{{ order.deadline }}</td>
                 <td>{{ order.price }}</td>
