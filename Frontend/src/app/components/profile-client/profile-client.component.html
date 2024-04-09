@@ -200,7 +200,7 @@
         </div>
         <!--content below buttons-->
         <div class="orders-table-container" *ngIf="selectedTab === 'orders'">
-          <table class="orders-table" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <table class="orders-table">
             <thead>
               <tr>
 
@@ -212,26 +212,32 @@
               </tr>
             </thead>
             <tbody *ngFor="let order of ClientOrders.data.clientOrders; let i = index">
-              <tr >
-
+              <tr style="text-align: center;">
                 <td>{{ order.description }}</td>
                 <td>{{ order.deadline }}</td>
                 <td>{{ order.price }}</td>
                 <td>{{ order.date }}</td>
-
-                <td >{{ order.state }}
-                <button *ngIf="order.state==='Completed'&&!order.isPaid ">pay</button>
-                <button (click)="viweResponse(order.FreelancerResponse)" *ngIf="order.state==='Completed'&&order.isPaid ">view response</button>
-              </td>
-
+                <td style="text-align: center;">
+                  {{ order.state }}
+                  <div class="button-container">
+                    <button class="pay-button" *ngIf="order.state==='Completed' && !order.isPaid">Pay</button>
+                    <button class="view-response-button" *ngIf="order.state==='Completed' && order.isPaid" (click)="viewResponse(order.FreelancerResponse)">View Response</button>
+                  </div>
+                </td>
               </tr>
             </tbody>
+            
           </table>
            <!-- Popup for response -->
            <div *ngIf="openResponse" class="response-popup">
             <div class="response-content">
               <h1>{{selectedOrderResponse}}</h1>
-              <button (click)="closeResponse()">Close</button>
+              <div style="position: relative; text-align: center; margin-top: 60px;">
+                <button style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 55px; height: 50px; font-size: 20px; padding: 0; line-height: 50px;" (click)="closeResponse()">Close</button>
+              </div>
+              
+              <!-- <button style=" width: 55px; height: 50px; font-size: 20px; padding: 0; line-height: 40px;" (click)="closeResponse()">Close</button> -->
+
             </div>
           </div>
         </div>
