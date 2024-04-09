@@ -63,12 +63,12 @@
               </tr>
             </thead>
             <tbody *ngFor="let order of ClientOrders.data.clientOrders; let i = index">
-              <tr style="text-align: center;">
+              <tr style="text-align: center; border: 1px white solid;">
                 <td>{{ order.description }}</td>
                 <td>{{ order.deadline }}</td>
                 <td>{{ order.price }}</td>
                 <td>{{ order.date }}</td>
-                <td style="text-align: center;">
+                <td style="text-align: center;" [style.background-color]="order.state === 'Completed' ? 'green' : (order.state === 'InProgress' ? '#89CFF0	' : (order.state === 'Pending' ? '#FFD580	' : ''))">
                   {{ order.state }}
                   <div class="button-container">
                     <button class="pay-button" *ngIf="order.state==='Completed' && !order.isPaid">Pay</button>
@@ -77,6 +77,7 @@
                 </td>
               </tr>
             </tbody>
+            
             
           </table>
            <!-- Popup for response -->
