@@ -440,12 +440,13 @@ button {
 }
 
 button:hover {
-  background: black;
+  background: #446063;
   color: white;
-  box-shadow: 0 0 25px black;
+  box-shadow: 0 0 25px #446063;
+  border: none;
 }
 
-button:hover .star-1 {
+/* button:hover .star-1 {
   position: absolute;
   top: -80%;
   left: -30%;
@@ -503,7 +504,7 @@ button:hover .star-6 {
   height: auto;
   filter: drop-shadow(0 0 10px #fffdef);
   z-index: 2;
-}
+} */
 
 .fil0 {
   fill: #fffdef;
@@ -723,13 +724,14 @@ button:hover .star-6 {
   color: #fff;
   font-style: italic;
   text-decoration: underline;
-  border: 1px solid #323232;
   font-size: 17px;
+}
+.orders-table td {
+  border: 1px white solid;
 }
 
 .orders-table tbody tr:nth-child(even) {
   background-color: #CCD4DD;
-  border: 1px solid #323232;
   color:#141E1D;
   font-weight: 500;
 
@@ -737,7 +739,6 @@ button:hover .star-6 {
 
 .orders-table tbody tr:nth-child(odd) {
   background-color: #141E1D;
-  border: 2px solid #323232;
 
   color: white;
   font-weight: 500;
@@ -745,7 +746,6 @@ button:hover .star-6 {
 
 .orders-table tbody tr:hover {
   background-color: #8daab9;
-  border: 1px solid #323232;
   color:#141E1D
 
 }
@@ -790,7 +790,6 @@ button:hover .star-6 {
 
 .orders-table th,
 .orders-table td {
-  border: 1px solid #ccc; /* Border color and thickness */
   padding: 8px; /* Padding inside each cell */
 }
 
@@ -824,21 +823,18 @@ button:hover .star-6 {
 
 .tasks-table tbody tr:nth-child(even) {
   background-color: #CCD4DD;
-  border: 1px solid #323232;
   color: #141E1D;
   font-weight: 500;
 }
 
 .tasks-table tbody tr:nth-child(odd) {
   background-color: #141E1D;
-  border: 2px solid #323232;
   color: white;
   font-weight: 500;
 }
 
 .tasks-table tbody tr:hover {
   background-color: #8daab9;
-  border: 1px solid #323232;
   color: #141E1D;
 }
 .response-popup {

@@ -16,9 +16,10 @@
           *ngIf="hisProfile"
           (click)="NavigateUpdateProfile($event)"
           class="btnProfile"
+          style="font-weight: bold; "
         >
           Update Profile
-          <div class="star-1">
+          <!-- <div class="star-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xml:space="preserve"
@@ -167,7 +168,7 @@
                 ></path>
               </g>
             </svg>
-          </div>
+          </div> -->
         </button>
         <!--edit butoon-->
         <!--about section-->
@@ -301,7 +302,7 @@
         </div>
         <!--content below buttons-->
         <div class="orders-table-container" *ngIf="selectedTab === 'orders'">
-          <table class="orders-table" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+          <table class="orders-table">
             <thead>
               <tr>
                 <th>Client Name</th>
@@ -330,7 +331,7 @@
         
 
         <div class="orders-table-container" *ngIf="selectedTab === 'Tasks'">
-          <table class="tasks-table">
+          <table class="tasks-table table-striped">
             <!-- Table headers -->
             <thead>
               <tr>
@@ -346,13 +347,15 @@
               <!-- Table body -->
               <tr *ngIf="ordersItem.state == 'InProgress'">
                 <!-- Table cells -->
-                <td style="border: 1px solid grey;">{{ ordersItem.clientName }}</td>
-                <td style="border: 1px solid grey;">{{ ordersItem.description }}</td>
-                <td style="border: 1px solid grey;">{{ ordersItem.deadline }}</td>
-                <td style="border: 1px solid grey;">{{ ordersItem.price }}</td>
-                <td style="border: 1px solid grey;">{{ ordersItem.date }}</td>
+                <td >{{ ordersItem.clientName }}</td>
+                <td >{{ ordersItem.description }}</td>
+                <td >{{ ordersItem.deadline }}</td>
+                <td >{{ ordersItem.price }}</td>
+                <td >{{ ordersItem.date }}</td>
                 <td>
+                  
                   <button id="sendBtn"(click)="openFreelancerResponse(ordersItem._id)">Ready to send!</button>
+                  
                 </td>
               </tr>
             </tbody>
