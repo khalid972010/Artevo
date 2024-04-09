@@ -69,7 +69,7 @@
                 <td>{{ order.deadline }}</td>
                 <td>{{ order.price }}</td>
                 <td>{{ order.date }}</td>
-                <td style="text-align: center;">
+                <td style="text-align: center;" [style.background-color]="order.state === 'Completed' ? '#4CAF50' : (order.state === 'InProgress' ? '#A7C7E7' : (order.state === 'Pending' ? '#FFC000	' : ''))">
                   {{ order.state }}
                   <div class="button-container">
                     <button class="pay-button" *ngIf="order.state==='Completed' && !order.isPaid">Pay</button>
