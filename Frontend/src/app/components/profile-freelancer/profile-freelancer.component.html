@@ -212,7 +212,7 @@
             class="radio-inputs col-auto row"
             style="color: var(--primary-color)"
           >
-            <label class="radio col-4">
+            <label class="radio col-3">
               <input
                 [(ngModel)]="selectedTab"
                 type="radio"
@@ -222,7 +222,7 @@
               />
               <span class="name">Posts</span>
             </label>
-            <label class="radio col-4" *ngIf="hisProfile">
+            <label class="radio col-3" *ngIf="hisProfile">
               <input
                 [(ngModel)]="selectedTab"
                 value="orders"
@@ -231,7 +231,7 @@
               />
               <span class="name">Orders</span>
             </label>
-            <label class="radio col-4">
+            <label class="radio col-3">
               <input
                 [(ngModel)]="selectedTab"
                 type="radio"
@@ -240,6 +240,16 @@
                 checked=""
               />
               <span class="name">Tasks</span>
+            </label>
+            <label class="radio col-3">
+              <input
+                [(ngModel)]="selectedTab"
+                type="radio"
+                name="selected"
+                value="reviews"
+                checked=""
+              />
+              <span class="name">Reviews</span>
             </label>
           </div>
 
@@ -373,6 +383,10 @@
               ></app-portfolio>
             </div>
           </div>
+        </div>
+
+        <div *ngIf="selectedTab === 'reviews'" class="container">
+          <app-reviews></app-reviews>
         </div>
         <!--button add post end-->
       </div>
