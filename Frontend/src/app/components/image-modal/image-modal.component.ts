@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FreelancerService } from '../../services/freelancer.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TokenService } from '../../services/token.service';
 import { ClientService } from '../../services/client.service';
 import { AuthService } from '../../services/auth.service';
@@ -32,24 +32,27 @@ export class ImageModalComponent implements OnInit {
     public data: { portfolio: any },
     public dialogRef: MatDialogRef<ImageModalComponent>,
     private freelancerService: FreelancerService,
-    private userToken: TokenService
+    private userToken: TokenService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     localStorage.setItem('portfolioItem', JSON.stringify(this.data.portfolio));
     this.portfolio = JSON.parse(localStorage.getItem('portfolioItem') ?? '');
     this.initializeClientAndToken();
     this.getFreelancerData();
-    this.checkIfClientFollowsFreelancer();
-    this.checkIfClientLikesPost();
-
+    if (this.client) {
+      this.checkIfClientFollowsFreelancer();
+      this.checkIfClientLikesPost();
+    }
   }
 
-  closeModal(): void {
-    this.dialogRef.close();
-  }
-
-  handleModalContentClick(event: Event) {
-    if ((event.target as HTMLElement)?.classList.contains('closingModal')) {
+  clickName() {
+    if (this.client) {
+      const url = '/freelancer/' + this.portfolio.ownerID;
+      this.router.navigate([url], { replaceUrl: true });
+      this.closeModal();
+    } else {
+      this.router.navigate(['/login'], { replaceUrl: true });
       this.closeModal();
     }
   }
@@ -85,15 +88,25 @@ export class ImageModalComponent implements OnInit {
   }
 
   checkFollowing() {
-    if (this.isFollowing == true) {
-      this.unfollowFreelancer(this.portfolio.ownerID);
+    if (!this.client) {
+      this.router.navigate(['/login'], { replaceUrl: true });
+      this.closeModal();
     } else {
-      this.followFreelancer(this.portfolio.ownerID);
+      if (this.isFollowing == true) {
+        this.unfollowFreelancer(this.portfolio.ownerID);
+      } else {
+        this.followFreelancer(this.portfolio.ownerID);
+      }
     }
   }
   handleCheckLikes(event: Event) {
-    event.preventDefault();
-    this.checkLikes();
+    if (!this.client) {
+      this.router.navigate(['/login'], { replaceUrl: true });
+      this.closeModal();
+    } else {
+      event.preventDefault();
+      this.checkLikes();
+    }
   }
   checkLikes() {
     if (!this.isLiked) {
@@ -163,5 +176,14 @@ export class ImageModalComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+  closeModal(): void {
+    this.dialogRef.close();
+  }
+
+  handleModalContentClick(event: Event) {
+    if ((event.target as HTMLElement)?.classList.contains('closingModal')) {
+      this.closeModal();
+    }
   }
 }

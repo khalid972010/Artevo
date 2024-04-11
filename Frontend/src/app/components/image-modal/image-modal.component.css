@@ -15,11 +15,13 @@
 
 a {
   text-decoration: none;
+  cursor: pointer;
+
   color: white;
 }
 
 a:focus {
-  text-decoration: none;
+  cursor: pointer;
 }
 
 p {

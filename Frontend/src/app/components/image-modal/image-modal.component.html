@@ -1,4 +1,4 @@
-@if (this.data.portfolio && this.client && this.freelancer) {
+@if (this.data.portfolio && this.freelancer) {
 <div class="image-modal" style="overflow: auto">
   <div class="modal-overlay h-100"></div>
 
@@ -23,7 +23,7 @@
       <div class="col-8 d-flex align-items-center">
         <div class="user__details col-8">
           <h5 class="fs-4 text-light">
-            <a>{{ this.freelancer.fullName }}</a>
+            <a (click)="clickName()">{{ this.freelancer.fullName }}</a>
           </h5>
           <p class="small">{{ this.portfolio.description }}</p>
           <a
