@@ -3,7 +3,7 @@
 }
 
 .bg-image {
-  background-image: url("https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-image: url("https://e0.pxfuel.com/wallpapers/460/460/desktop-wallpaper-texture-surface-dark-blue-iphone-dark-blue-background.jpg");
   background-size: auto;
   background-position: center;
 }
@@ -11,6 +11,7 @@
 .login-heading {
   font-weight: 300;
 }
+
 .form-control {
   border: none !important;
   box-shadow: none !important;
@@ -23,18 +24,18 @@
 }
 
 #background {
-  background-color: #e4dcd1;
+  background-color: var(--primary-color);
 }
 
 button {
-  background-color: #7f6256;
+  background-color: var(--secondary-color);
   color: white;
 
   border: none;
 }
 
 button:hover {
-  background-color: #503428;
+  background-color: var(--tertiary-color);
   color: white;
 }
 
@@ -59,6 +60,7 @@ a {
 .btn-login:hover {
   transform: scale(1.01);
 }
+
 span {
   background-color: white !important;
   border: none !important;
@@ -67,10 +69,12 @@ span {
 * {
   font-family: "Poppins", sans-serif;
 }
+
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

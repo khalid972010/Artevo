@@ -1,4 +1,3 @@
-import { loadScript } from '@paypal/paypal-js';
 import { CommonModule } from '@angular/common';
 import {
   Component,

@@ -3,7 +3,7 @@
 }
 
 .bg-image {
-  background-image: url("https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-image: url("https://i.pinimg.com/564x/fd/af/cf/fdafcff5bc524d296b44fa9b1cbc75f8.jpg");
   background-size: auto;
   background-position: center;
 }
@@ -26,7 +26,7 @@
 }
 
 #background {
-  background-color: #e4dcd1;
+  background-color: var(--primary-color);
 }
 
 button {
@@ -37,7 +37,7 @@ button {
 }
 
 button:hover {
-  background-color: #503428;
+  background-color: var(--primary-color);
   color: white;
 }
 
@@ -94,24 +94,15 @@ a {
   /* blue color */
 }
 
-/* Custom checkbox color when checked */
-.custom-checkbox[type="checkbox"]:checked {
-  background-color: #7f6256;
-  /* blue color */
-}
+
 
 .gg {
-  background: linear-gradient(to bottom,
-      white,
-      #e4dcd1,
-      #7f6256,
-      #86604f,
-      black);
+  background: var(--primary-color)
 }
 
-/* .gg {
-  background: radial-gradient(circle, white, #e4dcd1, #7f6256, #86604f, black);
-} */
+.right {
+  background-color: var(--secondary-color);
+}
 
 .centered-window {
   position: fixed;
@@ -356,7 +347,7 @@ body {
 }
 
 .btn {
-  --color: #503428;
+  --color: var(--primary-color);
   --color2: white;
   padding: 0.8em 1.75em;
   background-color: transparent;
@@ -449,14 +440,15 @@ body {
   justify-content: center;
   width: 100%;
   height: 100%;
-  border: 2px solid #503428;
+  border: 2px solid var(--primary-color);
   border-radius: 5px;
   padding: 1rem;
   transition: transform 300ms ease;
 }
 
 .radio-tile-group .input-container .icon svg {
-  fill: #503428;
+  fill: var(--primary-color);
+  ;
   width: 2rem;
   height: 2rem;
 }
@@ -467,22 +459,27 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #503428;
+  color: var(--primary-color);
+  ;
 }
 
 .radio-tile-group .input-container .radio-button:checked+.radio-tile {
-  background-color: #503428;
-  border: 2px solid #503428;
+  background-color: var(--primary-color);
+  ;
+  border: 2px solid var(--primary-color);
+  ;
   color: white;
   transform: scale(1.1, 1.1);
 }
 
 .radio-tile-group .input-container .radio-button:checked+.radio-tile .icon svg {
   fill: white;
-  background-color: #503428;
+  background-color: var(--primary-color);
+  ;
 }
 
 .radio-tile-group .input-container .radio-button:checked+.radio-tile .radio-tile-label {
   color: white;
-  background-color: #503428;
+  background-color: var(--primary-color);
+  ;
 }

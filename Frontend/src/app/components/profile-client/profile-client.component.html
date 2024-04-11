@@ -1,20 +1,23 @@
 <div class="container-fluid p-0" style="margin-top: 80px">
   <header>
-    <img src="assets/images/about_us.jpg" />
+    <img [src]="Client?.coverPicture" />
   </header>
   <div class="main-content">
     <div class="row container-fluid m-0 p-0 align-items-start h-100">
       <div class="left col-lg-4 h-100">
         <div class="photo-left">
-          <img class="photo" [src]="Client.profilePicture" />
+          <img class="photo" [src]="Client?.profilePicture" />
         </div>
-        <h4 class="name">{{Client.fullName}}</h4>
-        <p class="info">{{Client.email}}</p>
+        <h4 class="name">{{ Client?.fullName }}</h4>
+        <p class="info">{{ Client?.email }}</p>
 
         <!--edit butoon-->
-        <button class = "updatebtn"  style="width: 300px; margin-top: 30px" (click)="NavigateUpdateProfile($event)">
+        <button
+          class="updatebtn"
+          style="width: 300px; margin-top: 30px"
+          (click)="NavigateUpdateProfile($event)"
+        >
           Update Profile
-
         </button>
         <!--edit butoon-->
         <!--about section-->
@@ -23,7 +26,6 @@
             <p class="number-stat">{{ Client?.following.length ?? 0 }}</p>
             <p class="desc-stat">Following</p>
           </div>
-
         </div>
 
         <div class="social">
@@ -34,10 +36,13 @@
         </div>
       </div>
 
-      <div class="col-lg-8 m-0 px-4" style="background-color: #ada69d">
+      <div class="col-lg-8 m-0 px-4" style="background-color: transparent">
         <!--button post/order-->
         <div class="row justify-content-between align-items-center m-0">
-          <div class="radio-inputs col-auto" style="background-color: #ada69d">
+          <div
+            class="radio-inputs col-auto"
+            style="background-color: transparent"
+          >
             <label class="radio">
               <input
                 [(ngModel)]="selectedTab"
@@ -62,37 +67,79 @@
                 <th>status</th>
               </tr>
             </thead>
-            <tbody *ngFor="let order of ClientOrders.data.clientOrders; let i = index">
-              <tr >
-                <td> {{order.freelancerName}}</td>
-                <td>{{ order.description }}</td>
-                <td>{{ order.deadline }}</td>
-                <td>{{ order.price }}</td>
-                <td>{{ order.date }}</td>
-                <td style="text-align: center;" [style.background-color]="order.state === 'Completed' ? '#4CAF50' : (order.state === 'InProgress' ? '#A7C7E7' : (order.state === 'Pending' ? '#FFC000	' : ''))">
-                  {{ order.state }}
+            <tbody
+              *ngFor="
+                let order of ClientOrders?.data.clientOrders;
+                let i = index
+              "
+            >
+              <tr>
+                <td>{{ order?.freelancerName }}</td>
+                <td>{{ order?.description }}</td>
+                <td>{{ order?.deadline }}</td>
+                <td>{{ order?.price }}</td>
+                <td>{{ order?.date }}</td>
+                <td
+                  style="text-align: center"
+                  [style.background-color]="
+                    order.state === 'Completed'
+                      ? '#4CAF50'
+                      : order.state === 'InProgress'
+                      ? '#A7C7E7'
+                      : order.state === 'Pending'
+                      ? '#FFC000	'
+                      : ''
+                  "
+                >
+                  {{ order?.state }}
                   <div class="button-container">
-                    <button class="pay-button" *ngIf="order.state==='Completed' && !order.isPaid">Pay</button>
-                    <button class="view-response-button" *ngIf="order.state==='Completed' && order.isPaid" (click)="viewResponse(order.FreelancerResponse)">View Response</button>
+                    <button
+                      class="pay-button"
+                      *ngIf="order.state === 'Completed' && !order.isPaid"
+                    >
+                      Pay
+                    </button>
+                    <button
+                      class="view-response-button"
+                      *ngIf="order.state === 'Completed' && order.isPaid"
+                      (click)="viewResponse(order.FreelancerResponse)"
+                    >
+                      View Response
+                    </button>
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
-           <!-- Popup for response -->
-           <div *ngIf="openResponse" class="response-popup">
+          <!-- Popup for response -->
+          <div *ngIf="openResponse" class="response-popup">
             <div class="response-content">
-              <h1>{{selectedOrderResponse}}</h1>
-              <div style="position: relative; text-align: center; margin-top: 60px;">
-                <button style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 55px; height: 50px; font-size: 20px; padding: 0; line-height: 50px;" (click)="closeResponse()">Close</button>
+              <h1>{{ selectedOrderResponse }}</h1>
+              <div
+                style="position: relative; text-align: center; margin-top: 60px"
+              >
+                <button
+                  style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 55px;
+                    height: 50px;
+                    font-size: 20px;
+                    padding: 0;
+                    line-height: 50px;
+                  "
+                  (click)="closeResponse()"
+                >
+                  Close
+                </button>
               </div>
 
               <!-- <button style=" width: 55px; height: 50px; font-size: 20px; padding: 0; line-height: 40px;" (click)="closeResponse()">Close</button> -->
-
             </div>
           </div>
         </div>
-
 
         <div
           class="grid-portfolio"

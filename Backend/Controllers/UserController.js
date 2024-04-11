@@ -40,43 +40,39 @@ const GetProfile = async (req, res) => {
 const UpdateProfile = async (req, res) => {
   try {
     let user = req.body.user;
-    user.password = await bcrypt.hash(user.password, 10);
+    if (user.password) {
+      user.password = await bcrypt.hash(user.password, 10);
+    }
     let type = req.body.type;
     var result;
 
-    if (type == "Client") {
+    if (type === "Client") {
       result = await Clients.findById(user._id);
-      // console.log("1",result);
-      let newUser = Object.assign(result, user);
-      // console.log("2",newUser);
-      // if (!ClientValidator(newUser)) {
-      //   console.log("3");
-      //   return res.status(400).json({
-      //     message:
-      //       ClientValidator.errors[0].instancePath.substring(1) +
-      //       " " +
-      //       ClientValidator.errors[0].message,
-      //   });
-      // }
-      // let newUser = Object.assign(result, req.body.user);
-      await Clients.findByIdAndUpdate(user._id, { $set: newUser });
-
-      return res.status(200).json({ message: "Updated Successfully!" });
-    }
-
-    if (type == "Freelancer") {
+    } else if (type === "Freelancer") {
       result = await Freelancers.findById(user._id);
-      let newUser = Object.assign(result, user);
-      // console.log(newUser);
-
-      await Freelancers.findByIdAndUpdate(user._id, { $set: newUser });
-      // console.log(user);
-      return res.status(200).json({ message: "Updated Successfully!" });
+    } else {
+      return res.status(400).json({ message: "Invalid user type!" });
     }
+
+    if (!result) {
+      return res.status(404).json({ message: "User not found!" });
+    }
+
+    let updatedUser = { ...result.toObject(), ...user };
+
+    if (type === "Client") {
+      await Clients.findByIdAndUpdate(user._id, updatedUser);
+    } else if (type === "Freelancer") {
+      await Freelancers.findByIdAndUpdate(user._id, updatedUser);
+    }
+
+    return res.status(200).json({ message: "Updated Successfully!" });
   } catch (error) {
-    return res.status(404).json({ message: "Failed to get user!" });
+    console.error(error);
+    return res.status(500).json({ message: "Failed to update user!" });
   }
 };
+
 //#endregion
 
 //#region Update Profile By E-mail

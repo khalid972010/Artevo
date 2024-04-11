@@ -10,6 +10,7 @@ const clientSchema = new mongoose.Schema(
     password: String,
     userType: String,
     profilePicture: String,
+    coverPicture: String,
     joinDate: String,
     favTopics: String,
     following: [String],

@@ -23,6 +23,8 @@ const ClientSchema = {
     profilePicture: {
       type: "string",
     },
+    coverPicture: { type: "string" },
+
     joinDate: {
       type: "string",
       format: "date",
@@ -43,8 +45,7 @@ const ClientSchema = {
     isVerified: { type: "boolean", default: false },
     resetToken: { type: "string" },
   },
-    required: ["fullName", "userName", "password", "userType", "email"],
-  additionalProperties: true,
+  required: ["fullName", "userName", "password", "userType", "email"],
 };
 
 module.exports = ajv.compile(ClientSchema);

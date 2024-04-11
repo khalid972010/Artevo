@@ -17,7 +17,7 @@ import { TokenService } from '../../services/token.service';
 
 export class NavbarComponent implements OnInit {
   isLogged = false;
-  freelancer?: any;
+  user?: any;
   constructor(
     private router: Router,
     private tokenService: TokenService,
@@ -26,9 +26,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.isLogged = this.tokenService.getUser() != null;
     if (this.isLogged) {
-      this.freelancer = this.tokenService.getUser();
+      this.user = this.tokenService.getUser();
     }
-   // console.log(this.freelancer)
   }
 
   isMenuOpen: boolean = false;
@@ -83,7 +82,12 @@ export class NavbarComponent implements OnInit {
 
   visitMyProfile(event:Event) {
     event.preventDefault();
-    this.router.navigate(['/freelancer', this.freelancer._id]);
+    if (this.user.userType == 'Freelancer') {
+      this.router.navigate(['/freelancer', this.user._id]);
+    } else {
+      this.router.navigate(['/profile/client', this.user._id]);
+    }
+
     if (this.isMenuOpen == true) this.toggleMenu();
   }
 }

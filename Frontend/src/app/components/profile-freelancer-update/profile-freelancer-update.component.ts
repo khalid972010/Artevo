@@ -1,13 +1,10 @@
 import { Component ,OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FreelancerService } from '../../services/freelancer.service';
-import { error } from 'ajv/dist/vocabularies/applicator/dependencies';
 import { UserService } from '../../services/user.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TokenService } from '../../services/token.service';
 import { FileUploadService } from '../../services/file_upload.service';
-import { Router } from 'express';
 import { LoadingComponent } from "../../loading/loading.component";
 
 @Component({
@@ -87,7 +84,6 @@ export class ProfileFreelancerUpdateComponent implements OnInit {
 }
 
   ngOnInit(): void {
-    console.log(this.imageUrl);
     this.route.params.subscribe(params => {
       this.freelancerId = params['id'];
 
@@ -119,11 +115,15 @@ saveChanges(
     "userName": userName,
     "profilePicture": this.freelancer.profilePicture,
     "coverPicture": this.freelancer.coverPicture,
-    "password": password,
     "location": location,
     "email": email,
     "about": about
   };
+
+   if (password !== "") {
+    Object.assign(obj, { "password": password });
+  }
+
  this.userService.UpdateUser({"user":obj,"type":"Freelancer"}).subscribe(
   (res)=>{
     console.log(res);

@@ -30,12 +30,18 @@ export class ProfileClientUpdate implements OnInit {
 
   NavigateBack() {
   window.history.back();
-}
+  }
+
+  goBackAndRefresh(): void {
+    window.history.back();
+    setTimeout(() => {
+      window.location.reload(); // Reload the page after a small delay
+    }, 100); // Adjust the delay as needed
+  }
 
 
   imageLink = '';
   coverLink = '';
-
   handleProfileInput(event: any) {
   const file = event.target.files[0];
   const reader = new FileReader();
@@ -61,7 +67,6 @@ export class ProfileClientUpdate implements OnInit {
 
       this.isLoaded = false
 
-      // this.imageUrl = e.target.result;
       this.coverUrl = "https://i.gifer.com/YlWC.gif";
       if (this.coverUrl !== null) {
         this.coverLink = await this.fileUploadService.uploadAndSaveToDatabase(file);
@@ -69,6 +74,7 @@ export class ProfileClientUpdate implements OnInit {
       }
 
       this.coverUrl = this.coverLink;
+      console.log(this.coverUrl);
       setTimeout(() => {
         this.isLoaded = true; // Reload the page after a small delay
     }, 2000);
@@ -78,7 +84,7 @@ export class ProfileClientUpdate implements OnInit {
 
 
   ngOnInit(): void {
-    this.imageUrl = this.client?.profilePicture
+
 
     this.route.params.subscribe(params => {
       this.clientId = params['id'];
@@ -88,7 +94,8 @@ export class ProfileClientUpdate implements OnInit {
     this.ClientService.getByID(this.clientId).subscribe(
       (res)=>{
         this.client = res.data;
-        console.log(this.client);
+        this.imageUrl = this.client?.profilePicture
+        this.coverUrl = this.client?.coverPicture
       },
       (error)=>{}
     )
@@ -105,12 +112,17 @@ saveChanges(
   var obj = {
     "_id": this.clientId,
     "fullName": firstName + " " + lastName,
-    "profiePicture": this.client.profiePicture,
+    "profilePicture": this.client.profilePicture,
     "coverPicture": this.client.coverPicture,
     "userName":userName,
-    "password": password,
     "email": email
   };
+
+  if (password !== "") {
+    Object.assign(obj, { "password": password });
+  }
+
+  console.log(obj);
  this.userService.UpdateUser({"user":obj,"type":"Client"}).subscribe(
   (res)=>{
     console.log(res);
@@ -122,7 +134,7 @@ saveChanges(
 
   this.tokenService.setUser(obj);
 
-  this.NavigateBack();
+  this.goBackAndRefresh();
   }
 
 
