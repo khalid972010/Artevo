@@ -231,7 +231,7 @@
               />
               <span class="name">Orders</span>
             </label>
-            <label class="radio col-3">
+            <label class="radio col-3" *ngIf="hisProfile">
               <input
                 [(ngModel)]="selectedTab"
                 type="radio"
@@ -264,9 +264,9 @@
 
           <!--Follow button-->
           <div
-            (click)="toggleTooltipColor()"
+            (click)="followFreelancer()"
             class="tooltip-container col-2 mt-3"
-            *ngIf="!hisProfile"
+            *ngIf="!hisProfile && isVisitorClient"
           >
             <span class="tooltip">{{ freelancer?.followers.length ?? 0 }}</span>
             <span class="text">

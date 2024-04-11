@@ -21,6 +21,8 @@ export class RegisterComponent {
   type = '';
   emailExists = false;
   showVerifyEmailMessage = false;
+
+
   constructor(private service: RegisterService, private router: Router) {}
   //add user
   addUser() {
@@ -42,6 +44,8 @@ export class RegisterComponent {
         email: this.email,
         password: this.password,
         userType: this.type,
+        profilePicture: 'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/no-profile-picture-icon.png',
+        coverPicture: 'https://www.shutterstock.com/image-illustration/picture-icon-no-image-symbol-260nw-1650135331.jpg',
       };
 
       //create user ..

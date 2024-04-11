@@ -149,7 +149,8 @@ let completeOrder = async (request, response) => {
 };
 
 let followFreelancer = async (request, response) => {
-  const client = request.body.client;
+  const client = await Clients.findById(request.body.client);
+  console.log(request.body.client);
   const freelancerID = request.params.id;
 
   if (client.following.includes(freelancerID)) {

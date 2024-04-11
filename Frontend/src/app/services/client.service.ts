@@ -20,18 +20,14 @@ export class ClientService {
     const url = this.DB_URL + clientID;
     return this.http.get<any>(url, {});
   }
-  followFreelancer(token: string, freelancerID: string) {
+  followFreelancer(client: any, freelancerID: string) {
     const url = this.DB_URL + 'follow/' + freelancerID;
-    const headers = new HttpHeaders().set('x-auth-token', token);
-
-    return this.http.post(url, {}, { headers: headers });
+    return this.http.post(url, {client});
   }
 
-  unfollowFreelancer(token: string, freelancerID: string) {
+  unfollowFreelancer(client: any, freelancerID: string) {
     const url = this.DB_URL + 'unfollow/' + freelancerID;
-    const headers = new HttpHeaders().set('x-auth-token', token);
-
-    return this.http.post(url, {}, { headers: headers });
+    return this.http.post(url, {client});
   }
 
   likePost(token: string, postID: string) {

@@ -11,7 +11,6 @@ let getAllfreelancers = async (request, response) => {
 
 let updateFreelancer = async (request, response) => {
   let freelancer = request.body;
-  console.log("Aloooooooooooooo");
   try {
     if (FreelancerValidator(freelancer)) {
       await Freelancer.findByIdAndUpdate(freelancer.id, freelancer);

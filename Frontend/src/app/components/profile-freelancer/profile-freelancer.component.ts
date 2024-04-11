@@ -35,6 +35,8 @@ export class ProfileFreelancerComponent implements OnInit {
   freelancerPortfolio: any;
   freelancer: any;
   orders: any;
+  visitor: any;
+  isVisitorClient!: boolean;
 
   constructor(
     private router: Router,
@@ -62,8 +64,6 @@ export class ProfileFreelancerComponent implements OnInit {
     this.router.navigate(['/profile/freelancer/add-post', this.freelancerId]);
   }
   toggleTooltipColor() {
-    //TODO: Handle Follow Logic
-
     this.isTooltipActive = !this.isTooltipActive;
     var tooltipElement = document.querySelector('.tooltip-container');
     var textElement = document.querySelector('.text');
@@ -74,6 +74,15 @@ export class ProfileFreelancerComponent implements OnInit {
     followersElement!.classList.toggle('pressed');
     svgIconElement!.classList.toggle('pressed');
   }
+  async followFreelancer() {
+    if (!this.isTooltipActive) {
+      this.clientService.followFreelancer(this.visitor._id, this.freelancerId);
+    } else {
+      this.clientService.unfollowFreelancer(this.visitor, this.freelancerId)
+    }
+    this.toggleTooltipColor();
+  }
+
   async getClientName(clientID: string): Promise<string> {
     try {
       const res = await this.clientService.getByID(clientID).toPromise();
@@ -86,10 +95,15 @@ export class ProfileFreelancerComponent implements OnInit {
   ngOnInit(): void {
     const navigation = history.state;
     this.freelancer = navigation.freelancer;
+    this.visitor = this.tokenService.getUser();
 
     this.route.params.subscribe((params) => {
       this.freelancerId = params['id'];
-      this.hisProfile = this.tokenService.getUser()._id === this.freelancerId;
+      this.hisProfile = this.visitor._id === this.freelancerId;
+      this.isVisitorClient = this.visitor.userType == 'Client';
+      if (this.isVisitorClient) {
+        this.isTooltipActive = this.visitor.following.includes(this.freelancerId)
+      }
       this.freelancerService.getFreelancerByID(this.freelancerId).subscribe(
         (res) => {
           this.freelancer = res.data;
