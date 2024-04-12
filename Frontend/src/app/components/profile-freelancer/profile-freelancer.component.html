@@ -387,7 +387,7 @@
         </div>
 
         <div *ngIf="selectedTab === 'reviews'" class="container">
-          <app-reviews></app-reviews>
+          <app-reviews [freelancerID]="this.freelancerId"></app-reviews>
         </div>
         <!--button add post end-->
       </div>
