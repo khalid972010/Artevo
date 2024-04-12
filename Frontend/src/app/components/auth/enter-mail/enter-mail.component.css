@@ -1,13 +1,13 @@
 .body {
   background-color: #e4dcd1;
   min-height: 100vh;
-  background-image: url("https://wallpaper.dog/large/10921241.jpg");
+  background-image: url("https://images.unsplash.com/photo-1628965882741-570e75becd5d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   padding: 0 !important;
 }
 
 .mailForm {
-  color: white;
-  background-color: rgba(68, 96, 99, 0.769);
+  color: #313437;
+  background-color: rgba(230, 224, 212, 0.769);
   padding: 50px 0;
   border-radius: 5px;
   min-height: 70vh !important;
@@ -59,7 +59,7 @@ form {
 .btn {
   padding: 16px 32px;
   border: none;
-  background-color: var(--secondary-color);
+  background-color: #7f6256;
   color: white;
 
   border: none;
@@ -83,7 +83,7 @@ button::placeholder {
 
 form .btn:hover {
   opacity: 1;
-  background-color: var(--tertiary-color);
+  background-color: #503428;
   color: white;
 }
 
@@ -111,7 +111,6 @@ form .btn-primary {
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
