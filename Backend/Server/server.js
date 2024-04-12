@@ -6,6 +6,7 @@ const FreelancerRoutes = require("../Routes/FreelancerRoutes");
 const HomeRoutes = require("../Routes/HomeRoutes");
 const adminRoutes = require("../Routes/adminRoutes");
 const OrderRoutes = require("../Routes/OrderRoutes");
+const ReviewsRoutes = require("../Routes/reviewRoutes");
 const cors = require("cors");
 
 const app = express();
@@ -45,6 +46,10 @@ app.use("/api/Freelancer", FreelancerRoutes);
 app.use("/api/Home", HomeRoutes);
 //#endregion
 app.use("/api/Order", OrderRoutes);
+
+//#region Review Routes
+app.use("/api/reviews", ReviewsRoutes);
+//#endregion
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

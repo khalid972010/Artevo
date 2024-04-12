@@ -1,0 +1,31 @@
+@if (this.review) {
+<div class="mt-2">
+  <div class="d-flex flex-row p-3">
+    <img
+      src="{{ reviewer.profilePicture }}"
+      width="60"
+      height="60"
+      class="rounded-circle mr-3"
+    />
+
+    <div class="w-100 ps-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-row align-items-center w-75">
+          <span class="mr-2 pe-2" style="width: fit-content">{{
+            reviewer.fullName
+          }}</span>
+          <small class="c-badge"
+            >{{ this.review.rate }}/5<i class="ms-1 bi bi-star-fill"></i>
+          </small>
+        </div>
+        <small>{{ formattedDate }}</small>
+      </div>
+
+      <p class="text-justify comment-text mb-0 mt-3">
+        {{ this.review.description }}
+      </p>
+    </div>
+  </div>
+</div>
+
+}
