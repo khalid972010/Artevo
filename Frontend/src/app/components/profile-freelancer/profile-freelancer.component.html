@@ -267,6 +267,7 @@
             (click)="followFreelancer()"
             class="tooltip-container col-2 mt-3"
             *ngIf="!hisProfile && isVisitorClient"
+            [ngClass]="{ followed: isTooltipActive }"
           >
             <span class="tooltip">{{ freelancer?.followers.length ?? 0 }}</span>
             <span class="text">

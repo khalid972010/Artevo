@@ -149,8 +149,7 @@ let completeOrder = async (request, response) => {
 };
 
 let followFreelancer = async (request, response) => {
-  const client = await Clients.findById(request.body.client);
-  console.log(request.body.client);
+  const client = request.body.client;
   const freelancerID = request.params.id;
 
   if (client.following.includes(freelancerID)) {
@@ -165,6 +164,9 @@ let followFreelancer = async (request, response) => {
       following: client.following,
     });
 
+    await Freelancers.findByIdAndUpdate(freelancerID, {
+      $push: { followers: client._id },
+    });
     return response.status(200).json({ message: "Freelancer followed!" });
   } catch (error) {
     return response.status(500).json({ error });
@@ -183,6 +185,9 @@ let unfollowFreelancer = async (request, response) => {
   try {
     await Clients.findByIdAndUpdate(client._id, {
       $pull: { following: freelancerID },
+    });
+    await Freelancers.findByIdAndUpdate(freelancerID, {
+      $pull: { followers: client._id },
     });
     return response.status(200).json({ message: "Freelancer unfollowed!" });
   } catch (error) {

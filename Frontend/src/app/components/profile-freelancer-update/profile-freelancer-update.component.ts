@@ -2,7 +2,7 @@ import { Component ,OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FreelancerService } from '../../services/freelancer.service';
 import { UserService } from '../../services/user.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenService } from '../../services/token.service';
 import { FileUploadService } from '../../services/file_upload.service';
 import { LoadingComponent } from "../../loading/loading.component";
@@ -13,7 +13,7 @@ import { LoadingComponent } from "../../loading/loading.component";
     providers: [FreelancerService, UserService, FileUploadService],
     templateUrl: './profile-freelancer-update.component.html',
     styleUrl: './profile-freelancer-update.component.css',
-    imports: [ReactiveFormsModule, LoadingComponent]
+    imports: [ReactiveFormsModule, LoadingComponent, FormsModule]
 })
 export class ProfileFreelancerUpdateComponent implements OnInit {
   freelancerId:any;

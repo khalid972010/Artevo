@@ -11,7 +11,7 @@ const checkForClientID = async (request, response, next) => {
   }
 
   let client = await Clients.findById(ID);
- // console.log(client);
+  // console.log(client);
   if (client == undefined) {
     return response.status(404).json({ message: "Client not found!" });
   }

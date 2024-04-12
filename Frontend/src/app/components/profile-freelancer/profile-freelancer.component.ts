@@ -35,7 +35,6 @@ export class ProfileFreelancerComponent implements OnInit {
   freelancerPortfolio: any;
   freelancer: any;
   orders: any;
-  visitor: any;
   isVisitorClient!: boolean;
 
   constructor(
@@ -50,7 +49,7 @@ export class ProfileFreelancerComponent implements OnInit {
   ) {}
   @Input() selectedTab: string = 'posts';
   @Input() hisProfile!: boolean;
-  isTooltipActive = false;
+  isTooltipActive!: boolean;
 
   addPost() {
     //console.log('add post method');
@@ -63,25 +62,46 @@ export class ProfileFreelancerComponent implements OnInit {
     event.preventDefault();
     this.router.navigate(['/profile/freelancer/add-post', this.freelancerId]);
   }
+
   toggleTooltipColor() {
     this.isTooltipActive = !this.isTooltipActive;
-    var tooltipElement = document.querySelector('.tooltip-container');
-    var textElement = document.querySelector('.text');
-    var followersElement = document.querySelector('.tooltip');
-    var svgIconElement = document.querySelector('.svgIcon');
-    tooltipElement!.classList.toggle('pressed');
-    textElement!.classList.toggle('pressedText');
-    followersElement!.classList.toggle('pressed');
-    svgIconElement!.classList.toggle('pressed');
   }
-  async followFreelancer() {
-    if (!this.isTooltipActive) {
-      this.clientService.followFreelancer(this.visitor._id, this.freelancerId);
-    } else {
-      this.clientService.unfollowFreelancer(this.visitor, this.freelancerId)
-    }
-    this.toggleTooltipColor();
+
+  followFreelancer() {
+    var token = this.tokenService.getToken();
+    console.log(this.isTooltipActive);
+  if (!this.isTooltipActive) {
+    this.clientService.followFreelancer(token!, this.freelancerId).subscribe({
+      next: () => {
+        this.toggleTooltipColor();
+        let user = this.tokenService.getUser();
+        user.following.push(this.freelancerId);
+        this.tokenService.setUser(user);
+      },
+      error: (error) => {
+        alert(error.toString());
+      },
+    });
+  } else {
+    console.log("heello")
+    this.clientService.unfollowFreelancer(token!, this.freelancerId).subscribe({
+      next: () => {
+        this.toggleTooltipColor();
+        let user = this.tokenService.getUser();
+        let index = user.following.indexOf(this.freelancerId);
+
+        if (index !== -1) {
+          user.following.splice(index, 1);
+        }
+        this.tokenService.setUser(user);
+      },
+      error: (error) => {
+        alert(error.toString());
+      },
+    });
   }
+}
+
 
   async getClientName(clientID: string): Promise<string> {
     try {
@@ -95,14 +115,13 @@ export class ProfileFreelancerComponent implements OnInit {
   ngOnInit(): void {
     const navigation = history.state;
     this.freelancer = navigation.freelancer;
-    this.visitor = this.tokenService.getUser();
 
     this.route.params.subscribe((params) => {
       this.freelancerId = params['id'];
-      this.hisProfile = this.visitor._id === this.freelancerId;
-      this.isVisitorClient = this.visitor.userType == 'Client';
+      this.hisProfile = this.tokenService.getUser()._id === this.freelancerId;
+      this.isVisitorClient = this.tokenService.getUser().userType == 'Client';
       if (this.isVisitorClient) {
-        this.isTooltipActive = this.visitor.following.includes(this.freelancerId)
+        this.isTooltipActive = this.tokenService.getUser().following.includes(this.freelancerId)
       }
       this.freelancerService.getFreelancerByID(this.freelancerId).subscribe(
         (res) => {
