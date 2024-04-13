@@ -1,13 +1,21 @@
-.body {
-  background-color: #e4dcd1;
-  min-height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1628965882741-570e75becd5d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  padding: 0 !important;
-}
+
+  .body {
+    min-height: 100vh;
+    background-image: url("https://i.pinimg.com/564x/53/ac/8e/53ac8e3b07cce47d4891f2e78a284bff.jpg");
+    background-repeat: no-repeat; 
+    padding: 0 !important;
+    background-size: cover; 
+    background-position: center;
+  }
+  
+
+
 
 .mailForm {
-  color: #313437;
-  background-color: rgba(230, 224, 212, 0.769);
+  color: white;
+  background-color:   transparent;
+  font-size: 30px;
+  font-weight: bold;
   padding: 50px 0;
   border-radius: 5px;
   min-height: 70vh !important;
@@ -15,7 +23,7 @@
 }
 
 p {
-  color: #7d8285;
+  color: white;
   line-height: 1.5;
 }
 
@@ -59,7 +67,7 @@ form {
 .btn {
   padding: 16px 32px;
   border: none;
-  background-color: #7f6256;
+  background-color:  #141E1D;
   color: white;
 
   border: none;
@@ -73,9 +81,6 @@ form {
   padding: 0.75rem 1rem;
 }
 
-h1 {
-  letter-spacing: 0.15rem !important;
-}
 
 button::placeholder {
   color: crimson !important;
@@ -83,8 +88,8 @@ button::placeholder {
 
 form .btn:hover {
   opacity: 1;
-  background-color: #503428;
-  color: white;
+  background-color: #446063;
+  color: black;
 }
 
 form .btn:hover {
