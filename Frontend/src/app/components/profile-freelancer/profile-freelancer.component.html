@@ -1,4 +1,4 @@
-<div class="container-fluid p-0" style="margin-top: 80px">
+<div class="container-fluid p-0 fade-in" style="margin-top: 80px">
   <header>
     <img [src]="freelancer?.coverPicture" />
   </header>
@@ -383,15 +383,11 @@
         <div *ngIf="selectedTab === 'posts'">
           <div class="container">
             <div class="row">
-              @if(this.freelancerPortfolio){
               <app-portfolio
                 class="col-md-4 col-sm-6"
                 [portfolio]="portfolioItem"
                 *ngFor="let portfolioItem of freelancerPortfolio"
-              ></app-portfolio
-              >}@else {
-              <app-loading></app-loading>
-              }
+              ></app-portfolio>
             </div>
           </div>
         </div>

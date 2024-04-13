@@ -968,10 +968,27 @@ button:hover .star-6 {
   color: white;
   /* Change this to the desired color */
 }
+
 * {
   font-family: "Poppins", sans-serif;
 }
 
 .followText {
   color: white;
+}
+
+.fade-in {
+  animation: fadeInAnimation ease 1.5s;
+  animation-fill-mode: both;
+  opacity: 0;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
