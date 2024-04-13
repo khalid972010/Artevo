@@ -8,26 +8,31 @@
 
 .card {
   box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+  color:white
+
 }
 
 .card-body {
-  background-color: #e4dcd1;
+  background-color: #446063;
+  color:white;
 }
 
 .card .card-header {
   font-weight: 500;
+  color:white
 }
 
 .card-header:first-child {
   border-radius: 0.35rem 0.35rem 0 0;
-  background-color: rgb(44, 41, 41);
+  background-color:#141E1D ;
   color: white;
 }
 
 .card-header {
   padding: 1rem 1.35rem;
   margin-bottom: 0;
-  background-color: rgba(33, 40, 50, 0.03);
+  color:white;
+  background-color: #141E1D ;
   border-bottom: 1px solid rgba(33, 40, 50, 0.125);
 }
 
@@ -70,15 +75,19 @@
 button {
   border: none !important;
   outline: none !important;
+  color:white;
 }
 
 #uploadBtn {
-  background-color: rgb(44, 41, 41);
-  width: 20%
+  width: 20%;
+  background-color: #141E1D  ;
+
 }
 
 #uploadBtn2 {
-  background-color: rgb(44, 41, 41);
+  background-color: #141E1D  ;
+  color: white;
+
   width: 50%
 }
 
