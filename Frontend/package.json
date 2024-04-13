@@ -42,6 +42,7 @@
     "chart.js": "^4.4.2",
     "creditcardpayments": "^1.0.3",
     "firebase": "^10.10.0",
+    "fontawesome": "^5.6.3",
     "install": "^0.13.0",
     "jquery": "^3.7.1",
     "lightbox2": "^2.11.4",
