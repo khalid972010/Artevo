@@ -20,6 +20,7 @@ button {
 .form-control {
   height: 48px;
   border-radius: 10px;
+  color: #495057;
 }
 
 .form-control:focus {
@@ -59,4 +60,9 @@ button {
 
 img {
   object-fit: cover;
+}
+
+#errorMsg {
+  color: red;
+  font-size: 14px;
 }
