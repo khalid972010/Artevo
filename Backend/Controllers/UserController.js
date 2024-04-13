@@ -261,7 +261,7 @@ async function loginUser(req, res) {
 
   const accessToken = jwt.sign(
     { id: foundEmail.id, type: foundEmail.userType },
-    "artlance",
+    "artevo",
     { expiresIn: "7d" }
   );
 

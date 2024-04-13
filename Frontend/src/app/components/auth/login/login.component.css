@@ -3,13 +3,17 @@
 }
 
 .bg-image {
-  background-image: url("https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  /* background-image: url("https://i.imgur.com/FO3K7mW.jpeg"); */
+  /* background-image: url("https://i.pinimg.com/564x/00/aa/e2/00aae28efafd46ef0fa1b7eeb74ec40d.jpg"); */
+  background-image: url("https://i.pinimg.com/564x/56/52/fc/5652fc8cc34b135f3c1e5d134e5c94c8.jpg");
+  /* https://i.pinimg.com/564x/5c/04/9a/5c049a244bc7cdf34f05f63d4f7328d5.jpg */
   background-size: auto;
   background-position: center;
 }
 
 .login-heading {
   font-weight: 300;
+  color: white;
 }
 .form-control {
   border: none !important;
@@ -23,24 +27,25 @@
 }
 
 #background {
-  background-color: #e4dcd1;
+  background-color: var(--tertiary-color);
 }
 
 button {
-  background-color: #7f6256;
+  background-color: #446063;
   color: white;
 
   border: none;
 }
 
 button:hover {
-  background-color: #503428;
-  color: white;
+  background-color: #ccd4dd;
+
+  color: #446063;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: #ccd4dd;
 }
 
 .fade-in {
@@ -75,3 +80,4 @@ span {
     opacity: 1;
   }
 }
+

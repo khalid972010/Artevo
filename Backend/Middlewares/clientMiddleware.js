@@ -32,7 +32,7 @@ const checkForFreelancerID = async (request, response, next) => {
 const verifyTokenAndGetUserData = async (request, response, next) => {
   try {
     const token = request.headers["x-auth-token"];
-    const decoded = jwt.verify(token, "artlance");
+    const decoded = jwt.verify(token, "artevo");
     const client = await Clients.findById(decoded.id);
 
     if (!client) {

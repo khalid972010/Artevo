@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const verifyTokenAndGetUserData = async (request, response, next) => {
   try {
     const token = request.headers["x-auth-token"];
-    const decoded = jwt.verify(token, "artlance");
+    const decoded = jwt.verify(token, "artevo");
     const client = await Clients.findById(decoded.id);
     const Freelancer = await Freelancers.findById(decoded.id);
     if (!client && !Freelancer) {

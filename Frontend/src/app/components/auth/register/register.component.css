@@ -3,7 +3,9 @@
 }
 
 .bg-image {
-  background-image: url("https://i.pinimg.com/564x/fd/af/cf/fdafcff5bc524d296b44fa9b1cbc75f8.jpg");
+  /* background-image: url("https://i.pinimg.com/564x/fd/af/cf/fdafcff5bc524d296b44fa9b1cbc75f8.jpg"); */
+  /* background-image: url("https://i.pinimg.com/564x/56/52/fc/5652fc8cc34b135f3c1e5d134e5c94c8.jpg"); */
+  /* https://i.pinimg.com/564x/5c/04/9a/5c049a244bc7cdf34f05f63d4f7328d5.jpg */
   background-size: auto;
   background-position: center;
 }
@@ -25,21 +27,6 @@
   padding: 0.75rem 1rem;
 }
 
-#background {
-  background-color: var(--primary-color);
-}
-
-button {
-  background-color: #7f6256;
-  color: white;
-
-  border: none;
-}
-
-button:hover {
-  background-color: var(--primary-color);
-  color: white;
-}
 
 a {
   text-decoration: none;
@@ -146,7 +133,6 @@ a {
 body {
   margin: 0;
   padding: 0;
-  font-family: var(--font-family) !important;
   backdrop-filter: blur(10px);
   /* Blur effect applied to the entire body */
 }
@@ -183,13 +169,7 @@ body {
   overflow: hidden;
 }
 
-.button:hover {
-  background-color: #000;
-}
 
-.button:hover .button__icon-wrapper {
-  color: #000;
-}
 
 .button__icon-svg--copy {
   position: absolute;
@@ -326,8 +306,9 @@ body {
   border-radius: 0.5rem;
   border: 1px solid rgba(0, 0, 0, 0.25);
   gap: 0.75rem;
-  color: rgb(65, 63, 63);
-  background-color: #fff;
+  /* background-color: #446063;
+  color: white; */
+
   cursor: pointer;
   transition: all 0.6s ease;
   padding: 0px 14%;
@@ -339,11 +320,11 @@ body {
 
 .buttonGoogle:hover {
   transform: scale(1.02);
+  background-color: #446063;
 }
 
 .buttonGoogle:hover a {
   transform: scale(1.02);
-  color: white;
 }
 
 .btn {
@@ -482,4 +463,10 @@ body {
   color: white;
   background-color: var(--primary-color);
   ;
+}
+* {
+  font-family: "Poppins", sans-serif;
+}
+.card {
+  background-color: var(--tertiary-color);
 }
