@@ -968,3 +968,7 @@ button:hover .star-6 {
   color: white;
   /* Change this to the desired color */
 }
+
+.followText {
+  color: white;
+}

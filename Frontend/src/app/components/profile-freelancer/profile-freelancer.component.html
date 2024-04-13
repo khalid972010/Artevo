@@ -182,7 +182,7 @@
             <p class="desc-stat">Following</p>
           </div>
           <div class="stat col-xs-4">
-            <p class="number-stat">38</p>
+            <p class="number-stat">{{ freelancerPortfolio.length ?? 0 }}</p>
             <p class="desc-stat">Uploads</p>
           </div>
         </div>
@@ -270,7 +270,7 @@
             [ngClass]="{ followed: isTooltipActive }"
           >
             <span class="tooltip">{{ freelancer?.followers.length ?? 0 }}</span>
-            <span class="text">
+            <span class="text" [ngClass]="{ followText: isTooltipActive }">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
