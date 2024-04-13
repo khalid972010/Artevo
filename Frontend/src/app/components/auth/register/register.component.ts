@@ -111,4 +111,8 @@ export class RegisterComponent {
     event.preventDefault();
     this.router.navigate(['/login']);
   }
+
+  checkPassword(): boolean{
+    return (this.password!=null && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/.test(this.password));
+  }
 }

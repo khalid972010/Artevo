@@ -19,7 +19,7 @@
     <!-- Profile picture upload button-->
     <input
       type="file"
-      id="uploadInput"
+      id="uploadProfileInput"
       accept="image/*"
       value="Upload Image"
       (change)="handleCoverInput($event)"
@@ -29,7 +29,7 @@
       class="btn btn-primary"
       type="button"
       id="uploadBtn"
-      onclick="document.getElementById('uploadInput').click();"
+      onclick="document.getElementById('uploadProfileInput').click();"
     >
       Upload cover photo
     </button>
@@ -61,7 +61,7 @@
           <!-- Profile picture upload button-->
           <input
             type="file"
-            id="uploadInput"
+            id="uploadCoverInput"
             accept="image/*"
             value="Upload Image"
             (change)="handleProfileInput($event)"
@@ -71,7 +71,7 @@
             class="btn btn-primary"
             type="button"
             id="uploadBtn2"
-            onclick="document.getElementById('uploadInput').click();"
+            onclick="document.getElementById('uploadCoverInput').click();"
           >
             Upload new image
           </button>

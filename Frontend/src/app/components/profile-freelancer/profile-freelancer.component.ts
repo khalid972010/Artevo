@@ -13,22 +13,23 @@ import { MatDialog } from '@angular/material/dialog';
 import { OrderService } from '../../services/order.service';
 import { ClientService } from '../../services/client.service';
 import { ReviewsComponent } from '../reviews/reviews.component';
+import { LoadingComponent } from "../../loading/loading.component";
 //import { error } from 'console';
 //import { error } from 'console';
 
 @Component({
-  selector: 'app-profile-freelancer',
-  standalone: true,
-  providers: [
-    FreelancerService,
-    PortfolioService,
-    TokenService,
-    OrderService,
-    ClientService,
-  ],
-  templateUrl: './profile-freelancer.component.html',
-  styleUrl: './profile-freelancer.component.css',
-  imports: [FormsModule, CommonModule, PortfolioComponent, ReviewsComponent],
+    selector: 'app-profile-freelancer',
+    standalone: true,
+    providers: [
+        FreelancerService,
+        PortfolioService,
+        TokenService,
+        OrderService,
+        ClientService,
+    ],
+    templateUrl: './profile-freelancer.component.html',
+    styleUrl: './profile-freelancer.component.css',
+    imports: [FormsModule, CommonModule, PortfolioComponent, ReviewsComponent, LoadingComponent]
 })
 export class ProfileFreelancerComponent implements OnInit {
   freelancerId: string = '';

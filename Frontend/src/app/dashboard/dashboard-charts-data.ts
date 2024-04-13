@@ -50,8 +50,8 @@ export class DashboardChartsData {
 
     // generate random values for mainChart
     for (let i = 0; i <= this.mainChart['elements']; i++) {
-      this.mainChart['Data1'].push(this.random(50, 240));
-      this.mainChart['Data2'].push(this.random(20, 160));
+      this.mainChart['Data1'].push(10);
+      this.mainChart['Data2'].push(20);
       this.mainChart['Data3'].push(65);
     }
 

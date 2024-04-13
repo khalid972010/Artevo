@@ -295,6 +295,7 @@
         </div>
         <!--content below buttons-->
         <div class="orders-table-container" *ngIf="selectedTab === 'orders'">
+          @if(orders.data.FreelancerOrders){
           <table class="orders-table">
             <thead>
               <tr>
@@ -329,9 +330,12 @@
               </tr>
             </tbody>
           </table>
+          }@else{
+          <app-loading></app-loading>
+          }
         </div>
-
         <div class="orders-table-container" *ngIf="selectedTab === 'Tasks'">
+          @if(orders.data.FreelancerOrders){
           <table class="tasks-table table-striped">
             <!-- Table headers -->
             <thead>
@@ -364,6 +368,9 @@
               </tr>
             </tbody>
           </table>
+          }@else {
+          <app-loading></app-loading>
+          }
 
           <div *ngIf="openResponseForm">
             <textarea
@@ -373,15 +380,18 @@
             <button (click)="submitResponse()">Submit</button>
           </div>
         </div>
-
         <div *ngIf="selectedTab === 'posts'">
           <div class="container">
             <div class="row">
+              @if(this.freelancerPortfolio){
               <app-portfolio
                 class="col-md-4 col-sm-6"
                 [portfolio]="portfolioItem"
                 *ngFor="let portfolioItem of freelancerPortfolio"
-              ></app-portfolio>
+              ></app-portfolio
+              >}@else {
+              <app-loading></app-loading>
+              }
             </div>
           </div>
         </div>

@@ -4,15 +4,14 @@
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-12 col-xxl-11">
-        <div style="color: black;" class="card  shadow-sm">
+        <div style="color: black" class="card shadow-sm">
           <div class="row g-0">
             <div class="col-12 col-md-6">
               <img
                 class="img-fluid rounded-start w-100 h-100 object-fit-cover"
                 loading="lazy"
                 src="https://i.pinimg.com/564x/5c/04/9a/5c049a244bc7cdf34f05f63d4f7328d5.jpg"
-                style="background-size:auto;
-                background-position: center;"
+                style="background-size: auto; background-position: center"
                 alt="Welcome back you've been missed!"
               />
             </div>
@@ -44,8 +43,7 @@
                       <div class="d-flex gap-3 flex-column">
                         <button
                           class="buttonGoogle align-self-center"
-                          style="height: 58px "
-                          
+                          style="height: 58px"
                         >
                           <a
                             href="https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=ARZ0qKIC4w_vP9Z5wqyVa71yB4bCja74ohRKvsZ2J1feIjMWvLKNYkw6VAzgVR6kwppchTYyd5Kq1A&theme=mn&ddm=0&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
@@ -100,14 +98,10 @@
                           @if(fullName&&fullName.length < 5){
                           <br />
                           <p
-                            style="
-                              color: red;
-                              margin-top: -5px;
-                              text-align: start;
-                              margin-left: 30px;
-                            "
+                            class="alert alert-warning d-flex align-items-center text-start"
+                            style="height: 1em"
                           >
-                            Full Name should be at least 5 characters
+                            Full name should be at least 5 characters
                           </p>
                           }
 
@@ -147,14 +141,10 @@
                           @if(email&&!email.includes("@")){
                           <br />
                           <p
-                            style="
-                              color: red;
-                              margin-top: -5px;
-                              text-align: start;
-                              margin-left: 30px;
-                            "
+                            class="alert alert-warning d-flex align-items-center text-start"
+                            style="height: 1em"
                           >
-                            Please insert valid e-mail!!
+                            Please insert valid Email
                           </p>
                           }
                           <label for="email" class="form-label">Email</label>
@@ -172,6 +162,17 @@
                             placeholder="Password"
                             required
                           />
+                          @if(password && !checkPassword()){
+                          <br />
+                          <p
+                            class="alert alert-warning d-flex align-items-center text-start"
+                            style="height: 5em"
+                          >
+                            Password length must be more than 8 and must contain
+                            special character, uppercase letter, lowercase
+                            letter and number
+                          </p>
+                          }
                           <label for="password" class="form-label"
                             >Password</label
                           >
@@ -290,14 +291,11 @@
                           >
                             <h1>Artevo</h1>
                             <p>
-                              Hi {{ fullName }}
-                              We are happy you signed up for Artevo. to start
-                              the Artevo App,please confirm your email
-                              address.
+                              Thanks for registration, please verify your email.
                             </p>
                             <div class="text-center">
                               <a
-                                style="--clr: #7808d0; width: 43%"
+                                style="--clr: var(--primary-color); width: 43%"
                                 class="button fs-4 text-center"
                                 href="https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&ifkv=ARZ0qKIC4w_vP9Z5wqyVa71yB4bCja74ohRKvsZ2J1feIjMWvLKNYkw6VAzgVR6kwppchTYyd5Kq1A&theme=mn&ddm=0&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
                                 target="_blank"
@@ -311,7 +309,7 @@
                                     viewBox="0 0 14 15"
                                   >
                                     <path
-                                      fill="currentColor"
+                                      fill="var(--primary-color)"
                                       d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
                                     ></path>
                                   </svg>
@@ -324,19 +322,21 @@
                                     viewBox="0 0 14 15"
                                   >
                                     <path
-                                      fill="currentColor"
+                                      fill="var(--primary-color)"
                                       d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
                                     ></path>
                                   </svg>
                                 </span>
-                                Verfiy Account
+                                Verify Account
                               </a>
                             </div>
                             <br />
                             <div class="container">
                               <div class="row">
                                 <div class="col-10">
-                                  <h4>Going to Login page in a few seconds.</h4>
+                                  <h4>
+                                    Redirect to Login page in a few seconds.
+                                  </h4>
                                 </div>
                                 <div
                                   class="three-body col-2 justify-content-start"
@@ -358,7 +358,9 @@
                     </div>
                   </form>
                   <!--signUp-->
-                  <button class="btn" (click)="addUser()">Sign up</button>
+                  <button class="btn" (click)="addUser()">
+                    <b>Sign up</b>
+                  </button>
 
                   <!--signUp-->
                   <div class="row">

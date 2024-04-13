@@ -12,25 +12,27 @@ import { FilterListComponent } from '../filter-list/filter-list.component';
 import { FreelancerService } from '../../services/freelancer.service';
 import { FreelancerCardComponent } from '../freelancer-card/freelancer-card.component';
 import { Router } from '@angular/router';
+import { LoadingComponent } from "../../loading/loading.component";
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    CategoryCardComponent,
-    CommonModule,
-    PortfolioComponent,
-    HttpClientModule,
-    PortfoliosMainComponent,
-    CommonModule,
-    FormsModule,
-    FreelancerListComponent,
-    FilterListComponent,
-    FreelancerCardComponent
-  ],
-  providers: [CategoriesService, PortfolioService,FreelancerService ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+    selector: 'app-home',
+    standalone: true,
+    providers: [CategoriesService, PortfolioService, FreelancerService],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css',
+    imports: [
+        CategoryCardComponent,
+        CommonModule,
+        PortfolioComponent,
+        HttpClientModule,
+        PortfoliosMainComponent,
+        CommonModule,
+        FormsModule,
+        FreelancerListComponent,
+        FilterListComponent,
+        FreelancerCardComponent,
+        LoadingComponent
+    ]
 })
 export class HomeComponent implements OnInit {
   categories: any;

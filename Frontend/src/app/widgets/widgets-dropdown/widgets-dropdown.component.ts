@@ -12,6 +12,8 @@ import { ChartjsComponent } from '@coreui/angular-chartjs';
 import { RouterLink } from '@angular/router';
 import { IconDirective } from '@coreui/icons-angular';
 import { RowComponent, ColComponent, WidgetStatAComponent, TemplateIdDirective, ThemeDirective, DropdownComponent, ButtonDirective, DropdownToggleDirective, DropdownMenuDirective, DropdownItemDirective, DropdownDividerDirective } from '@coreui/angular';
+import { ClientService } from '../../services/client.service';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
     selector: 'app-widgets-dropdown',
@@ -24,11 +26,42 @@ import { RowComponent, ColComponent, WidgetStatAComponent, TemplateIdDirective, 
 export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private adminService:AdminService
   ) {}
+
+  clients: any;
+  getClients() {
+    this.adminService.getAllClients().subscribe({
+      next: (data) => {
+        this.clients = data;
+    }})
+  }
+  freelancers: any;
+  getFreelancers() {
+    this.adminService.getAllFreelancers().subscribe({
+      next: (data) => {
+        this.freelancers = data.body;
+        for (let i = 0; i < this.freelancers.data.length; i++) {
+          this.reviews += this.freelancers.data[i].reviews.length;
+
+        }
+
+    }})
+  }
+  orders: any;
+  getOrders() {
+    this.adminService.getAllOrders().subscribe({
+      next: (data) => {
+        this.orders = data;
+
+    }})
+  }
+  reviews = 0;
 
   data: any[] = [];
   options: any[] = [];
+  //#region Skip
   labels = [
     'January',
     'February',
@@ -123,8 +156,14 @@ export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
     }
   };
 
+  //#endregion
+
   ngOnInit(): void {
     this.setData();
+    this.getClients();
+    this.getFreelancers();
+    this.getOrders();
+
   }
 
   ngAfterContentInit(): void {
@@ -187,8 +226,14 @@ export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
 })
 export class ChartSample implements AfterViewInit {
 
-  constructor() {}
-
+  constructor(private adminService:AdminService) {}
+clients: any;
+  getClients() {
+    this.adminService.getAllClients().subscribe({
+      next: (data) => {
+        this.clients = data;
+    }})
+  }
   @ViewChild('chart') chartComponent!: ChartjsComponent;
 
   colors = {
