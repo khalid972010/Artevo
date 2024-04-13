@@ -334,3 +334,7 @@ input:not(:placeholder-shown)~.reset {
 .dropdown-item {
   color: var(--tertiary-color);
 }
+
+* {
+  font-family: "Poppins", sans-serif;
+}

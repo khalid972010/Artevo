@@ -184,3 +184,7 @@ img {
   filter: blur(5px);
   /* Adjust the blur strength as needed */
 }
+
+* {
+  font-family: "Poppins", sans-serif;
+}

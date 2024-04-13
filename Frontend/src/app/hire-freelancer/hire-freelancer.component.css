@@ -95,7 +95,9 @@ input[type="checkbox"] {
   background-color: #446063;
 }
 
-
+* {
+  font-family: "Poppins", sans-serif;
+}
 .modal {
   display: none;
   position: fixed;

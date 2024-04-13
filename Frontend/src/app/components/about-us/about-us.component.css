@@ -100,3 +100,6 @@
 .more-about-us .content .simple-btn a:hover {
   opacity: 0.5;
 }
+* {
+  font-family: "Poppins", sans-serif;
+}

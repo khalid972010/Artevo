@@ -81,3 +81,6 @@ button {
 #main {
   margin-bottom: 26.6vh;
 }
+* {
+  font-family: "Poppins", sans-serif;
+}

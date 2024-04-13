@@ -81,3 +81,7 @@ button {
   background-color: rgb(44, 41, 41);
   width: 50%
 }
+
+* {
+  font-family: "Poppins", sans-serif;
+}

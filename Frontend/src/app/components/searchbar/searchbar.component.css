@@ -10,6 +10,9 @@
     margin-top: -2px;
 
   }
+  * {
+    font-family: "Poppins", sans-serif;
+  }
 
   /* styling of whole input container */
   .form {

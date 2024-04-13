@@ -15,6 +15,9 @@
   padding: 0;
   /* Remove padding */
 }
+* {
+  font-family: "Poppins", sans-serif;
+}
 
 .card:hover {
   transform: translateY(-5px);

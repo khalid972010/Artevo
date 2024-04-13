@@ -24,3 +24,6 @@ footer a:hover {
   text-decoration: none;
   color: #aaa;
 }
+* {
+  font-family: "Poppins", sans-serif;
+}

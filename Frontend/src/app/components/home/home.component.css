@@ -5,6 +5,9 @@
   text-align: center;
   margin-bottom: 30px;
 }
+* {
+  font-family: "Poppins", sans-serif;
+}
 
 .cards-container {
   margin-bottom: 5%;

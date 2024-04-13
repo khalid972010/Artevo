@@ -292,3 +292,7 @@ h4, h5 {
   transform: rotate(-225deg);
   transition-delay: calc(0s + 0.35s * .6);
 }
+
+* {
+  font-family: "Poppins", sans-serif;
+}

@@ -70,3 +70,6 @@
 #video-container .video-content .inner .scroll-icon {
   margin-top: 45px;
 }
+* {
+  font-family: "Poppins", sans-serif;
+}
