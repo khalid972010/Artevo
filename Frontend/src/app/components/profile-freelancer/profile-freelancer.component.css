@@ -971,3 +971,7 @@ button:hover .star-6 {
 * {
   font-family: "Poppins", sans-serif;
 }
+
+.followText {
+  color: white;
+}

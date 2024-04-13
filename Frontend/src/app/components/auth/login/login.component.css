@@ -15,6 +15,7 @@
   font-weight: 300;
   color: white;
 }
+
 .form-control {
   border: none !important;
   box-shadow: none !important;
@@ -64,6 +65,7 @@ a {
 .btn-login:hover {
   transform: scale(1.01);
 }
+
 span {
   background-color: white !important;
   border: none !important;
@@ -72,12 +74,13 @@ span {
 * {
   font-family: "Poppins", sans-serif;
 }
+
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
-

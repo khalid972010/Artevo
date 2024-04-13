@@ -77,13 +77,13 @@ export class ProfileFreelancerComponent implements OnInit {
         let user = this.tokenService.getUser();
         user.following.push(this.freelancerId);
         this.tokenService.setUser(user);
+        this.freelancer.followers.length += 1;
       },
       error: (error) => {
         alert(error.toString());
       },
     });
   } else {
-    console.log("heello")
     this.clientService.unfollowFreelancer(token!, this.freelancerId).subscribe({
       next: () => {
         this.toggleTooltipColor();
@@ -94,6 +94,7 @@ export class ProfileFreelancerComponent implements OnInit {
           user.following.splice(index, 1);
         }
         this.tokenService.setUser(user);
+        this.freelancer.followers.length -= 1;
       },
       error: (error) => {
         alert(error.toString());
