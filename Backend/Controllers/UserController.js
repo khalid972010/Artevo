@@ -182,7 +182,7 @@ const sendResetToken = async (req, res) => {
     return res.status(404).json({ error: "Invalid email." });
   TobeReset.resetToken = resetToken;
   TobeReset.save();
-  let text = `Click the following link to reset your password: http://localhost:4200/login/reset/password/${resetToken}`;
+  let text = `Click the following link to reset your password: https://artevo-front-8jl6.vercel.app/login/reset/password/${resetToken}`;
   try {
     await sendEmail(email, text, "Reset Password");
     return res.json({ message: "reset password sent successfully" });
