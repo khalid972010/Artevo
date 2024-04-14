@@ -773,52 +773,70 @@ button:hover .star-6 {
   background-color: #8daab9;
   color: #141e1d;
 }
-
 .response-popup {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.9);
-  /* Semi-transparent background */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.response-popup-content {
+  background-color: whitesmoke;
   padding: 20px;
-  border: 1px solid #ccc;
+  width: 370px;
+  height: 410px;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background: -webkit-linear-gradient(to right,  #141E1D , #446063);
+  background: linear-gradient(to right,  #141E1D , #446063);
 }
 
 .response-content {
   text-align: center;
+  margin-bottom: 10px;
+  
+}
+.title {
+  font-size: 18px;
+  line-height: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #fff;
 }
 
 .response-content textarea {
-  width: 100%;
+  width: 90%; 
   height: 100px;
   background-color: #ccd4dd;
   color: #141e1d;
   margin-bottom: 10px;
   font-weight: bold;
-  /* Make the textarea bold */
-  transition: border-color 0.3s ease;
-  /* Add transition effect */
-  border: 1px solid transparent;
-  /* Set initial border color */
+  resize: none; 
+  border: none;
+  margin-top: 40px;
+  border-radius: 5px;
+  transition: box-shadow 0.3s; 
+  
+}
+.response-content textarea:hover {
+  box-shadow: 0 0 10px white;
 }
 
-.response-content textarea:focus {
-  border: 1px solid transparent;
-  /* Hide the original border */
-  outline: none;
-  /* Remove default outline */
-  box-shadow: 0 0 10px whitesmoke;
-  /* Add glowing effect */
+.response-content textarea::placeholder {
+  color: #446063;
+  opacity: 1; 
+  text-align: center; 
 }
-
 .response-content button {
-  margin-right: 5px;
   background-color: #ccd4dd;
   color: #141e1d;
-  padding: 10px 20px;
+  padding: 8px 16px;
+  margin: auto 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -828,9 +846,11 @@ button:hover .star-6 {
 }
 
 .response-content button:hover {
-  background-color: #8daab9;
+  color: #8daab9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color:#141E1D;
 }
+
 
 #sendBtn {
   margin-right: 5px;
