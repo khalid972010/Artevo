@@ -9,10 +9,9 @@ const OrderRoutes = require("../Routes/OrderRoutes");
 const ReviewsRoutes = require("../Routes/reviewRoutes");
 const cors = require("cors");
 
-
 const app = express();
 const corsOptions = {
-  origin: ["http://localhost:4200","https://4c38-156-209-81-63.ngrok-free.app" ], //nnd Allow requests from this origin
+  origin: ["*"], //nnd Allow requests from this origin
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow specified HTTP methods
   allowedHeaders: "*",
   exposedHeaders: ["x-auth-token"], // Allow specified headers
