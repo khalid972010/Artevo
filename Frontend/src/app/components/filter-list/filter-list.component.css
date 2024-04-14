@@ -1,8 +1,3 @@
-* {
-  font-family: 'artifika' !important;
-
-}
-
 .filter-button {
   transition: all 0.5s ease;
 
@@ -294,5 +289,5 @@ h4, h5 {
 }
 
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family) !important;
 }

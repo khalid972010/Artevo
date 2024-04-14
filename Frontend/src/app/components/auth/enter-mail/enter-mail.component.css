@@ -1,13 +1,22 @@
 .body {
-  background-color: #e4dcd1;
   min-height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1628965882741-570e75becd5d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-image: url("https://images-ext-1.discordapp.net/external/49FRduzJlG-NGy83jhrX1UHP9J1WbAHWakFCLieF5RE/%3Fq%3D80%26w%3D1794%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D/https/images.unsplash.com/photo-1629654858857-615c2c8be8a8?format=webp&width=1021&height=662");
+  background-repeat: no-repeat;
   padding: 0 !important;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(90%);
+  font-family: var(--font-family);
 }
 
+
+
+
 .mailForm {
-  color: #313437;
-  background-color: rgba(230, 224, 212, 0.769);
+  color: black;
+  background-color: transparent;
+  font-size: 30px;
+  font-weight: bold;
   padding: 50px 0;
   border-radius: 5px;
   min-height: 70vh !important;
@@ -15,7 +24,7 @@
 }
 
 p {
-  color: #7d8285;
+  color: black;
   line-height: 1.5;
 }
 
@@ -59,7 +68,7 @@ form {
 .btn {
   padding: 16px 32px;
   border: none;
-  background-color: #7f6256;
+  background-color: #141E1D;
   color: white;
 
   border: none;
@@ -73,9 +82,6 @@ form {
   padding: 0.75rem 1rem;
 }
 
-h1 {
-  letter-spacing: 0.15rem !important;
-}
 
 button::placeholder {
   color: crimson !important;
@@ -83,8 +89,8 @@ button::placeholder {
 
 form .btn:hover {
   opacity: 1;
-  background-color: #503428;
-  color: white;
+  background-color: #446063;
+  color: black;
 }
 
 form .btn:hover {
@@ -111,7 +117,13 @@ form .btn-primary {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
+}
+
+#textMail {
+  letter-spacing: 0.3rem;
+  font-size: 32px;
 }

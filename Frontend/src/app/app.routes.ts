@@ -18,7 +18,9 @@ import { ProfileClientUpdate } from './components/profile-client-update/profile-
 import { AddPostComponent } from './components/add-post/add-post.component';
 import { ProfileClientComponent } from './components/profile-client/profile-client.component';
 import { HireFreelancerComponent } from './hire-freelancer/hire-freelancer.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { PaymentComponent } from './components/payment/payment.component';
+
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -34,13 +36,15 @@ export const routes: Routes = [
   { path: 'freelancer/:id', component: ProfileFreelancerComponent },
   { path: 'profile/freelancer/add-post/:id', component: AddPostComponent },
   { path: 'profile/freelancer/update/:id', component: ProfileFreelancerUpdateComponent },
-  { path: 'payment/:id', component: PaymentComponent },
   {
     path: 'profile/freelancer/update',
     component: ProfileFreelancerUpdateComponent,
   },
   { path: 'profile/client/update/:id', component: ProfileClientUpdate },
-  { path: 'profile/freelancer/hire-freelancer', component: HireFreelancerComponent },
+  {
+    path: 'profile/freelancer/hire-freelancer',
+    component: HireFreelancerComponent,
+  },
   { path: 'profile/client/:id', component: ProfileClientComponent },
 
   {
@@ -69,4 +73,5 @@ export const routes: Routes = [
     ],
   },
   { path: 'admin', component: DefaultLayoutComponent },
+  { path: '**', component: NotFoundPageComponent },
 ];

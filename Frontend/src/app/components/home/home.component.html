@@ -1,6 +1,6 @@
 <!-- Heading Container -->
-<div class="container heading-container">
-  <div class="row justify-content-center m-auto">
+<div class="container heading-container text-start">
+  <div class="row justify-content-start">
     <h1>Welcome to Our Website!</h1>
   </div>
 </div>
@@ -59,7 +59,7 @@
 
 <!-- Content Below Categories -->
 
-<div class="container" *ngIf="selectedTab === 'freelancers'">
+<div class="container fade-in" *ngIf="selectedTab === 'freelancers'">
   <div class="row">
     <app-freelancer-card
       [freelancer]="freelancerItem"
@@ -70,7 +70,12 @@
   </div>
 </div>
 
-<div class="grid-portfolio" id="portfolio" *ngIf="selectedTab === 'posts'">
+<div
+  class="grid-portfolio"
+  id="portfolio"
+  class="fade-in"
+  *ngIf="selectedTab === 'posts'"
+>
   <div class="container">
     <div class="row">
       <app-portfolio

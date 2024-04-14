@@ -1,4 +1,4 @@
-<div class="container-fluid p-0" style="margin-top: 80px">
+<div class="container-fluid p-0 fade-in" style="margin-top: 80px">
   <header>
     <img [src]="freelancer?.coverPicture" />
   </header>
@@ -295,6 +295,7 @@
         </div>
         <!--content below buttons-->
         <div class="orders-table-container" *ngIf="selectedTab === 'orders'">
+          @if(orders.data.FreelancerOrders){
           <table class="orders-table">
             <thead>
               <tr>
@@ -329,9 +330,12 @@
               </tr>
             </tbody>
           </table>
+          }@else{
+          <app-loading></app-loading>
+          }
         </div>
-
         <div class="orders-table-container" *ngIf="selectedTab === 'Tasks'">
+          @if(orders.data.FreelancerOrders){
           <table class="tasks-table table-striped">
             <!-- Table headers -->
             <thead>
@@ -364,6 +368,9 @@
               </tr>
             </tbody>
           </table>
+          }@else {
+          <app-loading></app-loading>
+          }
 
           <div *ngIf="openResponseForm">
             <textarea
@@ -373,7 +380,6 @@
             <button (click)="submitResponse()">Submit</button>
           </div>
         </div>
-
         <div *ngIf="selectedTab === 'posts'">
           <div class="container">
             <div class="row">

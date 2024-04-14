@@ -1,9 +1,9 @@
-@if (this.reviews) {
+@if (this.reviews || this.canReview) {
 <div class="container mt-5 mb-5">
   <div class="row height d-flex justify-content-center align-items-center">
     <div class="col-md-12">
       <div class="card">
-        @if (canReview && !reviewedBefore) {
+        @if (canReview) {
         <div class="mt-3 d-flex flex-row align-items-center p-3 form-color">
           <img
             src="{{ this.currentUser.profilePicture }}"
@@ -11,16 +11,67 @@
             class="rounded-circle mr-2"
           />
           <input
+            [(ngModel)]="reviewText"
             type="text"
             class="form-control ms-3"
-            placeholder="Enter your comment..."
+            placeholder="Enter your review..."
           />
         </div>
 
-        <button class="align-self-end m-3 p-1">Submit</button>
+        <div class="d-flex flex-column px-3">
+          <app-stars
+            class="w-25 flex-grow-1 ms-4 pe-2 align-self-end"
+            [(rating)]="this.rating"
+          ></app-stars>
 
-        } @for (review of reviews; track review._id) {
-        <app-single-review [review]="review"> </app-single-review> }
+          <button
+            class="me-3 my-2 p-1 flex-grow-0 align-self-end"
+            id="submitButton"
+            (click)="submitReview()"
+          >
+            Submit
+          </button>
+          @if (error) {
+          <p class="align-self-end m-2 ps-2" id="errorMsg">
+            Review text must be filled!
+          </p>
+          }
+        </div>
+
+        <!-- } @else if (canReview && reviewedBefore) {
+          <div class="mt-3 d-flex flex-row align-items-center p-3 form-color">
+            <img
+              src="{{ this.currentUser.profilePicture }}"
+              width="50"
+              class="rounded-circle mr-2"
+            />
+            <input
+              type="text"
+              class="form-control ms-3"
+              placeholder="{{ this.previousReviewText }}"
+            />
+          </div>
+  
+          <div class="d-flex flex-column px-3">
+            <app-stars
+              class="w-50 flex-grow-1 ms-5 ps-4 align-self-end"
+              [(rating)]="this.rating"
+            ></app-stars>
+            <div class="flex-row d-flex justify-content-end ms-2">
+              <button class="m-3 p-1">Update</button>
+              <button class="m-3 p-1">R</button>
+            </div>
+            @if (error) {
+            <p class="align-self-end m-2 ps-2" id="errorMsg">
+              Review text must be filled!
+            </p>
+            }
+          </div> -->
+
+        } @if (this.reviews) { @for (review of reviews; track review._id) {
+        <app-single-review [review]="review"> </app-single-review> } } @else {
+        <app-loading></app-loading>
+        }
       </div>
     </div>
   </div>

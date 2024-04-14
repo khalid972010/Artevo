@@ -61,25 +61,22 @@
       <div class="main-menu">
         <ul>
           <li *ngIf="!isLogged">
-            <a href="#" (click)="navigateToLogin($event)">Log In</a>
+            <a href="#" (click)="navigateToLogin($event)">Login</a>
           </li>
           <li *ngIf="!isLogged">
             <a href="#" (click)="navigateToRegister($event)">Sign Up</a>
           </li>
-          <li *ngIf="isLogged">
-            <a href="#" (click)="visitMyProfile($event)">My Profile</a>
-          </li>
           <li>
             <a href="#" (click)="navigateHome($event)">Home</a>
+          </li>
+          <li *ngIf="isLogged">
+            <a href="#" (click)="visitMyProfile($event)">My Profile</a>
           </li>
           <li>
             <a href="#" (click)="navigateAbout($event)">About Us</a>
           </li>
           <li>
             <a href="#" (click)="navigateToFreelancers($event)">Freelancers</a>
-          </li>
-          <li>
-            <a href="#" (click)="navigatePortfolioList($event)">Portfolios</a>
           </li>
           <li>
             <a *ngIf="isLogged" class="pt-5" href="#" (click)="logout()"

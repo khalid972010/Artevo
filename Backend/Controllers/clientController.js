@@ -3,7 +3,6 @@ const Orders = require("../Models/orderModel");
 const Freelancers = require("../Models/FreelancerModel"); ///////////////////// UPDATE
 const ClientValidator = require("../Validators/clientValidator");
 const UserController = require("../Controllers/UserController");
-const Reviews = require("../Models/reviewModel");
 const Portfolios = require("../Models/portfolioModel");
 
 const { isValidObjectId } = require("mongoose");

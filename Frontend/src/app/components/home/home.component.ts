@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { CategoryCardComponent } from '../category-card/category-card.component';
 import { CategoriesService } from '../../services/categories.service';
 import { CommonModule } from '@angular/common';
@@ -12,25 +12,39 @@ import { FilterListComponent } from '../filter-list/filter-list.component';
 import { FreelancerService } from '../../services/freelancer.service';
 import { FreelancerCardComponent } from '../freelancer-card/freelancer-card.component';
 import { Router } from '@angular/router';
+import { LoadingComponent } from "../../loading/loading.component";
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    CategoryCardComponent,
-    CommonModule,
-    PortfolioComponent,
-    HttpClientModule,
-    PortfoliosMainComponent,
-    CommonModule,
-    FormsModule,
-    FreelancerListComponent,
-    FilterListComponent,
-    FreelancerCardComponent
+    selector: 'app-home',
+    standalone: true,
+    providers: [CategoriesService, PortfolioService, FreelancerService],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css',
+    imports: [
+        CategoryCardComponent,
+        CommonModule,
+        PortfolioComponent,
+        HttpClientModule,
+        PortfoliosMainComponent,
+        CommonModule,
+        FormsModule,
+        FreelancerListComponent,
+        FilterListComponent,
+        FreelancerCardComponent,
+        LoadingComponent
   ],
-  providers: [CategoriesService, PortfolioService,FreelancerService ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+      animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 })),
+      ]),
+    ]),
+  ]
 })
 export class HomeComponent implements OnInit {
   categories: any;
@@ -43,7 +57,8 @@ export class HomeComponent implements OnInit {
     private categoriesData: CategoriesService,
     private portfolioService: PortfolioService,
     private freelancerService :FreelancerService,
-    private router :Router
+    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   getSelected() {
@@ -58,6 +73,8 @@ export class HomeComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.Portfolio = data;
+          this.changeDetectorRef.detectChanges();
+
         },
         error: (err) => {
           console.log(err);

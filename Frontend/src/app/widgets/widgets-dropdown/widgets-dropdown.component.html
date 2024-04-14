@@ -2,10 +2,7 @@
   <c-col sm="6" xl="3">
     <c-widget-stat-a color="primary" [title]="'Clients'">
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
-        26K
-        <span class="fw-normal" style="font-size: 12px">
-          (-12.4% <svg cIcon name="cilArrowBottom" size="sm"></svg>)
-        </span>
+        {{ clients?.data.length }}
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">
@@ -45,10 +42,7 @@
   <c-col sm="6" xl="3">
     <c-widget-stat-a [title]="'Freelancers'" color="info">
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
-        <span>20K</span>
-        <span class="fw-normal" style="font-size: 12px">
-          (40.9%<svg cIcon name="cilArrowTop" size="sm"></svg>)
-        </span>
+        <span>{{ freelancers?.data.length }}</span>
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">
@@ -83,12 +77,9 @@
     </c-widget-stat-a>
   </c-col>
   <c-col sm="6" xl="3">
-    <c-widget-stat-a [title]="'Hiring rate'" color="warning">
+    <c-widget-stat-a [title]="'Orders'" color="warning">
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
-        <span>77.49</span>
-        <span class="fw-normal" style="font-size: 12px">
-          (84.7% <svg cIcon name="cilArrowTop" size="sm"></svg>)
-        </span>
+        <span>{{ orders?.length }} </span>
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">
@@ -125,10 +116,7 @@
   <c-col sm="6" xl="3">
     <c-widget-stat-a [title]="'Reviews'" color="danger">
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
-        <span>10K</span>
-        <span class="fw-normal" style="font-size: 12px">
-          (-23.6% <svg cIcon name="cilArrowBottom" size="sm"></svg>)
-        </span>
+        <span>{{ reviews }}</span>
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">

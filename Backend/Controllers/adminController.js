@@ -1,12 +1,19 @@
 const Orders = require("../Models/orderModel");
 const Clients = require("../Models/ClientModel");
 const Freelancer = require("../Models/FreelancerModel");
+const Reviews = require("../Models/reviewModel");
+
 const FreelancerValidator = require("../Validators/FreelancerValidator");
 const { isValidObjectId } = require("mongoose");
 
 const getAllOrders = async (request, response) => {
   const allOrders = await Orders.find({});
   return response.status(200).json(allOrders);
+};
+
+const getNumberOfReviews = async (request, response) => {
+  let allReviews = await Reviews.find({});
+  return response.status(200).json(allReviews.length);
 };
 
 const modifyOrder = async (request, response) => {
@@ -128,6 +135,7 @@ const searchFreelancers = async (request, response) => {
 };
 module.exports = {
   getAllOrders,
+  getNumberOfReviews,
   modifyOrder,
   getAllClients,
   deleteClient,

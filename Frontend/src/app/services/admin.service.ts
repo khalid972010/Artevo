@@ -21,6 +21,11 @@ export class AdminService {
     return this.http.get<any[]>(url);
   }
 
+  getNumberOfReviews() {
+    let url = this.DB_URL + 'reviews';
+    return this.http.get<any[]>(url);
+  }
+
   // modifyOrder(){
   //   let url = this.DB_URL + 'orders';
   //   return this.http.get<any[]>(url);

@@ -11,23 +11,28 @@
 }
 
 .card-body {
-  background-color: #e4dcd1;
+  background-color: #446063;
+  color:white;
 }
 
 .card .card-header {
   font-weight: 500;
+  background-color:#141E1D ;
+  color: white;
 }
 
 .card-header:first-child {
   border-radius: 0.35rem 0.35rem 0 0;
-  background-color: rgb(44, 41, 41);
+  background-color:#141E1D ;
   color: white;
 }
 
 .card-header {
   padding: 1rem 1.35rem;
   margin-bottom: 0;
-  background-color: rgba(33, 40, 50, 0.03);
+  color: white;
+
+  background-color:#141E1D ;
   border-bottom: 1px solid rgba(33, 40, 50, 0.125);
 }
 
@@ -38,7 +43,7 @@
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1;
-  color: #69707a;
+  color: black;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #c5ccd6;
@@ -71,11 +76,14 @@ button {
   width: 20%;
   border: none !important;
   outline: none !important;
+  color:white;
+
 }
 
 #uploadBtn {
-  background-color: rgb(44, 41, 41);
   width: 50% !important;
+  background-color: #141E1D  ;
+  color: white;
 }
 
 #main {

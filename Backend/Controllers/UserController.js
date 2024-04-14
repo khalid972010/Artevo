@@ -5,7 +5,6 @@ const Freelancers = require("../Models/FreelancerModel");
 const ClientValidator = require("../Validators/clientValidator");
 const freelancerValidator = require("../Validators/FreelancerValidator");
 const Admins = require("../Models/adminModel");
-
 const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
@@ -114,7 +113,7 @@ const UpdateProfileByMail = async (request, response) => {
 //#endregion
 
 //#region Verification E-mail
-async function sendEmail(email, t) {
+async function sendEmail(email, t, subj) {
   // Create a Nodemailer transporter
   let transporter = nodemailer.createTransport({
     service: "Gmail",
@@ -126,9 +125,9 @@ async function sendEmail(email, t) {
 
   // Send verification email
   let info = await transporter.sendMail({
-    from: "hire.hustle1@gmail.com", // Sender address
+    from: '"Artevo" <hire.hustle1@gmail.com>', // Sender address
     to: email, // Recipient address
-    subject: "Email Verification", // Subject line
+    subject: subj, // Subject line
     text: t, // Plain text body
   });
 }
@@ -145,7 +144,7 @@ const sendVerification = async (req, res) => {
   ToBeVerifiedUser.save();
   let text = `Click the following link to verify your email: https://angularproject-rokp.onrender.com/api/users/verify/${verificationToken}`;
   try {
-    await sendEmail(email, text);
+    await sendEmail(email, text, "Verification Email");
     return res.json({ message: "Verification email sent successfully" });
   } catch (error) {
     console.error("Error sending verification email:", error);
@@ -179,11 +178,13 @@ const sendResetToken = async (req, res) => {
   let client = await Clients.findOne({ email });
   let freelancer = await Freelancers.findOne({ email });
   let TobeReset = client || freelancer;
+  if (TobeReset == null)
+    return res.status(404).json({ error: "Invalid email." });
   TobeReset.resetToken = resetToken;
   TobeReset.save();
   let text = `Click the following link to reset your password: http://localhost:4200/login/reset/password/${resetToken}`;
   try {
-    await sendEmail(email, text);
+    await sendEmail(email, text, "Reset Password");
     return res.json({ message: "reset password sent successfully" });
   } catch (error) {
     console.error("Error sending reset password:", error);
