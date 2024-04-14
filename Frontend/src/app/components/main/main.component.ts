@@ -12,6 +12,7 @@ import { PortfolioService } from '../../services/portfolio.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PortfoliosMainComponent } from '../portfolios-main/portfolios-main.component';
+import { PaymentComponent } from '../payment/payment.component';
 
 
 
@@ -25,7 +26,8 @@ import { PortfoliosMainComponent } from '../portfolios-main/portfolios-main.comp
     CommonModule,
     AboutComponent,
     NavbarComponent,
-    PortfoliosMainComponent
+    PortfoliosMainComponent,
+    PaymentComponent
     ],
     providers:[PortfolioService],
   templateUrl: './main.component.html',

@@ -310,7 +310,7 @@
             <tbody
               *ngFor="let order of orders.data.FreelancerOrders; let i = index"
             >
-              <tr *ngIf="order.state !== 'InProgress'">
+              <tr *ngIf="order.state == 'Pending'">
                 <td>{{ order.clientName }}</td>
                 <td>{{ order.description }}</td>
                 <td>{{ order.deadline }}</td>
@@ -371,14 +371,24 @@
           }@else {
           <app-loading></app-loading>
           }
+          <div *ngIf="openResponseForm" class="response-popup">
+            <div class="response-popup-content">
+              <div class="response-content">
+                <p class="title">Congratulations on completing your task! It's time to submit your work to the client for review. Your dedication and hard work are greatly appreciated✨</p>
 
-          <div *ngIf="openResponseForm">
-            <textarea
-              [(ngModel)]="responseText"
-              placeholder="Type your response here"
-            ></textarea>
-            <button (click)="submitResponse()">Submit</button>
+                <textarea
+                  [(ngModel)]="responseText"
+                  placeholder="Submit your work here..."
+                ></textarea>
+                <div class="button-group">
+                  <button (click)="submitResponse()">Send</button>
+                  <button (click)="closeFreelancerResponse()">Cancel</button>
+                </div>
+              </div>
+            </div>
           </div>
+          
+          
         </div>
         <div *ngIf="selectedTab === 'posts'">
           <div class="container">

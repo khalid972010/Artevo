@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class FreelancerService {
-  //  private DB_URL = 'https://angularproject-rokp.onrender.com/api/Freelancer';
- private DB_URL = 'http://localhost:7010/api/Freelancer';
+  private DB_URL = 'https://angularproject-rokp.onrender.com/api/Freelancer';
+  //  private DB_URL = 'http://localhost:7010/api/Freelancer';
 
   constructor(private http: HttpClient) {}
   getAllFreelancers() {
@@ -38,6 +38,6 @@ export class FreelancerService {
   }
 
   addFollower(freelancerID: any, followerID: any) {
-    this.http.post(this.DB_URL + '/follow',  { freelancerID, followerID });
+    this.http.post(this.DB_URL + '/follow', { freelancerID, followerID });
   }
 }

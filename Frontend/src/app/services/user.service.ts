@@ -7,8 +7,8 @@ import { TokenService } from './token.service';
   providedIn: 'root',
 })
 export class UserService {
-  // DB_URL = 'https://angularproject-rokp.onrender.com/api/users/';
-  DB_URL = 'http://localhost:7010/api/users/';
+  DB_URL = 'https://angularproject-rokp.onrender.com/api/users/';
+  // DB_URL = 'http://localhost:7010/api/users/';
   token: string | null = '';
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
@@ -53,7 +53,7 @@ export class UserService {
     );
   }
 
-  UpdateUser(updatedUser:any){
-    return this.http.patch(this.DB_URL,updatedUser);
+  UpdateUser(updatedUser: any) {
+    return this.http.patch(this.DB_URL, updatedUser);
   }
 }

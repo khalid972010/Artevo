@@ -46,7 +46,8 @@ export class ProfileFreelancerComponent implements OnInit {
     private tokenService: TokenService,
     private dialog: MatDialog,
     private orderService: OrderService,
-    private clientService: ClientService
+    private clientService: ClientService,
+    
   ) {}
   @Input() selectedTab: string = 'posts';
   @Input() hisProfile!: boolean;
