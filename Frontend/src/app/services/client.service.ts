@@ -7,9 +7,8 @@ import { TokenService } from './token.service';
   providedIn: 'root',
 })
 export class ClientService {
-  // DB_URL = 'https://angularproject-rokp.onrender.com/api/clients/';
-  private DB_URL = 'http://localhost:7010/api/clients/';
-
+  DB_URL = 'https://angularproject-rokp.onrender.com/api/clients/';
+  // private DB_URL = 'http://localhost:7010/api/clients/';
 
   static token: string | null = '';
   constructor(private http: HttpClient, private tokenService: TokenService) {
