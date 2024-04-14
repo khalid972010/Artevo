@@ -44,6 +44,7 @@ const ClientSchema = {
     verificationToken: { type: "string" },
     isVerified: { type: "boolean", default: false },
     resetToken: { type: "string" },
+    isGoogle: { type: "boolean", default: false },
   },
   required: ["fullName", "userName", "password", "userType", "email"],
 };

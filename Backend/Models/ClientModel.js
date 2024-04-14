@@ -18,6 +18,7 @@ const clientSchema = new mongoose.Schema(
     verificationToken: String,
     isVerified: Boolean,
     resetToken: String,
+    isGoogle: Boolean,
   },
   { versionKey: false }
 );
