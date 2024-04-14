@@ -11,7 +11,9 @@ const cors = require("cors");
 
 const app = express();
 const corsOptions = {
-  origin: "http://localhost:4200", //nnd Allow requests from this origin
+  origin:
+    "https://artevo-front-8jl6-o51md96ot-mahmouddhamdys-projects.vercel.app", //nnd Allow requests from this origin
+  // origin: "http://localhost:4200", //nnd Allow requests from this origin
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow specified HTTP methods
   allowedHeaders: "*",
   exposedHeaders: ["x-auth-token"], // Allow specified headers
