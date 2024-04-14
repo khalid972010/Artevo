@@ -11,7 +11,7 @@ const cors = require("cors");
 
 const app = express();
 const corsOptions = {
-  origin: ["*"], //nnd Allow requests from this origin
+  origin: "*", //nnd Allow requests from this origin
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Allow specified HTTP methods
   allowedHeaders: "*",
   exposedHeaders: ["x-auth-token"], // Allow specified headers
