@@ -3,9 +3,6 @@
     <c-widget-stat-a color="primary" [title]="'Clients'">
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
         {{ clients?.data.length }}
-        <span class="fw-normal" style="font-size: 12px">
-          (-12.4% <svg cIcon name="cilArrowBottom" size="sm"></svg>)
-        </span>
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">
@@ -46,9 +43,6 @@
     <c-widget-stat-a [title]="'Freelancers'" color="info">
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
         <span>{{ freelancers?.data.length }}</span>
-        <span class="fw-normal" style="font-size: 12px">
-          (40.9%<svg cIcon name="cilArrowTop" size="sm"></svg>)
-        </span>
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">
@@ -86,9 +80,6 @@
     <c-widget-stat-a [title]="'Orders'" color="warning">
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
         <span>{{ orders?.length }} </span>
-        <span class="fw-normal" style="font-size: 12px">
-          (84.7% <svg cIcon name="cilArrowTop" size="sm"></svg>)
-        </span>
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">
@@ -126,9 +117,6 @@
     <c-widget-stat-a [title]="'Reviews'" color="danger">
       <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
         <span>{{ reviews }}</span>
-        <span class="fw-normal" style="font-size: 12px">
-          (-23.6% <svg cIcon name="cilArrowBottom" size="sm"></svg>)
-        </span>
       </ng-template>
       <ng-template cTemplateId="widgetActionTemplate">
         <c-dropdown alignment="end" variant="btn-group">

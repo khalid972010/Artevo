@@ -1,4 +1,8 @@
 <!--sidebar-->
+@if(tokenService.getUser().userType == 'Client' ||
+tokenService.getUser().userType == 'Freelancer') {
+<app-forbidden-page></app-forbidden-page>
+} @else {
 <c-sidebar
   #sidebar1="cSidebar"
   class="d-print-none sidebar sidebar-fixed border-end"
@@ -106,4 +110,4 @@
   <!--app footer-->
 </div>
 <app-default-footer />
-} }
+} } }

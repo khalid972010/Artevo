@@ -8,6 +8,11 @@ router.get("/orders", adminController.getAllOrders);
 
 //#endregion
 
+//#region Get Number of reviews
+router.get("/reviews", adminController.getNumberOfReviews);
+
+//#endregion
+
 //#region Modify Order
 router.post("/orders", adminController.modifyOrder);
 //#endregion

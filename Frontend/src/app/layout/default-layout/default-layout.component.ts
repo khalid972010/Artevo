@@ -19,6 +19,8 @@ import {
 
 import { DefaultFooterComponent, DefaultHeaderComponent } from './';
 import { navItems } from './_nav';
+import { TokenService } from '../../services/token.service';
+import { ForbiddenPageComponent } from '../../forbidden-page/forbidden-page.component';
 
 function isOverflown(element: HTMLElement) {
   return (
@@ -32,6 +34,7 @@ function isOverflown(element: HTMLElement) {
   templateUrl: './default-layout.component.html',
   styleUrls: ['./default-layout.component.scss'],
   standalone: true,
+  providers: [SidebarNavHelper, TokenService],
   imports: [
     SidebarComponent,
     SidebarHeaderComponent,
@@ -48,14 +51,14 @@ function isOverflown(element: HTMLElement) {
     ContainerComponent,
     RouterOutlet,
     DefaultFooterComponent,
+    ForbiddenPageComponent,
   ],
-  providers: [SidebarNavHelper],
 })
 export class DefaultLayoutComponent {
   public navItems = navItems;
   readonly #colorModeService = inject(ColorModeService);
   readonly colorMode = this.#colorModeService.colorMode;
-  constructor() {}
+  constructor(public tokenService: TokenService) {}
   onScrollbarUpdate($event: any) {
     // if ($event.verticalUsed) {
     // console.log('verticalUsed', $event.verticalUsed);
