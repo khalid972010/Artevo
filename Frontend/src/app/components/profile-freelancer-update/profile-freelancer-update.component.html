@@ -13,7 +13,7 @@
       [style.object-fit]="isLoaded ? 'cover' : 'none'"
     />
     <!-- Profile picture help block-->
-    <div class="small font-italic text-muted mb-4">
+    <div style="color:white" class="small font-italic text-muted mb-4">
       JPG or PNG no larger than 5 MB
     </div>
     <!-- Profile picture upload button-->
@@ -55,7 +55,7 @@
             style="object-fit: cover"
           />
           <!-- Profile picture help block-->
-          <div class="small font-italic text-muted mb-4">
+          <div  style="color:white"  class="small font-italic text-muted mb-4">
             JPG or PNG no larger than 5 MB
           </div>
           <!-- Profile picture upload button-->
@@ -187,7 +187,7 @@
             </div>
             <!-- Save changes button-->
             <div class="row justify-content-around">
-              <button
+              <button  style="color:white"
                 class="btn btn-success col-auto"
                 type="button"
                 (click)="
@@ -205,6 +205,7 @@
                 Save Changes
               </button>
               <button
+                style="color:white"
                 class="btn btn-danger col-auto"
                 type="button"
                 (click)="NavigateBack()"

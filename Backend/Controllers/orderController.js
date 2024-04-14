@@ -63,6 +63,20 @@ const updateOrderStatus=async(req,res)=>{
    
 }
 
+const getOrder=async(req,res)=>{
+  try{
+
+     let Order = await orderModel.findById( req.body.orderID );
+    
+     console.log(Order);
+      return res.status(201).json(  Order  );
+   }
+ 
+   catch{
+     return res.status(500).json({ message: "Internal server error " });
+   }
+   
+}
 const updateFreelancerResponse=async(req,res)=>{
   try{
    // console.log("1",req.body);
@@ -82,6 +96,24 @@ const updateFreelancerResponse=async(req,res)=>{
    }
    
 }
+const updateOrderPaymentStatus=async(req,res)=>{
+  try{
+   
+     let Order = await orderModel.findById( req.body.orderID );
+    
+     Order.isPaid=true;
+    
+     await Order.save();
+   
+    
+      return res.status(201).json(  Order  );
+   }
+ 
+   catch{
+     return res.status(500).json({ message: "Internal server error " });
+   }
+   
+}
 
   
 module.exports = {
@@ -89,5 +121,8 @@ module.exports = {
     getFreelancerOrders,
     updateOrderStatus,
     updateFreelancerResponse,
-    getClientOrders
+    getClientOrders,
+    getOrder,
+    updateOrderPaymentStatus
+
 };

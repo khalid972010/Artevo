@@ -96,6 +96,7 @@
                     <button
                       class="pay-button"
                       *ngIf="order.state === 'Completed' && !order.isPaid"
+                      (click)="redirectToPayment(order._id)">
                     >
                       Pay
                     </button>

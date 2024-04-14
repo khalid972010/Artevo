@@ -28,6 +28,17 @@ export class OrderService {
   {
     return this.http.post(this.DB_URL+"/getClientOrders",{clientID});
   }
+  getOrderByID(orderID:string)
+  {
+   // console.log(this.http.post(this.DB_URL+"/getOrderByID",{orderID:orderID}));
+    return this.http.post(this.DB_URL+"/getOrderByID",{orderID:orderID});
+  }
+  //updateOrderPaymentStatus
+  updateOrderPaymentStatus(orderID:string)
+  {
+   // console.log(this.http.post(this.DB_URL+"/getOrderByID",{orderID:orderID}));
+    return this.http.post(this.DB_URL+"/updateOrderPaymentStatus",{orderID:orderID});
+  }
 }
 
 

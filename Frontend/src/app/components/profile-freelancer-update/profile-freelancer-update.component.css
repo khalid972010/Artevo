@@ -11,24 +11,27 @@
 }
 
 .card-body {
-  background-color: #e4dcd1;
+  background-color: #446063;
+  color: white;
 }
 
 .card .card-header {
+  color: white;
   font-weight: 500;
 }
 
 .card-header:first-child {
   border-radius: 0.35rem 0.35rem 0 0;
-  background-color: rgb(44, 41, 41);
+  background-color: #141E1D;
   color: white;
 }
 
 .card-header {
   padding: 1rem 1.35rem;
   margin-bottom: 0;
-  background-color: rgba(33, 40, 50, 0.03);
+  background-color:#141E1D;
   border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+  color: white;
 }
 
 .form-control, .dataTable-input {

@@ -100,6 +100,9 @@ export class ProfileClientComponent  implements OnInit {
             return ''; // or handle error accordingly
         }
     }
+    redirectToPayment(orderID: any) {
+      this.router.navigate(['/payment', orderID]); // provide the complete route including the orderID parameter
+    }
 
 
 

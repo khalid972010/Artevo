@@ -309,7 +309,7 @@
             <tbody
               *ngFor="let order of orders.data.FreelancerOrders; let i = index"
             >
-              <tr *ngIf="order.state !== 'InProgress'">
+              <tr *ngIf="order.state == 'Pending'">
                 <td>{{ order.clientName }}</td>
                 <td>{{ order.description }}</td>
                 <td>{{ order.deadline }}</td>
