@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PortfoliosMainComponent } from '../portfolios-main/portfolios-main.component';
 import { PaymentComponent } from '../payment/payment.component';
+import { PaymentValidateComponent } from '../payment-validate/payment-validate.component';
 
 
 
@@ -27,7 +28,8 @@ import { PaymentComponent } from '../payment/payment.component';
     AboutComponent,
     NavbarComponent,
     PortfoliosMainComponent,
-    PaymentComponent
+    PaymentComponent,
+    PaymentValidateComponent
     ],
     providers:[PortfolioService],
   templateUrl: './main.component.html',

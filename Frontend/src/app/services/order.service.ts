@@ -30,14 +30,21 @@ export class OrderService {
   }
   getOrderByID(orderID:string)
   {
-   // console.log(this.http.post(this.DB_URL+"/getOrderByID",{orderID:orderID}));
+
     return this.http.post(this.DB_URL+"/getOrderByID",{orderID:orderID});
   }
-  //updateOrderPaymentStatus
+
   updateOrderPaymentStatus(orderID:string)
   {
-   // console.log(this.http.post(this.DB_URL+"/getOrderByID",{orderID:orderID}));
+
     return this.http.post(this.DB_URL+"/updateOrderPaymentStatus",{orderID:orderID});
+  }
+  updateOrderPaymentID(orderID:string , paymentID:Number){
+    return this.http.post(this.DB_URL+"/updateOrderPaymentID",{orderID:orderID,paymentID:paymentID});
+  }
+
+  findByPaymentID( paymentID:Number){
+    return this.http.post(this.DB_URL+"/findByPaymentID",{paymentID:paymentID});
   }
 }
 

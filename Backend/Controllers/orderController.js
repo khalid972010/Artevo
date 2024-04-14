@@ -68,7 +68,7 @@ const getOrder=async(req,res)=>{
 
      let Order = await orderModel.findById( req.body.orderID );
     
-     console.log(Order);
+    // console.log(Order);
       return res.status(201).json(  Order  );
    }
  
@@ -98,7 +98,6 @@ const updateFreelancerResponse=async(req,res)=>{
 }
 const updateOrderPaymentStatus=async(req,res)=>{
   try{
-   
      let Order = await orderModel.findById( req.body.orderID );
     
      Order.isPaid=true;
@@ -115,6 +114,38 @@ const updateOrderPaymentStatus=async(req,res)=>{
    
 }
 
+const updateOrderPaymentID=async(req,res)=>{
+  try{
+     let Order = await orderModel.findById( req.body.orderID );
+    
+     Order.paymentID=req.body.paymentID;
+    // console.log(req.body.paymentID);
+    // console.log(Order);
+  //  console.log("*****************************");
+     await Order.save();
+   
+    
+      return res.status(201).json(  Order  );
+   }
+ 
+   catch{
+     return res.status(500).json({ message: "Internal server error " });
+   }
+   
+}
+
+// let clientOrders = await orderModel.find({ from : req.body.clientID });
+const findByPaymentID=async(req,res)=>{
+  try{
+     let Order = await  orderModel.findOne({ paymentID : req.body.paymentID });
+      return res.status(201).json(  Order  );
+   }
+ 
+   catch{
+     return res.status(500).json({ message: "Internal server error " });
+   }
+   
+}
   
 module.exports = {
     createOrder,
@@ -123,6 +154,8 @@ module.exports = {
     updateFreelancerResponse,
     getClientOrders,
     getOrder,
-    updateOrderPaymentStatus
+    updateOrderPaymentStatus,
+    updateOrderPaymentID,
+    findByPaymentID
 
 };

@@ -68,4 +68,8 @@ export class ClientService {
         })
       );
   }
+
+  completeOrder(client:any,freelancerID:any){
+    return this.http.post(this.DB_URL+"completeOrder",{client:client,freelancerID:freelancerID});
+  }
 }

@@ -107,7 +107,7 @@ let completeOrder = async (request, response) => {
   /// !!!!!!!!! Just a placeholder, should be in admin controller !!!!!!!!!
   const client = request.body.client;
   const clientID = request.body.client._id.toString();
-  const freelancerID = request.params.id;
+  const freelancerID = request.body.freelancerID;
 
   let order = await Orders.findOne({
     from: clientID,

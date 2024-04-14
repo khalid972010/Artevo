@@ -12,5 +12,9 @@ router.post("/getClientOrders",orderController.getClientOrders)
 router.post("/getOrderByID",orderController.getOrder)
 router.post("/updateOrderPaymentStatus",orderController.updateOrderPaymentStatus);
 
+router.post("/updateOrderPaymentID",orderController.updateOrderPaymentID);
+
+router.post("/findByPaymentID",orderController.findByPaymentID);
+
 //export
 module.exports = router;

@@ -9,6 +9,7 @@ const orderSchema = new mongoose.Schema(
     to: { type: mongoose.Schema.Types.ObjectId, required: true },//Freelancer
     description: { type: String, required: true },
     price: { type: Number, required: true },
+    paymentID : {type: Number ,default: -1},
     state: {
       type: String,
       enum: ["Pending", "InProgress", "Declined", "Completed"],

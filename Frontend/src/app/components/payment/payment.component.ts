@@ -97,12 +97,21 @@ export class PaymentComponent implements OnInit {
                 console.log('Payment key response:', this.TokenRes2);
                 //this.order.isPaid=true;
 
-                this.orderService.updateOrderPaymentStatus(this.OrderID).subscribe(
-                  (res)=>{console.log(res)},
-                  (error)=>{console.log(error);}
-                  )
-
-                console.log(this.order);
+                // this.orderService.updateOrderPaymentStatus(this.OrderID).subscribe(
+                //   (res)=>{console.log(res)},
+                //   (error)=>{console.log(error);}
+                //   )
+                console.log(this.OrderID);
+                console.log(orderId);
+                this.orderService.updateOrderPaymentID(this.OrderID,orderId).subscribe(
+                  (res)=>{
+                    console.log(res);
+                  },
+                  (error)=>{
+                    console.log(error);
+                  }
+                )
+                //console.log(this.order);
               location.assign("https://accept.paymob.com/api/acceptance/iframes/837996?payment_token="+ this.TokenRes2);
 
               },

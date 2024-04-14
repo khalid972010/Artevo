@@ -20,6 +20,7 @@ import { ProfileClientComponent } from './components/profile-client/profile-clie
 import { HireFreelancerComponent } from './hire-freelancer/hire-freelancer.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { PaymentValidateComponent } from './components/payment-validate/payment-validate.component';
 
 
 export const routes: Routes = [
@@ -46,6 +47,8 @@ export const routes: Routes = [
     component: HireFreelancerComponent,
   },
   { path: 'profile/client/:id', component: ProfileClientComponent },
+  { path: 'paymentValidate', component: PaymentValidateComponent },
+  { path: 'payment/:id', component: PaymentComponent },
 
   {
     path: '',

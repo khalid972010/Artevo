@@ -82,5 +82,6 @@ router.post(
   clientController.unlikePortfolioPost
 );
 //#endregion
+router.post( "/completeOrder", clientController.completeOrder);
 
 module.exports = router;
