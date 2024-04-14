@@ -1,88 +1,90 @@
-<!-- Heading Container -->
-<div class="container heading-container text-start">
-  <div class="row justify-content-start">
-    <h1>Welcome to Our Website!</h1>
-  </div>
-</div>
-
-<!-- Category Cards Container -->
-<div class="container cards-container">
-  <div class="row justify-content-start">
-    <!-- Category Cards -->
-    <div
-      style="width: fit-content; padding-left: 0%"
-      *ngFor="let category of categories"
-    >
-      <app-category-card
-        [title]="category.title"
-        (click)="getSelected()"
-      ></app-category-card>
+<div class="fade-in">
+  <!-- Heading Container -->
+  <div class="container heading-container text-start">
+    <div class="row justify-content-start">
+      <h1>Welcome to Our Website!</h1>
     </div>
   </div>
-</div>
 
-<!-- Button -->
-<div class="container d-flex justify-content-between">
-  <div class="body">
-    <div class="tabs">
-      <input
-        [(ngModel)]="selectedTab"
-        value="posts"
-        name="selected"
-        id="posts"
-        type="radio"
-        class="input"
-      />
-      <label for="posts" class="label" style="font-family: artifika"
-        >POSTS</label
+  <!-- Category Cards Container -->
+  <div class="container cards-container">
+    <div class="row justify-content-start">
+      <!-- Category Cards -->
+      <div
+        style="width: fit-content; padding-left: 0%"
+        *ngFor="let category of categories"
       >
-      <input
-        [(ngModel)]="selectedTab"
-        value="freelancers"
-        name="selected"
-        id="freelancers"
-        type="radio"
-        class="input"
-      />
-      <label for="freelancers" class="label" style="font-family: artifika"
-        >FREELANCERS</label
-      >
+        <app-category-card
+          [title]="category.title"
+          (click)="getSelected()"
+        ></app-category-card>
+      </div>
     </div>
   </div>
-  <div class="filter-list-container" style="margin-right: 132px">
-    <app-filter-list
-      (filteredPortfolio)="receiveFilteredPortfolio($event)"
-      (filteredFreelancer)="receiveFilteredFreelancer($event)"
-    ></app-filter-list>
+
+  <!-- Button -->
+  <div class="container d-flex justify-content-between">
+    <div class="body">
+      <div class="tabs">
+        <input
+          [(ngModel)]="selectedTab"
+          value="posts"
+          name="selected"
+          id="posts"
+          type="radio"
+          class="input"
+        />
+        <label for="posts" class="label" style="font-family: artifika"
+          >POSTS</label
+        >
+        <input
+          [(ngModel)]="selectedTab"
+          value="freelancers"
+          name="selected"
+          id="freelancers"
+          type="radio"
+          class="input"
+        />
+        <label for="freelancers" class="label" style="font-family: artifika"
+          >FREELANCERS</label
+        >
+      </div>
+    </div>
+    <div class="filter-list-container" style="margin-right: 132px">
+      <app-filter-list
+        (filteredPortfolio)="receiveFilteredPortfolio($event)"
+        (filteredFreelancer)="receiveFilteredFreelancer($event)"
+      ></app-filter-list>
+    </div>
   </div>
-</div>
 
-<!-- Content Below Categories -->
+  <!-- Content Below Categories -->
 
-<div class="container fade-in" *ngIf="selectedTab === 'freelancers'">
-  <div class="row">
-    <app-freelancer-card
-      [freelancer]="freelancerItem"
-      class="col-xl-4 col-sm-6 mb-4"
-      *ngFor="let freelancerItem of freelancer.data"
-      (click)="goToFreelancerProfile(freelancerItem._id)"
-    ></app-freelancer-card>
-  </div>
-</div>
-
-<div
-  class="grid-portfolio"
-  id="portfolio"
-  class="fade-in"
-  *ngIf="selectedTab === 'posts'"
->
-  <div class="container">
+  <div class="container fade-in" *ngIf="selectedTab === 'freelancers'">
     <div class="row">
-      <app-portfolio
-        [portfolio]="portfolioItem"
-        class="col-md-4 col-sm-6"
-        *ngFor="let portfolioItem of Portfolio?.data"
-      ></app-portfolio>
+      <app-freelancer-card
+        [freelancer]="freelancerItem"
+        class="col-xl-4 col-sm-6 mb-4"
+        *ngFor="let freelancerItem of freelancer.data"
+        (click)="goToFreelancerProfile(freelancerItem._id)"
+      ></app-freelancer-card>
+    </div>
+  </div>
+
+  <div
+    class="grid-portfolio"
+    id="portfolio"
+    class="fade-in"
+    *ngIf="selectedTab === 'posts'"
+  >
+    <div class="container">
+      <div class="row">
+        <app-portfolio
+          [portfolio]="portfolioItem"
+          class="col-md-4 col-sm-6"
+          *ngFor="let portfolioItem of Portfolio?.data"
+        ></app-portfolio>
+      </div>
     </div>
   </div>
 </div>

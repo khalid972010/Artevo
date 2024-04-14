@@ -52,7 +52,6 @@
   font-weight: 200;
 }
 
-
 #video-container .video-content .inner p {
   color: #fff;
   font-size: 22px;
@@ -72,4 +71,20 @@
 }
 * {
   font-family: "Poppins", sans-serif;
+}
+
+.fade-in {
+  animation: fadeInAnimation ease 2s;
+  animation-fill-mode: both;
+  opacity: 0;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

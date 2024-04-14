@@ -49,25 +49,27 @@ a {
 }
 
 .tabs {
-  --ease: linear(0,
-      0.1641 3.52%,
-      0.311 7.18%,
-      0.4413 10.99%,
-      0.5553 14.96%,
-      0.6539 19.12%,
-      0.738 23.5%,
-      0.8086 28.15%,
-      0.8662 33.12%,
-      0.9078 37.92%,
-      0.9405 43.12%,
-      0.965 48.84%,
-      0.9821 55.28%,
-      0.992 61.97%,
-      0.9976 70.09%,
-      1);
+  --ease: linear(
+    0,
+    0.1641 3.52%,
+    0.311 7.18%,
+    0.4413 10.99%,
+    0.5553 14.96%,
+    0.6539 19.12%,
+    0.738 23.5%,
+    0.8086 28.15%,
+    0.8662 33.12%,
+    0.9078 37.92%,
+    0.9405 43.12%,
+    0.965 48.84%,
+    0.9821 55.28%,
+    0.992 61.97%,
+    0.9976 70.09%,
+    1
+  );
 }
 
-.tabs>.input,
+.tabs > .input,
 .sr-only {
   position: absolute;
   width: 1px;
@@ -96,7 +98,7 @@ a {
   --active: 3;
 }
 
-.tabs :checked+.label {
+.tabs :checked + .label {
   --highlight: 1;
 }
 
@@ -128,7 +130,7 @@ a {
   transition-timing-function: var(--ease, ease);
 }
 
-.input:not(:checked)+.label:hover {
+.input:not(:checked) + .label:hover {
   --highlight: 0.35;
   background: var(--primary-color);
 }
@@ -153,9 +155,6 @@ a {
   outline-color: red;
 }
 
-
-
-
 /* Filter List Styling */
 .filter-list {
   background-color: white;
@@ -171,6 +170,21 @@ a {
   opacity: 0;
 }
 
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeInAnimation ease 2s;
+  animation-fill-mode: both;
+  opacity: 0;
+}
 
 @keyframes fadeInAnimation {
   0% {
