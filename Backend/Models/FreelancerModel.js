@@ -12,12 +12,12 @@ const FreelancerSchema = new mongoose.Schema(
     email: String,
     password: String,
     profilePicture: String,
-    favTopics: String,
-    budget:Number,
-    coverPicture: String,
-    headLine: String,
-    location: String,
+    favTopics: String
     about: String,
+    budget: { type: Number, default: 0 },
+    coverPicture: String,
+    headLine: { type: String, default: "" },
+    location: { type: String, default: "" },
     userType: String, // Updateeeeeeee
     bookingOrder: [{ clientID: Number, status: String }],
     followers: [String], // Number-> for user id
