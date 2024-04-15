@@ -13,23 +13,29 @@ import { MatDialog } from '@angular/material/dialog';
 import { OrderService } from '../../services/order.service';
 import { ClientService } from '../../services/client.service';
 import { ReviewsComponent } from '../reviews/reviews.component';
-import { LoadingComponent } from "../../loading/loading.component";
+import { LoadingComponent } from '../../loading/loading.component';
 //import { error } from 'console';
 //import { error } from 'console';
 
 @Component({
-    selector: 'app-profile-freelancer',
-    standalone: true,
-    providers: [
-        FreelancerService,
-        PortfolioService,
-        TokenService,
-        OrderService,
-        ClientService,
-    ],
-    templateUrl: './profile-freelancer.component.html',
-    styleUrl: './profile-freelancer.component.css',
-    imports: [FormsModule, CommonModule, PortfolioComponent, ReviewsComponent, LoadingComponent]
+  selector: 'app-profile-freelancer',
+  standalone: true,
+  providers: [
+    FreelancerService,
+    PortfolioService,
+    TokenService,
+    OrderService,
+    ClientService,
+  ],
+  templateUrl: './profile-freelancer.component.html',
+  styleUrl: './profile-freelancer.component.css',
+  imports: [
+    FormsModule,
+    CommonModule,
+    PortfolioComponent,
+    ReviewsComponent,
+    LoadingComponent,
+  ],
 })
 export class ProfileFreelancerComponent implements OnInit {
   freelancerId: string = '';
@@ -43,10 +49,10 @@ export class ProfileFreelancerComponent implements OnInit {
     private route: ActivatedRoute,
     private freelancerService: FreelancerService,
     private portfolioService: PortfolioService,
-    private tokenService: TokenService,
+    public tokenService: TokenService,
     private dialog: MatDialog,
     private orderService: OrderService,
-    private clientService: ClientService,
+    private clientService: ClientService
   ) {}
   @Input() selectedTab: string = 'posts';
   @Input() hisProfile!: boolean;
@@ -71,39 +77,40 @@ export class ProfileFreelancerComponent implements OnInit {
   followFreelancer() {
     var token = this.tokenService.getToken();
     console.log(this.isTooltipActive);
-  if (!this.isTooltipActive) {
-    this.clientService.followFreelancer(token!, this.freelancerId).subscribe({
-      next: () => {
-        this.toggleTooltipColor();
-        let user = this.tokenService.getUser();
-        user.following.push(this.freelancerId);
-        this.tokenService.setUser(user);
-        this.freelancer.followers.length += 1;
-      },
-      error: (error) => {
-        alert(error.toString());
-      },
-    });
-  } else {
-    this.clientService.unfollowFreelancer(token!, this.freelancerId).subscribe({
-      next: () => {
-        this.toggleTooltipColor();
-        let user = this.tokenService.getUser();
-        let index = user.following.indexOf(this.freelancerId);
+    if (!this.isTooltipActive) {
+      this.clientService.followFreelancer(token!, this.freelancerId).subscribe({
+        next: () => {
+          this.toggleTooltipColor();
+          let user = this.tokenService.getUser();
+          user.following.push(this.freelancerId);
+          this.tokenService.setUser(user);
+          this.freelancer.followers.length += 1;
+        },
+        error: (error) => {
+          alert(error.toString());
+        },
+      });
+    } else {
+      this.clientService
+        .unfollowFreelancer(token!, this.freelancerId)
+        .subscribe({
+          next: () => {
+            this.toggleTooltipColor();
+            let user = this.tokenService.getUser();
+            let index = user.following.indexOf(this.freelancerId);
 
-        if (index !== -1) {
-          user.following.splice(index, 1);
-        }
-        this.tokenService.setUser(user);
-        this.freelancer.followers.length -= 1;
-      },
-      error: (error) => {
-        alert(error.toString());
-      },
-    });
+            if (index !== -1) {
+              user.following.splice(index, 1);
+            }
+            this.tokenService.setUser(user);
+            this.freelancer.followers.length -= 1;
+          },
+          error: (error) => {
+            alert(error.toString());
+          },
+        });
+    }
   }
-}
-
 
   async getClientName(clientID: string): Promise<string> {
     try {
@@ -123,7 +130,9 @@ export class ProfileFreelancerComponent implements OnInit {
       this.hisProfile = this.tokenService.getUser()._id === this.freelancerId;
       this.isVisitorClient = this.tokenService.getUser().userType == 'Client';
       if (this.isVisitorClient) {
-        this.isTooltipActive = this.tokenService.getUser().following.includes(this.freelancerId)
+        this.isTooltipActive = this.tokenService
+          .getUser()
+          .following.includes(this.freelancerId);
       }
       this.freelancerService.getFreelancerByID(this.freelancerId).subscribe(
         (res) => {
@@ -185,26 +194,19 @@ export class ProfileFreelancerComponent implements OnInit {
     );
     //this.ngOnInit();
     //location.reload();
-
   }
   //Decline
   Decline(ordersItemID: string) {
-
     this.orderService.updateOrderStatus(ordersItemID, 'Declined').subscribe(
       (res) => {
-
-
-
         console.log('Order status updated successfully');
       },
       (error) => {
-
         console.error('Error updating order status:', error);
       }
     );
     //this.ngOnInit();
-   // location.reload();
-
+    // location.reload();
   }
   openResponseForm: boolean = false;
   selectedOrderId: string | null = null;
@@ -241,7 +243,7 @@ export class ProfileFreelancerComponent implements OnInit {
       this.responseText = '';
       this.openResponseForm = false;
     }
-   // this.ngOnInit();
-   // location.reload();
+    // this.ngOnInit();
+    // location.reload();
   }
 }

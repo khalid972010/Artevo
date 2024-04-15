@@ -103,7 +103,7 @@ export class ImageModalComponent implements OnInit {
     if (!this.client) {
       this.router.navigate(['/login'], { replaceUrl: true });
       this.closeModal();
-    } else {
+    } else if (this.client.userType == 'Client') {
       event.preventDefault();
       this.checkLikes();
     }

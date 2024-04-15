@@ -26,7 +26,7 @@
             <a (click)="clickName()">{{ this.freelancer.fullName }}</a>
           </h5>
           <p class="small">{{ this.portfolio.description }}</p>
-          @if(this.client.userType =='Client') {
+          @if(this.client?.userType =='Client') {
           <a
             id="followLink"
             class="small"
@@ -39,7 +39,7 @@
         <div class="d-flex align-items-center justify-content-end">
           <!-- Like Button -->
 
-          @if(this.client.userType =='Client') {
+          @if(this.client?.userType =='Client') {
           <label
             class="container buttonLove mx-auto"
             (click)="handleCheckLikes($event)"
@@ -58,9 +58,12 @@
             </div>
           </label>
           } @else {
-          <label class="container buttonLove mx-auto">
-            <input type="checkbox" [checked]="isLiked" />
-            <div class="checkmark" [ngClass]="{ liked: isLiked }">
+          <label
+            class="container buttonLove mx-auto"
+            (click)="handleCheckLikes($event)"
+          >
+            <input />
+            <div class="checkmark">
               <svg viewBox="0 0 256 256">
                 <rect fill="none" height="256" width="256"></rect>
                 <path
