@@ -18,40 +18,40 @@ import { LoadingComponent } from '../../loading/loading.component';
 export class PaymentValidateComponent  implements OnInit{
   constructor(private route: ActivatedRoute,
     private orderService:OrderService,
-    private tokenService:TokenService,
+    private userToken:TokenService,
     private clientService:ClientService
   ) { }
   Order:any;
+  client:any;
   ngOnInit(): void {
     const orderID = this.route.snapshot.queryParams['order'];
+    //success
+
     this.orderService.findByPaymentID(orderID).subscribe(
       (res)=>{
-
         this.Order=res;
+        // if(!this.route.snapshot.queryParams['success'])
+        //   {
+        //     var url = "profile/client/" + this.Order.from
+        //     location.assign(url);
+        //     return ;
+        //   }
         this.orderService.updateOrderPaymentStatus(this.Order._id).subscribe(
           (res)=>{
-           // console.log(res);
-            // console.log(this.tokenService.getUser()._id);
-            this.clientService.getByID(this.Order.from).subscribe(
-              (res)=>{
-                console.log(res);
-                var url = "profile/client/" + Object(res).data._id;
-                location.assign(url);
-
-                // this.clientService.completeOrder(res.data,this.Order.to).subscribe(
-                //   (res)=>{
-                //     console.log(res);
-                //   },
-                //   (error)=>{
-                //     console.log(error);
-                //   }
-                // )
-              },
-              (error)=>{
-                console.log(error);
-              }
-            )
-
+                this.clientService.reviewActivation(this.Order.to,this.Order.from).subscribe(
+                  (res)=>{
+                    console.log(res);
+                    this.client = this.userToken.getUser();
+                    this.client.previousFreelancers.push(this.Order.to);
+                    console.log(this.client);
+                    localStorage.setItem('user', JSON.stringify(this.client))
+                    var url = "profile/client/" + this.Order.from
+                     location.assign(url);
+                  },
+                  (error)=>{
+                    console.log(error);
+                  }
+                )
           },
           (error)=>{
             console.log(error);

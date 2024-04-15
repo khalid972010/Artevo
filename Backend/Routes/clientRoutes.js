@@ -84,4 +84,5 @@ router.post(
 //#endregion
 router.post( "/completeOrder", clientController.completeOrder);
 
+router.post( "/reviewActivation", clientController.reviewActivation);
 module.exports = router;
