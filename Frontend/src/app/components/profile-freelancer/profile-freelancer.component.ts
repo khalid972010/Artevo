@@ -47,7 +47,6 @@ export class ProfileFreelancerComponent implements OnInit {
     private dialog: MatDialog,
     private orderService: OrderService,
     private clientService: ClientService,
-    
   ) {}
   @Input() selectedTab: string = 'posts';
   @Input() hisProfile!: boolean;
@@ -184,6 +183,28 @@ export class ProfileFreelancerComponent implements OnInit {
         console.error('Error updating order status:', error);
       }
     );
+    //this.ngOnInit();
+    //location.reload();
+
+  }
+  //Decline
+  Decline(ordersItemID: string) {
+
+    this.orderService.updateOrderStatus(ordersItemID, 'Declined').subscribe(
+      (res) => {
+
+
+
+        console.log('Order status updated successfully');
+      },
+      (error) => {
+
+        console.error('Error updating order status:', error);
+      }
+    );
+    //this.ngOnInit();
+   // location.reload();
+
   }
   openResponseForm: boolean = false;
   selectedOrderId: string | null = null;
@@ -220,5 +241,7 @@ export class ProfileFreelancerComponent implements OnInit {
       this.responseText = '';
       this.openResponseForm = false;
     }
+   // this.ngOnInit();
+   // location.reload();
   }
 }

@@ -115,33 +115,20 @@
           <!-- Popup for response -->
           <div *ngIf="openResponse" class="response-popup">
             <div class="response-content">
-              <h1>{{ selectedOrderResponse }}</h1>
-              <div
-                style="position: relative; text-align: center; margin-top: 60px"
-              >
-                <button
-                  style="
-                    position: absolute;
-                    bottom: 0;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 55px;
-                    height: 50px;
-                    font-size: 20px;
-                    padding: 0;
-                    line-height: 50px;
-                  "
-                  (click)="closeResponse()"
-                >
-                  Close
-                </button>
-              </div>
+              <p class="title">
+                <span class="access-message">Your project has been successfully completed✅<br>You can access it through the following link:</span>
 
-              <!-- <button style=" width: 55px; height: 50px; font-size: 20px; padding: 0; line-height: 40px;" (click)="closeResponse()">Close</button> -->
+                <br>
+                <a href="{{ selectedOrderResponse }}" >{{ selectedOrderResponse }}</a>
+              </p>
+
+
+                <button (click)="closeResponse()">Close</button>
+
             </div>
           </div>
-        </div>
 
+</div>
         <div
           class="grid-portfolio"
           id="portfolio"
