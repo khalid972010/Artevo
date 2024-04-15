@@ -142,7 +142,7 @@ const sendVerification = async (req, res) => {
   ToBeVerifiedUser = ToBeVerifiedClient || ToBeVerifiedFreelancer;
   ToBeVerifiedUser.verificationToken = verificationToken;
   ToBeVerifiedUser.save();
-  let text = `Click the following link to verify your email: https://angularproject-rokp.onrender.com/api/users/verify/${verificationToken}`;
+  let text = `Click the following link to verify your email: https://artevo-front-8jl6.vercel.app/register/success/${verificationToken}`;
   try {
     await sendEmail(email, text, "Verification Email");
     return res.json({ message: "Verification email sent successfully" });

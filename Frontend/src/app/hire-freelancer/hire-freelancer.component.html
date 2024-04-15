@@ -1,33 +1,83 @@
 <form class="form" *ngIf="showForm">
-    <span class="title">Welcome to our hiring form! Please provide details about your project requirements,We're here to support you throughout the process. Let's get started!✨</span>
-    <div class="description">
-        <textarea #description placeholder="Describe your project..." name="description" id="description" style="font-weight: bold;"></textarea>
-    </div>
-    <div class="description">
-      <select [(ngModel)]="selectedTimeline" name="timeline" (ngModelChange)="onChange($event)">
-            <option value="" style="color: white;font-weight: bold;background-color:  #446063;">Select your timeline</option>
-            <option value="Now" style="color: white;font-weight: bold;background-color:  #446063;">Now</option>
-            <option value="Within 2 weeks" style="color: white;font-weight: bold;background-color:  #446063;">Within 2 weeks</option>
-            <option value="in a month" style="color: white;font-weight: bold;background-color:  #446063;">In a month</option>
-        </select>
-    </div>
-    <div class="description">
-      <input  #budget placeholder="Enter your budget"style="font-weight:bold;" type="number" name="budget" id="budget">
+  <span class="title"
+    >Welcome to our hiring form! Please provide details about your project
+    requirements,We're here to support you throughout the process. Let's get
+    started!✨</span
+  >
+  <div class="description">
+    <textarea
+      #description
+      placeholder="Describe your project..."
+      name="description"
+      id="description"
+      style="font-weight: bold"
+    ></textarea>
   </div>
   <div class="description">
-      <label for="allow-review">You're granting artevo permission to review your inquiry. <a href="#" style="color:white;font-weight: bold;">Learn More</a></label>
-      <input type="checkbox" name="allow-review" id="allow-review">
-
+    <select
+      [(ngModel)]="selectedTimeline"
+      name="timeline"
+      (ngModelChange)="onChange($event)"
+    >
+      <option
+        value=""
+        style="color: white; font-weight: bold; background-color: #446063"
+      >
+        Select your timeline
+      </option>
+      <option
+        value="Now"
+        style="color: white; font-weight: bold; background-color: #446063"
+      >
+        Now
+      </option>
+      <option
+        value="Within 2 weeks"
+        style="color: white; font-weight: bold; background-color: #446063"
+      >
+        Within 2 weeks
+      </option>
+      <option
+        value="in a month"
+        style="color: white; font-weight: bold; background-color: #446063"
+      >
+        In a month
+      </option>
+    </select>
+  </div>
+  <div class="description">
+    <input
+      #budget
+      placeholder="Enter your budget"
+      style="font-weight: bold"
+      type="number"
+      name="budget"
+      id="budget"
+    />
+  </div>
+  <div class="description">
+    <label for="allow-review"
+      >You're granting artevo permission to review your inquiry.
+      <a href="#" style="color: white; font-weight: bold">Learn More</a></label
+    >
+    <input type="checkbox" name="allow-review" id="allow-review" />
   </div>
   <!-- <button type="submit" class="btn">Submit</button> -->
-  <button type="submit" class="btn" (click)="openModal(description.value,+budget.value)">Submit</button>
-
+  <button
+    type="submit"
+    class="btn"
+    (click)="openModal(description.value, +budget.value)"
+  >
+    Submit
+  </button>
 
   <!-- Modal -->
   <div *ngIf="showModal" class="modal">
-      <span class="close"  style="margin-top: -14px;"   (click)="closeModal()">&times;</span>
-      <p style="font-weight:bold;color: white; margin-top: 17 px;">Your order has been submitted!</p>
+    <span class="close" style="margin-top: -14px" (click)="closeModal()"
+      >&times;</span
+    >
+    <p style="font-weight: bold; color: white; margin-top: 17 px">
+      Your order has been submitted!
+    </p>
   </div>
-
-
 </form>

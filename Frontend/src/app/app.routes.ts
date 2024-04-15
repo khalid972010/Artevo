@@ -21,7 +21,7 @@ import { HireFreelancerComponent } from './hire-freelancer/hire-freelancer.compo
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { PaymentValidateComponent } from './components/payment-validate/payment-validate.component';
-
+import { VerifiedSuccessComponent } from './verified-success/verified-success.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -31,12 +31,16 @@ export const routes: Routes = [
   { path: 'portfolio-list', component: PortfolioListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'register/success/:token', component: VerifiedSuccessComponent },
   { path: 'login/reset/mail', component: EnterMailComponent },
   { path: 'login/reset/password/:token', component: NewPasswordComponent },
   { path: 'freelancers', component: FreelancerListComponent },
   { path: 'freelancer/:id', component: ProfileFreelancerComponent },
   { path: 'profile/freelancer/add-post/:id', component: AddPostComponent },
-  { path: 'profile/freelancer/update/:id', component: ProfileFreelancerUpdateComponent },
+  {
+    path: 'profile/freelancer/update/:id',
+    component: ProfileFreelancerUpdateComponent,
+  },
   {
     path: 'profile/freelancer/update',
     component: ProfileFreelancerUpdateComponent,

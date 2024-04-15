@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { TokenService } from '../services/token.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -11,47 +11,45 @@ import { Inject } from '@angular/core';
 @Component({
   selector: 'app-hire-freelancer',
   standalone: true,
-  imports: [FormsModule,CommonModule,HttpClientModule],
-  providers:[OrderService,TokenService,HttpClient],
+  imports: [FormsModule, CommonModule, HttpClientModule],
+  providers: [OrderService, TokenService, HttpClient],
   templateUrl: './hire-freelancer.component.html',
-  styleUrl: './hire-freelancer.component.css'
+  styleUrl: './hire-freelancer.component.css',
 })
-export class HireFreelancerComponent  {
+export class HireFreelancerComponent {
   showForm: boolean = true;
   showModal: boolean = false;
   selectedTimeline: string = '';
-  freelancerID:any;
+  freelancerID: any;
 
-  constructor(private orderService: OrderService,
-              private tokenService: TokenService,
-              private route:ActivatedRoute,
-              @Inject(MAT_DIALOG_DATA) public data: any
-            ) { }
-
+  constructor(
+    private orderService: OrderService,
+    private tokenService: TokenService,
+    private route: ActivatedRoute,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   openModal(description: string, budget: number): void {
     this.showModal = true;
-    // console.log(description);
-    // console.log(budget);
-    // console.log(this.selectedTimeline);
-    // console.log(this.tokenService.getUser()._id);
-    // console.log(this.data.freelancerID);
-    this.orderService.CreateOrder({
-      "from": this.tokenService.getUser()._id,
-      "to":this.data.freelancerID,
-      "description": description,
-      "price": budget,
-      "state": "Pending",
-      "deadline": this.selectedTimeline,
-      "isPaid": false
- }).subscribe(
-  (res)=>{
-    console.log(res);
-  },
-  (error)=>{
-    console.log(error);
-  }
- )
+
+    this.orderService
+      .CreateOrder({
+        from: this.tokenService.getUser()._id,
+        to: this.data.freelancerID,
+        description: description,
+        price: budget,
+        state: 'Pending',
+        deadline: this.selectedTimeline,
+        isPaid: false,
+      })
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   onChange(newValue: string) {
@@ -62,6 +60,8 @@ export class HireFreelancerComponent  {
   closeModal(): void {
     this.showModal = false;
     this.showForm = false;
+
+    location.reload();
   }
 
   openForm() {

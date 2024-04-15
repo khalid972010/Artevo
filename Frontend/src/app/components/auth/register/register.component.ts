@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { RegisterService } from '../../../services/register.service';
 import { TokenService } from '../../../services/token.service';
 import { AuthService } from '../../../services/auth.service';
+import { height } from '@fortawesome/free-solid-svg-icons/faStar';
 
 @Component({
   selector: 'app-register',
@@ -33,9 +34,10 @@ export class RegisterComponent implements OnInit {
     //render ..
     google.accounts.id.renderButton(document.getElementById('googlebtn'), {
       theme: 'filled_green',
-      size: 'Large',
-      shape: 'pill',
-      width: 340,
+      size: 'Small',
+      shape: 'rectangle',
+      width: 390,
+      height: 800,
     });
   }
   private decodeToken(token: string) {

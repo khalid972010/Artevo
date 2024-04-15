@@ -182,10 +182,9 @@ export class ProfileFreelancerComponent implements OnInit {
     // Call your service method to update the order status
     this.orderService.updateOrderStatus(ordersItemID, 'InProgress').subscribe(
       (res) => {
-        // console.log(res);
-
         // Handle success response if needed
         console.log('Order status updated successfully');
+        location.reload();
       },
       (error) => {
         // Handle error response
@@ -233,6 +232,7 @@ export class ProfileFreelancerComponent implements OnInit {
         .subscribe(
           (res) => {
             console.log(res);
+            location.reload();
           },
           (error) => {
             console.log(error);
