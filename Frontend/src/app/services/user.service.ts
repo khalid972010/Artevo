@@ -56,4 +56,9 @@ export class UserService {
   UpdateUser(updatedUser: any) {
     return this.http.patch(this.DB_URL, updatedUser);
   }
+
+  verifyUser(token: string) {
+    const url = this.DB_URL + '/verify/' + token;
+    return this.http.get<any>(url);
+  }
 }

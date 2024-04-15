@@ -113,34 +113,32 @@ let getMyOrders = async (request, response) => {
   }
 };
 
-
 let reviewActivation = async (req, res) => {
   try {
     let freelancerID = req.body.freelancerID;
     let clientID = req.body.clientID;
 
-    
     let client = await Clients.findById(clientID);
 
-      console.log(freelancerID);
-      console.log(clientID);
+    console.log(freelancerID);
+    console.log(clientID);
     if (!client.previousFreelancers.includes(freelancerID)) {
       client.previousFreelancers.push(freelancerID);
       await client.save();
 
-     
-      return res.status(200).json({ data: client , message: "Review activation successful" });
+      return res
+        .status(200)
+        .json({ data: client, message: "Review activation successful" });
     } else {
-      
-      return res.status(200).json({ message: "Freelancer already exists in previousFreelancers array" });
+      return res.status(200).json({
+        message: "Freelancer already exists in previousFreelancers array",
+      });
     }
   } catch (error) {
-   
-   // console.error("Error in reviewActivation:", error);
+    // console.error("Error in reviewActivation:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
 };
-
 
 let completeOrder = async (request, response) => {
   /// !!!!!!!!! Just a placeholder, should be in admin controller !!!!!!!!!
@@ -282,5 +280,5 @@ module.exports = {
   completeOrder,
   likePortfolioPost,
   unlikePortfolioPost,
-  reviewActivation
+  reviewActivation,
 };

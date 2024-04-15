@@ -72,7 +72,10 @@ export class ClientService {
   //   return this.http.post(this.DB_URL+"completeOrder",{client:client,freelancerID:freelancerID});
   // }
 
-  reviewActivation(freelancerID:string,clientID:string){
-    return this.http.post(this.DB_URL+"reviewActivation",{freelancerID:freelancerID,clientID:clientID});
+  reviewActivation(freelancerID: string, clientID: string) {
+    return this.http.post(this.DB_URL + 'reviewActivation', {
+      freelancerID: freelancerID,
+      clientID: clientID,
+    });
   }
 }

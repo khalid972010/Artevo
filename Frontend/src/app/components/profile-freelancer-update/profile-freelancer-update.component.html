@@ -169,6 +169,28 @@
                 #Email
               />
             </div>
+            <div class="mb-3">
+              <label class="small mb-1" for="budget">Budget</label>
+              <input
+                class="form-control"
+                id="budget"
+                type="number"
+                placeholder="Enter your Budget"
+                value="{{ freelancer.budget }}"
+                #budget
+              />
+            </div>
+            <div class="mb-3">
+              <label class="small mb-1" for="headline">HeadLine</label>
+              <input
+                class="form-control"
+                id="headline"
+                type="text"
+                placeholder="Enter your headline"
+                value="{{ freelancer.headLine }}"
+                #headline
+              />
+            </div>
             <!-- Form Row-->
             <div class="row gx-3 mb-3">
               <!-- Form Group (description)-->
@@ -199,6 +221,8 @@
                     Password.value,
                     Location.value,
                     Email.value,
+                    budget.value,
+                    headline.value,
                     About.value
                   )
                 "

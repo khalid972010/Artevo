@@ -167,7 +167,7 @@ export class RegisterComponent implements OnInit {
             }
           },
           error: (error) => {
-            alert(error.message);
+            alert(error.error.message);
           },
         });
       }

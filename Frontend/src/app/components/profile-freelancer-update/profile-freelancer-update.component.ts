@@ -107,6 +107,8 @@ export class ProfileFreelancerUpdateComponent implements OnInit {
     password: string,
     location: string,
     email: string,
+    budget: string,
+    headline: string,
     about: string
   ): void {
     var obj = {
@@ -117,6 +119,8 @@ export class ProfileFreelancerUpdateComponent implements OnInit {
       coverPicture: this.freelancer.coverPicture,
       location: location,
       email: email,
+      budget: budget,
+      headLine: headline,
       about: about,
     };
 
